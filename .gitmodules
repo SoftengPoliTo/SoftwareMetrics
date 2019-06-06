@@ -1,3 +1,6 @@
 [submodule "OLD_Tools/Tokei"]
 	path = OLD_Tools/Tokei
 	url = ./OLD_Tools/Tokei
+[submodule "OLD_Tools/Rust-Clippy"]
+	path = OLD_Tools/Rust-Clippy
+	url = ./OLD_Tools/Rust-Clippy

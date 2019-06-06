@@ -8,3 +8,9 @@ CCCC:
     (LOC)
     
     Languages:	C C++
+
+Clippy:
+    Cyclomatic Complexity (CC) in older versions, then called Cognitive complexity. Is this CC good?
+
+    Languages:	Rust
+

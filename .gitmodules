@@ -7,3 +7,12 @@
 [submodule "OLD_Tools/Metrixplusplus"]
 	path = OLD_Tools/Metrixplusplus
 	url = ./OLD_Tools/Metrixplusplus
+[submodule "OLD_Tools_SourceCodes/Tokei"]
+	path = OLD_Tools_SourceCodes/Tokei
+	url = ./OLD_Tools_SourceCodes/Tokei
+[submodule "OLD_Tools_SourceCodes/Rust-Clippy"]
+	path = OLD_Tools_SourceCodes/Rust-Clippy
+	url = ./OLD_Tools_SourceCodes/Rust-Clippy
+[submodule "OLD_Tools_SourceCodes/Halstead_Metrics_tool_source-code"]
+	path = OLD_Tools_SourceCodes/Halstead_Metrics_tool_source-code
+	url = ./OLD_Tools_SourceCodes/Halstead_Metrics_tool

@@ -1,18 +1,9 @@
-[submodule "OLD_Tools/Tokei"]
-	path = OLD_Tools/Tokei
-	url = ./OLD_Tools/Tokei
-[submodule "OLD_Tools/Rust-Clippy"]
-	path = OLD_Tools/Rust-Clippy
-	url = ./OLD_Tools/Rust-Clippy
-[submodule "OLD_Tools/Metrixplusplus"]
-	path = OLD_Tools/Metrixplusplus
-	url = ./OLD_Tools/Metrixplusplus
-[submodule "OLD_Tools_SourceCodes/Tokei"]
-	path = OLD_Tools_SourceCodes/Tokei
-	url = ./OLD_Tools_SourceCodes/Tokei
-[submodule "OLD_Tools_SourceCodes/Rust-Clippy"]
-	path = OLD_Tools_SourceCodes/Rust-Clippy
-	url = ./OLD_Tools_SourceCodes/Rust-Clippy
-[submodule "OLD_Tools_SourceCodes/Halstead_Metrics_tool_source-code"]
-	path = OLD_Tools_SourceCodes/Halstead_Metrics_tool_source-code
-	url = ./OLD_Tools_SourceCodes/Halstead_Metrics_tool
+[submodule "CC++_Tools_SourceCodes/Tokei"]
+	path = CC++_Tools_SourceCodes/Tokei
+	url = ./CC++_Tools_SourceCodes/Tokei
+[submodule "CC++_Tools_SourceCodes/Rust-Clippy"]
+	path = CC++_Tools_SourceCodes/Rust-Clippy
+	url = ./CC++_Tools_SourceCodes/Rust-Clippy
+[submodule "CC++_Tools_SourceCodes/Halstead_Metrics_tool_source-code"]
+	path = CC++_Tools_SourceCodes/Halstead_Metrics_tool_source-code
+	url = ./CC++_Tools_SourceCodes/Halstead_Metrics_tool

@@ -3,14 +3,13 @@ TMP_PATH    = ./.tmp_CC++_Tools
 TOOLS_PATH  = ./CC++_Tools_SourceCodes
 
 TOKEI_DEST_PATH = $(TARGET_PATH)/Tokei
-TOKEI_TMP_PATH = $(TMP_PATH)/Tokei
+TOKEI_TMP_PATH  = $(TMP_PATH)/Tokei
 
 CCCC_DEST_PATH = $(TARGET_PATH)/CCCC
-CCCC_TMP_PATH = $(TMP_PATH)/CCCC
+CCCC_TMP_PATH  = $(TMP_PATH)/CCCC
 
 HALSTEAD_METRICS_DEST_PATH = $(TARGET_PATH)/Halstead_Metrics
-HALSTEAD_METRICS_TMP_PATH = $(TMP_PATH)/Halstead_Metrics_tool
-
+HALSTEAD_METRICS_TMP_PATH  = $(TMP_PATH)/Halstead_Metrics_tool
 
 MAINTAINABILITY_INDEX_DEST_PATH = $(TARGET_PATH)/Maintainability_Index
 MAINTAINABILITY_INDEX_TMP_PATH  = $(TMP_PATH)/Maintainability_Index
@@ -19,6 +18,7 @@ MAINTAINABILITY_INDEX_TMP_PATH  = $(TMP_PATH)/Maintainability_Index
 
 target_dir: 
 	-mkdir -p $(TMP_PATH)
+	-mkdir -p $(TARGET_PATH)
 
 clean_tmp_dir:
 	-rm -r $(TMP_PATH)
@@ -27,6 +27,10 @@ clean_target_dir:
 	-rm -r $(TARGET_PATH)
 
 clean_all: clean_target_dir clean_tmp_dir
+
+build_all: build_tokei build_cccc build_maintainability_index build_halstead_metrics_tool
+
+install_local_all: install_local_tokei install_local_cccc install_local_maintainability_index install_local_halstead_metrics_tool
 
 
 
@@ -41,7 +45,6 @@ install_local_tokei: build_tokei
 	@echo
 	-mkdir -p $(TOKEI_DEST_PATH)
 	cp $(TOKEI_TMP_PATH)/target/release/tokei $(TOKEI_DEST_PATH)
-	# --- QUI ---
 
 
 

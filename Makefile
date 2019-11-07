@@ -11,14 +11,11 @@ CCCC_TMP_PATH = $(TMP_PATH)/CCCC
 HALSTEAD_METRICS_DEST_PATH = $(TARGET_PATH)/Halstead_Metrics
 HALSTEAD_METRICS_TMP_PATH = $(TMP_PATH)/Halstead_Metrics_tool
 
-#METRIX_PLUSPLUS_DEST_PATH = $(TARGET_PATH)/Metrixpp
 
-#CLIPPY_DEST_PATH = $(TARGET_PATH)/Clippy
-#CLIPPY_TMP_PATH = $(TMP_PATH)/Clippy
-
+MAINTAINABILITY_INDEX_DEST_PATH = $(TARGET_PATH)/Maintainability_Index
+MAINTAINABILITY_INDEX_TMP_PATH  = $(TMP_PATH)/Maintainability_Index
 
 
-build: build_tokei build_cccc
 
 target_dir: 
 	-mkdir -p $(TMP_PATH)
@@ -76,17 +73,13 @@ install_local_halstead_metrics_tool: build_halstead_metrics_tool
 
 
 
-#build_metrix_plusplus:
-#	@echo
-#	@echo Building Metrix Plus Plus...
-#	cp -r $(OLD_TOOLS_PATH)/metrixplusplus-1.5.1 $(METRIX_PLUSPLUS_DEST_PATH)
-#	chmod +x $(METRIX_PLUSPLUS_DEST_PATH)/metrix++.py
-#	chmod +x $(METRIX_PLUSPLUS_DEST_PATH)/metrixpp.py
-#	# --- Metrix Plus Plus ---
+build_maintainability_index: target_dir
+	@echo
+	@echo Installing dependencies for Maintainability Index tool...
+	pip install pep8 nose pylint
+	@echo Building Maintainability Index tool...
+	cp -r $(TOOLS_PATH)/maintainability_index $(MAINTAINABILITY_INDEX_TMP_PATH)
+	# --- Maintainability Index tool ---
 
-#build_clippy: target_dir
-#	@echo 
-#	@echo Building Clippy...
-#	cp -r $(TOOLS_PATH)/Rust-Clippy $(CLIPPY_TMP_PATH)
-#	cd $(CLIPPY_TMP_PATH) && cargo build
-#	# ---  CLIPPY  ---
+install_local_maintainability_index: build_maintainability_index
+	cp -r $(MAINTAINABILITY_INDEX_TMP_PATH) $(MAINTAINABILITY_INDEX_DEST_PATH)

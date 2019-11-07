@@ -22,3 +22,11 @@ Used for: Halstead
 
     * Building:	Ok (simple copy)
     * Local installation: Ok (simple copy)
+
+
+## Maintainability Index
+Repo @ last available version.
+Used for: MI
+
+	* Dependencies: pep8, pylint, nose (for python3)
+	* MI is calculated w/ the 3-Metrics equations, but its value is divided by 171!

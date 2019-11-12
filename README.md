@@ -1,6 +1,11 @@
 # SoftwareMetrics
+## Usage
+make install_local_all
+./Analyzer.sh <path_to_the_code>
 
-## Tokei
+## Used tools:
+
+### Tokei
 Repo updated @ 2019-11-06.
 Used for: LOC, CLOC
 
@@ -8,7 +13,7 @@ Used for: LOC, CLOC
     * Local installation: Ok
 
 
-## CCCC
+### CCCC
 Repo @ last available version + already patched.
 Used for: C&K, CC, ¿WMC?
 
@@ -16,15 +21,16 @@ Used for: C&K, CC, ¿WMC?
     * Local installation: Ok
 
 
-## Halstead Metrics Tool
+### Halstead Metrics Tool
 Repo @ last available version.
 Used for: Halstead
 
     * Building:	Ok (simple copy)
     * Local installation: Ok (simple copy)
+    NOT WORKING! NullPointerException at runtime.
 
 
-## Maintainability Index
+### Maintainability Index
 Repo @ last available version.
 Used for: MI
 

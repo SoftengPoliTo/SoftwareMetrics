@@ -8,8 +8,8 @@ TOKEI_TMP_PATH  = $(TMP_PATH)/Tokei
 CCCC_DEST_PATH = $(TARGET_PATH)/CCCC
 CCCC_TMP_PATH  = $(TMP_PATH)/CCCC
 
-#HALSTEAD_METRICS_DEST_PATH = $(TARGET_PATH)/Halstead_Metrics
-#HALSTEAD_METRICS_TMP_PATH  = $(TMP_PATH)/Halstead_Metrics_tool
+HALSTEAD_METRICS_DEST_PATH = $(TARGET_PATH)/Halstead_Metrics
+HALSTEAD_METRICS_TMP_PATH  = $(TMP_PATH)/Halstead_Metrics_tool
 
 MAINTAINABILITY_INDEX_DEST_PATH = $(TARGET_PATH)/Maintainability_Index
 MAINTAINABILITY_INDEX_TMP_PATH  = $(TMP_PATH)/Maintainability_Index
@@ -28,9 +28,9 @@ clean_target_dir:
 
 clean_all: clean_target_dir clean_tmp_dir
 
-build_all: build_tokei build_cccc build_maintainability_index #build_halstead_metrics_tool
+build_all: build_tokei build_cccc build_maintainability_index build_halstead_metrics_tool
 
-install_local_all: install_local_tokei install_local_cccc install_local_maintainability_index #install_local_halstead_metrics_tool
+install_local_all: install_local_tokei install_local_cccc install_local_maintainability_index install_local_halstead_metrics_tool
 
 
 
@@ -79,7 +79,10 @@ install_local_halstead_metrics_tool: build_halstead_metrics_tool
 build_maintainability_index: target_dir
 	@echo
 	@echo Installing dependencies for Maintainability Index tool...
-	pip install pep8 nose pylint
+	@echo 'Install the required dependencies with: "pip install pep8 nose pylint"'
+	@echo When done, press ENTER to continue.
+	read
+
 	@echo Building Maintainability Index tool...
 	cp -r $(TOOLS_PATH)/maintainability_index $(MAINTAINABILITY_INDEX_TMP_PATH)
 	# --- Maintainability Index tool ---

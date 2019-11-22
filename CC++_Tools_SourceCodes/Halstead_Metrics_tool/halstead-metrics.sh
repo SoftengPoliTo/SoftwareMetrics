@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar Halstead-Metrics.jar
+java -Duser.country=US -Duser.language=en -jar Halstead-Metrics.jar

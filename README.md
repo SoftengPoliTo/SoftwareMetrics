@@ -27,7 +27,8 @@ Used for: Halstead
 
     * Building:	Ok (simple copy)
     * Local installation: Ok (simple copy)
-    NOT WORKING! NullPointerException at runtime.
+    It has been corrected (Volume calculation was wrong).
+    A CLI interface has been added.
 
 
 ### Maintainability Index

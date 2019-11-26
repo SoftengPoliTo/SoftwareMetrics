@@ -17,16 +17,16 @@ fi
 OUTPUT_DIR="$(date +results_%Y.%m.%d_%H.%M.%S)"
 mkdir $OUTPUT_DIR
 
-#echo " ### RUNNING TOKEI ###"
+echo " ### RUNNING TOKEI ###"
 $TOKEI -o json "$1" > "${OUTPUT_DIR}/output_tokei.json"
 
-#echo " ### RUNNING CCCC ###"
+echo " ### RUNNING CCCC ###"
 $CCCC --outdir=${OUTPUT_DIR} "$1"
 
-#echo " ### RUNNING MI_TOOL ###"
-$MI_TOOL -X "$1" > "${OUTPUT_DIR}/output_mi_tool.json"
+echo " ### RUNNING MI_TOOL ###"
+$MI_TOOL -X "$1" > "${OUTPUT_DIR}/output_mi_tool.xml"
 
-#echo " ### RUNNING HALSTEAD_METRICS_TOOL ###"
+echo " ### RUNNING HALSTEAD_METRICS_TOOL ###"
 cd $OUTPUT_DIR
 $HALSTEAD_TOOL "$1"
 cd ..

@@ -1,4 +1,7 @@
+/.idea/
 /.tmp_CC++_Tools/
+/__pycache__/
 /CC++_Tools/
-/results/results_*/
+/results/
+/results_*/
 /CC++_Tools_SourceCodes/Halstead_Metrics_tool_source-code_copy/

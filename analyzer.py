@@ -84,6 +84,11 @@ def run_CCCC_tool(tools: Tools, path_to_analyze, output_dir):   # TODO: try / ca
     return subprocess.run([tools.CCCC, "--outdir=" + os.path.join(output_dir, "outputs"), path_to_analyze],
                           capture_output=True, check=True)
 
+
+def run_MI_tool(tools: Tools, path_to_analyze):   # TODO: try / catch!
+    results = subprocess.run([tools.MI_TOOL, "-X", path_to_analyze], capture_output=True, check=True)
+    return results.stdout
+
 def run_TOKEI_tool(tools: Tools, path_to_analyze, output_dir):
     try:
         tokeiCommndOutput = subprocess.run([tools.TOKEI, "-o", "json", path_to_analyze], capture_output=True, check=True)
@@ -126,8 +131,8 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
 
     print("Running Tokei...")
     # Here we can call "run_TOKEI_tool" directly because Tokei can analyze a whole directory.
-    tokei_output = run_TOKEI_tool(tools, path_to_analyze, output_dir) #TODO: Check output
-    tokei_output_json = output_unifier.tokei_output_reader(tokei_output)
+    tokei_output_res = run_TOKEI_tool(tools, path_to_analyze, output_dir) #TODO: Check output
+    tokei_output = output_unifier.tokei_output_reader(tokei_output_res)
     # output_unifier.tokei_output_reader( os.path.join(output_dir, ""))
 
     print("Running CCCC...")
@@ -137,12 +142,15 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
             # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
     print("Running M.I. Tool... TODO")
+    mi_tool_res = run_MI_tool(tools, path_to_analyze)
+    mi_output = output_unifier.mi_tool_output_reader(mi_tool_res)
 
     print("Running Halstead Metrics Tool... TODO")
 
     print("DEBUG. RESULTS:")
-    print(tokei_output_json)
+    print(tokei_output)
     print(cccc_output)
+    print(mi_output)
 
 def main():
     if len(sys.argv) != 2 or sys.argv[1] == "--help" or sys.argv[1] == "-help" or sys.argv[1] == "-h":

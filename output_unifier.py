@@ -8,11 +8,11 @@ from xml.dom import minidom
 
 version = 1.2
 
-def _mi_tool_output_reader(xml_doc: minidom):
+def _mi_tool_output_reader(xml: minidom):
     per_function_list = []
     per_function_res = []
 
-    measures = xml_doc.getElementsByTagName('measure')
+    measures = xml.getElementsByTagName('measure')
 
     for measure in measures:
         if measure.getAttribute('type') == "Function":
@@ -48,25 +48,24 @@ def mi_tool_output_reader(xml: str):
     return _mi_tool_output_reader(minidom.parseString(xml))
 
 
-def mi_tool_output_reader_from_file(xml_file_path):
+def mi_tool_output_reader_from_file(xml_file_path: str):
     return _mi_tool_output_reader(minidom.parse(xml_file_path))
 
 
-def tokei_output_reader(json_output):
-    inner = json.loads(json_output).get('inner')
-    # TODO: da Finire
+def _tokei_output_reader(tokei: json):
+    # TODO: do we want to add something more?
+    inner = tokei.get("inner")
     return inner
+
+
+def tokei_output_reader(json_output: str):
+    return _tokei_output_reader(json.loads(json_output))
 
 
 def tokei_output_reader_from_file(json_output_file_path: str):
     with open(json_output_file_path, 'r') as tokei_json:
         tokei_out = json.load(tokei_json)
-    inner = tokei_out.get('inner')
-
-    # for language in inner.keys():
-    #     inner[language]
-    # TODO: da Finire
-    return inner
+    return _tokei_output_reader(tokei_out)
 
 
 def cccc_output_reader(cccc_xml_directory_path):

@@ -6,7 +6,7 @@ import os.path
 from typing import Dict, List, Any
 from xml.dom import minidom
 
-version = 1.0
+version = 1.1
 
 def mi_tool_output_reader(xml_output):  # TODO: Dedup!
     per_function_list = []
@@ -89,6 +89,7 @@ def tokei_output_reader(json_output):
     # TODO: da Finire
     return inner
 
+
 def tokei_output_reader_from_file(json_output_file_path: str):
     with open(json_output_file_path, 'r') as tokei_json:
         tokei_out = json.load(tokei_json)
@@ -159,3 +160,7 @@ def cccc_output_reader(cccc_xml_directory_path):
     # Per Ogni modulo, prendere TUTTE le funzioni ==> Calcola WMC!x\
     # 
     #
+
+
+def halstead_metric_tool_reader(json_output):
+    return json.loads(json_output)

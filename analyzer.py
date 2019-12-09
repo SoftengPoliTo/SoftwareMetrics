@@ -89,6 +89,7 @@ def run_MI_tool(tools: Tools, path_to_analyze):   # TODO: try / catch!
     results = subprocess.run([tools.MI_TOOL, "-X", path_to_analyze], capture_output=True, check=True)
     return results.stdout
 
+
 def run_TOKEI_tool(tools: Tools, path_to_analyze, output_dir):
     try:
         tokeiCommndOutput = subprocess.run([tools.TOKEI, "-o", "json", path_to_analyze], capture_output=True, check=True)
@@ -101,6 +102,9 @@ def run_TOKEI_tool(tools: Tools, path_to_analyze, output_dir):
         print("")
         sys.exit(ExitCode.TOKEI_TOOL_ERR.value)
 
+
+def run_HALSTEAD_tool(tools: Tools, path_to_analyze, output_dir): # TODO: try / catch
+    return subprocess.run(["/usr/bin/java", "-Duser.country=US", "-Duser.language=en", "-jar", tools.HALSTEAD_TOOL, path_to_analyze], capture_output=True, check=True)
 
 def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def. path
     if not os.path.exists(path_to_analyze):
@@ -146,11 +150,13 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
     mi_output = output_unifier.mi_tool_output_reader(mi_tool_res)
 
     print("Running Halstead Metrics Tool... TODO")
+    hm_output = analyze_path(tools, path_to_analyze, list_of_accepted_extensions, run_HALSTEAD_tool, output_unifier.halstead_metric_tool_reader, output_dir)
 
     print("DEBUG. RESULTS:")
     print(tokei_output)
     print(cccc_output)
     print(mi_output)
+    print(hm_output)
 
 def main():
     if len(sys.argv) != 2 or sys.argv[1] == "--help" or sys.argv[1] == "-help" or sys.argv[1] == "-h":

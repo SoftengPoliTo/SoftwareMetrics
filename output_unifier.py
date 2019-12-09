@@ -6,13 +6,12 @@ import os.path
 from typing import Dict, List, Any
 from xml.dom import minidom
 
-version = 1.1
+version = 1.2
 
-def mi_tool_output_reader(xml_output):  # TODO: Dedup!
+def _mi_tool_output_reader(xml_doc: minidom):
     per_function_list = []
     per_function_res = []
 
-    xml_doc = minidom.parseString(xml_output)
     measures = xml_doc.getElementsByTagName('measure')
 
     for measure in measures:
@@ -45,44 +44,13 @@ def mi_tool_output_reader(xml_output):  # TODO: Dedup!
     return per_function_res
 
 
-def mi_tool_output_reader_from_file(xml_output_file_path):
-    per_function_list = []
-    per_function_res = []
-
-    xml_doc = minidom.parse(xml_output_file_path)
-    measures = xml_doc.getElementsByTagName('measure')
-
-    for measure in measures:
-        if measure.getAttribute('type') == "Function":
-            labels = measure.getElementsByTagName("label")
-            for label in labels:
-                per_function_list.append(label.firstChild.nodeValue)
-
-            items = measure.getElementsByTagName("item")
-            for item in items:
-                values = item.getElementsByTagName("value")
-                i = 0
-                per_function_values = {}
-                for value in values:
-                    if per_function_list[i] == "Maintainability":
-                        # To have the standard MI formula
-                        per_function_values[per_function_list[i]] = str(
-                            int(int(value.firstChild.nodeValue) * 171 / 100))
-                    else:
-                        per_function_values[per_function_list[i]] = value.firstChild.nodeValue
-                    i += 1
-
-                name = item.getAttribute("name")
-                func_name = name[0: name.find("(...) at ")] + "(...)"
-                line_number = name[name.rfind(':') + 1:]
-                file_in = name[name.find("(...) at ") + 9: name.rfind(':') - 1]
-
-                per_function_res.append((file_in, func_name, line_number, per_function_values))
-
-    return per_function_res
+def mi_tool_output_reader(xml: str):
+    return _mi_tool_output_reader(minidom.parseString(xml))
 
 
-# mi_tool_output_reader("output_mi_tool.xml")
+def mi_tool_output_reader_from_file(xml_file_path):
+    return _mi_tool_output_reader(minidom.parse(xml_file_path))
+
 
 def tokei_output_reader(json_output):
     inner = json.loads(json_output).get('inner')

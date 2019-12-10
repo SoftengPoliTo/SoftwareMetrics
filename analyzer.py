@@ -8,6 +8,7 @@ import subprocess
 from enum import Enum
 import output_unifier
 
+__DEBUG_F__  = True
 
 class ExitCode(Enum):
     """Exit status codes."""
@@ -53,27 +54,27 @@ class Tools:
 # End Class: Tools
 
 
-def analyze_path(tool: Tools, path, accepted_extensions, run_tool_funct,
-                 parse_results_funct, output_dir):  # throws FileNotFoundError if path is wrong
+def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
+                 output_dir):  # throws FileNotFoundError if path is wrong
     results = []
 
     for f in os.listdir(path):
         ff = os.path.join(path, f)
-        print("DEBUG: path: " + f)
+        if __DEBUG_F__:
+            print("DEBUG: path: " + f)
         if os.path.isdir(ff):  # If path is a DIR, recurse.
-            print("DEBUG: checkPath dir : " + f)
-            res = analyze_path(tool, ff, accepted_extensions, run_tool_funct, parse_results_funct, output_dir)
+            if __DEBUG_F__:
+                print("DEBUG: checkPath dir : " + f)
+            res = analyze_path(tool, ff, accepted_extensions, run_n_parse_funct, output_dir)
             results.append(res)
 
         elif os.path.isfile(ff):  # If path is a FILE, check its extension
             base_name = os.path.basename(f)
             extension = base_name[base_name.rfind(".") + 1:]
             if extension in accepted_extensions:
-                print("DEBUG: checkPath file: " + f)
-                run_tool_funct(tool, ff, output_dir)
-                parsed_result = parse_results_funct(
-                    os.path.join(output_dir, "outputs"))  # TODO: Reformat and Delele this path.
-                # parsed_result = output_unifier.cccc_output_reader(os.path.join(outputDir, "outputs", "cccc.xml"))
+                if __DEBUG_F__:
+                    print("DEBUG: checkPath file: " + f)
+                parsed_result = run_n_parse_funct(tool, ff, output_dir)
                 results.append(parsed_result)
             # else:
             #    print("DEBUG:-checkPath file: " + f)
@@ -97,14 +98,39 @@ def run_TOKEI_tool(tools: Tools, path_to_analyze, output_dir):
 
     except subprocess.CalledProcessError as ex:
         print("Tokei exited with an error.", file=sys.stderr)
-        print(ex.stdout)
-        print(ex.stderr)
-        print("")
+        print(ex.stdout, file=sys.stderr)
+        print(ex.stderr, file=sys.stderr)
+        print("", file=sys.stderr)
         sys.exit(ExitCode.TOKEI_TOOL_ERR.value)
 
 
-def run_HALSTEAD_tool(tools: Tools, path_to_analyze, output_dir): # TODO: try / catch
-    return subprocess.run(["/usr/bin/java", "-Duser.country=US", "-Duser.language=en", "-jar", tools.HALSTEAD_TOOL, path_to_analyze], capture_output=True, check=True)
+def run_HALSTEAD_tool(tools: Tools, path_to_analyze, output_dir):  # TODO: try / catch
+    #try:
+    results = subprocess.run(["/usr/bin/java", "-Duser.country=US", "-Duser.language=en", "-jar", tools.HALSTEAD_TOOL, path_to_analyze], capture_output=True, check=True)
+    return results.stdout
+    #except subprocess.CalledProcessError as ex:
+    #    if ex.returncode == 3:  # File extension not recognized
+
+
+def run_n_parse_CCCC(tool: Tools, file: os.path, output_dir: str):
+    run_CCCC_tool(tool, file, output_dir)
+    return output_unifier.cccc_output_reader(os.path.join(output_dir, "outputs"))
+
+
+def run_n_parse_TOKEI(tool: Tools, file: os.path, output_dir: str):
+    tokei_output_res = run_TOKEI_tool(tool, file, output_dir)
+    return output_unifier.tokei_output_reader(tokei_output_res)
+
+
+def run_n_parse_MI(tool: Tools, file: os.path, output_dir: str):
+    mi_tool_res = run_MI_tool(tool, file)
+    return output_unifier.mi_tool_output_reader(mi_tool_res)
+
+
+def run_n_parse_HALSTEAD(tool: Tools, file: os.path, output_dir: str):
+    hm_tool_res = run_HALSTEAD_tool(tool, file, output_dir)
+    return output_unifier.halstead_metric_tool_reader(hm_tool_res)
+
 
 def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def. path
     if not os.path.exists(path_to_analyze):
@@ -126,37 +152,39 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
 
     os.mkdir(os.path.join(output_dir, "outputs"))
 
-    # TODO: Cancellali
-    print(" DEBUG: OK, in output dir: ", output_dir)
-    print(" DEBUG: pathToAnalyze: " + path_to_analyze)
-    print()
+    if __DEBUG_F__:
+        print(" DEBUG: OK, in output dir: ", output_dir)
+        print(" DEBUG: pathToAnalyze: " + path_to_analyze)
+        print()
 
     # RUNNING THE EXTERNAL TOOLS
 
     print("Running Tokei...")
-    # Here we can call "run_TOKEI_tool" directly because Tokei can analyze a whole directory.
-    tokei_output_res = run_TOKEI_tool(tools, path_to_analyze, output_dir) #TODO: Check output
-    tokei_output = output_unifier.tokei_output_reader(tokei_output_res)
-    # output_unifier.tokei_output_reader( os.path.join(output_dir, ""))
+    # Here we can call "run_n_parse_TOKEI" directly because Tokei can analyze a whole directory.
+    tokei_output = run_n_parse_TOKEI(tools, path_to_analyze, output_dir)
 
     print("Running CCCC...")
     # Here we must call "analyze_path" to call CCCC for each file
-    list_of_accepted_extensions = ["c","cc", "cpp", "h"]
-    cccc_output = analyze_path(tools, path_to_analyze, list_of_accepted_extensions, run_CCCC_tool, output_unifier.cccc_output_reader, output_dir)
-            # TODO: Li analizza i .h ? Ricontrolla nelle specs.
+    cccc_output = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp", "h"], run_n_parse_CCCC, output_dir)
+    # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
-    print("Running M.I. Tool... TODO")
-    mi_tool_res = run_MI_tool(tools, path_to_analyze)
-    mi_output = output_unifier.mi_tool_output_reader(mi_tool_res)
+    print("Running M.I. Tool...")
+    mi_output = run_n_parse_MI(tools, path_to_analyze, output_dir)
 
     print("Running Halstead Metrics Tool... TODO")
-    hm_output = analyze_path(tools, path_to_analyze, list_of_accepted_extensions, run_HALSTEAD_tool, output_unifier.halstead_metric_tool_reader, output_dir)
+    # ".h" files are not analyzed by Halstead Metrics Tool
+    hm_output = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp"], run_n_parse_HALSTEAD, output_dir)
 
-    print("DEBUG. RESULTS:")
-    print(tokei_output)
-    print(cccc_output)
-    print(mi_output)
-    print(hm_output)
+    if __DEBUG_F__:
+        print("DEBUG. RESULTS:")
+        print(tokei_output)
+        print("\n")
+        print(cccc_output)
+        print("\n")
+        print(mi_output)
+        print("\n")
+        print(hm_output)
+        print("\n")
 
 def main():
     if len(sys.argv) != 2 or sys.argv[1] == "--help" or sys.argv[1] == "-help" or sys.argv[1] == "-h":

@@ -6,7 +6,10 @@ import os.path
 from typing import Dict, List, Any
 from xml.dom import minidom
 
+__DEBUG_F__ = True
+
 version = 1.2
+
 
 def _mi_tool_output_reader(xml: minidom):
     per_function_list = []
@@ -68,12 +71,12 @@ def tokei_output_reader_from_file(json_output_file_path: str):
     return _tokei_output_reader(tokei_out)
 
 
-def cccc_output_reader(cccc_xml_directory_path):
+def cccc_output_reader(cccc_xml_directory_path: str):
     base_dir = os.path.realpath(cccc_xml_directory_path)
-    print("DEBUG: BASEDIR: " + base_dir)
+    # print("DEBUG: BASEDIR: " + base_dir)
     per_function_res = []
 
-    with open( os.path.join(cccc_xml_directory_path,"cccc.xml"), 'r') as cccc_file:
+    with open(os.path.join(cccc_xml_directory_path, "cccc.xml"), 'r') as cccc_file:
         cccc_xml = minidom.parse(cccc_file)
 
     project = cccc_xml.getElementsByTagName("CCCC_Project")
@@ -93,7 +96,8 @@ def cccc_output_reader(cccc_xml_directory_path):
         # CC = module.getElementsByTagName("McCabes_cyclomatic_complexity")[0].firstChild.nodeValue
         # LOC = module.getElementsByTagName("lines_of_code")[0].firstChild.nodeValue
         # CLOC =module.getElementsByTagName("lines_of_comment")[0].firstChild.nodeValue
-        print("DEBUG: PATH: " + os.path.join(base_dir, module_name + ".xml")) # TODO
+        if __DEBUG_F__:
+            print("DEBUG: PATH: " + os.path.join(base_dir, module_name + ".xml"))  # TODO
 
         with open(os.path.join(base_dir, module_name + ".xml"), 'r') as moduleFile:
             module_xml = minidom.parse(moduleFile)
@@ -101,7 +105,8 @@ def cccc_output_reader(cccc_xml_directory_path):
         CC_module = \
             module_xml.getElementsByTagName("module_summary")[0].getElementsByTagName("McCabes_cyclomatic_complexity")[
                 0].getAttribute("value")
-        member_functions = module_xml.getElementsByTagName("procedural_detail")[0].getElementsByTagName('member_function')
+        member_functions = module_xml.getElementsByTagName("procedural_detail")[0].getElementsByTagName(
+            'member_function')
 
         list_of_member_functions: List[Dict[str, Any]] = []
         file_in = ""
@@ -121,12 +126,6 @@ def cccc_output_reader(cccc_xml_directory_path):
         per_function_res.append((file_in, module_name, per_module_metrics, list_of_member_functions))
 
     return per_function_res
-
-    # cccc.xml -> procedural_summary->module : prendi lista modules
-    # carica ogni file *modulo*
-    # Per Ogni modulo, prendere TUTTE le funzioni ==> Calcola WMC!x\
-    # 
-    #
 
 
 def halstead_metric_tool_reader(json_output):

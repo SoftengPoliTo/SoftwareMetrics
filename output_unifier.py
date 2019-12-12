@@ -40,7 +40,7 @@ def _mi_tool_output_reader(xml: minidom):
                 name = item.getAttribute("name")
                 func_name = name[0: name.find("(...) at ")] + "(...)"
                 line_number = name[name.rfind(':') + 1:]
-                file_in = name[name.find("(...) at ") + 9: name.rfind(':') - 1]
+                file_in = name[name.find("(...) at ") + 9: name.rfind(':')]
 
                 per_function_res.append((file_in, func_name, line_number, per_function_values))
 

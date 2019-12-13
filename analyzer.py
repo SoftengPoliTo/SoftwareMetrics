@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import shutil
 import sys
 import datetime
 import subprocess
@@ -22,6 +23,16 @@ class ExitCode(Enum):
     MI_TOOL_ERR = 7
     HALSTEAD_TOOL_ERR = 8
 ###
+
+# TODO: AGGIUNGI CONTROLLO: SE GLI PASSO UN PROGETTO NON DEVE NEMMENO PARTIRE (FAI LA PROVA: passagli un progetto Java in input)
+#  Controlla i files: se non c'è nessun .h, .c, .cpp, ... ALLORA deve dire "controlla che il path sia giusto"
+
+#  SE c'è un file .java, TOKEI può analizzarlo... MA meglio che venga DROPPATO!!
+# Dare in base al linguaggio la lista dei tools che si possono usare
+# TODO: OUTPUT Json deve essere standardizzato
+# TOGLI NOME TOOL dall' output
+
+
 
 
 class Tools:
@@ -54,7 +65,7 @@ class Tools:
 # End Class: Tools
 
 
-def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
+def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct, # TODO: eliminalo.
                  output_dir):  # throws FileNotFoundError if path is wrong
     results = []
 
@@ -81,8 +92,43 @@ def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
     return results
 
 
+def analyze_path_test(tool: Tools, path, accepted_extensions, run_n_parse_funct, output_dir):
+    results = []
+    _analyze_path_test(tool, path, accepted_extensions, run_n_parse_funct, output_dir, results )
+    return results
+
+
+def _analyze_path_test(tool: Tools, path, accepted_extensions, run_n_parse_funct,
+                      output_dir, output_list: list):  # throws FileNotFoundError if path is wrong
+
+    for f in os.listdir(path):
+        ff = os.path.join(path, f)
+        if __DEBUG_F__:
+            print("DEBUG: path: " + f)
+        if os.path.isdir(ff):  # If path is a DIR, recurse.
+            if __DEBUG_F__:
+                print("DEBUG: checkPath dir : " + f)
+            _analyze_path_test(tool, ff, accepted_extensions, run_n_parse_funct, output_dir, output_list)
+
+        elif os.path.isfile(ff):  # If path is a FILE, check its extension
+            base_name = os.path.basename(f)
+            extension = base_name[base_name.rfind(".") + 1:]
+            if extension in accepted_extensions:
+                if __DEBUG_F__:
+                    print("DEBUG: checkPath file: " + f)
+                parsed_result = run_n_parse_funct(tool, ff, output_dir)
+                output_list.append(parsed_result)
+            # else:
+            #    print("DEBUG:-checkPath file: " + f)
+
+
 def run_CCCC_tool(tools: Tools, path_to_analyze, output_dir):   # TODO: try / catch!
-    return subprocess.run([tools.CCCC, "--outdir=" + os.path.join(output_dir, "outputs"), path_to_analyze],
+    outputs_subdir = os.path.join(output_dir, "outputs")
+    if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the
+        shutil.rmtree(outputs_subdir)
+    os.mkdir(outputs_subdir)
+
+    return subprocess.run([tools.CCCC, "--outdir=" + outputs_subdir, path_to_analyze],
                           capture_output=True, check=True)
 
 
@@ -119,16 +165,34 @@ def run_n_parse_CCCC(tool: Tools, file: os.path, output_dir: str):
 
 def run_n_parse_TOKEI(tool: Tools, file: os.path, output_dir: str):
     tokei_output_res = run_TOKEI_tool(tool, file, output_dir)
+    # TODO: Toglilo
+    if __DEBUG_F__:
+        print()
+        print("\tTOKEI OUTPUT RAW:")
+        print(tokei_output_res)
+        print()
     return output_unifier.tokei_output_reader(tokei_output_res)
 
 
 def run_n_parse_MI(tool: Tools, file: os.path, output_dir: str):
     mi_tool_res = run_MI_tool(tool, file)
+    # TODO: Toglilo
+    if __DEBUG_F__:
+        print()
+        print("\tMI OUTPUT RAW:")
+        print(mi_tool_res)
+        print()
     return output_unifier.mi_tool_output_reader(mi_tool_res)
 
 
 def run_n_parse_HALSTEAD(tool: Tools, file: os.path, output_dir: str):
     hm_tool_res = run_HALSTEAD_tool(tool, file, output_dir)
+    # TODO: Toglilo
+    if __DEBUG_F__:
+        print()
+        print("\tHALSTEAD OUTPUT RAW:")
+        print(hm_tool_res)
+        print()
     return output_unifier.halstead_metric_tool_reader(hm_tool_res)
 
 
@@ -149,8 +213,7 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
     os.mkdir(output_dir)
 
     # os.chdir(output_dir)
-
-    os.mkdir(os.path.join(output_dir, "outputs"))
+    # os.mkdir(os.path.join(output_dir, "outputs"))
 
     if __DEBUG_F__:
         print(" DEBUG: OK, in output dir: ", output_dir)
@@ -158,33 +221,37 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
         print()
 
     # RUNNING THE EXTERNAL TOOLS
-
+    raw_outputs={}
     print("Running Tokei...")
     # Here we can call "run_n_parse_TOKEI" directly because Tokei can analyze a whole directory.
-    tokei_output = run_n_parse_TOKEI(tools, path_to_analyze, output_dir)
+    raw_outputs["tokei"] = run_n_parse_TOKEI(tools, path_to_analyze, output_dir)
 
     print("Running CCCC...")
     # Here we must call "analyze_path" to call CCCC for each file
-    cccc_output = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp", "h"], run_n_parse_CCCC, output_dir)
+    #raw_outputs["cccc"] = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp", "h"], run_n_parse_CCCC, output_dir)
+    raw_outputs["cccc"] = analyze_path_test(tools, path_to_analyze, ["c", "cc", "cpp", "h"], run_n_parse_CCCC, output_dir)
     # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
     print("Running M.I. Tool...")
-    mi_output = run_n_parse_MI(tools, path_to_analyze, output_dir)
+    raw_outputs["mi"] = run_n_parse_MI(tools, path_to_analyze, output_dir)
 
     print("Running Halstead Metrics Tool... TODO")
     # ".h" files are not analyzed by Halstead Metrics Tool
-    hm_output = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp"], run_n_parse_HALSTEAD, output_dir)
+    raw_outputs["halstead"] = analyze_path_test(tools, path_to_analyze, ["c", "cc", "cpp"], run_n_parse_HALSTEAD, output_dir)
 
     if __DEBUG_F__:
         print("DEBUG. RESULTS:")
-        print(tokei_output)
+        print(raw_outputs["tokei"])
         print("\n")
-        print(cccc_output)
+        print(raw_outputs["cccc"])
         print("\n")
-        print(mi_output)
+        print(raw_outputs["mi"])
         print("\n")
-        print(hm_output)
+        print(raw_outputs["halstead"])
         print("\n")
+
+    formatted_outputs = output_unifier.unifier(raw_outputs)
+    return formatted_outputs,raw_outputs
 
 def main():
     if len(sys.argv) != 2 or sys.argv[1] == "--help" or sys.argv[1] == "-help" or sys.argv[1] == "-h":

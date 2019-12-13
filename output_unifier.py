@@ -42,7 +42,9 @@ def _mi_tool_output_reader(xml: minidom):
                 line_number = name[name.rfind(':') + 1:]
                 file_in = name[name.find("(...) at ") + 9: name.rfind(':')]
 
-                per_function_res.append((file_in, func_name, line_number, per_function_values))
+                per_function_res.append(
+                    {"filename": file_in, "func_name": func_name,
+                     "line_number": line_number, "values": per_function_values})
 
     return per_function_res
 
@@ -117,16 +119,153 @@ def cccc_output_reader(cccc_xml_directory_path: str):
             member_function_cc = member_function.getElementsByTagName("McCabes_cyclomatic_complexity")[0].getAttribute(
                 "value")
 
-            per_function_values = {"functionName": member_function_name, "lineNumber": line_number,
+            per_function_values = {"func_name": member_function_name, "line_number": line_number,
                                    "functionCC": member_function_cc}
             list_of_member_functions.append(per_function_values)
 
         per_module_metrics = {"CC": CC_module, "WMC": WMC, "DIT": DIT, "NOC": NOC, "CBO": CBO}
-
-        per_function_res.append((file_in, module_name, per_module_metrics, list_of_member_functions))
+        # {"filename": file_in, "func_name": func_name,
+        # "line_number": line_number, "values": per_function_values}
+        per_function_res.append({"filename": file_in, "module_name": module_name,
+                                 "per_module_metrics": per_module_metrics, "functions": list_of_member_functions})
 
     return per_function_res
 
 
 def halstead_metric_tool_reader(json_output):
     return json.loads(json_output)
+
+
+# def _flatten_list(data):    # It is used to remove the nested lists created by "analyze_path".
+#    l=[]
+#    for x in data:
+#        if type(x) is list:
+
+
+def unifier_tokei(data):    # TODO: Consider merging this into tokei_output_reader
+    list_of_formatted_outputs = []
+    for d in data:
+        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
+            if __DEBUG_F__:
+                print("DEBUG: (unifier_tokei) Skipping type " + d)
+            continue
+
+        for s in data[d]["stats"]:
+            if __DEBUG_F__:
+                print(s)
+            formatted_outputs = {
+                "filename": s["name"],
+                "values": {
+                    "loc": s["code"],
+                    "cloc": s["comments"],
+                    "tot_lines": s["lines"]
+                }
+            }
+
+            # formatted_outputs["blank_lines"] = s["blanks"]
+            if d in ["CHeader", "CppHeader"]: # Tokei distinguish CHeaders from CppHeaders from the extension only!
+                formatted_outputs["values"]["type_of_file"] = "C/CppHeader"
+            else:
+                formatted_outputs["values"]["type_of_file"] = d
+            list_of_formatted_outputs.append(formatted_outputs)
+    return list_of_formatted_outputs
+
+
+def unifier_cccc(data):     # TODO: Consider merging this into cccc_output_reader
+    list_of_formatted_outputs = []
+    for d in data:
+        for module in d:
+            list_of_formatted_outputs.append({
+                "filename": module["filename"],
+                "values": {
+                    "module_name": module["module_name"],
+                    "per_module_metrics": module["per_module_metrics"],
+                    "functions": module["functions"]
+                }
+            })
+
+    return list_of_formatted_outputs
+
+
+def unifier_mi(data):   # TODO: Consider merging this into mi_output_reader
+    list_of_formatted_outputs = []
+    list_of_filenames = []
+    for d in data:
+        new_func = {
+            "func_name": d["func_name"],
+            "line_number": d["line_number"],
+            "values": d["values"]
+        }
+        if d["filename"] not in list_of_filenames:
+            list_of_filenames.append(d["filename"])
+            list_of_formatted_outputs.append({
+                "filename": d["filename"],
+                "functions": [new_func]
+            })
+        else:
+            for i in list_of_formatted_outputs:
+                if i["filename"] == d["filename"]:
+                    i["functions"].append(new_func)
+    return list_of_formatted_outputs
+
+
+def unifier_halstead(data):    # TODO: Consider merging this into halstead_output_reader
+    return data
+
+
+def _find_filename(tool_output: list, name: str) -> int:
+    i = 0
+    for f in tool_output:
+        if f["filename"] == name:
+            return i
+        i += 1
+    return -1
+
+
+def unifier(outputs):
+    tokei = unifier_tokei(outputs["tokei"])
+    cccc = unifier_cccc(outputs["cccc"])
+    mi = unifier_mi(outputs["mi"])
+    halstead = unifier_halstead(outputs["halstead"])
+    complete_list = []
+
+    if __DEBUG_F__:
+        print("\n\tCLEANED:\n")
+        print(tokei)
+        print()
+        print(cccc)
+        print()
+        print(mi)
+        print()
+        print(halstead)
+        print()
+
+    for file in tokei:
+        filename = file["filename"]
+        item = {
+            "filename": filename,
+            "TOKEI": file["values"]
+        }
+
+        i = _find_filename(cccc, filename)
+        if i == -1:
+            item["CCCC"] = "ERROR"  # TODO: Find a better way to signal something went wrong
+        else:
+            item["CCCC"] = cccc[i]["values"]   # TODO : completare!
+            # del item["CCCC"]["filename"] NO!
+
+        i = _find_filename(mi, filename)
+        if i == -1:
+            item["MI"] = "ERROR"    # TODO: Find a better way to signal something went wrong || Con .h nn deve stamparlo
+        else:
+            item["MI"] = mi[i]["functions"]   # TODO : completare!
+            # del item["MI"]["filename"]
+
+        i = _find_filename(halstead, filename)
+        if i == -1:
+            item["HALSTEAD"] = "ERROR"    # TODO: Find a better way to signal something went wrong
+        else:
+            item["HALSTEAD"] = halstead[i]["Halstead"]   # TODO : completare!
+        complete_list.append(item)
+
+    return complete_list

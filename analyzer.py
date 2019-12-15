@@ -9,7 +9,8 @@ import subprocess
 from enum import Enum
 import output_unifier
 
-__DEBUG_F__  = True
+__DEBUG_F__ = True
+
 
 class ExitCode(Enum):
     """Exit status codes."""
@@ -24,6 +25,7 @@ class ExitCode(Enum):
     HALSTEAD_TOOL_ERR = 8
 ###
 
+
 # TODO: AGGIUNGI CONTROLLO: SE GLI PASSO UN PROGETTO NON DEVE NEMMENO PARTIRE (FAI LA PROVA: passagli un progetto Java in input)
 #  Controlla i files: se non c'è nessun .h, .c, .cpp, ... ALLORA deve dire "controlla che il path sia giusto"
 
@@ -31,8 +33,6 @@ class ExitCode(Enum):
 # Dare in base al linguaggio la lista dei tools che si possono usare
 # TODO: OUTPUT Json deve essere standardizzato
 # TOGLI NOME TOOL dall' output
-
-
 
 
 class Tools:
@@ -65,40 +65,13 @@ class Tools:
 # End Class: Tools
 
 
-def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct, # TODO: eliminalo.
-                 output_dir):  # throws FileNotFoundError if path is wrong
+def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct, output_dir):
     results = []
-
-    for f in os.listdir(path):
-        ff = os.path.join(path, f)
-        if __DEBUG_F__:
-            print("DEBUG: path: " + f)
-        if os.path.isdir(ff):  # If path is a DIR, recurse.
-            if __DEBUG_F__:
-                print("DEBUG: checkPath dir : " + f)
-            res = analyze_path(tool, ff, accepted_extensions, run_n_parse_funct, output_dir)
-            results.append(res)
-
-        elif os.path.isfile(ff):  # If path is a FILE, check its extension
-            base_name = os.path.basename(f)
-            extension = base_name[base_name.rfind(".") + 1:]
-            if extension in accepted_extensions:
-                if __DEBUG_F__:
-                    print("DEBUG: checkPath file: " + f)
-                parsed_result = run_n_parse_funct(tool, ff, output_dir)
-                results.append(parsed_result)
-            # else:
-            #    print("DEBUG:-checkPath file: " + f)
+    _analyze_path(tool, path, accepted_extensions, run_n_parse_funct, output_dir, results)
     return results
 
 
-def analyze_path_test(tool: Tools, path, accepted_extensions, run_n_parse_funct, output_dir):
-    results = []
-    _analyze_path_test(tool, path, accepted_extensions, run_n_parse_funct, output_dir, results )
-    return results
-
-
-def _analyze_path_test(tool: Tools, path, accepted_extensions, run_n_parse_funct,
+def _analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
                       output_dir, output_list: list):  # throws FileNotFoundError if path is wrong
 
     for f in os.listdir(path):
@@ -108,7 +81,7 @@ def _analyze_path_test(tool: Tools, path, accepted_extensions, run_n_parse_funct
         if os.path.isdir(ff):  # If path is a DIR, recurse.
             if __DEBUG_F__:
                 print("DEBUG: checkPath dir : " + f)
-            _analyze_path_test(tool, ff, accepted_extensions, run_n_parse_funct, output_dir, output_list)
+            _analyze_path(tool, ff, accepted_extensions, run_n_parse_funct, output_dir, output_list)
 
         elif os.path.isfile(ff):  # If path is a FILE, check its extension
             base_name = os.path.basename(f)
@@ -228,8 +201,7 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
 
     print("Running CCCC...")
     # Here we must call "analyze_path" to call CCCC for each file
-    #raw_outputs["cccc"] = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp", "h"], run_n_parse_CCCC, output_dir)
-    raw_outputs["cccc"] = analyze_path_test(tools, path_to_analyze, ["c", "cc", "cpp", "h"], run_n_parse_CCCC, output_dir)
+    raw_outputs["cccc"] = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp", "h"], run_n_parse_CCCC, output_dir)
     # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
     print("Running M.I. Tool...")
@@ -237,7 +209,7 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
 
     print("Running Halstead Metrics Tool... TODO")
     # ".h" files are not analyzed by Halstead Metrics Tool
-    raw_outputs["halstead"] = analyze_path_test(tools, path_to_analyze, ["c", "cc", "cpp"], run_n_parse_HALSTEAD, output_dir)
+    raw_outputs["halstead"] = analyze_path(tools, path_to_analyze, ["c", "cc", "cpp"], run_n_parse_HALSTEAD, output_dir)
 
     if __DEBUG_F__:
         print("DEBUG. RESULTS:")

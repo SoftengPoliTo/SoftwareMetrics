@@ -47,6 +47,15 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
     t = tools.Tools(tools_path)
     t.check_tools_existence()
 
+    # Checking for analyzable files.
+    supported_extensions = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
+    analyzable_files = list_of_files(path_to_analyze, supported_extensions)
+
+    if len(analyzable_files) == 0:
+        print("ERROR:\tthe given path does not contain any of the supported files.\n"
+              "\tBe sure to pass the right folder to analyze.")
+        sys.exit(ExitCode.NO_SUPPORTED_FILES_FOUND)
+
     # The output folder in which all the output data will be placed
     output_dir = datetime.datetime.now().strftime("results_%Y.%m.%d_%H.%M.%S")
 

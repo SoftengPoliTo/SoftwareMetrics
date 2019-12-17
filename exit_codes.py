@@ -12,3 +12,5 @@ class ExitCode(Enum):
     CCCC_TOOL_ERR = 6
     MI_TOOL_ERR = 7
     HALSTEAD_TOOL_ERR = 8
+
+    NO_SUPPORTED_FILES_FOUND = 9

@@ -42,7 +42,7 @@ def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
 
 def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def. path
     if not os.path.exists(path_to_analyze):
-        print("ERROR: the given path (" + path_to_analyze + ") does not exists.", file=sys.stderr)
+        print("ERROR:\tthe given path (" + path_to_analyze + ") does not exists.", file=sys.stderr)
         sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)
     t = tools.Tools(tools_path)
     t.check_tools_existence()
@@ -64,12 +64,9 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
         output_dir = output_dir + '_'
     os.mkdir(output_dir)
 
-    # os.chdir(output_dir)
-    # os.mkdir(os.path.join(output_dir, "outputs"))
-
     if __DEBUG_F__:
-        print(" DEBUG: OK, in output dir: ", output_dir)
-        print(" DEBUG: pathToAnalyze: " + path_to_analyze)
+        print(" DEBUG:\tOK, in output dir: ", output_dir)
+        print(" DEBUG:\tpathToAnalyze: " + path_to_analyze)
         print()
 
     # RUNNING THE EXTERNAL TOOLS
@@ -80,7 +77,8 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
 
     print("Running CCCC...")
     # Here we must call "analyze_path" to call CCCC for each file
-    raw_outputs["cccc"] = tools.analyze_path(tools, path_to_analyze, ["c", "cc", "cpp", "h"], tools.run_n_parse_CCCC, output_dir)
+    raw_outputs["cccc"] = tools.analyze_path(t, path_to_analyze, ["c", "cc", "cpp", "h"],
+                                             tools.run_n_parse_CCCC, output_dir)
     # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
     print("Running M.I. Tool...")
@@ -88,7 +86,8 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
 
     print("Running Halstead Metrics Tool... TODO")
     # ".h" files are not analyzed by Halstead Metrics Tool
-    raw_outputs["halstead"] = tools.analyze_path(tools, path_to_analyze, ["c", "cc", "cpp"], tools.run_n_parse_HALSTEAD, output_dir)
+    raw_outputs["halstead"] = tools.analyze_path(t, path_to_analyze, ["c", "cc", "cpp"],
+                                                 tools.run_n_parse_HALSTEAD, output_dir)
 
     if __DEBUG_F__:
         print("DEBUG. RESULTS:")

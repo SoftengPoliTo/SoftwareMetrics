@@ -99,7 +99,7 @@ def cccc_output_reader(cccc_xml_directory_path: str):
         # LOC = module.getElementsByTagName("lines_of_code")[0].firstChild.nodeValue
         # CLOC =module.getElementsByTagName("lines_of_comment")[0].firstChild.nodeValue
         if __DEBUG_F__:
-            print("DEBUG: PATH: " + os.path.join(base_dir, module_name + ".xml"))  # TODO
+            print("DEBUG:\tPATH: " + os.path.join(base_dir, module_name + ".xml"))  # TODO
 
         with open(os.path.join(base_dir, module_name + ".xml"), 'r') as moduleFile:
             module_xml = minidom.parse(moduleFile)
@@ -147,7 +147,7 @@ def unifier_tokei(data):    # TODO: Consider merging this into tokei_output_read
     for d in data:
         if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
             if __DEBUG_F__:
-                print("DEBUG: (unifier_tokei) Skipping type " + d)
+                print("DEBUG:\t(unifier_tokei) Skipping type " + d)
             continue
 
         for s in data[d]["stats"]:

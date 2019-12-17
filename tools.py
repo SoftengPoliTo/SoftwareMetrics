@@ -28,13 +28,13 @@ class Tools:
 
     def check_tools_existence(self):
         if not os.path.isdir(self.baseDir):
-            print("ERROR: the directory containing the tools (" + self.__toolsDir__ + ") does not exists.", file=sys.stderr)
+            print("ERROR:\tthe directory containing the tools (" + self.__toolsDir__ + ") does not exists.", file=sys.stderr)
             sys.exit(ExitCode.TOOLS_DIR_NOT_FOUND.value)
 
         if os.path.isfile(self.CCCC) is False or os.path.isfile(self.TOKEI) is False or os.path.isfile(
                 self.HALSTEAD_TOOL) is False or os.path.isfile(self.MI_TOOL) is False:
             print(
-                "ERROR: one or more tools are missing.\nCheck the directory containing the tools (" + self.__toolsDir__ + ").",
+                "ERROR:\tone or more tools are missing.\nCheck the directory containing the tools (" + self.__toolsDir__ + ").",
                 file=sys.stderr)
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
@@ -58,7 +58,7 @@ class Tools:
             return tokei_commnd_output.stdout
 
         except subprocess.CalledProcessError as ex:
-            print("Tokei exited with an error.", file=sys.stderr)
+            print("ERROR:\tTokei exited with an error.", file=sys.stderr)
             print(ex.stdout, file=sys.stderr)
             print(ex.stderr, file=sys.stderr)
             print("", file=sys.stderr)
@@ -89,10 +89,10 @@ def _analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
     for f in os.listdir(path):
         ff = os.path.join(path, f)
         if __DEBUG_F__:
-            print("DEBUG: path: " + f)
+            print("DEBUG:\tpath: " + f)
         if os.path.isdir(ff):  # If path is a DIR, recurse.
             if __DEBUG_F__:
-                print("DEBUG: checkPath dir : " + f)
+                print("DEBUG:\tcheckPath dir : " + f)
             _analyze_path(tool, ff, accepted_extensions, run_n_parse_funct, output_dir, output_list)
 
         elif os.path.isfile(ff):  # If path is a FILE, check its extension
@@ -100,7 +100,7 @@ def _analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
             extension = base_name[base_name.rfind(".") + 1:]
             if extension in accepted_extensions:
                 if __DEBUG_F__:
-                    print("DEBUG: checkPath file: " + f)
+                    print("DEBUG:\tcheckPath file: " + f)
                 parsed_result = run_n_parse_funct(tool, ff, output_dir)
                 output_list.append(parsed_result)
             # else:

@@ -20,11 +20,30 @@ __DEBUG_F__ = True
 # TOGLI NOME TOOL dall' output
 
 
+def list_of_files(path: os.path, accepted_extensions: list) -> list:
+    """It returns a list containing all the files inside the given subdirectory that have a supported extension."""
+    all_files = []
+    _list_of_files(path, accepted_extensions, all_files)
+    return all_files
+
+
+def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
+    for f in os.listdir(path):
+        ff = os.path.join(path, f)
+        if os.path.isdir(ff):  # If path is a DIR, recurse.
+            _list_of_files(ff, accepted_extensions, output_list)
+
+        elif os.path.isfile(ff):  # If path is a FILE, check its extension
+            base_name = os.path.basename(f)
+            extension = base_name[base_name.rfind(".") + 1:]
+            if extension in accepted_extensions:
+                output_list.append(ff)
+
+
 def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def. path
     if not os.path.exists(path_to_analyze):
         print("ERROR: the given path (" + path_to_analyze + ") does not exists.", file=sys.stderr)
         sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)
-
     t = tools.Tools(tools_path)
     t.check_tools_existence()
 

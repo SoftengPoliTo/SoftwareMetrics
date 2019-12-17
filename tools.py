@@ -38,6 +38,42 @@ class Tools:
                 file=sys.stderr)
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
+    def run_tool_CCCC(self, path_to_analyze, output_dir):  # TODO: try / catch!
+        outputs_subdir = os.path.join(output_dir, "outputs")
+        if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the
+            shutil.rmtree(outputs_subdir)
+        os.mkdir(outputs_subdir)
+
+        return subprocess.run([self.CCCC, "--outdir=" + outputs_subdir, path_to_analyze], capture_output=True,
+                              check=True)
+
+    def run_tool_MI(self, path_to_analyze):  # TODO: try / catch!
+        results = subprocess.run([self.MI_TOOL, "-X", path_to_analyze], capture_output=True, check=True)
+        return results.stdout
+
+    def run_tool_TOKEI(self, path_to_analyze, output_dir):
+        try:
+            tokei_commnd_output = subprocess.run([self.TOKEI, "-o", "json", path_to_analyze], capture_output=True,
+                                                 check=True)
+            return tokei_commnd_output.stdout
+
+        except subprocess.CalledProcessError as ex:
+            print("Tokei exited with an error.", file=sys.stderr)
+            print(ex.stdout, file=sys.stderr)
+            print(ex.stderr, file=sys.stderr)
+            print("", file=sys.stderr)
+            sys.exit(ExitCode.TOKEI_TOOL_ERR.value)
+
+    def run_tool_HALSTEAD(self, path_to_analyze, output_dir):  # TODO: try / catch
+        # try:
+        results = subprocess.run(
+            ["/usr/bin/java", "-Duser.country=US", "-Duser.language=en", "-jar", self.HALSTEAD_TOOL, path_to_analyze],
+            capture_output=True, check=True)
+        return results.stdout
+        # except subprocess.CalledProcessError as ex:
+        #    if ex.returncode == 3:  # File extension not recognized
+
+
 # End Class: Tools
 
 
@@ -71,49 +107,13 @@ def _analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
             #    print("DEBUG:-checkPath file: " + f)
 
 
-def run_CCCC_tool(tools: Tools, path_to_analyze, output_dir):   # TODO: try / catch!
-    outputs_subdir = os.path.join(output_dir, "outputs")
-    if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the
-        shutil.rmtree(outputs_subdir)
-    os.mkdir(outputs_subdir)
-
-    return subprocess.run([tools.CCCC, "--outdir=" + outputs_subdir, path_to_analyze],
-                          capture_output=True, check=True)
-
-
-def run_MI_tool(tools: Tools, path_to_analyze):   # TODO: try / catch!
-    results = subprocess.run([tools.MI_TOOL, "-X", path_to_analyze], capture_output=True, check=True)
-    return results.stdout
-
-
-def run_TOKEI_tool(tools: Tools, path_to_analyze, output_dir):
-    try:
-        tokeiCommndOutput = subprocess.run([tools.TOKEI, "-o", "json", path_to_analyze], capture_output=True, check=True)
-        return tokeiCommndOutput.stdout
-
-    except subprocess.CalledProcessError as ex:
-        print("Tokei exited with an error.", file=sys.stderr)
-        print(ex.stdout, file=sys.stderr)
-        print(ex.stderr, file=sys.stderr)
-        print("", file=sys.stderr)
-        sys.exit(ExitCode.TOKEI_TOOL_ERR.value)
-
-
-def run_HALSTEAD_tool(tools: Tools, path_to_analyze, output_dir):  # TODO: try / catch
-    # try:
-    results = subprocess.run(["/usr/bin/java", "-Duser.country=US", "-Duser.language=en", "-jar", tools.HALSTEAD_TOOL, path_to_analyze], capture_output=True, check=True)
-    return results.stdout
-    # except subprocess.CalledProcessError as ex:
-    #    if ex.returncode == 3:  # File extension not recognized
-
-
 def run_n_parse_CCCC(tool: Tools, file: os.path, output_dir: str):
-    run_CCCC_tool(tool, file, output_dir)
+    Tools.run_tool_CCCC(tool, file, output_dir)
     return output_unifier.cccc_output_reader(os.path.join(output_dir, "outputs"))
 
 
 def run_n_parse_TOKEI(tool: Tools, file: os.path, output_dir: str):
-    tokei_output_res = run_TOKEI_tool(tool, file, output_dir)
+    tokei_output_res = Tools.run_tool_TOKEI(tool, file, output_dir)
     # TODO: Toglilo
     if __DEBUG_F__:
         print()
@@ -124,7 +124,7 @@ def run_n_parse_TOKEI(tool: Tools, file: os.path, output_dir: str):
 
 
 def run_n_parse_MI(tool: Tools, file: os.path, output_dir: str):
-    mi_tool_res = run_MI_tool(tool, file)
+    mi_tool_res = Tools.run_tool_MI(tool, file)
     # TODO: Toglilo
     if __DEBUG_F__:
         print()
@@ -135,7 +135,7 @@ def run_n_parse_MI(tool: Tools, file: os.path, output_dir: str):
 
 
 def run_n_parse_HALSTEAD(tool: Tools, file: os.path, output_dir: str):
-    hm_tool_res = run_HALSTEAD_tool(tool, file, output_dir)
+    hm_tool_res = Tools.run_tool_HALSTEAD(tool, file, output_dir)
     # TODO: Toglilo
     if __DEBUG_F__:
         print()

@@ -5,6 +5,7 @@ import json
 import os.path
 from typing import Dict, List, Any
 from xml.dom import minidom
+import metrics
 
 __DEBUG_F__ = True
 
@@ -142,7 +143,7 @@ def halstead_metric_tool_reader(json_output):
 #        if type(x) is list:
 
 
-def unifier_tokei(data):    # TODO: Consider merging this into tokei_output_reader
+def unifier_old_tokei(data):    # TODO: Consider merging this into tokei_output_reader
     list_of_formatted_outputs = []
     for d in data:
         if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
@@ -171,7 +172,7 @@ def unifier_tokei(data):    # TODO: Consider merging this into tokei_output_read
     return list_of_formatted_outputs
 
 
-def unifier_cccc(data):     # TODO: Consider merging this into cccc_output_reader
+def unifier_old_cccc(data):     # TODO: Consider merging this into cccc_output_reader
     list_of_formatted_outputs = []
     for d in data:
         for module in d:
@@ -187,7 +188,7 @@ def unifier_cccc(data):     # TODO: Consider merging this into cccc_output_reade
     return list_of_formatted_outputs
 
 
-def unifier_mi(data):   # TODO: Consider merging this into mi_output_reader
+def unifier_old_mi(data):   # TODO: Consider merging this into mi_output_reader
     list_of_formatted_outputs = []
     list_of_filenames = []
     for d in data:
@@ -209,11 +210,11 @@ def unifier_mi(data):   # TODO: Consider merging this into mi_output_reader
     return list_of_formatted_outputs
 
 
-def unifier_halstead(data):    # TODO: Consider merging this into halstead_output_reader
+def unifier_old_halstead(data):    # TODO: Consider merging this into halstead_output_reader
     return data
 
 
-def _find_filename(tool_output: list, name: str) -> int:
+def _old_find_filename(tool_output: list, name: str) -> int:
     i = 0
     for f in tool_output:
         if f["filename"] == name:
@@ -227,6 +228,174 @@ def unifier(outputs):
     cccc = unifier_cccc(outputs["cccc"])
     mi = unifier_mi(outputs["mi"])
     halstead = unifier_halstead(outputs["halstead"])
+def _unifier_tokei(data):
+    formatted_output = {
+        "files": []
+    }
+
+    for d in data:
+        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types. # TODO: spostare questo controllo a monte?
+            if __DEBUG_F__:
+                print("DEBUG:\t(unifier_tokei) Skipping type " + d)
+            continue
+
+        for s in data[d]["stats"]:
+            if __DEBUG_F__:
+                print(s)
+
+            per_file = {
+                "filename": s["name"],
+                "LOC": s["code"],
+                "CLOC": s["comments"],
+                "Lines": s["lines"],
+                "functions": [],    # Tokei do not gives per-function information.
+            }
+
+            if d in ["CHeader", "CppHeader"]:  # Tokei distinguish CHeaders from CppHeaders from the extension only!
+                per_file["type"] = "C/CppHeader"
+            else:
+                per_file["type"] = d
+
+            formatted_output["files"].append(per_file)
+    return formatted_output
+
+
+def _unifier_cccc(data):     # TODO: Consider merging this into cccc_output_reader
+    formatted_output = {
+        "files": []
+    }
+
+    for d in data:
+        for module in d:
+            per_file = {
+                "filename": module["filename"],
+                "module_name": module["module_name"],   # TODO: Delete this! DEBUG only.
+                "CC": module["per_module_metrics"]["CC"],
+                "C&K": {
+                    "WMC": module["per_module_metrics"]["WMC"],
+                    "DIT": module["per_module_metrics"]["DIT"],
+                    "NOC": module["per_module_metrics"]["NOC"],
+                    "CBO": module["per_module_metrics"]["CBO"],
+                }
+            }
+            per_function = []
+            for f in module["functions"]:
+                per_function.append({
+                    "line number": f["line_number"],
+                    "CC": f["functionCC"]
+                })
+            per_file["functions"] = per_function
+
+            formatted_output["files"].append(per_file)
+
+    # TODO: Can we calculate the global C&K?
+    return formatted_output
+
+
+def _unifier_mi(data):   # TODO: Consider merging this into mi_output_reader
+    formatted_output = {
+        "files": []
+    }
+
+    list_of_filenames = []
+    for d in data:
+        new_func = {
+            "function name": d["func_name"],
+            "line number": d["line_number"],
+
+            "NCSS": d["values"]["NCSS"],        # TODO: Che sono? Non è chiaro
+            "CCN": d["values"]["CCN"],          # TODO: Che sono? Non è chiaro
+            "MI": d["values"]["Maintainability"]
+        }
+
+        if d["filename"] not in list_of_filenames:
+            list_of_filenames.append(d["filename"])
+            formatted_output["files"].append({
+                "filename": d["filename"],
+                "functions": [new_func]
+            })
+        else:
+            for i in formatted_output["files"]:
+                if i["filename"] == d["filename"]:
+                    i["functions"].append(new_func)
+    return formatted_output
+
+
+# TODO: Halstead Operators and Operands should be changed to "int"
+def _unifier_halstead(data):    # TODO: Consider merging this into halstead_output_reader
+    formatted_output = {
+        "files": []
+    }
+
+    # To calculate the global stats:
+    all_operands = {}
+    all_operators = {}
+
+    for d in data:
+        h = d["Halstead"]
+        per_file = {
+            "_Operators": h["_Operators"],
+            "_Operands": h["_Operands"],
+            "n1": h["n1"],
+            "n2": h["n2"],
+            "N1": h["N1"],
+            "N2": h["N2"],
+            "Vocabulary": h["Vocabulary"],
+            "Length": h["Length"],
+            "Volume": h["Volume"],
+            "Difficulty": h["Difficlty"],   # TODO: fix the typo
+            "Effort": h["Effort"],
+            "Programming time": h["Programming time"],
+            "Estimated program length": h["Estimated program length"],
+            "Purity ratio": h["Purity ratio"],
+        }
+        formatted_output["files"].append({
+            "filename": d["filename"],
+            "Halstead": per_file,
+            "functions": []     # No per_function data from this tool
+        })
+
+        for i in h["_Operators"]:
+            if i not in all_operators:
+                all_operators[i] = int(h["_Operators"][i])
+            else:
+                all_operators[i] += int(h["_Operators"][i])
+
+        for i in h["_Operands"]:
+            if i not in all_operands:
+                all_operands[i] = int(h["_Operands"][i])
+            else:
+                all_operands[i] += int(h["_Operands"][i])
+    formatted_output["Halstead"] = metrics.halstead(all_operators, all_operands)
+
+    return formatted_output
+
+
+def _find_by_filename(tool_output, name):
+    i = 0
+    for f in tool_output["files"]:
+        if f["filename"] == name:
+            return i
+        i += 1
+    return None
+
+
+def _find_function_by_name(data, name):
+    i = 0
+    for f in data["functions"]:
+        if f["function name"] == name:
+            return i
+        i += 1
+    return None
+
+
+def _find_function_by_line_number(data, line):
+    i = 0
+    for f in data["functions"]:
+        if f["line number"] == line:
+            return i
+        i += 1
+    return None
     complete_list = []
 
     if __DEBUG_F__:

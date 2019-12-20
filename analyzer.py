@@ -17,27 +17,6 @@ __DEBUG_F__ = True
 #  SE c'è un file .java, TOKEI può analizzarlo... MA meglio che venga DROPPATO!!
 # Dare in base al linguaggio la lista dei tools che si possono usare
 # TODO: OUTPUT Json deve essere standardizzato
-# TOGLI NOME TOOL dall' output
-
-
-def list_of_files(path: os.path, accepted_extensions: list) -> list:
-    """It returns a list containing all the files inside the given subdirectory that have a supported extension."""
-    all_files = []
-    _list_of_files(path, accepted_extensions, all_files)
-    return all_files
-
-
-def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
-    for f in os.listdir(path):
-        ff = os.path.join(path, f)
-        if os.path.isdir(ff):  # If path is a DIR, recurse.
-            _list_of_files(ff, accepted_extensions, output_list)
-
-        elif os.path.isfile(ff):  # If path is a FILE, check its extension
-            base_name = os.path.basename(f)
-            extension = base_name[base_name.rfind(".") + 1:]
-            if extension in accepted_extensions:
-                output_list.append(ff)
 
 
 def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def. path
@@ -48,10 +27,7 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
     t.check_tools_existence()
 
     # Checking for analyzable files.
-    supported_extensions = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
-    analyzable_files = list_of_files(path_to_analyze, supported_extensions)
-
-    if len(analyzable_files) == 0:
+    if len(tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS)) == 0:
         print("ERROR:\tthe given path does not contain any of the supported files.\n"
               "\tBe sure to pass the right folder to analyze.")
         sys.exit(ExitCode.NO_SUPPORTED_FILES_FOUND)
@@ -70,24 +46,7 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
         print()
 
     # RUNNING THE EXTERNAL TOOLS
-    raw_outputs = {}
-    print("Running Tokei...")
-    # Here we can call "run_n_parse_TOKEI" directly because Tokei can analyze a whole directory.
-    raw_outputs["tokei"] = tools.run_n_parse_TOKEI(t, path_to_analyze, output_dir)
-
-    print("Running CCCC...")
-    # Here we must call "analyze_path" to call CCCC for each file
-    raw_outputs["cccc"] = tools.analyze_path(t, path_to_analyze, ["c", "cc", "cpp", "h"],
-                                             tools.run_n_parse_CCCC, output_dir)
-    # TODO: Li analizza i .h ? Ricontrolla nelle specs.
-
-    print("Running M.I. Tool...")
-    raw_outputs["mi"] = tools.run_n_parse_MI(t, path_to_analyze, output_dir)
-
-    print("Running Halstead Metrics Tool... TODO")
-    # ".h" files are not analyzed by Halstead Metrics Tool
-    raw_outputs["halstead"] = tools.analyze_path(t, path_to_analyze, ["c", "cc", "cpp"],
-                                                 tools.run_n_parse_HALSTEAD, output_dir)
+    raw_outputs = t.run_tools(path_to_analyze, output_dir)
 
     if __DEBUG_F__:
         print("DEBUG. RESULTS:")
@@ -100,7 +59,10 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
         print(raw_outputs["halstead"])
         print("\n")
 
-    formatted_outputs = output_unifier.unifier(raw_outputs)
+    formatted_outputs = output_unifier.unifier(raw_outputs,
+                                               tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS))
+    # TODO:↑ Move "list_of_tools(...)" from this point.
+
     return formatted_outputs, raw_outputs
 
 

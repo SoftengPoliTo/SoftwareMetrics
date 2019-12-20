@@ -223,11 +223,6 @@ def _old_find_filename(tool_output: list, name: str) -> int:
     return -1
 
 
-def unifier(outputs):
-    tokei = unifier_tokei(outputs["tokei"])
-    cccc = unifier_cccc(outputs["cccc"])
-    mi = unifier_mi(outputs["mi"])
-    halstead = unifier_halstead(outputs["halstead"])
 def _unifier_tokei(data):
     formatted_output = {
         "files": []
@@ -396,6 +391,65 @@ def _find_function_by_line_number(data, line):
             return i
         i += 1
     return None
+
+
+def unifier(outputs, files_to_analyze):
+    data = {
+        "files": []
+    }
+
+    tokei = _unifier_tokei(outputs["tokei"], files_to_analyze, data)
+    cccc = _unifier_cccc(outputs["cccc"])
+    mi = _unifier_mi(outputs["mi"])
+    halstead = _unifier_halstead(outputs["halstead"])
+
+    global_merged_output = {
+        "files": []
+    }
+
+    # TOKEI Output. Begin.
+    # Global stats:
+        # None
+
+    # Per-file stats:
+    for f in files_to_analyze:
+        per_file_merged_output = {
+            "filename": f,
+            "functions": []
+        }
+        global_merged_output["files"].append(per_file_merged_output)
+
+        file = _find_by_filename(tokei, f)
+        if file is None:
+            if __DEBUG_F__:
+                print("DEBUG:\tTokei output does not contain file: '", file, "'")
+        else:
+            per_file_merged_output["LOC"] = tokei
+            per_file_merged_output["CLOC"] =
+            per_file_merged_output["Lines"] =
+
+        # Per-function stats:
+#           TOKEI does not give per-function data
+#           PER-FUNCTION DATA
+#            for func in tokei["files"][file]["functions"]:
+#                # j = _find_function_by_name(per_file_merged_output, func["function name"])
+#                j = _find_function_by_line_number(per_file_merged_output, func["line number"])  # TODO: it won't work
+#                if j is None:   # Append the data
+#                    per_file_merged_output["functions"].append(func)
+#                else:   # Merge the data
+#                    per_file_merged_output["functions"][j]["..."] = func["..."]
+#                    # or
+#                    per_file_merged_output["functions"][j].update(func)
+    # TOKEI Output. End.
+
+    return data
+
+
+def unifier_old(outputs, files_to_analyze):
+    tokei = unifier_old_tokei(outputs["tokei"])
+    cccc = unifier_old_cccc(outputs["cccc"])
+    mi = unifier_old_mi(outputs["mi"])
+    halstead = unifier_old_halstead(outputs["halstead"])
     complete_list = []
 
     if __DEBUG_F__:
@@ -409,30 +463,34 @@ def _find_function_by_line_number(data, line):
         print(halstead)
         print()
 
-    for file in tokei:
-        filename = file["filename"]
-        item = {
-            "filename": filename,
-            "TOKEI": file["values"]
-        }
+    for filename in files_to_analyze:
 
-        i = _find_filename(cccc, filename)
+        i = _old_find_filename(tokei, filename)
         if i == -1:
-            item["CCCC"] = "ERROR"  # TODO: Find a better way to signal something went wrong
+            item["TOKEI"] = "ERROR?"  # TODO: Find a better way to signal something went wrong
+        else:
+            item = {
+                "filename": filename,
+                "TOKEI": tokei[i]["values"]
+            }
+
+        i = _old_find_filename(cccc, filename)
+        if i == -1:
+            item["CCCC"] = "ERROR?"  # TODO: Find a better way to signal something went wrong
         else:
             item["CCCC"] = cccc[i]["values"]   # TODO : completare!
             # del item["CCCC"]["filename"] NO!
 
-        i = _find_filename(mi, filename)
+        i = _old_find_filename(mi, filename)
         if i == -1:
-            item["MI"] = "ERROR"    # TODO: Find a better way to signal something went wrong || Con .h nn deve stamparlo
+            item["MI"] = "ERROR?"    # TODO: Find a better way to signal something went wrong || Con .h nn deve stamparlo
         else:
             item["MI"] = mi[i]["functions"]   # TODO : completare!
             # del item["MI"]["filename"]
 
-        i = _find_filename(halstead, filename)
+        i = _old_find_filename(halstead, filename)
         if i == -1:
-            item["HALSTEAD"] = "ERROR"    # TODO: Find a better way to signal something went wrong
+            item["HALSTEAD"] = "ERROR?"    # TODO: Find a better way to signal something went wrong
         else:
             item["HALSTEAD"] = halstead[i]["Halstead"]   # TODO : completare!
         complete_list.append(item)

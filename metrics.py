@@ -1,7 +1,7 @@
 import math
 
 
-def __halstead(operators: dict, operands: dict) -> dict:
+def helper_halstead(operators: dict, operands: dict) -> dict:
     N1 = len(operators)
     N2 = len(operands)
     n1 = 0
@@ -22,7 +22,7 @@ def __halstead(operators: dict, operands: dict) -> dict:
     program_effort = volume * difficulty
     programming_time = program_effort / 18
 
-    halstead = {
+    halstead_output = {
         "_Operators": operators,
         "_Operands": operands,
         "n1": n1,
@@ -40,4 +40,4 @@ def __halstead(operators: dict, operands: dict) -> dict:
         "Purity ratio": purity_ratio,
     }
 
-    return halstead
+    return halstead_output

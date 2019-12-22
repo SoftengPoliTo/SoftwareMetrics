@@ -361,7 +361,7 @@ def _unifier_halstead(data):    # TODO: Consider merging this into halstead_outp
                 all_operands[i] = int(h["_Operands"][i])
             else:
                 all_operands[i] += int(h["_Operands"][i])
-    formatted_output["Halstead"] = metrics.halstead(all_operators, all_operands)
+    formatted_output["Halstead"] = metrics.helper_halstead(all_operators, all_operands)
 
     return formatted_output
 

@@ -40,7 +40,7 @@ class Tools:
                 + self.__toolsDir__ + ").", file=sys.stderr)
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
-    def _run_tool_CCCC(self, path_to_analyze, output_dir):  # TODO: try / catch!
+    def _run_tool_cccc(self, path_to_analyze, output_dir):  # TODO: try / catch!
         outputs_subdir = os.path.join(output_dir, "outputs")
         if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the
             shutil.rmtree(outputs_subdir)
@@ -49,15 +49,14 @@ class Tools:
         return subprocess.run([self.CCCC, "--outdir=" + outputs_subdir, path_to_analyze], capture_output=True,
                               check=True)
 
-    def _run_tool_MI(self, path_to_analyze):  # TODO: try / catch!
+    def _run_tool_mi(self, path_to_analyze):  # TODO: try / catch!
         results = subprocess.run([self.MI_TOOL, "-X", path_to_analyze], capture_output=True, check=True)
         return results.stdout
 
-    def _run_tool_TOKEI(self, path_to_analyze, output_dir):
+    def _run_tool_tokei(self, path_to_analyze):
         try:
-            tokei_commnd_output = subprocess.run([self.TOKEI, "-o", "json", path_to_analyze], capture_output=True,
-                                                 check=True)
-            return tokei_commnd_output.stdout
+            results = subprocess.run([self.TOKEI, "-o", "json", path_to_analyze], capture_output=True, check=True)
+            return results.stdout
 
         except subprocess.CalledProcessError as ex:
             print("ERROR:\tTokei exited with an error.", file=sys.stderr)
@@ -66,7 +65,7 @@ class Tools:
             print("", file=sys.stderr)
             sys.exit(ExitCode.TOKEI_TOOL_ERR.value)
 
-    def _run_tool_HALSTEAD(self, path_to_analyze, output_dir):  # TODO: try / catch
+    def _run_tool_halstead(self, path_to_analyze):  # TODO: try / catch
         # try:
         results = subprocess.run(
             ["/usr/bin/java", "-Duser.country=US", "-Duser.language=en", "-jar", self.HALSTEAD_TOOL, path_to_analyze],
@@ -75,41 +74,42 @@ class Tools:
         # except subprocess.CalledProcessError as ex:
         #    if ex.returncode == 3:  # File extension not recognized
 
-    def run_n_parse_CCCC(self, file: os.path, output_dir: str):
-        self._run_tool_CCCC(file, output_dir)
+    def run_n_parse_cccc(self, file: os.path, output_dir: str):
+        self._run_tool_cccc(file, output_dir)
         return output_unifier.cccc_output_reader(os.path.join(output_dir, "outputs"))
 
-    def run_n_parse_TOKEI(self, file: os.path, output_dir: str):
-        tokei_output_res = self._run_tool_TOKEI(file, output_dir)
+    def run_n_parse_tokei(self, file: os.path, output_dir: str):
+        tokei_output_res = self._run_tool_tokei(file)
         return output_unifier.tokei_output_reader(tokei_output_res.decode())
 
-    def run_n_parse_MI(self, file: os.path, output_dir: str):
-        mi_tool_res = self._run_tool_MI(file)
+    def run_n_parse_mi(self, file: os.path, output_dir: str):
+        mi_tool_res = self._run_tool_mi(file)
         return output_unifier.mi_tool_output_reader(mi_tool_res.decode())
 
-    def run_n_parse_HALSTEAD(self, file: os.path, output_dir: str):
-        hm_tool_res = self._run_tool_HALSTEAD(file, output_dir)
+    def run_n_parse_halstead(self, file: os.path, output_dir: str):
+        hm_tool_res = self._run_tool_halstead(file)
         return output_unifier.halstead_metric_tool_reader(hm_tool_res)
 
-    def run_tools(self, path_to_analyze, output_dir):   # TODO: path_to_analyze should be changed with the list of files / or it should go side to side.
+    def run_tools(self, path_to_analyze, output_dir):
+        # TODO: path_to_analyze should be changed with the list of files / or it should go side to side.
         outputs = {}
         print("Running Tokei...")
-        # Here we can call "run_n_parse_TOKEI" directly because Tokei can analyze a whole directory.
-        outputs["tokei"] = self.run_n_parse_TOKEI(path_to_analyze, output_dir)
+        # Here we can call "run_n_parse_tokei" directly because Tokei can analyze a whole directory.
+        outputs["tokei"] = self.run_n_parse_tokei(path_to_analyze, output_dir)
 
         print("Running CCCC...")
         # Here we must call "analyze_path" to call CCCC for each file
         outputs["cccc"] = analyze_path(self, path_to_analyze, ["c", "cc", "cpp", "h"],
-                                       self.run_n_parse_CCCC, output_dir)
+                                       self.run_n_parse_cccc, output_dir)
         # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
         print("Running M.I. Tool...")
-        outputs["mi"] = self.run_n_parse_MI(path_to_analyze, output_dir)
+        outputs["mi"] = self.run_n_parse_mi(path_to_analyze, output_dir)
 
         print("Running Halstead Metrics Tool... TODO")
         # ".h" files are not analyzed by Halstead Metrics Tool
         outputs["halstead"] = analyze_path(self, path_to_analyze, ["c", "cc", "cpp"],
-                                           self.run_n_parse_HALSTEAD, output_dir)
+                                           self.run_n_parse_halstead, output_dir)
         return outputs
 
 

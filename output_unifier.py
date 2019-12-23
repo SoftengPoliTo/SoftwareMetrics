@@ -164,7 +164,7 @@ def unifier_old_tokei(data):    # TODO: Consider merging this into tokei_output_
             }
 
             # formatted_outputs["blank_lines"] = s["blanks"]
-            if d in ["CHeader", "CppHeader"]: # Tokei distinguish CHeaders from CppHeaders from the extension only!
+            if d in ["CHeader", "CppHeader"]:   # Tokei distinguish CHeaders from CppHeaders from the extension only!
                 formatted_outputs["values"]["type_of_file"] = "C/CppHeader"
             else:
                 formatted_outputs["values"]["type_of_file"] = d
@@ -279,13 +279,6 @@ def unifier_merger_tmp(data: dict, tool_output: dict):
                 if not funct_found:     # Not found => Add it!
                     file["functions"].append(per_func_tool)
                     file["functions"][-1]["line number"] = int(per_func_tool["line number"])
-                    # per_func_tmp = {}
-                    # for stat in per_func_tool:
-                    #     if stat == "line_number":
-                    #         per_func_tmp["line number"] = int(per_func_tool["line number"])  # To ensure it is an 'int'
-                    #     else:
-                    #         per_func_tmp[stat] = per_func_tool[stat]
-                    # file["functions"].append(per_func_tmp)
 
                 else:   # Found => Merging...
                     for stat in per_func_tool:
@@ -340,10 +333,11 @@ def unifier_merger_tmp(data: dict, tool_output: dict):
     return
 
 
-def _unifier_tokei(data, files_to_analyze, formatted_output):
+def _unifier_tokei(data, files_to_analyze, formatted_output):   # TODO: This one can be removed
 
     for d in data:  # for each type (C, Cpp, CHeader, ...)...
-        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types. # TODO: spostare questo controllo a monte?
+        # TODO: spostare questo controllo a monte? ↓
+        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
             if __DEBUG_F__:
                 print("DEBUG:\t(unifier_tokei) Skipping type " + d)
             continue
@@ -389,7 +383,8 @@ def _unifier_tokei_tmp(data):
     }
 
     for d in data:
-        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types. # TODO: spostare questo controllo a monte?
+        # TODO: spostare questo controllo a monte? ↓
+        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
             if __DEBUG_F__:
                 print("DEBUG:\t(unifier_tokei) Skipping type " + d)
             continue
@@ -565,20 +560,18 @@ def unifier(outputs, files_to_analyze):
             "functions": []
         })
 
-    ## TODO: TMP ↓
-    #_unifier_tokei(outputs["tokei"], files_to_analyze, data)
+    # TODO: TMP ↓
+    # _unifier_tokei(outputs["tokei"], files_to_analyze, data)
     mi = _unifier_mi(outputs["mi"])
     tokei = _unifier_tokei_tmp(outputs["tokei"])
     cccc = _unifier_cccc(outputs["cccc"])
     halstead = _unifier_halstead(outputs["halstead"])
 
     unifier_merger_tmp(global_merged_output, mi)
-    ## TODO: TMP: ↑ new version
-
+    # TODO: TMP: ↑ new version
 
     # TOKEI Output. Begin.
-    # Global stats:
-        # None
+    # Global stats: None
 
     # Per-file stats:
     for f in files_to_analyze:
@@ -594,9 +587,9 @@ def unifier(outputs, files_to_analyze):
                 print("DEBUG:\tTokei output does not contain file: '", file, "'")
         else:
             True
-            #per_file_merged_output["LOC"] = data["tmp"]
-            #per_file_merged_output["CLOC"] =
-            #per_file_merged_output["Lines"] =
+            # per_file_merged_output["LOC"] = data["tmp"]
+            # per_file_merged_output["CLOC"] =
+            # per_file_merged_output["Lines"] =
 
         # Per-function stats:
 #           TOKEI does not give per-function data
@@ -653,7 +646,7 @@ def unifier_old(outputs, files_to_analyze):
 
         i = _old_find_filename(mi, filename)
         if i == -1:
-            item["MI"] = "ERROR?"    # TODO: Find a better way to signal something went wrong || Con .h nn deve stamparlo
+            item["MI"] = "ERROR?"    # TODO: Find a better way to signal something went wrong. Con .h non deve stamparlo
         else:
             item["MI"] = mi[i]["functions"]   # TODO : completare!
             # del item["MI"]["filename"]

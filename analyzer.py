@@ -11,7 +11,8 @@ import tools
 __DEBUG_F__ = True
 
 
-# TODO: AGGIUNGI CONTROLLO: SE GLI PASSO UN PROGETTO NON DEVE NEMMENO PARTIRE (FAI LA PROVA: passagli un progetto Java in input)
+# TODO: AGGIUNGI CONTROLLO: SE GLI PASSO UN PROGETTO NON DEVE NEMMENO PARTIRE
+#  (FAI LA PROVA: passagli un progetto Java in input)
 #  Controlla i files: se non c'è nessun .h, .c, .cpp, ... ALLORA deve dire "controlla che il path sia giusto"
 
 #  SE c'è un file .java, TOKEI può analizzarlo... MA meglio che venga DROPPATO!!
@@ -19,7 +20,7 @@ __DEBUG_F__ = True
 # TODO: OUTPUT Json deve essere standardizzato
 
 
-def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def. path
+def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def path
     if not os.path.exists(path_to_analyze):
         print("ERROR:\tthe given path (" + path_to_analyze + ") does not exists.", file=sys.stderr)
         sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)

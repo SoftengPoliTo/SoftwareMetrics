@@ -40,12 +40,6 @@ class Tools:
                 + self.__toolsDir__ + ").", file=sys.stderr)
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
-    def _run_tool_CCCC_(self, path_to_analyze, output_dir):  # TODO: try / catch!
-        outputs_subdir = os.path.join(output_dir, "outputs")
-        if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the
-            shutil.rmtree(outputs_subdir)
-        os.mkdir(outputs_subdir)
-
     def _run_tool_CCCC(self, path_to_analyze, output_dir):  # TODO: try / catch!
         outputs_subdir = os.path.join(output_dir, "outputs")
         if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the

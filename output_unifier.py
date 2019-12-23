@@ -208,15 +208,6 @@ def unifier_old_halstead(data):    # TODO: Consider merging this into halstead_o
     return data
 
 
-def _old_find_filename(tool_output: list, name: str) -> int:
-    i = 0
-    for f in tool_output:
-        if f["filename"] == name:
-            return i
-        i += 1
-    return -1
-
-
 def unifier_merger_tmp(data: dict, tool_output: dict):
     # # # formatted_output = { "files": [...] }
 
@@ -291,50 +282,6 @@ def unifier_merger_tmp(data: dict, tool_output: dict):
             break
 
     return
-
-
-def _unifier_tokei_old(data, files_to_analyze, formatted_output):   # TODO: This one can be removed
-
-    for d in data:  # for each type (C, Cpp, CHeader, ...)...
-        # TODO: spostare questo controllo a monte? ↓
-        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
-            if __DEBUG_F__:
-                print("DEBUG:\t(unifier_tokei) Skipping type " + d)
-            continue
-
-        for s in data[d]["stats"]:  # For each file...
-            if __DEBUG_F__:
-                print(s)
-
-            if s["name"] not in files_to_analyze:   # TODO: Change it: for ... should be faster!
-                # This file is not in the list: it must be skipped.
-                continue
-
-            file_type = d
-            if d in ["CHeader", "CppHeader"]:  # Tokei distinguish CHeaders from CppHeaders from the extension only!
-                file_type = "C/CppHeader"
-
-            i = _find_by_filename(formatted_output, s["name"])
-            if i is None:
-                # File not already present, adding it...
-                per_file = {
-                    "filename": s["name"],
-                    "LOC": s["code"],
-                    "CLOC": s["comments"],
-                    "Lines": s["lines"],
-                    "functions": [],    # Tokei does not give per-function information, but we create the field anyway
-                    "type": file_type
-                }
-
-                formatted_output["files"].append(per_file)
-
-            else:
-                formatted_output["files"][i].update({
-                    "LOC": s["code"],
-                    "CLOC": s["comments"],
-                    "Lines": s["lines"],
-                    "type": file_type
-                })
 
 
 def _standardizer_tokei(data):
@@ -485,24 +432,6 @@ def _find_by_filename(tool_output, name):
     i = 0
     for f in tool_output["files"]:
         if f["filename"] == name:
-            return i
-        i += 1
-    return None
-
-
-def _find_function_by_name(data, name):
-    i = 0
-    for f in data["functions"]:
-        if f["function name"] == name:
-            return i
-        i += 1
-    return None
-
-
-def _find_function_by_line_number(data, line):
-    i = 0
-    for f in data["functions"]:
-        if f["line number"] == line:
             return i
         i += 1
     return None

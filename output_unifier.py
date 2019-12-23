@@ -54,12 +54,11 @@ def mi_tool_output_reader(xml: str):
     return _mi_tool_output_reader(minidom.parseString(xml))
 
 
-def mi_tool_output_reader_from_file(xml_file_path: str):
+def mi_tool_output_reader_from_file(xml_file_path: os.path):
     return _mi_tool_output_reader(minidom.parse(xml_file_path))
 
 
 def _tokei_output_reader(tokei: json):
-    # TODO: do we want to add something more?
     inner = tokei.get("inner")
     return inner
 
@@ -68,7 +67,7 @@ def tokei_output_reader(json_output: str):
     return _tokei_output_reader(json.loads(json_output))
 
 
-def tokei_output_reader_from_file(json_output_file_path: str):
+def tokei_output_reader_from_file(json_output_file_path: os.path):
     with open(json_output_file_path, 'r') as tokei_json:
         tokei_out = json.load(tokei_json)
     return _tokei_output_reader(tokei_out)
@@ -135,77 +134,6 @@ def cccc_output_reader(cccc_xml_directory_path: str):
 
 def halstead_metric_tool_reader(json_output):
     return json.loads(json_output)
-
-
-def unifier_old_tokei(data):    # TODO: Consider merging this into tokei_output_reader
-    list_of_formatted_outputs = []
-    for d in data:
-        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
-            if __DEBUG_F__:
-                print("DEBUG:\t(unifier_tokei) Skipping type " + d)
-            continue
-
-        for s in data[d]["stats"]:
-            if __DEBUG_F__:
-                print(s)
-            formatted_outputs = {
-                "filename": s["name"],
-                "values": {
-                    "loc": s["code"],
-                    "cloc": s["comments"],
-                    "tot_lines": s["lines"]
-                }
-            }
-
-            # formatted_outputs["blank_lines"] = s["blanks"]
-            if d in ["CHeader", "CppHeader"]:   # Tokei distinguish CHeaders from CppHeaders from the extension only!
-                formatted_outputs["values"]["type_of_file"] = "C/CppHeader"
-            else:
-                formatted_outputs["values"]["type_of_file"] = d
-            list_of_formatted_outputs.append(formatted_outputs)
-    return list_of_formatted_outputs
-
-
-def unifier_old_cccc(data):     # TODO: Consider merging this into cccc_output_reader
-    list_of_formatted_outputs = []
-    for d in data:
-        for module in d:
-            list_of_formatted_outputs.append({
-                "filename": module["filename"],
-                "values": {
-                    "module_name": module["module_name"],
-                    "per_module_metrics": module["per_module_metrics"],
-                    "functions": module["functions"]
-                }
-            })
-
-    return list_of_formatted_outputs
-
-
-def unifier_old_mi(data):   # TODO: Consider merging this into mi_output_reader
-    list_of_formatted_outputs = []
-    list_of_filenames = []
-    for d in data:
-        new_func = {
-            "func_name": d["func_name"],
-            "line_number": d["line_number"],
-            "values": d["values"]
-        }
-        if d["filename"] not in list_of_filenames:
-            list_of_filenames.append(d["filename"])
-            list_of_formatted_outputs.append({
-                "filename": d["filename"],
-                "functions": [new_func]
-            })
-        else:
-            for i in list_of_formatted_outputs:
-                if i["filename"] == d["filename"]:
-                    i["functions"].append(new_func)
-    return list_of_formatted_outputs
-
-
-def unifier_old_halstead(data):    # TODO: Consider merging this into halstead_output_reader
-    return data
 
 
 def unifier_merger_tmp(data: dict, tool_output: dict):

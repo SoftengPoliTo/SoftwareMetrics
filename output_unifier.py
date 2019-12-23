@@ -137,12 +137,6 @@ def halstead_metric_tool_reader(json_output):
     return json.loads(json_output)
 
 
-# def _flatten_list(data):    # It is used to remove the nested lists created by "analyze_path".
-#    l=[]
-#    for x in data:
-#        if type(x) is list:
-
-
 def unifier_old_tokei(data):    # TODO: Consider merging this into tokei_output_reader
     list_of_formatted_outputs = []
     for d in data:
@@ -291,40 +285,6 @@ def unifier_merger_tmp(data: dict, tool_output: dict):
                             if stat not in file["functions"][i]:     # Copy only the new ones
                                 file["functions"][i][stat] = per_func_tool[stat]
                         # TODO: Cover the case where line number is not present.
-
-                ###
-#                for per_func_data in file["functions"]:
-#
-#                    # func_name_data = None
-#                    func_line_number_data = None
-#                    # if "function name" in per_func_data:
-#                    #     func_name_data = per_func_data["function name"]
-#                    if "line number" in per_func_data:
-#                        func_line_number_data = int(per_func_data["line number"])
-#
-#                    # REDO THIS
-#                    if func_name_tool is None:               # Only the line number is available
-#                        if func_name_data is None:
-#                            # if __DEBUG_F__:   # TO DO
-#                            print("DEBUG:\tTool output has the line number only, but the data output does not!")
-#                            print("\tCaused by file:", file_tool)
-#                            print("\tat line:", func_line_number_tool)
-#
-#                        elif func_line_number_tool == func_line_number_data:
-#                            print("TO DO")
-#
-#                    elif func_line_number_tool is None:      # Only the name function is available
-#                        if func_name_data is None:
-#                            # if __DEBUG_F__:   # TO DO
-#                            print("DEBUG:\tTool output has the name of the function only,"
-#                                  "but the data output does not")
-#                            print("\tCaused by file:", file_tool)
-#                            print("\tfunction name:", func_name_tool)
-#                            continue
-#                    #else:
-#                    #    print("TO DO")
-#                    # for stat in file_tool["functions"]
-
             #  END  Merging per-function metrics...
 
             # The inner cycle can be interrupted to save time
@@ -333,7 +293,7 @@ def unifier_merger_tmp(data: dict, tool_output: dict):
     return
 
 
-def _unifier_tokei(data, files_to_analyze, formatted_output):   # TODO: This one can be removed
+def _unifier_tokei_old(data, files_to_analyze, formatted_output):   # TODO: This one can be removed
 
     for d in data:  # for each type (C, Cpp, CHeader, ...)...
         # TODO: spostare questo controllo a monte? ↓
@@ -377,7 +337,7 @@ def _unifier_tokei(data, files_to_analyze, formatted_output):   # TODO: This one
                 })
 
 
-def _unifier_tokei_tmp(data):
+def _standardizer_tokei(data):
     formatted_output = {
         "files": []
     }
@@ -410,7 +370,7 @@ def _unifier_tokei_tmp(data):
     return formatted_output
 
 
-def _unifier_cccc(data):     # TODO: Consider merging this into cccc_output_reader
+def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output_reader
     formatted_output = {
         "files": []
     }
@@ -442,7 +402,7 @@ def _unifier_cccc(data):     # TODO: Consider merging this into cccc_output_read
     return formatted_output
 
 
-def _unifier_mi(data):   # TODO: Consider merging this into mi_output_reader
+def _standardizer_mi(data):   # TODO: Consider merging this into mi_output_reader
     formatted_output = {
         "files": []
     }
@@ -472,7 +432,7 @@ def _unifier_mi(data):   # TODO: Consider merging this into mi_output_reader
 
 
 # TODO: Halstead Operators and Operands should be changed to "int"
-def _unifier_halstead(data):    # TODO: Consider merging this into halstead_output_reader
+def _standardizer_halstead(data):    # TODO: Consider merging this into halstead_output_reader
     formatted_output = {
         "files": []
     }
@@ -560,55 +520,22 @@ def unifier(outputs, files_to_analyze):
             "functions": []
         })
 
-    # TODO: TMP ↓
-    # _unifier_tokei(outputs["tokei"], files_to_analyze, data)
-    mi = _unifier_mi(outputs["mi"])
-    tokei = _unifier_tokei_tmp(outputs["tokei"])
-    cccc = _unifier_cccc(outputs["cccc"])
-    halstead = _unifier_halstead(outputs["halstead"])
+    # The outputs must be standardized to be merged together.
+    mi = _standardizer_mi(outputs["mi"])
+    tokei = _standardizer_tokei(outputs["tokei"])
+    cccc = _standardizer_cccc(outputs["cccc"])
+    halstead = _standardizer_halstead(outputs["halstead"])
 
+    # The data are merged with the complete output
     unifier_merger_tmp(global_merged_output, mi)
-    # TODO: TMP: ↑ new version
-
-    # TOKEI Output. Begin.
-    # Global stats: None
-
-    # Per-file stats:
-    for f in files_to_analyze:
-        per_file_merged_output = {
-            "filename": f,
-            "functions": []
-        }
-        global_merged_output["files"].append(per_file_merged_output)
-
-        file = _find_by_filename("tmp", f)
-        if file is None:
-            if __DEBUG_F__:
-                print("DEBUG:\tTokei output does not contain file: '", file, "'")
-        else:
-            True
-            # per_file_merged_output["LOC"] = data["tmp"]
-            # per_file_merged_output["CLOC"] =
-            # per_file_merged_output["Lines"] =
-
-        # Per-function stats:
-#           TOKEI does not give per-function data
-#           PER-FUNCTION DATA
-#            for func in tokei["files"][file]["functions"]:
-#                # j = _find_function_by_name(per_file_merged_output, func["function name"])
-#                j = _find_function_by_line_number(per_file_merged_output, func["line number"])  # TODO: it won't work
-#                if j is None:   # Append the data
-#                    per_file_merged_output["functions"].append(func)
-#                else:   # Merge the data
-#                    per_file_merged_output["functions"][j]["..."] = func["..."]
-#                    # or
-#                    per_file_merged_output["functions"][j].update(func)
-    # TOKEI Output. End.
+    unifier_merger_tmp(global_merged_output, cccc)
+    unifier_merger_tmp(global_merged_output, tokei)
+    unifier_merger_tmp(global_merged_output, halstead)
 
     return global_merged_output
 
 
-def unifier_old(outputs, files_to_analyze):
+def unifier_old(outputs, files_to_analyze):     # Superseded by "unifier". TODO: delete it
     tokei = unifier_old_tokei(outputs["tokei"])
     cccc = unifier_old_cccc(outputs["cccc"])
     mi = unifier_old_mi(outputs["mi"])

@@ -223,7 +223,167 @@ def _old_find_filename(tool_output: list, name: str) -> int:
     return -1
 
 
-def _unifier_tokei(data):
+def unifier_merger_tmp(data: dict, tool_output: dict):
+    # # # formatted_output = { "files": [...] }
+
+    # BEGIN Merging global metrics...
+    for stat in tool_output:
+        if stat == "files":
+            continue
+
+        if stat not in data:    # TODO: The default behaviour is to write ONLY the new values.
+            data[stat] = tool_output[stat]
+    #  END  Merging global metrics.
+
+    # BEGIN Merging per-file metrics...
+    for file_tool in tool_output["files"]:
+        for file in data["files"]:
+            if file["filename"] != file_tool["filename"]:
+                continue
+
+            for stat in file_tool:
+                if stat in ["functions", "filename"]:
+                    continue
+
+                if stat not in file:    # TODO: The default behaviour is to copy ONLY the new values.
+                    file[stat] = file_tool[stat]
+            # END Merging per-file metrics.
+
+            # BEGIN Merging per-function metrics...
+            for per_func_tool in file_tool["functions"]:
+                # check if the function is already present
+
+                # func_name_tool = None
+                func_line_number_tool = None
+                # if "function name" in per_func_tool:
+                #     func_name_tool = per_func_tool["function name"]
+                if "line number" in per_func_tool:
+                    func_line_number_tool = int(per_func_tool["line number"])
+
+                # if func_name_tool is None and func_line_number_tool is None:
+                if func_line_number_tool is None:
+                    if __DEBUG_F__:
+                        print("DEBUG:\tline number and function name not found!")
+                        print("\tCaused by file:", file_tool)
+                    continue
+                    # TODO: what should we do in this case?
+
+                funct_found = False
+                i = 0
+                for f in file["functions"]:
+                    if int(f["line number"]) == func_line_number_tool:
+                        funct_found = True
+                        break
+                    i += 1
+
+                if not funct_found:     # Not found => Add it!
+                    file["functions"].append(per_func_tool)
+                    file["functions"][-1]["line number"] = int(per_func_tool["line number"])
+                    # per_func_tmp = {}
+                    # for stat in per_func_tool:
+                    #     if stat == "line_number":
+                    #         per_func_tmp["line number"] = int(per_func_tool["line number"])  # To ensure it is an 'int'
+                    #     else:
+                    #         per_func_tmp[stat] = per_func_tool[stat]
+                    # file["functions"].append(per_func_tmp)
+
+                else:   # Found => Merging...
+                    for stat in per_func_tool:
+                        if stat == "line number":
+                            continue
+                        if stat == "function name":    # Copy function name if possible
+                            if "function name" not in file["functions"][i]:
+                                file["functions"][i]["function name"] = per_func_tool["function name"]
+                        else:   # Copy the stats.
+                            if stat not in file["functions"][i]:     # Copy only the new ones
+                                file["functions"][i][stat] = per_func_tool[stat]
+                        # TODO: Cover the case where line number is not present.
+
+                ###
+#                for per_func_data in file["functions"]:
+#
+#                    # func_name_data = None
+#                    func_line_number_data = None
+#                    # if "function name" in per_func_data:
+#                    #     func_name_data = per_func_data["function name"]
+#                    if "line number" in per_func_data:
+#                        func_line_number_data = int(per_func_data["line number"])
+#
+#                    # REDO THIS
+#                    if func_name_tool is None:               # Only the line number is available
+#                        if func_name_data is None:
+#                            # if __DEBUG_F__:   # TO DO
+#                            print("DEBUG:\tTool output has the line number only, but the data output does not!")
+#                            print("\tCaused by file:", file_tool)
+#                            print("\tat line:", func_line_number_tool)
+#
+#                        elif func_line_number_tool == func_line_number_data:
+#                            print("TO DO")
+#
+#                    elif func_line_number_tool is None:      # Only the name function is available
+#                        if func_name_data is None:
+#                            # if __DEBUG_F__:   # TO DO
+#                            print("DEBUG:\tTool output has the name of the function only,"
+#                                  "but the data output does not")
+#                            print("\tCaused by file:", file_tool)
+#                            print("\tfunction name:", func_name_tool)
+#                            continue
+#                    #else:
+#                    #    print("TO DO")
+#                    # for stat in file_tool["functions"]
+
+            #  END  Merging per-function metrics...
+
+            # The inner cycle can be interrupted to save time
+            break
+
+    return
+
+
+def _unifier_tokei(data, files_to_analyze, formatted_output):
+
+    for d in data:  # for each type (C, Cpp, CHeader, ...)...
+        if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types. # TODO: spostare questo controllo a monte?
+            if __DEBUG_F__:
+                print("DEBUG:\t(unifier_tokei) Skipping type " + d)
+            continue
+
+        for s in data[d]["stats"]:  # For each file...
+            if __DEBUG_F__:
+                print(s)
+
+            if s["name"] not in files_to_analyze:   # TODO: Change it: for ... should be faster!
+                # This file is not in the list: it must be skipped.
+                continue
+
+            file_type = d
+            if d in ["CHeader", "CppHeader"]:  # Tokei distinguish CHeaders from CppHeaders from the extension only!
+                file_type = "C/CppHeader"
+
+            i = _find_by_filename(formatted_output, s["name"])
+            if i is None:
+                # File not already present, adding it...
+                per_file = {
+                    "filename": s["name"],
+                    "LOC": s["code"],
+                    "CLOC": s["comments"],
+                    "Lines": s["lines"],
+                    "functions": [],    # Tokei does not give per-function information, but we create the field anyway
+                    "type": file_type
+                }
+
+                formatted_output["files"].append(per_file)
+
+            else:
+                formatted_output["files"][i].update({
+                    "LOC": s["code"],
+                    "CLOC": s["comments"],
+                    "Lines": s["lines"],
+                    "type": file_type
+                })
+
+
+def _unifier_tokei_tmp(data):
     formatted_output = {
         "files": []
     }
@@ -394,18 +554,27 @@ def _find_function_by_line_number(data, line):
 
 
 def unifier(outputs, files_to_analyze):
-    data = {
-        "files": []
-    }
-
-    tokei = _unifier_tokei(outputs["tokei"], files_to_analyze, data)
-    cccc = _unifier_cccc(outputs["cccc"])
-    mi = _unifier_mi(outputs["mi"])
-    halstead = _unifier_halstead(outputs["halstead"])
-
+    # Preparing global output structure.
     global_merged_output = {
         "files": []
     }
+
+    for f in files_to_analyze:
+        global_merged_output["files"].append({
+            "filename": f,
+            "functions": []
+        })
+
+    ## TODO: TMP ↓
+    #_unifier_tokei(outputs["tokei"], files_to_analyze, data)
+    mi = _unifier_mi(outputs["mi"])
+    tokei = _unifier_tokei_tmp(outputs["tokei"])
+    cccc = _unifier_cccc(outputs["cccc"])
+    halstead = _unifier_halstead(outputs["halstead"])
+
+    unifier_merger_tmp(global_merged_output, mi)
+    ## TODO: TMP: ↑ new version
+
 
     # TOKEI Output. Begin.
     # Global stats:
@@ -419,14 +588,15 @@ def unifier(outputs, files_to_analyze):
         }
         global_merged_output["files"].append(per_file_merged_output)
 
-        file = _find_by_filename(tokei, f)
+        file = _find_by_filename("tmp", f)
         if file is None:
             if __DEBUG_F__:
                 print("DEBUG:\tTokei output does not contain file: '", file, "'")
         else:
-            per_file_merged_output["LOC"] = tokei
-            per_file_merged_output["CLOC"] =
-            per_file_merged_output["Lines"] =
+            True
+            #per_file_merged_output["LOC"] = data["tmp"]
+            #per_file_merged_output["CLOC"] =
+            #per_file_merged_output["Lines"] =
 
         # Per-function stats:
 #           TOKEI does not give per-function data
@@ -442,7 +612,7 @@ def unifier(outputs, files_to_analyze):
 #                    per_file_merged_output["functions"][j].update(func)
     # TOKEI Output. End.
 
-    return data
+    return global_merged_output
 
 
 def unifier_old(outputs, files_to_analyze):

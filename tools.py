@@ -40,14 +40,17 @@ class Tools:
                 + self.__toolsDir__ + ").", file=sys.stderr)
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
-    def _run_tool_cccc(self, path_to_analyze, output_dir):  # TODO: try / catch!
+    def _run_tool_cccc(self, files_list: list, output_dir: os.path):  # TODO: try / catch!
         outputs_subdir = os.path.join(output_dir, "outputs")
         if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the
             shutil.rmtree(outputs_subdir)
         os.mkdir(outputs_subdir)
 
-        return subprocess.run([self.CCCC, "--outdir=" + outputs_subdir, path_to_analyze], capture_output=True,
-                              check=True)
+        args = [self.CCCC, "--outdir=" + outputs_subdir]
+        args.extend(files_list)
+        return subprocess.run(args, capture_output=True, check=True)
+        # return subprocess.run([self.CCCC, "--outdir=" + outputs_subdir, path_to_analyze], capture_output=True,
+        #                      check=True)
 
     def _run_tool_mi(self, path_to_analyze):  # TODO: try / catch!
         results = subprocess.run([self.MI_TOOL, "-X", path_to_analyze], capture_output=True, check=True)
@@ -74,8 +77,8 @@ class Tools:
         # except subprocess.CalledProcessError as ex:
         #    if ex.returncode == 3:  # File extension not recognized
 
-    def run_n_parse_cccc(self, file: os.path, output_dir: str):
-        self._run_tool_cccc(file, output_dir)
+    def run_n_parse_cccc(self, files_list: list, output_dir: str):
+        self._run_tool_cccc(files_list, output_dir)
         return output_unifier.cccc_output_reader(os.path.join(output_dir, "outputs"))
 
     def run_n_parse_tokei(self, file: os.path, output_dir: str):
@@ -90,17 +93,19 @@ class Tools:
         hm_tool_res = self._run_tool_halstead(file)
         return output_unifier.halstead_metric_tool_reader(hm_tool_res)
 
-    def run_tools(self, path_to_analyze, output_dir):
-        # TODO: path_to_analyze should be changed with the list of files / or it should go side to side.
+    def run_tools(self, path_to_analyze: os.path, output_dir: os.path):
+        files_to_analyze = list_of_files(path_to_analyze, ACCEPTED_EXTENSIONS)
         outputs = {}
+
         print("Running Tokei...")
         # Here we can call "run_n_parse_tokei" directly because Tokei can analyze a whole directory.
         outputs["tokei"] = self.run_n_parse_tokei(path_to_analyze, output_dir)
 
         print("Running CCCC...")
         # Here we must call "analyze_path" to call CCCC for each file
-        outputs["cccc"] = analyze_path(self, path_to_analyze, ["c", "cc", "cpp", "h"],
-                                       self.run_n_parse_cccc, output_dir)
+        # outputs["cccc"] = analyze_path(self, path_to_analyze, ["c", "cc", "cpp", "h"],
+        #                               self.run_n_parse_cccc, output_dir)
+        outputs["cccc"] = self.run_n_parse_cccc(files_to_analyze, output_dir)
         # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
         print("Running M.I. Tool...")

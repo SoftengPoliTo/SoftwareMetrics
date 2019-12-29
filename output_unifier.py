@@ -250,28 +250,33 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
         "files": []
     }
 
-    for d in data:
-        for module in d:
-            per_file = {
-                "filename": module["filename"],
-                "module_name": module["module_name"],   # TODO: Delete this! DEBUG only.
-                "CC": module["per_module_metrics"]["CC"],
-                "C&K": {
-                    "WMC": module["per_module_metrics"]["WMC"],
-                    "DIT": module["per_module_metrics"]["DIT"],
-                    "NOC": module["per_module_metrics"]["NOC"],
-                    "CBO": module["per_module_metrics"]["CBO"],
-                }
-            }
-            per_function = []
-            for f in module["functions"]:
-                per_function.append({
-                    "line number": f["line_number"],
-                    "CC": f["functionCC"]
-                })
-            per_file["functions"] = per_function
+    print("CCCC raw:\n")     # TODO: RIMUOVILO
+    print(data)
+    print("\n")
 
-            formatted_output["files"].append(per_file)
+    # for d in data:
+    #   for module in d:
+    for module in data:
+        per_file = {
+            "filename": module["filename"],
+            "module_name": module["module_name"],   # TODO: Delete this! DEBUG only.
+            "CC": module["per_module_metrics"]["CC"],
+            "C&K": {
+                "WMC": module["per_module_metrics"]["WMC"],
+                "DIT": module["per_module_metrics"]["DIT"],
+                "NOC": module["per_module_metrics"]["NOC"],
+                "CBO": module["per_module_metrics"]["CBO"],
+            }
+        }
+        per_function = []
+        for f in module["functions"]:
+            per_function.append({
+                "line number": f["line_number"],
+                "CC": f["functionCC"]
+            })
+        per_file["functions"] = per_function
+
+        formatted_output["files"].append(per_file)
 
     # TODO: Can we calculate the global C&K?
     return formatted_output

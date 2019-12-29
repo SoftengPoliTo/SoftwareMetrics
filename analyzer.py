@@ -7,6 +7,7 @@ import sys
 from exit_codes import ExitCode
 import output_unifier
 import tools
+import json
 
 __DEBUG_F__ = True
 
@@ -63,8 +64,10 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
     formatted_outputs = output_unifier.unifier(raw_outputs,
                                                tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS))
     # TODO:↑ Move "list_of_tools(...)" from this point.
+    json_output = json.dumps(formatted_outputs, sort_keys=True, indent=4)
+    # REMEMBER: Json output *must* be printed to be viewed correctly.
 
-    return formatted_outputs, raw_outputs
+    return json_output, raw_outputs
 
 
 def main():

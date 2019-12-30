@@ -15,6 +15,8 @@ ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
 class Tools:
     """Class containing all the available third-party tools, and their related information."""
 
+    raw_output = {}
+    files_to_analyze = {}
     __toolsDir__ = "CC++_Tools"
 
     def __init__(self, wrapper_path=sys.argv[0]):
@@ -94,7 +96,7 @@ class Tools:
         return output_unifier.halstead_metric_tool_reader(hm_tool_res)
 
     def run_tools(self, path_to_analyze: os.path, output_dir: os.path):
-        files_to_analyze = list_of_files(path_to_analyze, ACCEPTED_EXTENSIONS)
+        self.files_to_analyze = list_of_files(path_to_analyze, ACCEPTED_EXTENSIONS)
         outputs = {}
 
         print("Running Tokei...")
@@ -105,7 +107,7 @@ class Tools:
         # Here we must call "analyze_path" to call CCCC for each file
         # outputs["cccc"] = analyze_path(self, path_to_analyze, ["c", "cc", "cpp", "h"],
         #                               self.run_n_parse_cccc, output_dir)
-        outputs["cccc"] = self.run_n_parse_cccc(files_to_analyze, output_dir)
+        outputs["cccc"] = self.run_n_parse_cccc(self.files_to_analyze, output_dir)
         # TODO: Li analizza i .h ? Ricontrolla nelle specs.
 
         print("Running M.I. Tool...")
@@ -115,8 +117,13 @@ class Tools:
         # ".h" files are not analyzed by Halstead Metrics Tool
         outputs["halstead"] = analyze_path(self, path_to_analyze, ["c", "cc", "cpp"],
                                            self.run_n_parse_halstead, output_dir)
-        return outputs
+        self.raw_output = outputs
 
+    def get_raw_output(self):
+        return self.raw_output
+
+    def output(self):
+        return output_unifier.unifier(self.raw_output, self.files_to_analyze)
 
 # End Class: Tools
 

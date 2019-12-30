@@ -48,7 +48,8 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
         print()
 
     # RUNNING THE EXTERNAL TOOLS
-    raw_outputs = t.run_tools(path_to_analyze, output_dir)
+    t.run_tools(path_to_analyze, output_dir)
+    raw_outputs = t.get_raw_output()
 
     if __DEBUG_F__:
         print("DEBUG. RESULTS:")
@@ -61,8 +62,7 @@ def analyze(path_to_analyze, tools_path="/home/diego/Development/TESI/2_Software
         print(raw_outputs["halstead"])
         print("\n")
 
-    formatted_outputs = output_unifier.unifier(raw_outputs,
-                                               tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS))
+    formatted_outputs = t.get_output()
     # TODO:↑ Move "list_of_tools(...)" from this point.
     json_output = json.dumps(formatted_outputs, sort_keys=True, indent=4)
     # REMEMBER: Json output *must* be printed to be viewed correctly.

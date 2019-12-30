@@ -122,7 +122,7 @@ class Tools:
     def get_raw_output(self):
         return self.raw_output
 
-    def output(self):
+    def get_output(self):
         return output_unifier.unifier(self.raw_output, self.files_to_analyze)
 
 # End Class: Tools

@@ -136,7 +136,7 @@ def halstead_metric_tool_reader(json_output):
     return json.loads(json_output)
 
 
-def unifier_merger_tmp(data: dict, tool_output: dict):
+def unifier_merger(data: dict, tool_output: dict):
     # # # formatted_output = { "files": [...] }
 
     # BEGIN Merging global metrics...
@@ -389,9 +389,9 @@ def unifier(outputs, files_to_analyze):
     halstead = _standardizer_halstead(outputs["halstead"])
 
     # The data are merged with the complete output
-    unifier_merger_tmp(global_merged_output, mi)
-    unifier_merger_tmp(global_merged_output, cccc)
-    unifier_merger_tmp(global_merged_output, tokei)
-    unifier_merger_tmp(global_merged_output, halstead)
+    unifier_merger(global_merged_output, mi)
+    unifier_merger(global_merged_output, cccc)
+    unifier_merger(global_merged_output, tokei)
+    unifier_merger(global_merged_output, halstead)
 
     return global_merged_output

@@ -3,6 +3,7 @@
 
 import json
 import os.path
+import sys
 from typing import Dict, List, Any
 from xml.dom import minidom
 import metrics
@@ -104,31 +105,48 @@ def cccc_output_reader(cccc_xml_directory_path: str):
         with open(os.path.join(base_dir, module_name + ".xml"), 'r') as moduleFile:
             module_xml = minidom.parse(moduleFile)
 
-        CC_module = \
-            module_xml.getElementsByTagName("module_summary")[0].getElementsByTagName("McCabes_cyclomatic_complexity")[
-                0].getAttribute("value")
+        CC_module = module_xml.getElementsByTagName("module_summary")[
+            0].getElementsByTagName("McCabes_cyclomatic_complexity")[0].getAttribute("value")
         member_functions = module_xml.getElementsByTagName("procedural_detail")[0].getElementsByTagName(
             'member_function')
 
         list_of_member_functions: List[Dict[str, Any]] = []
-        file_in = ""
         for member_function in member_functions:
             member_function_name = member_function.getElementsByTagName("name")[0].firstChild.nodeValue
-            file_in = member_function.getElementsByTagName("source_reference")[0].getAttribute("file")
-            line_number = member_function.getElementsByTagName("source_reference")[0].getAttribute("line")
+
+            file_in = None
+            line_number = None
+            definition_only = True
+            for extent in member_function.getElementsByTagName("extent"):
+                if extent.getElementsByTagName("description")[0].firstChild.nodeValue == "definition":
+                    definition_only = False
+                    file_in = extent.getElementsByTagName("source_reference")[0].getAttribute("file")
+                    line_number = extent.getElementsByTagName("source_reference")[0].getAttribute("line")
+            if definition_only:
+                continue    # If it is not the implementation of the function, we skip it
+
             member_function_cc = member_function.getElementsByTagName("McCabes_cyclomatic_complexity")[0].getAttribute(
                 "value")
+            lines_of_code = member_function.getElementsByTagName("lines_of_code")[0].getAttribute("value")
+            lines_of_comment = member_function.getElementsByTagName("lines_of_comment")[0].getAttribute("value")
 
-            per_function_values = {"func_name": member_function_name, "line_number": line_number,
-                                   "functionCC": member_function_cc}
+            per_function_values = {
+                "file": file_in,
+                "line_number": line_number,
+                "func_name": member_function_name,
+                "functionCC": member_function_cc,
+                "loc": lines_of_code,
+                "cloc": lines_of_comment,
+            }
             list_of_member_functions.append(per_function_values)
 
         per_module_metrics = {"CC": CC_module, "WMC": WMC, "DIT": DIT, "NOC": NOC, "CBO": CBO}
         # {"filename": file_in, "func_name": func_name,
         # "line_number": line_number, "values": per_function_values}
-        per_function_res.append({"filename": file_in, "module_name": module_name,
+        per_function_res.append({"module_name": module_name,
                                  "per_module_metrics": per_module_metrics, "functions": list_of_member_functions})
-
+        # TODO: Controlla i function name! Possono essere diversi
+        # TODO: Poi le func che ricadono sotto "anonymous" non devono avere C&K !
     return per_function_res
 
 
@@ -242,17 +260,95 @@ def _standardizer_tokei(data):
                 per_file["type"] = d
 
             formatted_output["files"].append(per_file)
+    metrics.helper_tokei(formatted_output)
     return formatted_output
 
 
 def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output_reader
+
+    # Support structures
+    tmp_dict_files = {}
+    tmp_dict_modules = {}
+
+    # for d in data:
+    #   for module in d:
+    for module in data:
+        # If there are no functions, the module represents a class which is not defined in the files we analyzed.
+        # Hence, all its stats are 0, and the other tools will not have those entries, so we can omit it.
+        # TODO: We could still put these in the 'global' section
+        if len( module["functions"]) == 0:
+            continue
+
+        if module["module_name"] not in tmp_dict_modules:
+            tmp_dict_modules[module["module_name"]] = {     # It's going to be added in the 'global' section
+                "CCCC module": module["module_name"],
+                "CC": module["per_module_metrics"]["CC"],
+                "C&K": {
+                    "WMC": module["per_module_metrics"]["WMC"],
+                    "DIT": module["per_module_metrics"]["DIT"],
+                    "NOC": module["per_module_metrics"]["NOC"],
+                    "CBO": module["per_module_metrics"]["CBO"],
+                },
+            }
+
+        for func in module["functions"]:
+            if func["file"] not in tmp_dict_files:  # Create new per_file struct
+                per_file = {
+                    "filename": func["file"],
+                    "functions": []
+                }
+                tmp_dict_files[func["file"]] = per_file
+            else:
+                per_file = tmp_dict_files[func["file"]]
+
+            per_func = None
+            for i in per_file["functions"]:
+                if i["line number"] == func["line_number"]:
+                    per_func = i
+                    break
+
+            if per_func is None:   # New function
+                per_func = {
+                    "function name": func["func_name"],
+                    "line number": func["line_number"],
+                    "CC": func["functionCC"],
+                    "LOC": func["loc"],
+                    "CLOC": func["cloc"],
+                    "CCCC module": module["module_name"]    # The function is part of this module
+                }
+                per_file["functions"].append(per_func)
+
+            else:
+                # TODO: Test this. It's ok if one of these is from an "anonymous" module
+                print("DEBUG:\t_standardizer_cccc() warning: same function found twice.\n"
+                      "\tanalyzed function:\n\t", func,
+                      "\talready present function:\n\t", per_func, file=sys.stderr)
+
     formatted_output = {
+        "C&K modules": [],
         "files": []
     }
 
-    print("CCCC raw:\n")     # TODO: RIMUOVILO
-    print(data)
-    print("\n")
+    for module in tmp_dict_modules:
+        if module != "anonymous":   # Do not add the per_module stats if in "anonymous"
+            formatted_output["C&K modules"].append(tmp_dict_modules[module])
+
+    for file in tmp_dict_files.values():
+        formatted_output["files"].append(file)
+
+        # TODO: Cancella i risultati senza func. name!
+
+        # TODO: Trovare un modo per sapere a quale classe appartengono i metodi!
+        #  metrics.helper_cccc(formatted_output)
+
+        # TODO: Can we calculate the global C&K?
+    return formatted_output
+
+
+def _standardizer_cccc_old(data):     # TODO: Consider merging this into cccc_output_reader
+    formatted_output = {
+        "files": []
+    }
 
     # for d in data:
     #   for module in d:
@@ -277,6 +373,11 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
         per_file["functions"] = per_function
 
         formatted_output["files"].append(per_file)
+
+    # TODO: Cancella i risultati senza func. name!
+
+    # TODO: Trovare un modo per sapere a quale classe appartengono i metodi!
+    #  metrics.helper_cccc(formatted_output)
 
     # TODO: Can we calculate the global C&K?
     return formatted_output

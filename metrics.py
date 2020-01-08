@@ -1,4 +1,6 @@
 import math
+"""These functions are meant to further enrich the data obtained using the third-party tools.
+ They can be used to extend the already present metrics, or to calculate some other metrics."""
 
 
 def helper_halstead(operators: dict, operands: dict) -> dict:
@@ -41,3 +43,26 @@ def helper_halstead(operators: dict, operands: dict) -> dict:
     }
 
     return halstead_output
+
+
+def helper_tokei(standardized_output: dict):
+    tot_loc = 0
+    tot_cloc = 0
+    tot_lines = 0
+
+    for file in standardized_output["files"]:
+        tot_loc += file["LOC"]
+        tot_cloc += file["CLOC"]
+        tot_lines += file["Lines"]
+
+    standardized_output["LOC"] = tot_loc
+    standardized_output["CLOC"] = tot_cloc
+    standardized_output["Lines"] = tot_lines
+
+
+# def helper_cccc(standardized_output: dict):
+#     """Calculate McCabe's Weighted Method Count metric"""
+#     for file in standardized_output["files"]:
+#         WMC = 0
+#         for func in file["functions"]:
+#             WMC += func["CC"]

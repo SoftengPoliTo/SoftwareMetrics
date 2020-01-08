@@ -11,6 +11,12 @@ import output_unifier
 __DEBUG_F__ = True
 ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
 
+# TODO: Check the extensions
+_SUPPORTED_EXTENSIONS_CCCC_ = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
+_SUPPORTED_EXTENSIONS_TOKEI_ = ACCEPTED_EXTENSIONS  # [""]   # Tokei supports a huge variety of languages
+_SUPPORTED_EXTENSIONS_HALSTEAD_TOOL_ = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
+_SUPPORTED_EXTENSIONS_MI_TOOL_ = ["c", "cc", "cpp", "c++"]
+
 
 class Tools:
     """Class containing all the available third-party tools, and their related information."""
@@ -43,13 +49,14 @@ class Tools:
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
     def _run_tool_cccc(self, files_list: list, output_dir: os.path):  # TODO: try / catch!
+        files = _filter_unsupported_files(files_list, _SUPPORTED_EXTENSIONS_CCCC_)
         outputs_subdir = os.path.join(output_dir, "outputs")
         if os.path.exists(outputs_subdir):  # Probably unnecessary, but it prevents the
             shutil.rmtree(outputs_subdir)
         os.mkdir(outputs_subdir)
 
         args = [self.CCCC, "--outdir=" + outputs_subdir]
-        args.extend(files_list)
+        args.extend(files)
         return subprocess.run(args, capture_output=True, check=True)
         # return subprocess.run([self.CCCC, "--outdir=" + outputs_subdir, path_to_analyze], capture_output=True,
         #                      check=True)
@@ -176,3 +183,12 @@ def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
             extension = base_name[base_name.rfind(".") + 1:]
             if extension in accepted_extensions:
                 output_list.append(ff)
+
+
+def _filter_unsupported_files(files_list: list, accepted_extensions: list):
+    supported_files = []
+    for file in files_list:
+        for extension in accepted_extensions:
+            if file.endswith(extension):
+                supported_files.append(file)
+    return supported_files

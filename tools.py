@@ -23,11 +23,9 @@ class Tools:
 
     raw_output = {}
     files_to_analyze = {}
-    __toolsDir__ = "CC++_Tools"
 
     def __init__(self, wrapper_path=sys.argv[0]):
-        self.directory = os.path.realpath(wrapper_path)
-        self.baseDir = os.path.join(self.directory, self.__toolsDir__)
+        self.baseDir = os.path.realpath(wrapper_path)
 
         # TOOLS
         self.CCCC = os.path.join(self.baseDir, "CCCC", "cccc")
@@ -38,14 +36,14 @@ class Tools:
     def check_tools_existence(self):
         if not os.path.isdir(self.baseDir):
             print("ERROR:\tthe directory containing the tools ("
-                  + self.__toolsDir__ + ") does not exists.", file=sys.stderr)
+                  + self.baseDir + ") does not exists.", file=sys.stderr)
             sys.exit(ExitCode.TOOLS_DIR_NOT_FOUND.value)
 
         if os.path.isfile(self.CCCC) is False or os.path.isfile(self.TOKEI) is False or os.path.isfile(
                 self.HALSTEAD_TOOL) is False or os.path.isfile(self.MI_TOOL) is False:
             print(
                 "ERROR:\tone or more tools are missing.\nCheck the directory containing the tools ("
-                + self.__toolsDir__ + ").", file=sys.stderr)
+                + self.baseDir + ").", file=sys.stderr)
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
     def _run_tool_cccc(self, files_list: list, output_dir: os.path):  # TODO: try / catch!

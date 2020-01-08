@@ -333,7 +333,7 @@ def _standardizer_halstead(data):    # TODO: Consider merging this into halstead
             "Vocabulary": h["Vocabulary"],
             "Length": h["Length"],
             "Volume": h["Volume"],
-            "Difficulty": h["Difficlty"],   # TODO: fix the typo
+            "Difficulty": h["Difficulty"],
             "Effort": h["Effort"],
             "Programming time": h["Programming time"],
             "Estimated program length": h["Estimated program length"],
@@ -389,8 +389,8 @@ def unifier(outputs, files_to_analyze):
     halstead = _standardizer_halstead(outputs["halstead"])
 
     # The data are merged with the complete output
+    unifier_merger(global_merged_output, cccc)      # CCCC output returns the complete function names.
     unifier_merger(global_merged_output, mi)
-    unifier_merger(global_merged_output, cccc)
     unifier_merger(global_merged_output, tokei)
     unifier_merger(global_merged_output, halstead)
 

@@ -356,8 +356,8 @@ def _standardizer_mi(data):   # TODO: Consider merging this into mi_output_reade
             "function name": d["func_name"],
             "line number": d["line_number"],
 
-            "NCSS": d["values"]["NCSS"],        # TODO: Che sono? Non è chiaro
-            "CCN": d["values"]["CCN"],          # TODO: Che sono? Non è chiaro
+            # "NCSS": d["values"]["NCSS"],        # LOC
+            "CCN": d["values"]["CCN"],          # Cyclomatic Complexity
             "MI": d["values"]["Maintainability"]
         }
 
@@ -371,6 +371,17 @@ def _standardizer_mi(data):   # TODO: Consider merging this into mi_output_reade
             for i in formatted_output["files"]:
                 if i["filename"] == d["filename"]:
                     i["functions"].append(new_func)
+
+    # Adding per-file M.I. values
+    for file in formatted_output["files"]:
+        MI = 0
+        count = 0
+        for f in file["functions"]:
+            MI += f["MI"]
+            count += 1
+        file["MI"] = MI
+        file["no. functions"] = count
+
     return formatted_output
 
 

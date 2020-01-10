@@ -345,44 +345,6 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
     return formatted_output
 
 
-def _standardizer_cccc_old(data):     # TODO: Consider merging this into cccc_output_reader
-    formatted_output = {
-        "files": []
-    }
-
-    # for d in data:
-    #   for module in d:
-    for module in data:
-        per_file = {
-            "filename": module["filename"],
-            "module_name": module["module_name"],   # TODO: Delete this! DEBUG only.
-            "CC": module["per_module_metrics"]["CC"],
-            "C&K": {
-                "WMC": module["per_module_metrics"]["WMC"],
-                "DIT": module["per_module_metrics"]["DIT"],
-                "NOC": module["per_module_metrics"]["NOC"],
-                "CBO": module["per_module_metrics"]["CBO"],
-            }
-        }
-        per_function = []
-        for f in module["functions"]:
-            per_function.append({
-                "line number": f["line_number"],
-                "CC": f["functionCC"]
-            })
-        per_file["functions"] = per_function
-
-        formatted_output["files"].append(per_file)
-
-    # TODO: Cancella i risultati senza func. name!
-
-    # TODO: Trovare un modo per sapere a quale classe appartengono i metodi!
-    #  metrics.helper_cccc(formatted_output)
-
-    # TODO: Can we calculate the global C&K?
-    return formatted_output
-
-
 def _standardizer_mi(data):   # TODO: Consider merging this into mi_output_reader
     formatted_output = {
         "files": []

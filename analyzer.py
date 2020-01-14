@@ -76,10 +76,13 @@ def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="
 
     return json_output, raw_outputs     # TODO: Delete raw_output
 
+# TODO: passagli il c_commands.json!
+# TODO: rifai interfaccia del main. con libreria, magari
 
 def main():     # TODO: Test this!
     if 2 > len(sys.argv) > 3 or "--help" in sys.argv or "-help" in sys.argv or "-h" in sys.argv:
-        print("USAGE:\t" + sys.argv[0] + "<path to analyze> [<results dir>]", file=sys.stderr)
+        print("USAGE:\t" + sys.argv[0] + "{-c <compile_commands.json> | <path to analyze>} [<results dir>]", file=sys.stderr)
+        print("\t")
         print("\tDefault results dir: current directory.", file=sys.stderr)
         sys.exit(ExitCode.USAGE_HELP.value)
 

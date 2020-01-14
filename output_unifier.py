@@ -377,7 +377,7 @@ def _standardizer_mi(data):   # TODO: Consider merging this into mi_output_reade
         MI = 0
         count = 0
         for f in file["functions"]:
-            MI += f["MI"]
+            MI += int(f["MI"])
             count += 1
         file["MI"] = MI
         file["no. functions"] = count

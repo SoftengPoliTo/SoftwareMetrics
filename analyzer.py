@@ -18,12 +18,11 @@ __DEBUG_F__ = True
 #  SE c'è un file .java, TOKEI può analizzarlo... MA meglio che venga DROPPATO!!
 # Dare in base al linguaggio la lista dei tools che si possono usare
 
+def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="./CC++_Tools"):
+    if path_to_analyze is None and files_list is None:
+        print("ERROR:\teither a path to analyze, or a list of files must be passed to function 'analyze'.")
+        sys.exit(ExitCode.PROGRAMMING_ERROR.value)
 
-def analyze(path_to_analyze: os.path, tools_path="./CC++_Tools",
-            results_dir="/home/diego/Development/TESI/2_SoftwareMetrics/"):  # TODO: Delete the def path
-    if not os.path.exists(path_to_analyze):
-        print("ERROR:\tthe given path (" + path_to_analyze + ") does not exists.", file=sys.stderr)
-        sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)
     if not os.path.isdir(results_dir):
         print("ERROR:\tthe results path (" + results_dir + ") does not exists.", file=sys.stderr)
         sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)
@@ -32,10 +31,10 @@ def analyze(path_to_analyze: os.path, tools_path="./CC++_Tools",
     t.check_tools_existence()
 
     # Checking for analyzable files.
-    if len(tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS)) == 0:
+    if path_to_analyze is not None and len(tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS)) == 0:
         print("ERROR:\tthe given path does not contain any of the supported files.\n"
               "\tBe sure to pass the right folder to analyze.")
-        sys.exit(ExitCode.NO_SUPPORTED_FILES_FOUND)
+        sys.exit(ExitCode.NO_SUPPORTED_FILES_FOUND.value)
 
     # The output folder in which all the output data will be placed
     output_name = datetime.datetime.now().strftime("results_%Y.%m.%d_%H.%M.%S")
@@ -47,11 +46,12 @@ def analyze(path_to_analyze: os.path, tools_path="./CC++_Tools",
 
     if __DEBUG_F__:
         print("DEBUG:\tOK, in output dir: ", output_dir)
-        print("DEBUG:\tpathToAnalyze: " + path_to_analyze)
+        if path_to_analyze is not None:
+            print("DEBUG:\tpathToAnalyze: " + path_to_analyze)
         print()
 
     # RUNNING THE EXTERNAL TOOLS
-    t.run_tools(path_to_analyze, output_dir)
+    t.run_tools(path_to_analyze, files_list, output_dir)
     raw_outputs = t.get_raw_output()
 
     if __DEBUG_F__:

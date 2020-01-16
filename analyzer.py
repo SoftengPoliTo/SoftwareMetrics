@@ -11,7 +11,6 @@ import json
 import argparse
 import logging
 
-__DEBUG_F__ = True
 
 def compile_commands_reader(json_file: os.path) -> list:
     if not os.path.isfile(json_file):
@@ -47,11 +46,11 @@ def compile_commands_reader(json_file: os.path) -> list:
 
 def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="./CC++_Tools"):
     if path_to_analyze is None and files_list is None:
-        print("ERROR:\teither a path to analyze, or a list of files must be passed to function 'analyze'.")
+        logging.error("\teither a path to analyze, or a list of files must be passed to function 'analyze'.")
         sys.exit(ExitCode.PROGRAMMING_ERROR.value)
 
     if not os.path.isdir(results_dir):
-        print("ERROR:\tthe results path (" + results_dir + ") does not exists.", file=sys.stderr)
+        logging.error("\tthe results path ( %s ) does not exists.", results_dir)
         sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)
 
     t = tools.Tools(tools_path)
@@ -59,8 +58,8 @@ def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="
 
     # Checking for analyzable files.
     if path_to_analyze is not None and len(tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS)) == 0:
-        print("ERROR:\tthe given path does not contain any of the supported files.\n"
-              "\tBe sure to pass the right folder to analyze.")
+        logging.error("\tthe given path does not contain any of the supported files.\n"
+                      "\tBe sure to pass the right folder to analyze.")
         sys.exit(ExitCode.NO_SUPPORTED_FILES_FOUND.value)
 
     # The output folder in which all the output data will be placed
@@ -71,27 +70,30 @@ def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="
         output_dir = output_dir + '_'
     os.mkdir(output_dir)
 
-    if __DEBUG_F__:
-        print("DEBUG:\tOK, in output dir: ", output_dir)
-        if path_to_analyze is not None:
-            print("DEBUG:\tpathToAnalyze: " + path_to_analyze)
-        print()
+    logging.debug("\tOK, in output dir: %s", output_dir)
+    if path_to_analyze is not None:
+        logging.debug("\tpathToAnalyze: %s", path_to_analyze)
+    else:
+        logging.debug("\tfiles_list: %s", files_list)
+    logging.debug("")
 
     # RUNNING THE EXTERNAL TOOLS
     t.run_tools(path_to_analyze, files_list, output_dir)
     raw_outputs = t.get_raw_output()
 
-    if __DEBUG_F__:
-        print("\nDEBUG. RESULTS:")
-        print("TOKEI")
-        print(raw_outputs["tokei"])
-        print("\nCCCC")
-        print(raw_outputs["cccc"])
-        print("\nMI")
-        print(raw_outputs["mi"])
-        print("\nHALSTEAD")
-        print(raw_outputs["halstead"])
-        print("\n")
+    logging.debug("\tRAW RESULTS:\n"
+                  "TOKEI:\n"
+                  "%s"
+                  "\n\nCCCC:\n"
+                  "%s"
+                  "\n\nMI:\n"
+                  "%s"
+                  "\n\nHALSTEAD:\n"
+                  "%s\n",
+                  raw_outputs["tokei"],
+                  raw_outputs["cccc"],
+                  raw_outputs["mi"],
+                  raw_outputs["halstead"])
 
     formatted_outputs = t.get_output()
 

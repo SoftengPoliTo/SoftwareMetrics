@@ -7,8 +7,8 @@ import subprocess
 import sys
 from exit_codes import ExitCode
 import output_unifier
+import logging
 
-__DEBUG_F__ = True
 ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
 
 # TODO: Check the extensions
@@ -35,15 +35,13 @@ class Tools:
 
     def check_tools_existence(self):
         if not os.path.isdir(self.baseDir):
-            print("ERROR:\tthe directory containing the tools ("
-                  + self.baseDir + ") does not exists.", file=sys.stderr)
+            logging.error("\tthe directory containing the tools (%s) does not exists.", self.baseDir)
             sys.exit(ExitCode.TOOLS_DIR_NOT_FOUND.value)
 
         if os.path.isfile(self.CCCC) is False or os.path.isfile(self.TOKEI) is False or os.path.isfile(
                 self.HALSTEAD_TOOL) is False or os.path.isfile(self.MI_TOOL) is False:
-            print(
-                "ERROR:\tone or more tools are missing.\nCheck the directory containing the tools ("
-                + self.baseDir + ").", file=sys.stderr)
+            logging.error("\tone or more tools are missing.\n"
+                          "Check the directory containing the tools (%s).", self.baseDir)
             sys.exit(ExitCode.EXIT_CODE__TOOLS_NOT_FOUND.value)
 
     def _run_tool_cccc(self, files_list: list, output_dir: str):  # TODO: try / catch!
@@ -71,10 +69,7 @@ class Tools:
             return results.stdout
 
         except subprocess.CalledProcessError as ex:
-            print("ERROR:\tTokei exited with an error.", file=sys.stderr)
-            print(ex.stdout, file=sys.stderr)
-            print(ex.stderr, file=sys.stderr)
-            print("", file=sys.stderr)
+            logging.error("\tTokei exited with an error.\n%s\n%s\n", ex.stdout,ex.stderr)
             sys.exit(ExitCode.TOKEI_TOOL_ERR.value)
 
     def _run_tool_halstead(self, path_to_analyze: str):  # TODO: try / catch
@@ -171,23 +166,18 @@ def _analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct,
 
     for f in os.listdir(path):
         ff = os.path.join(path, f)
-        if __DEBUG_F__:
-            print("DEBUG:\tpath: " + f)
+        logging.debug("\tpath: %s", f)
         if os.path.isdir(ff):  # If path is a DIR, recurse.
-            if __DEBUG_F__:
-                print("DEBUG:\tcheckPath dir : " + f)
+            logging.debug("\t'_analyze_path': dir: %s", f)
             _analyze_path(tool, ff, accepted_extensions, run_n_parse_funct, output_dir, output_list)
 
         elif os.path.isfile(ff):  # If path is a FILE, check its extension
             base_name = os.path.basename(f)
             extension = base_name[base_name.rfind(".") + 1:]
             if extension in accepted_extensions:
-                if __DEBUG_F__:
-                    print("DEBUG:\tcheckPath file: " + f)
+                logging.debug("\t'_analyze_path': file: %s", f)
                 parsed_result = run_n_parse_funct(ff, output_dir)
                 output_list.append(parsed_result)
-            # else:
-            #    print("DEBUG:-checkPath file: " + f)
 
 
 def list_of_files(path: os.path, accepted_extensions: list) -> list:
@@ -198,16 +188,19 @@ def list_of_files(path: os.path, accepted_extensions: list) -> list:
 
 
 def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
-    for f in os.listdir(path):
-        ff = os.path.join(path, f)
-        if os.path.isdir(ff):  # If path is a DIR, recurse.
+    if os.path.isfile(path):
+        base_name = os.path.basename(path)
+        extension = base_name[base_name.rfind(".") + 1:]
+        if extension in accepted_extensions:
+            output_list.append(path)
+
+    elif os.path.isdir(path):
+        for f in os.listdir(path):
+            ff = os.path.join(path, f)
             _list_of_files(ff, accepted_extensions, output_list)
 
-        elif os.path.isfile(ff):  # If path is a FILE, check its extension
-            base_name = os.path.basename(f)
-            extension = base_name[base_name.rfind(".") + 1:]
-            if extension in accepted_extensions:
-                output_list.append(ff)
+    else:
+        logging.info("\tThe analyzed path (%s) is neither a file or a directory, it will be skipped.", path)
 
 
 def _filter_unsupported_files(files_list: list, accepted_extensions: list):

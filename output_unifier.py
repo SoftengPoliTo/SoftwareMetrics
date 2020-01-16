@@ -2,15 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import json
+import logging
 import os.path
-import sys
 from typing import Dict, List, Any
 from xml.dom import minidom
 import metrics
-
-__DEBUG_F__ = True
-
-version = 1.2
 
 
 def _mi_tool_output_reader(xml: minidom):
@@ -99,8 +95,8 @@ def cccc_output_reader(cccc_xml_directory_path: str):
         # CC = module.getElementsByTagName("McCabes_cyclomatic_complexity")[0].firstChild.nodeValue
         # LOC = module.getElementsByTagName("lines_of_code")[0].firstChild.nodeValue
         # CLOC =module.getElementsByTagName("lines_of_comment")[0].firstChild.nodeValue
-        if __DEBUG_F__:
-            print("DEBUG:\tPATH: " + os.path.join(base_dir, module_name + ".xml"))  # TODO
+
+        logging.debug("\tPATH: %s", os.path.join(base_dir, module_name + ".xml"))  # TODO
 
         with open(os.path.join(base_dir, module_name + ".xml"), 'r') as moduleFile:
             module_xml = minidom.parse(moduleFile)
@@ -193,11 +189,10 @@ def unifier_merger(data: dict, tool_output: dict):
 
                 # if func_name_tool is None and func_line_number_tool is None:
                 if func_line_number_tool is None:
-                    if __DEBUG_F__:
-                        print("DEBUG:\tline number and function name not found!")
-                        print("\tCaused by file:", file_tool)
+                    logging.debug("\tline number and function name not found!"
+                                  "\tCaused by file: %s", file_tool)
                     continue
-                    # TODO: what should we do in this case?
+                    # TODO: what should we do in this case? + Maybe it's not just a debug message
 
                 funct_found = False
                 i = 0
@@ -238,13 +233,11 @@ def _standardizer_tokei(data):
     for d in data:
         # TODO: spostare questo controllo a monte? ↓
         if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
-            if __DEBUG_F__:
-                print("DEBUG:\t(unifier_tokei) Skipping type " + d)
+            logging.debug("\t(unifier_tokei) Skipping type %s ", d)
             continue
 
         for s in data[d]["stats"]:
-            if __DEBUG_F__:
-                print(s)
+            logging.debug(s)
 
             per_file = {
                 "filename": s["name"],
@@ -276,7 +269,7 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
         # If there are no functions, the module represents a class which is not defined in the files we analyzed.
         # Hence, all its stats are 0, and the other tools will not have those entries, so we can omit it.
         # TODO: We could still put these in the 'global' section
-        if len( module["functions"]) == 0:
+        if len(module["functions"]) == 0:
             continue
 
         if module["module_name"] not in tmp_dict_modules:
@@ -320,9 +313,10 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
 
             else:
                 # TODO: Test this. It's ok if one of these is from an "anonymous" module
-                print("DEBUG:\t_standardizer_cccc() warning: same function found twice.\n"
-                      "\tanalyzed function:\n\t", func,
-                      "\talready present function:\n\t", per_func, file=sys.stderr)
+                logging.debug("\t_standardizer_cccc() warning: same function found twice.\n"
+                              "\tanalyzed function:"
+                              "\n\t%s\n"
+                              "\talready present function:\n\t%s", func, per_func)
 
     formatted_output = {
         "C&K modules": [],

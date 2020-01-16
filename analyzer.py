@@ -4,9 +4,12 @@
 import datetime
 import os
 import sys
+
 from exit_codes import ExitCode
 import tools
 import json
+import argparse
+import logging
 
 __DEBUG_F__ = True
 
@@ -79,11 +82,59 @@ def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="
 # TODO: passagli il c_commands.json!
 # TODO: rifai interfaccia del main. con libreria, magari
 
-def main():     # TODO: Test this!
-    if 2 > len(sys.argv) > 3 or "--help" in sys.argv or "-help" in sys.argv or "-h" in sys.argv:
-        print("USAGE:\t" + sys.argv[0] + "{-c <compile_commands.json> | <path to analyze>} [<results dir>]", file=sys.stderr)
-        print("\t")
-        print("\tDefault results dir: current directory.", file=sys.stderr)
-        sys.exit(ExitCode.USAGE_HELP.value)
 
-    analyze(tools_path=sys.argv[0], path_to_analyze=sys.argv[1], results_dir=sys.argv[2])
+def main():
+    parser = argparse.ArgumentParser(
+        # prog='myls',                      # Custom program name
+        # usage='%(prog)s [options] path',  # Custom usage message
+        # add_help=False,                   # To delete the default help message
+        description="TODO: DESCRIPTION",
+        epilog="The source code of this program can be found on GitHub,"
+               " at https://github.com/SoftengPoliTo/SoftwareMetrics")
+
+    # Optional args
+    parser.add_argument("-v", "--verbosity",
+                        action="store_true",
+                        help="Increase output verbosity, useful for debugging purposes")
+
+    # Args
+    parser.add_argument("results_dir",    # "-r", "--results",
+                        metavar="results dir",
+                        type=str,
+                        default=".",
+                        nargs="?",
+                        help="The directory in which to save the results")
+
+    # Input from paths OR compile_commands.json
+    paths_or_json = parser.add_mutually_exclusive_group(required=True)
+    # required=True means that at least one option must be present
+
+    paths_or_json.add_argument("-p", "--path",  # "paths_to_analyze",
+                               type=str,
+                               # nargs="+",       # action="store",
+                               help="The PATH (directory(ies) / file(s)) to analyze")
+
+    paths_or_json.add_argument("-c",
+                               type=str,
+                               metavar="FILE.json",     # action="store",
+                               help="The path to the 'compile_commands.json' file")
+
+    args = parser.parse_args()
+
+    if args.verbosity:
+        logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+        logging.debug("\targs=%s", vars(args))
+    else:
+        logging.basicConfig(stream=sys.stderr, level=logging.INFO)
+    print(os.path.dirname(os.path.realpath(sys.argv[0])))
+    files_list = None
+    if args.c is not None:
+        files_list = compile_commands_reader(args.c)
+    analyze(path_to_analyze=args.path,
+            files_list=files_list,
+            tools_path=os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "CC++_Tools"),
+            results_dir=args.results_dir)
+
+
+if __name__ == "__main__":
+    main()

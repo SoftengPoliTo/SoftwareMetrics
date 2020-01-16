@@ -3,12 +3,14 @@ from enum import Enum
 
 class ExitCode(Enum):
     """Exit status codes."""
+    # TODO: Redo the codes: they are now wrong with argparser!
     USAGE_HELP = 1
     PROGRAMMING_ERROR = 2   # It should never happen.
 
     TOOLS_DIR_NOT_FOUND = 3
     TOOLS_NOT_FOUND = 4
     TARGET_DIR_NOT_FOUND = 5
+    COMPILE_COMMAND_FILE_ERROR = 11
 
     NO_SUPPORTED_FILES_FOUND = 6
 

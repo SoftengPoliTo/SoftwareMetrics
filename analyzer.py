@@ -13,6 +13,30 @@ import logging
 
 __DEBUG_F__ = True
 
+def compile_commands_reader(json_file: os.path) -> list:
+    if not os.path.isfile(json_file):
+        logging.error("\t'%s' is not a valid file. Check the path you have provided.", json_file)
+        sys.exit(ExitCode.COMPILE_COMMAND_FILE_ERROR.value)
+
+    base_name = os.path.basename(json_file)
+    if base_name[base_name.rfind(".") + 1:] != "json":
+        logging.error("\t'%s' is not a Json file.", json_file)
+        sys.exit(ExitCode.COMPILE_COMMAND_FILE_ERROR.value)
+
+    with open(json_file, 'r') as json_fp:
+        c_commands = json.load(json_fp)
+
+    files = []
+    try:
+        for i in c_commands:
+            files.append(os.path.join(i["directory"], i["file"]))
+
+    except KeyError as k:
+        logging.error("\t'%s' is not a valid \"compile_commands\" file.", json_file)
+        sys.exit(ExitCode.COMPILE_COMMAND_FILE_ERROR.value)
+
+    return files
+
 
 # TODO: AGGIUNGI CONTROLLO: SE GLI PASSO UN PROGETTO NON DEVE NEMMENO PARTIRE
 #  (FAI LA PROVA: passagli un progetto Java in input)

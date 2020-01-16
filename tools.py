@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import json
+
 import os
 import shutil
 import subprocess
@@ -217,14 +217,3 @@ def _filter_unsupported_files(files_list: list, accepted_extensions: list):
             if file.endswith(extension):
                 supported_files.append(file)
     return supported_files
-
-
-def compile_commands_reader(json_file: os.path) -> list:
-    with open(json_file, 'r') as json_fp:
-        c_commands = json.load(json_fp)
-
-    files = []
-    for i in c_commands:
-        files.append(os.path.join(i["directory"], i["file"]))
-
-    return files

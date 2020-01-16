@@ -37,13 +37,6 @@ def compile_commands_reader(json_file: os.path) -> list:
     return files
 
 
-# TODO: AGGIUNGI CONTROLLO: SE GLI PASSO UN PROGETTO NON DEVE NEMMENO PARTIRE
-#  (FAI LA PROVA: passagli un progetto Java in input)
-#  Controlla i files: se non c'è nessun .h, .c, .cpp, ... ALLORA deve dire "controlla che il path sia giusto"
-
-#  SE c'è un file .java, TOKEI può analizzarlo... MA meglio che venga DROPPATO!!
-# Dare in base al linguaggio la lista dei tools che si possono usare
-
 def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="./CC++_Tools"):
     if path_to_analyze is None and files_list is None:
         logging.error("\teither a path to analyze, or a list of files must be passed to function 'analyze'.")
@@ -102,11 +95,9 @@ def analyze(path_to_analyze=None, files_list=None, results_dir=".", tools_path="
 
     with open(os.path.join(output_name, output_name + ".json"), 'w') as output_file:
         json.dump(formatted_outputs, output_file, sort_keys=True, indent=4)
+    print("Results have been written in folder: '" + output_name + "'")
 
-    return json_output, raw_outputs     # TODO: Delete raw_output
-
-# TODO: passagli il c_commands.json!
-# TODO: rifai interfaccia del main. con libreria, magari
+    return json_output, raw_outputs
 
 
 def main():
@@ -114,8 +105,9 @@ def main():
         # prog='myls',                      # Custom program name
         # usage='%(prog)s [options] path',  # Custom usage message
         # add_help=False,                   # To delete the default help message
-        description="TODO: DESCRIPTION",
-        epilog="The source code of this program can be found on GitHub,"
+        description="A program to calculate various source code metrics, aggregating the results obtained from "
+                    "different tools.",
+        epilog="The manual and the source code of this program can be found on GitHub,"
                " at https://github.com/SoftengPoliTo/SoftwareMetrics")
 
     # Optional args

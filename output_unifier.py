@@ -72,7 +72,6 @@ def tokei_output_reader_from_file(json_output_file_path: os.path):
 
 def cccc_output_reader(cccc_xml_directory_path: str):
     base_dir = os.path.realpath(cccc_xml_directory_path)
-    # print("DEBUG: BASEDIR: " + base_dir)
     per_function_res = []
 
     with open(os.path.join(cccc_xml_directory_path, "cccc.xml"), 'r') as cccc_file:
@@ -88,15 +87,7 @@ def cccc_output_reader(cccc_xml_directory_path: str):
         NOC = module.getElementsByTagName("number_of_children")[0].getAttribute("value")
         CBO = module.getElementsByTagName("coupling_between_objects")[0].getAttribute("value")
 
-        # TODO: Mancanti:
-        # RFC = module.getElementsByTagName("")[0].getAttribute("value")
-        # LCOM= module.getElementsByTagName("")[0].getAttribute("value")
-        ####
-        # CC = module.getElementsByTagName("McCabes_cyclomatic_complexity")[0].firstChild.nodeValue
-        # LOC = module.getElementsByTagName("lines_of_code")[0].firstChild.nodeValue
-        # CLOC =module.getElementsByTagName("lines_of_comment")[0].firstChild.nodeValue
-
-        logging.debug("\tPATH: %s", os.path.join(base_dir, module_name + ".xml"))  # TODO
+        logging.debug("\tCCCC output reader. PATH: %s", os.path.join(base_dir, module_name + ".xml"))
 
         with open(os.path.join(base_dir, module_name + ".xml"), 'r') as moduleFile:
             module_xml = minidom.parse(moduleFile)
@@ -141,8 +132,6 @@ def cccc_output_reader(cccc_xml_directory_path: str):
         # "line_number": line_number, "values": per_function_values}
         per_function_res.append({"module_name": module_name,
                                  "per_module_metrics": per_module_metrics, "functions": list_of_member_functions})
-        # TODO: Controlla i function name! Possono essere diversi
-        # TODO: Poi le func che ricadono sotto "anonymous" non devono avere C&K !
     return per_function_res
 
 
@@ -151,6 +140,8 @@ def halstead_metric_tool_reader(json_output):
 
 
 def unifier_merger(data: dict, tool_output: dict):
+    """This function automatically merges the already present data structure with the standardized output from the new
+    tool"""
     # # # formatted_output = { "files": [...] }
 
     # BEGIN Merging global metrics...
@@ -158,7 +149,7 @@ def unifier_merger(data: dict, tool_output: dict):
         if stat == "files":
             continue
 
-        if stat not in data:    # TODO: The default behaviour is to write ONLY the new values.
+        if stat not in data:    # The default behaviour is to write ONLY the new values.
             data[stat] = tool_output[stat]
     #  END  Merging global metrics.
 
@@ -172,7 +163,7 @@ def unifier_merger(data: dict, tool_output: dict):
                 if stat in ["functions", "filename"]:
                     continue
 
-                if stat not in file:    # TODO: The default behaviour is to copy ONLY the new values.
+                if stat not in file:    # The default behaviour is to copy ONLY the new values.
                     file[stat] = file_tool[stat]
             # END Merging per-file metrics.
 
@@ -189,10 +180,9 @@ def unifier_merger(data: dict, tool_output: dict):
 
                 # if func_name_tool is None and func_line_number_tool is None:
                 if func_line_number_tool is None:
-                    logging.debug("\tline number and function name not found!"
-                                  "\tCaused by file: %s", file_tool)
+                    logging.warning("\tline number and function name not found!"
+                                    "\tCaused by file: %s", file_tool)
                     continue
-                    # TODO: what should we do in this case? + Maybe it's not just a debug message
 
                 funct_found = False
                 i = 0
@@ -216,7 +206,7 @@ def unifier_merger(data: dict, tool_output: dict):
                         else:   # Copy the stats.
                             if stat not in file["functions"][i]:     # Copy only the new ones
                                 file["functions"][i][stat] = per_func_tool[stat]
-                        # TODO: Cover the case where line number is not present.
+                        # We are assuming that every tool also includes the line number of the function.
             #  END  Merging per-function metrics...
 
             # The inner cycle can be interrupted to save time
@@ -231,9 +221,8 @@ def _standardizer_tokei(data):
     }
 
     for d in data:
-        # TODO: spostare questo controllo a monte? ↓
         if d not in ["C", "Cpp", "CHeader", "CppHeader"]:   # FILTER: Only prints these types.
-            logging.debug("\t(unifier_tokei) Skipping type %s ", d)
+            logging.debug("\t(_standardizer_tokei) Skipping data of type '%s'", d)
             continue
 
         for s in data[d]["stats"]:
@@ -247,7 +236,9 @@ def _standardizer_tokei(data):
                 "functions": [],    # Tokei do not gives per-function information.
             }
 
-            if d in ["CHeader", "CppHeader"]:  # Tokei distinguish CHeaders from CppHeaders from the extension only!
+            # Tokei distinguish CHeaders from CppHeaders from the extension only!
+            # That is why I decided to unify CHeader and CppHeader.
+            if d in ["CHeader", "CppHeader"]:
                 per_file["type"] = "C/CppHeader"
             else:
                 per_file["type"] = d
@@ -257,8 +248,7 @@ def _standardizer_tokei(data):
     return formatted_output
 
 
-def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output_reader
-
+def _standardizer_cccc(data):
     # Support structures
     tmp_dict_files = {}
     tmp_dict_modules = {}
@@ -268,7 +258,8 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
     for module in data:
         # If there are no functions, the module represents a class which is not defined in the files we analyzed.
         # Hence, all its stats are 0, and the other tools will not have those entries, so we can omit it.
-        # TODO: We could still put these in the 'global' section
+
+        # We could still put these in the 'global' section
         if len(module["functions"]) == 0:
             continue
 
@@ -312,7 +303,6 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
                 per_file["functions"].append(per_func)
 
             else:
-                # TODO: Test this. It's ok if one of these is from an "anonymous" module
                 logging.debug("\t_standardizer_cccc() warning: same function found twice.\n"
                               "\tanalyzed function:"
                               "\n\t%s\n"
@@ -330,16 +320,10 @@ def _standardizer_cccc(data):     # TODO: Consider merging this into cccc_output
     for file in tmp_dict_files.values():
         formatted_output["files"].append(file)
 
-        # TODO: Cancella i risultati senza func. name!
-
-        # TODO: Trovare un modo per sapere a quale classe appartengono i metodi!
-        #  metrics.helper_cccc(formatted_output)
-
-        # TODO: Can we calculate the global C&K?
     return formatted_output
 
 
-def _standardizer_mi(data):   # TODO: Consider merging this into mi_output_reader
+def _standardizer_mi(data):
     formatted_output = {
         "files": []
     }
@@ -379,8 +363,7 @@ def _standardizer_mi(data):   # TODO: Consider merging this into mi_output_reade
     return formatted_output
 
 
-# TODO: Halstead Operators and Operands should be changed to "int"
-def _standardizer_halstead(data):    # TODO: Consider merging this into halstead_output_reader
+def _standardizer_halstead(data):
     formatted_output = {
         "files": []
     }

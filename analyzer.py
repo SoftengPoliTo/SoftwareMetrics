@@ -30,7 +30,7 @@ def compile_commands_reader(json_file: os.path) -> list:
         for i in c_commands:
             files.append(os.path.join(i["directory"], i["file"]))
 
-    except KeyError as k:
+    except KeyError:
         logging.error("\t'%s' is not a valid \"compile_commands\" file.", json_file)
         sys.exit(ExitCode.COMPILE_COMMAND_FILE_ERROR.value)
 

@@ -9,12 +9,12 @@ from exit_codes import ExitCode
 import output_unifier
 import logging
 
-ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
+ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "hh"]
 
 # TODO: Check the extensions
-_SUPPORTED_EXTENSIONS_CCCC_ = ["c", "cc", "cpp", "c++", "h", "hpp", "h++"]
+_SUPPORTED_EXTENSIONS_CCCC_ = ["c", "cc", "cpp", "c++", "h", "hpp", "hh"]
 _SUPPORTED_EXTENSIONS_TOKEI_ = ACCEPTED_EXTENSIONS  # [""]   # Tokei supports a huge variety of languages
-_SUPPORTED_EXTENSIONS_HALSTEAD_TOOL_ = ["c", "cc", "cpp", "c++"]    # TODO: Check the supported extensions
+_SUPPORTED_EXTENSIONS_HALSTEAD_TOOL_ = ["c", "cc", "cpp", "c++"]
 _SUPPORTED_EXTENSIONS_MI_TOOL_ = ["c", "cc", "cpp", "c++"]
 
 

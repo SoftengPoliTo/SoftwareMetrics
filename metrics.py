@@ -85,9 +85,18 @@ def helper_tokei(standardized_output: dict):
     standardized_output["Lines"] = tot_lines
 
 
-# def helper_cccc(standardized_output: dict):
-#     """Calculate McCabe's Weighted Method Count metric"""
-#     for file in standardized_output["files"]:
-#         WMC = 0
-#         for func in file["functions"]:
-#             WMC += func["CC"]
+def wmc(standardized_output: dict):
+    """Calculate McCabe's Weighted Method Count metric. This version uses the McCabe's CC for calculating the weight of
+    each method."""
+
+    for module in standardized_output["C&K modules"]:
+        WMC = 0
+        n_func = 0
+        module_name = module["CCCC module"]
+        for file in standardized_output["files"]:
+            for func in file["functions"]:
+                if "CCCC module" in func and func["CCCC module"] == module_name:
+                    WMC += func["CC"]
+                    n_func += 1
+        module["WMC"] = WMC
+        module["no. functions"] = n_func

@@ -433,5 +433,6 @@ def unifier(outputs, files_to_analyze):
     # Additional metrics, calculated using the available data, can be added here.
     metrics.helper_halstead(global_merged_output)
     metrics.helper_tokei(global_merged_output)
+    metrics.wmc(global_merged_output)
 
     return global_merged_output

@@ -144,7 +144,7 @@ class Tools:
         print("Running M.I. Tool...")
         outputs["mi"] = self.run_n_parse_mi(self.files_to_analyze, output_dir)
 
-        print("Running Halstead Metrics Tool...")
+        print("Running Halstead Metrics Tool... (this may take a while)")
         outputs["halstead"] = self.run_n_parse_halstead(self.files_to_analyze, output_dir)
         self.raw_output = outputs
 

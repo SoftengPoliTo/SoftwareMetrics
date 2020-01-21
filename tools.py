@@ -132,6 +132,7 @@ class Tools:
             self.files_to_analyze = list_of_files(path_to_analyze, ACCEPTED_EXTENSIONS)
         else:
             self.files_to_analyze = files_list
+        logging.debug("\tFILES_LIST:\n%s", self.files_to_analyze)
 
         print("Running Tokei...")
         outputs["tokei"] = self.run_n_parse_tokei(self.files_to_analyze, output_dir)

@@ -3,7 +3,32 @@ import math
  They can be used to extend the already present metrics, or to calculate some other metrics."""
 
 
-def helper_halstead(operators: dict, operands: dict) -> dict:
+def helper_halstead(standardized_output: dict):
+    all_operators = {}
+    all_operands = {}
+
+    for file in standardized_output["files"]:
+        if "Halstead" not in file:
+            continue
+
+        h = file["Halstead"]
+
+        for i in h["_Operators"]:
+            if i not in all_operators:
+                all_operators[i] = int(h["_Operators"][i])
+            else:
+                all_operators[i] += int(h["_Operators"][i])
+
+        for i in h["_Operands"]:
+            if i not in all_operands:
+                all_operands[i] = int(h["_Operands"][i])
+            else:
+                all_operands[i] += int(h["_Operands"][i])
+
+    standardized_output["Halstead"] = _helper_halstead(all_operators, all_operands)
+
+
+def _helper_halstead(operators: dict, operands: dict) -> dict:
     N1 = len(operators)
     N2 = len(operands)
     n1 = 0

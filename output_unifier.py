@@ -87,7 +87,7 @@ def cccc_output_reader(cccc_xml_directory_path: str):
         NOC = module.getElementsByTagName("number_of_children")[0].getAttribute("value")
         CBO = module.getElementsByTagName("coupling_between_objects")[0].getAttribute("value")
 
-        logging.debug("\tCCCC output reader. PATH: %s", os.path.join(base_dir, module_name + ".xml"))
+        logging.debug("\tCCCC output reader. Reading path: %s", os.path.join(base_dir, module_name + ".xml"))
 
         with open(os.path.join(base_dir, module_name + ".xml"), 'r') as moduleFile:
             module_xml = minidom.parse(moduleFile)
@@ -244,7 +244,7 @@ def _standardizer_tokei(data):
                 per_file["type"] = d
 
             formatted_output["files"].append(per_file)
-    metrics.helper_tokei(formatted_output)
+
     return formatted_output
 
 
@@ -368,10 +368,6 @@ def _standardizer_halstead(data):
         "files": []
     }
 
-    # To calculate the global stats:
-    all_operands = {}
-    all_operators = {}
-
     for d in data:
         h = d["Halstead"]
         per_file = {
@@ -396,18 +392,7 @@ def _standardizer_halstead(data):
             "functions": []     # No per_function data from this tool
         })
 
-        for i in h["_Operators"]:
-            if i not in all_operators:
-                all_operators[i] = int(h["_Operators"][i])
-            else:
-                all_operators[i] += int(h["_Operators"][i])
-
-        for i in h["_Operands"]:
-            if i not in all_operands:
-                all_operands[i] = int(h["_Operands"][i])
-            else:
-                all_operands[i] += int(h["_Operands"][i])
-    formatted_output["Halstead"] = metrics.helper_halstead(all_operators, all_operands)
+        # Global stats will be added to the complete, merged output
 
     return formatted_output
 
@@ -444,5 +429,9 @@ def unifier(outputs, files_to_analyze):
     unifier_merger(global_merged_output, mi)
     unifier_merger(global_merged_output, tokei)
     unifier_merger(global_merged_output, halstead)
+
+    # Additional metrics, calculated using the available data, can be added here.
+    metrics.helper_halstead(global_merged_output)
+    metrics.helper_tokei(global_merged_output)
 
     return global_merged_output

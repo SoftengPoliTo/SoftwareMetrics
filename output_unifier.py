@@ -295,9 +295,9 @@ def _standardizer_cccc(data):
                 per_func = {
                     "function name": func["func_name"],
                     "line number": func["line_number"],
-                    "CC": func["functionCC"],
-                    "LOC": func["loc"],
-                    "CLOC": func["cloc"],
+                    "CC": int(func["functionCC"]),
+                    "LOC": int(func["loc"]),
+                    "CLOC": int(func["cloc"]),
                     "CCCC module": module["module_name"]    # The function is part of this module
                 }
                 per_file["functions"].append(per_func)

@@ -100,6 +100,7 @@ class Tools:
 
     def run_n_parse_tokei(self, files_list: list, output_dir: os.path):
         filtered_files = _filter_unsupported_files(files_list, _SUPPORTED_EXTENSIONS_TOKEI_)
+        logging.debug("\tFILTERED FILES:\n%s", filtered_files)
         tokei_output_res = self._run_tool_tokei(filtered_files)
         return output_unifier.tokei_output_reader(tokei_output_res.decode())
 
@@ -207,7 +208,8 @@ def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
 def _filter_unsupported_files(files_list: list, accepted_extensions: list):
     supported_files = []
     for file in files_list:
-        for extension in accepted_extensions:
-            if file.endswith(extension):
-                supported_files.append(file)
+        base_name = os.path.basename(file)
+        extension = base_name[base_name.rfind(".") + 1:]
+        if extension in accepted_extensions:
+            supported_files.append(file)
     return supported_files

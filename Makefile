@@ -80,8 +80,6 @@ build_maintainability_index: target_dir
 	@echo
 	@echo Installing dependencies for Maintainability Index tool...
 	@echo 'Install the required dependencies with: "pip install pep8 nose pylint"'
-	@echo When done, press ENTER to continue.
-	read
 
 	@echo Building Maintainability Index tool...
 	cp -r $(TOOLS_PATH)/maintainability_index $(MAINTAINABILITY_INDEX_TMP_PATH)

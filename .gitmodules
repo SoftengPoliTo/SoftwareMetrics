@@ -9,4 +9,4 @@
 	url = https://github.com/SoftengPoliTo/Halstead-Metrics-Tool
 [submodule "CC++_Tools_SourceCodes/CCCC"]
 	path = CC++_Tools_SourceCodes/CCCC
-	url = git@github.com:SoftengPoliTo/CCCC.git
+	url = https://github.com/SoftengPoliTo/CCCC

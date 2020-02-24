@@ -51,14 +51,31 @@ install_local_tokei: build_tokei
 build_cccc: target_dir
 	@echo 
 	@echo Building CCCC...
-	cp -r $(TOOLS_PATH)/CCCC/cccc-3.1.4 $(CCCC_TMP_PATH)
-	cd $(CCCC_TMP_PATH) && make pccts && make cccc && make test
+	@echo REMEMBER: CCCC requires the "pccts" package, you have to install it first.
+	cp -r $(TOOLS_PATH)/CCCC $(CCCC_TMP_PATH)
+	cd $(CCCC_TMP_PATH) && make cccc && make test
 	# ---  CCCC   ---
 
 install_local_cccc: build_cccc
 	@echo
 	-mkdir -p $(CCCC_DEST_PATH)
 	cp $(CCCC_TMP_PATH)/cccc/cccc $(CCCC_DEST_PATH)
+
+
+
+# OLD VERSION (<3.1.5)
+#build_cccc: target_dir
+#	@echo 
+#	@echo Building CCCC...
+#	cp -r $(TOOLS_PATH)/CCCC/cccc-3.1.4 $(CCCC_TMP_PATH)
+#	cd $(CCCC_TMP_PATH) && make pccts && make cccc && make test
+#	# ---  CCCC   ---
+
+#install_local_cccc: build_cccc
+#	@echo
+#	-mkdir -p $(CCCC_DEST_PATH)
+#	cp $(CCCC_TMP_PATH)/cccc/cccc $(CCCC_DEST_PATH)
+# OLD VERSION (<3.1.5)
 
 
 

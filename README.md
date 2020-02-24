@@ -22,6 +22,9 @@ Used for: LOC, CLOC
 ### CCCC
 Repo @ last available version + already patched.
 Used for: C&K, CC, WMC
+This tool requires "pccts" as a dependency, you can install it from your package manager.
+    Ubuntu users: `# apt-get install pccts`
+    Arch Linux users can build `pccts` from AUR.
 
     * Building: Ok
     * Local installation: Ok

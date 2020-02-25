@@ -4,7 +4,7 @@ from enum import Enum
 class ExitCode(Enum):
     """Exit status codes."""
 
-    PROGRAMMING_ERROR = 1   # It should never happen.
+    PROGRAMMING_ERROR = 1  # It should never happen.
     # 2 is used by argparse
     TOOLS_DIR_NOT_FOUND = 3
     TOOLS_NOT_FOUND = 4
@@ -14,6 +14,7 @@ class ExitCode(Enum):
     NO_SUPPORTED_FILES_FOUND = 7
 
     TOKEI_TOOL_ERR = 8
-    CCCC_TOOL_ERR = 9
-    MI_TOOL_ERR = 10
-    HALSTEAD_TOOL_ERR = 11
+    RUST_CODE_ANALYSIS_TOOL_ERR = 9
+    CCCC_TOOL_ERR = 10
+    MI_TOOL_ERR = 11
+    HALSTEAD_TOOL_ERR = 12

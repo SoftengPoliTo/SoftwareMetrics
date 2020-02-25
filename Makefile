@@ -5,6 +5,9 @@ TOOLS_PATH  = ./CC++_Tools_SourceCodes
 TOKEI_DEST_PATH = $(TARGET_PATH)/Tokei
 TOKEI_TMP_PATH  = $(TMP_PATH)/Tokei
 
+RUST_CODE_ANALYSIS_DEST_PATH = $(TARGET_PATH)/rust-code-analysis
+RUST_CODE_ANALYSIS_TMP_PATH  = $(TMP_PATH)/rust-code-analysis
+
 CCCC_DEST_PATH = $(TARGET_PATH)/CCCC
 CCCC_TMP_PATH  = $(TMP_PATH)/CCCC
 
@@ -16,7 +19,7 @@ MAINTAINABILITY_INDEX_TMP_PATH  = $(TMP_PATH)/Maintainability_Index
 
 
 
-target_dir: 
+target_dir:
 	-mkdir -p $(TMP_PATH)
 	-mkdir -p $(TARGET_PATH)
 
@@ -28,9 +31,23 @@ clean_target_dir:
 
 clean_all: clean_target_dir clean_tmp_dir
 
-build_all: build_tokei build_cccc build_maintainability_index build_halstead_metrics_tool
+build_all: build_tokei build_rust_code_analysis build_cccc build_maintainability_index build_halstead_metrics_tool
 
-install_local_all: install_local_tokei install_local_cccc install_local_maintainability_index install_local_halstead_metrics_tool
+install_local_all: install_local_tokei install_local_rust_code_analysis install_local_cccc install_local_maintainability_index install_local_halstead_metrics_tool
+
+
+
+build_rust_code_analysis: target_dir
+	@echo
+	@echo Building rust-code-analysis...
+	cp -r $(TOOLS_PATH)/rust-code-analysis $(RUST_CODE_ANALYSIS_TMP_PATH)
+	cd $(RUST_CODE_ANALYSIS_TMP_PATH) && cargo build --release --all-features
+	# ---  RUST_CODE_ANALYSIS  ---
+
+install_local_rust_code_analysis: build_rust_code_analysis
+	@echo
+	-mkdir -p $(RUST_CODE_ANALYSIS_DEST_PATH)
+	cp $(RUST_CODE_ANALYSIS_TMP_PATH)/target/release/rust-code-analysis $(RUST_CODE_ANALYSIS_DEST_PATH)
 
 
 
@@ -38,7 +55,7 @@ build_tokei: target_dir
 	@echo
 	@echo Building Tokei...
 	cp -r $(TOOLS_PATH)/Tokei $(TOKEI_TMP_PATH)
-	cd $(TOKEI_TMP_PATH) && cargo build --release --features all
+	cd $(TOKEI_TMP_PATH) && cargo build --release --all-features
 	# ---  TOKEI  ---
 
 install_local_tokei: build_tokei

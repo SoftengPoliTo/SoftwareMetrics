@@ -10,3 +10,6 @@
 [submodule "CC++_Tools_SourceCodes/CCCC"]
 	path = CC++_Tools_SourceCodes/CCCC
 	url = https://github.com/SoftengPoliTo/CCCC
+[submodule "CC++_Tools_SourceCodes/rust-code-analysis"]
+	path = CC++_Tools_SourceCodes/rust-code-analysis
+	url = https://github.com/SoftengPoliTo/rust-code-analysis

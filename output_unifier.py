@@ -80,13 +80,12 @@ def tokei_output_reader_from_file(json_output_file_path: os.path):
 
 
 def rust_code_analysis_output_reader(json_output: str):
-    return rust_code_analysis_output_reader(json.loads(json_output))
+    return json.loads(json_output)
 
 
 def rust_code_analysis_output_reader_from_file(json_output_file_path: os.path):
     with open(json_output_file_path, "r") as rust_code_analysis_json:
-        rust_code_analysis_out = json.load(rust_code_analysis_json)
-    return rust_code_analysis_out
+        return json.load(rust_code_analysis_json)
 
 
 def cccc_output_reader(cccc_xml_directory_path: str):

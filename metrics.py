@@ -10,7 +10,6 @@ calculate some other metrics.
 def helper_halstead(standardized_output: dict):
     all_operators = {}
     all_operands = {}
-    print(standardized_output["files"])
 
     for file in standardized_output["files"]:
         if "Halstead" not in file:

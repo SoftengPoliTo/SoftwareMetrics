@@ -1,6 +1,10 @@
 import math
-"""These functions are meant to further enrich the data obtained using the third-party tools.
- They can be used to extend the already present metrics, or to calculate some other metrics."""
+
+"""
+These functions further enrich data obtained using third-party tools.
+They can be used to extend the already present metrics, or
+calculate some other metrics.
+"""
 
 
 def helper_halstead(standardized_output: dict):
@@ -25,7 +29,9 @@ def helper_halstead(standardized_output: dict):
             else:
                 all_operands[i] += int(h["_Operands"][i])
 
-    standardized_output["Halstead"] = _helper_halstead(all_operators, all_operands)
+    standardized_output["Halstead"] = _helper_halstead(
+        all_operators, all_operands
+    )
 
 
 def _helper_halstead(operators: dict, operands: dict) -> dict:
@@ -56,7 +62,6 @@ def _helper_halstead(operators: dict, operands: dict) -> dict:
         "n2": n2,
         "N1": N1,
         "N2": N2,
-
         "Vocabulary": program_vocabulary,
         "Length": program_length,
         "Volume": volume,
@@ -86,7 +91,8 @@ def helper_tokei(standardized_output: dict):
 
 
 def wmc(standardized_output: dict):
-    """Calculate McCabe's Weighted Method Count metric. This version uses the McCabe's CC for calculating the weight of
+    """Calculate McCabe's Weighted Method Count metric.
+    This version uses the McCabe's CC for calculating the weight of
     each method."""
 
     for module in standardized_output["C&K modules"]:
@@ -95,7 +101,10 @@ def wmc(standardized_output: dict):
         module_name = module["CCCC module"]
         for file in standardized_output["files"]:
             for func in file["functions"]:
-                if "CCCC module" in func and func["CCCC module"] == module_name:
+                if (
+                    "CCCC module" in func
+                    and func["CCCC module"] == module_name
+                ):
                     WMC += func["CC"]
                     n_func += 1
         module["WMC"] = WMC

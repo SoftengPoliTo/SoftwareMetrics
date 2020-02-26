@@ -46,6 +46,22 @@ class Tools:
             self.baseDir, "Maintainability_Index", "lizard"
         )
 
+        self._tool_matcher = {
+            "tokei": self.run_n_parse_tokei,
+            # "rust-code-analysis": self.run_n_parse_rust_code_analysis,
+            "cccc": self.run_n_parse_cccc,
+            "mi": self.run_n_parse_mi,
+            "halstead": self.run_n_parse_halstead,
+        }
+
+        self._enabled_tools = self._tool_matcher.keys()
+
+    def set_enabled_tools(self, enabled_tools):
+        names = self._tool_matcher.keys()
+        check = [name for name in enabled_tools if name in names]
+        if check:
+            self._enabled_tools = check
+
     def check_tools_existence(self):
         if not os.path.isdir(self.baseDir):
             logging.error(
@@ -229,6 +245,13 @@ class Tools:
         hm_tool_res = self._run_tool_halstead(file)
         return output_unifier.halstead_metric_tool_reader(hm_tool_res)
 
+    def _run_tool(self, name, outputs, output_dir):
+        print("Running {}...".format(name))
+        run_tool = self._tool_matcher.get(name)
+        tool_output = run_tool(self.files_to_analyze, output_dir)
+        if tool_output:
+            outputs[name] = tool_output
+
     def run_tools(
         self, path_to_analyze: os.path, files_list: list, output_dir: os.path
     ):
@@ -248,32 +271,8 @@ class Tools:
 
         logging.debug("\tFILES_LIST:\n{}", self.files_to_analyze)
 
-        print("Running Tokei...")
-        tokei = self.run_n_parse_tokei(self.files_to_analyze, output_dir)
-        if tokei:
-            outputs["tokei"] = tokei
-
-        """print("Running rust-code-analysis...")
-        rust_code_analysis = self.run_n_parse_rust_code_analysis(
-            self.files_to_analyze, output_dir
-        )
-        if rust_code_analysis:
-            outputs["rust-code-analysis"] = rust_code_analysis"""
-
-        print("Running CCCC...")
-        cccc = self.run_n_parse_cccc(self.files_to_analyze, output_dir)
-        if cccc:
-            outputs["cccc"] = cccc
-
-        print("Running M.I. Tool...")
-        mi = self.run_n_parse_mi(self.files_to_analyze, output_dir)
-        if mi:
-            outputs["mi"] = mi
-
-        print("Running Halstead Metrics Tool... (this may take a while)")
-        halstead = self.run_n_parse_halstead(self.files_to_analyze, output_dir)
-        if halstead:
-            outputs["halstead"] = halstead
+        for name in self._enabled_tools:
+            self._run_tool(name, outputs, output_dir)
 
         self.raw_output = outputs
 

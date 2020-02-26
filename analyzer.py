@@ -43,6 +43,7 @@ def compile_commands_reader(json_file: os.path) -> list:
 
 
 def analyze(
+    enabled_tools,
     path_to_analyze=None,
     files_list=None,
     results_dir=".",
@@ -63,6 +64,9 @@ def analyze(
 
     t = tools.Tools(tools_path)
     t.check_tools_existence()
+
+    if enabled_tools:
+        t.set_enabled_tools(enabled_tools)
 
     # Checking for analyzable files.
     if (
@@ -142,6 +146,14 @@ def main():
         help="Increase output verbosity, useful for debugging purposes",
     )
 
+    parser.add_argument(
+        "-t",
+        "--tools",
+        type=str,
+        nargs="+",
+        help="List of tools to be executed",
+    )
+
     # Args
     parser.add_argument(
         "results_dir",  # "-r", "--results",
@@ -185,6 +197,7 @@ def main():
         files_list = compile_commands_reader(args.c)
 
     analyze(
+        args.tools,
         path_to_analyze=args.path,
         files_list=files_list,
         tools_path=os.path.join(

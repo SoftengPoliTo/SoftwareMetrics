@@ -44,6 +44,7 @@ def compile_commands_reader(json_file: os.path) -> list:
 
 def analyze(
     enabled_tools,
+    save_json_with_dirname,
     path_to_analyze=None,
     files_list=None,
     results_dir=".",
@@ -69,12 +70,8 @@ def analyze(
         t.set_enabled_tools(enabled_tools)
 
     # Checking for analyzable files.
-    if (
-        path_to_analyze is not None
-        and len(
-            tools.list_of_files(path_to_analyze, tools.ACCEPTED_EXTENSIONS)
-        )
-        == 0
+    if path_to_analyze is not None and not tools.list_of_files(
+        path_to_analyze, tools.ACCEPTED_EXTENSIONS
     ):
         logging.error(
             "\tthe given path does not contain any of the supported files.\n"
@@ -82,14 +79,21 @@ def analyze(
         )
         sys.exit(ExitCode.NO_SUPPORTED_FILES_FOUND.value)
 
-    # The output folder in which all the output data will be placed
-    output_name = datetime.datetime.now().strftime("results_%Y.%m.%d_%H.%M.%S")
-    output_dir = os.path.join(results_dir, output_name)
+    output_dir = results_dir
+    if save_json_with_dirname:
+        output_name = os.path.basename(os.path.normpath(results_dir))
+    else:
+        # The output folder in which all the output data will be placed
+        output_name = datetime.datetime.now().strftime(
+            "results_%Y.%m.%d_%H.%M.%S"
+        )
 
-    # In case of an already existing path, add trailing '_'
-    while os.path.exists(output_dir):
-        output_dir = output_dir + "_"
-    os.mkdir(output_dir)
+        output_dir = os.path.join(output_dir, output_name)
+
+        # In case of an already existing path, add trailing '_'
+        while os.path.exists(output_dir):
+            output_dir = output_dir + "_"
+        os.mkdir(output_dir)
 
     logging.debug("\tOK, in output dir: {}", output_dir)
     if path_to_analyze is not None:
@@ -147,6 +151,13 @@ def main():
     )
 
     parser.add_argument(
+        "-s",
+        "--save",
+        action="store_true",
+        help="Set json filename to the name of the output directory",
+    )
+
+    parser.add_argument(
         "-t",
         "--tools",
         type=str,
@@ -198,6 +209,7 @@ def main():
 
     analyze(
         args.tools,
+        args.save,
         path_to_analyze=args.path,
         files_list=files_list,
         tools_path=os.path.join(

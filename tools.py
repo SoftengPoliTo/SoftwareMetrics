@@ -65,24 +65,27 @@ class Tools:
     def check_tools_existence(self):
         if not os.path.isdir(self.baseDir):
             logging.error(
-                "\tthe directory containing the tools ({}) does not exists.",
+                "\tThe directory containing the tools ({}) does not exists.",
                 self.baseDir,
             )
             sys.exit(ExitCode.TOOLS_DIR_NOT_FOUND.value)
 
-        if (
-            os.path.isfile(self.CCCC) is False
-            or os.path.isfile(self.TOKEI) is False
-            or os.path.isfile(self.RUST_CODE_ANALYSIS) is False
-            or os.path.isfile(self.HALSTEAD_TOOL) is False
-            or os.path.isfile(self.MI_TOOL) is False
-        ):
-            logging.error(
-                "\tone or more tools are missing.\n"
-                "Check the directory containing the tools ({}).",
-                self.baseDir,
-            )
-            sys.exit(ExitCode.TOOLS_NOT_FOUND.value)
+        tool_path = {
+            "tokei": self.TOKEI,
+            # "rust-code-analysis": self.RUST_CODE_ANALYSIS,
+            "cccc": self.CCCC,
+            "mi": self.MI_TOOL,
+            "halstead": self.HALSTEAD_TOOL,
+        }
+
+        for name in self._enabled_tools:
+            if os.path.isfile(tool_path.get(name)) is False:
+                logging.error(
+                    "\tOne or more tools are missing.\n"
+                    "Check the directory containing the tools ({}).",
+                    self.baseDir,
+                )
+                sys.exit(ExitCode.TOOLS_NOT_FOUND.value)
 
     def _run_tool_cccc(self, files_list: list, output_dir: str):
         try:

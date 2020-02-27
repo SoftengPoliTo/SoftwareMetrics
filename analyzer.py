@@ -64,10 +64,11 @@ def analyze(
         sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)
 
     t = tools.Tools(tools_path)
-    t.check_tools_existence()
 
     if enabled_tools:
         t.set_enabled_tools(enabled_tools)
+
+    t.check_tools_existence()
 
     # Checking for analyzable files.
     if path_to_analyze is not None and not tools.list_of_files(

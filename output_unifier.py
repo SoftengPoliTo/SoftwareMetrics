@@ -389,7 +389,7 @@ def _standardizer_cccc(data):
             tmp_dict_modules[
                 module["module_name"]
             ] = {  # It's going to be added in the 'global' section
-                "CCCC module": module["module_name"],
+                "class name": module["module_name"],
                 "CC": module["per_module_metrics"]["CC"],
                 "C&K": {
                     "WMC": module["per_module_metrics"]["WMC"],
@@ -421,7 +421,7 @@ def _standardizer_cccc(data):
                     "CC": int(func["functionCC"]),
                     "LOC": int(func["loc"]),
                     "CLOC": int(func["cloc"]),
-                    "CCCC module": module[
+                    "class name": module[
                         "module_name"
                     ],  # The function is part of this module
                 }
@@ -437,13 +437,13 @@ def _standardizer_cccc(data):
                     per_func,
                 )
 
-    formatted_output = {"C&K modules": [], "files": []}
+    formatted_output = {"classes": [], "files": []}
 
     for module in tmp_dict_modules:
         if (
             module != "anonymous"
         ):  # Do not add the per_module stats if in "anonymous"
-            formatted_output["C&K modules"].append(tmp_dict_modules[module])
+            formatted_output["classes"].append(tmp_dict_modules[module])
 
     for file in tmp_dict_files.values():
         formatted_output["files"].append(file)

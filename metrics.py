@@ -95,15 +95,15 @@ def wmc(standardized_output: dict):
     This version uses the McCabe's CC for calculating the weight of
     each method."""
 
-    for module in standardized_output["C&K modules"]:
+    for module in standardized_output["classes"]:
         WMC = 0
         n_func = 0
-        module_name = module["CCCC module"]
+        module_name = module["class name"]
         for file in standardized_output["files"]:
             for func in file["functions"]:
                 if (
-                    "CCCC module" in func
-                    and func["CCCC module"] == module_name
+                    "class name" in func
+                    and func["class name"] == module_name
                 ):
                     WMC += func["CC"]
                     n_func += 1

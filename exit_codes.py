@@ -17,15 +17,19 @@ class ExitCode(enum.IntEnum):
     TOOLS_NOT_FOUND = 4
     TARGET_DIR_NOT_FOUND = 5
     COMPILE_COMMAND_FILE_ERROR = 6
-
     NO_SUPPORTED_FILES_FOUND = 7
+    WRONG_FILES = 8
 
-    # Errors raised by tools
-    TOKEI_TOOL_ERR = 8
-    RUST_CODE_ANALYSIS_TOOL_ERR = 9
-    CCCC_TOOL_ERR = 10
-    MI_TOOL_ERR = 11
-    HALSTEAD_TOOL_ERR = 12
+    # Errors related to tools
+    TOKEI_TOOL_ERR = 9
+    RUST_CODE_ANALYSIS_TOOL_ERR = 10
+    CCCC_TOOL_ERR = 11
+    MI_TOOL_ERR = 12
+    HALSTEAD_TOOL_ERR = 13
+
+    # Errors related to metrics
+    METRIC_NOT_FOUND = 14
+    DIFFERENT_METRIC_VALUE = 15
 
 
 def log_conf(verbose: bool) -> None:

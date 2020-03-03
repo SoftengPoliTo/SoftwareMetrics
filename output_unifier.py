@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import json
-import logging
 import os.path
 from typing import Any, Dict, List
 from xml.dom import minidom
 
 import metrics
+from exit_codes import log_debug, log_warn
 
 
 def _mi_tool_output_reader(xml: minidom):
@@ -121,7 +120,7 @@ def cccc_output_reader(cccc_xml_directory_path: str):
             0
         ].getAttribute("value")
 
-        logging.debug(
+        log_debug(
             "\tCCCC output reader. Reading path: {}",
             os.path.join(base_dir, module_name + ".xml"),
         )
@@ -257,7 +256,7 @@ def unifier_merger(data: dict, tool_output: dict):
 
                 # if func_name_tool is None and func_line_number_tool is None:
                 if func_line_number_tool is None:
-                    logging.warning(
+                    log_warn(
                         "\tline number and function name not found!"
                         "\tCaused by file: {}",
                         file_tool,
@@ -317,13 +316,13 @@ def _standardizer_tokei(data):
             "CppHeader",
             "Rust",
         ]:  # FILTER: Only prints these types.
-            logging.debug(
+            log_debug(
                 "\t(_standardizer_tokei) Skipping data of type '{}'", d
             )
             continue
 
         for s in data[d]["stats"]:
-            logging.debug(s)
+            log_debug("{}", s)
 
             per_file = {
                 "filename": s["name"],
@@ -350,7 +349,7 @@ def _standardizer_rust_code_analysis(data):
 
     metrics = data["metrics"]
 
-    logging.debug(metrics)
+    log_debug("{}", metrics)
 
     per_file = {
         "filename": data["name"],
@@ -428,7 +427,7 @@ def _standardizer_cccc(data):
                 per_file["functions"].append(per_func)
 
             else:
-                logging.debug(
+                log_debug(
                     "\t_standardizer_cccc() warning: same function found twice."
                     "\n\tanalyzed function:"
                     "\n\t{}\n"

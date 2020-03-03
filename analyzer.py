@@ -1,29 +1,30 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
+import argparse
 import datetime
+import json
 import os
 import sys
 
-from exit_codes import ExitCode
 import tools
-import json
-import argparse
-import logging
+from exit_codes import ExitCode, log_conf, log_debug, log_err
 
 
 def compile_commands_reader(json_file: os.path) -> list:
     if not os.path.isfile(json_file):
-        logging.error(
+        log_err(
             "\t'{}' is not a valid file. Check the path you have provided.",
+            ExitCode.COMPILE_COMMAND_FILE_ERROR,
             json_file,
         )
-        sys.exit(ExitCode.COMPILE_COMMAND_FILE_ERROR.value)
 
     base_name = os.path.basename(json_file)
     if base_name[base_name.rfind(".") + 1 :] != "json":
-        logging.error("\t'{}' is not a Json file.", json_file)
-        sys.exit(ExitCode.COMPILE_COMMAND_FILE_ERROR.value)
+        log_err(
+            "\t'{}' is not a Json file.",
+            ExitCode.COMPILE_COMMAND_FILE_ERROR,
+            json_file,
+        )
 
     with open(json_file, "r") as json_fp:
         c_commands = json.load(json_fp)
@@ -34,10 +35,11 @@ def compile_commands_reader(json_file: os.path) -> list:
             files.append(os.path.join(i["directory"], i["file"]))
 
     except KeyError:
-        logging.error(
-            "\t'{}' is not a valid \"compile_commands\" file.", json_file
+        log_err(
+            "\t'{}' is not a valid \"compile_commands\" file.",
+            ExitCode.COMPILE_COMMAND_FILE_ERROR,
+            json_file,
         )
-        sys.exit(ExitCode.COMPILE_COMMAND_FILE_ERROR.value)
 
     return files
 
@@ -51,17 +53,18 @@ def analyze(
     tools_path="./CC++_Tools",
 ):
     if path_to_analyze is None and files_list is None:
-        logging.error(
+        log_err(
             "\teither a path to analyze, or "
-            "a list of files must be passed to function 'analyze'."
+            "a list of files must be passed to function 'analyze'.",
+            ExitCode.PROGRAMMING_ERROR,
         )
-        sys.exit(ExitCode.PROGRAMMING_ERROR.value)
 
     if not os.path.isdir(results_dir):
-        logging.error(
-            "\tthe results path ( {} ) does not exists.", results_dir
+        log_err(
+            "\tthe results path ( {} ) does not exists.",
+            ExitCode.TARGET_DIR_NOT_FOUND,
+            results_dir,
         )
-        sys.exit(ExitCode.TARGET_DIR_NOT_FOUND.value)
 
     t = tools.Tools(tools_path)
 
@@ -74,11 +77,11 @@ def analyze(
     if path_to_analyze is not None and not tools.list_of_files(
         path_to_analyze, tools.ACCEPTED_EXTENSIONS
     ):
-        logging.error(
+        log_err(
             "\tthe given path does not contain any of the supported files.\n"
-            "\tBe sure to pass the right folder to analyze."
+            "\tBe sure to pass the right folder to analyze.",
+            ExitCode.NO_SUPPORTED_FILES_FOUND,
         )
-        sys.exit(ExitCode.NO_SUPPORTED_FILES_FOUND.value)
 
     output_dir = results_dir
     if save_json_with_dirname:
@@ -96,17 +99,17 @@ def analyze(
             output_dir = output_dir + "_"
         os.mkdir(output_dir)
 
-    logging.debug("\tOK, in output dir: {}", output_dir)
+    log_debug("\tOK, in output dir: {}", output_dir)
     if path_to_analyze is not None:
-        logging.debug("\tpathToAnalyze: {}", path_to_analyze)
+        log_debug("\tpathToAnalyze: {}", path_to_analyze)
     else:
-        logging.debug("\tfiles_list: {}", files_list)
-    logging.debug("")
+        log_debug("\tfiles_list: {}", files_list)
+    log_debug("")
 
     # RUNNING THE EXTERNAL TOOLS
     t.run_tools(path_to_analyze, files_list, output_dir)
 
-    logging.debug(
+    log_debug(
         "\tRAW RESULTS:\n" "TOKEI:\n {} "
         # "\n\nRUST-CODE-ANALYSIS:\n"
         # "{}"
@@ -127,6 +130,7 @@ def analyze(
         os.path.join(output_dir, output_name + ".json"), "w"
     ) as output_file:
         json.dump(formatted_outputs, output_file, sort_keys=True, indent=4)
+
     print("Results have been written in folder: '" + output_name + "'")
 
     return json_output
@@ -134,9 +138,6 @@ def analyze(
 
 def main():
     parser = argparse.ArgumentParser(
-        # prog='myls',                      # Custom program name
-        # usage='%(prog)s [options] path',  # Custom usage message
-        # add_help=False,                   # Delete the default help message
         description="A program to calculate various source code metrics, "
         "aggregating the results obtained from different tools.",
         epilog="The manual and the source code of this program can be found on"
@@ -196,12 +197,9 @@ def main():
 
     args = parser.parse_args()
 
-    if args.verbosity:
-        logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
-        logging.debug("\targs={}", vars(args))
-    else:
-        logging.basicConfig(stream=sys.stderr, level=logging.INFO)
+    log_conf(args.verbosity)
 
+    log_debug("\targs={}", vars(args))
     print(os.path.dirname(os.path.realpath(sys.argv[0])))
 
     files_list = None

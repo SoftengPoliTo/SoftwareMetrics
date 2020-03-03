@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import logging
 import os
 import shutil
 import subprocess
 import sys
 
 import output_unifier
-from exit_codes import ExitCode
+from exit_codes import ExitCode, log_debug, log_err, log_info
 
 ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "hh", "rs"]
 
@@ -64,11 +63,11 @@ class Tools:
 
     def check_tools_existence(self):
         if not os.path.isdir(self.baseDir):
-            logging.error(
+            log_err(
                 "\tThe directory containing the tools ({}) does not exists.",
+                ExitCode.TOOLS_DIR_NOT_FOUND,
                 self.baseDir,
             )
-            sys.exit(ExitCode.TOOLS_DIR_NOT_FOUND.value)
 
         tool_path = {
             "tokei": self.TOKEI,
@@ -80,12 +79,12 @@ class Tools:
 
         for name in self._enabled_tools:
             if os.path.isfile(tool_path.get(name)) is False:
-                logging.error(
+                log_err(
                     "\tOne or more tools are missing.\n"
                     "Check the directory containing the tools ({}).",
+                    ExitCode.TOOLS_NOT_FOUND,
                     self.baseDir,
                 )
-                sys.exit(ExitCode.TOOLS_NOT_FOUND.value)
 
     def _run_tool_cccc(self, files_list: list, output_dir: str):
         try:
@@ -104,10 +103,12 @@ class Tools:
             return subprocess.run(args, capture_output=True, check=True)
 
         except subprocess.CalledProcessError as ex:
-            logging.error(
-                "\tCCCC exited with an error.\n{}\n{}\n", ex.stdout, ex.stderr
+            log_err(
+                "\tCCCC exited with an error.\n{}\n{}\n",
+                ExitCode.CCCC_TOOL_ERR,
+                ex.stdout,
+                ex.stderr,
             )
-            sys.exit(ExitCode.CCCC_TOOL_ERR.value)
 
     def _run_tool_mi(self, files_list: list):
         try:
@@ -117,12 +118,12 @@ class Tools:
             return results.stdout
 
         except subprocess.CalledProcessError as ex:
-            logging.error(
+            log_err(
                 "\tMaintainability Index Tool exited with an error.\n{}\n{}\n",
+                ExitCode.MI_TOOL_ERR,
                 ex.stdout,
                 ex.stderr,
             )
-            sys.exit(ExitCode.MI_TOOL_ERR.value)
 
     def _run_tool_tokei(self, files_list: list):
         try:
@@ -132,10 +133,12 @@ class Tools:
             return results.stdout
 
         except subprocess.CalledProcessError as ex:
-            logging.error(
-                "\tTokei exited with an error.\n{}\n{}\n", ex.stdout, ex.stderr
+            log_err(
+                "\tTokei exited with an error.\n{}\n{}\n",
+                ExitCode.TOKEI_TOOL_ERR,
+                ex.stdout,
+                ex.stderr,
             )
-            sys.exit(ExitCode.TOKEI_TOOL_ERR.value)
 
     def _run_tool_rust_code_analysis(self, files_list: list):
         try:
@@ -145,12 +148,12 @@ class Tools:
             return results.stdout
 
         except subprocess.CalledProcessError as ex:
-            logging.error(
+            log_err(
                 "\trust-code-analysis exited with an error.\n{}\n{}\n",
+                ExitCode.RUST_CODE_ANALYSIS_TOOL_ERR,
                 ex.stdout,
                 ex.stderr,
             )
-            sys.exit(ExitCode.RUST_CODE_ANALYSIS_TOOL_ERR.value)
 
     def _run_tool_halstead(self, path_to_analyze: str):
         try:
@@ -169,12 +172,12 @@ class Tools:
             return results.stdout
 
         except subprocess.CalledProcessError as ex:
-            logging.error(
+            log_err(
                 "\tHalstead Metric Tool exited with an error.\n{}\n{}\n",
+                ExitCode.HALSTEAD_TOOL_ERR,
                 ex.stdout,
                 ex.stderr,
             )
-            sys.exit(ExitCode.HALSTEAD_TOOL_ERR.value)
 
     def run_n_parse_cccc(self, files_list: list, output_dir: os.path):
         filtered_files = _filter_unsupported_files(
@@ -193,7 +196,7 @@ class Tools:
         )
         if not filtered_files:
             return None
-        logging.debug("\tFILTERED FILES:\n{}", filtered_files)
+        log_debug("\tFILTERED FILES:\n{}", filtered_files)
         tokei_output_res = self._run_tool_tokei(filtered_files)
         return output_unifier.tokei_output_reader(tokei_output_res.decode())
 
@@ -205,7 +208,7 @@ class Tools:
         )
         if not filtered_files:
             return None
-        logging.debug("\tFILTERED FILES:\n{}", filtered_files)
+        log_debug("\tFILTERED FILES:\n{}", filtered_files)
         rust_code_analysis_output_res = self._run_tool_rust_code_analysis(
             filtered_files
         )
@@ -272,7 +275,7 @@ class Tools:
         else:
             self.files_to_analyze = files_list
 
-        logging.debug("\tFILES_LIST:\n{}", self.files_to_analyze)
+        log_debug("\tFILES_LIST:\n{}", self.files_to_analyze)
 
         for name in self._enabled_tools:
             self._run_tool(name, outputs, output_dir)
@@ -310,9 +313,9 @@ def _analyze_path(
 
     for f in os.listdir(path):
         ff = os.path.join(path, f)
-        logging.debug("\tpath: {}", f)
+        log_debug("\tpath: {}", f)
         if os.path.isdir(ff):  # If path is a DIR, recurse.
-            logging.debug("\t'_analyze_path': dir: {}", f)
+            log_debug("\t'_analyze_path': dir: {}", f)
             _analyze_path(
                 tool,
                 ff,
@@ -326,7 +329,7 @@ def _analyze_path(
             base_name = os.path.basename(f)
             extension = base_name[base_name.rfind(".") + 1 :]
             if extension in accepted_extensions:
-                logging.debug("\t'_analyze_path': file: {}", f)
+                log_debug("\t'_analyze_path': file: {}", f)
                 parsed_result = run_n_parse_funct(ff, output_dir)
                 output_list.append(parsed_result)
 
@@ -357,7 +360,7 @@ def _list_of_files(
             _list_of_files(ff, accepted_extensions, output_list)
 
     else:
-        logging.info(
+        log_info(
             "\tThe analyzed path ({}) is neither a file or a directory, "
             "it will be skipped.",
             path,

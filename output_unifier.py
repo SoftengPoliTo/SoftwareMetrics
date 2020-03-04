@@ -39,9 +39,9 @@ def _mi_tool_output_reader(xml: minidom):
                     i += 1
 
                 name = item.getAttribute("name")
-                func_name = name[0 : name.find("(...) at ")] + "(...)"
-                line_number = name[name.rfind(":") + 1 :]
-                file_in = name[name.find("(...) at ") + 9 : name.rfind(":")]
+                func_name = name[0: name.find("(...) at ")] + "(...)"
+                line_number = name[name.rfind(":") + 1:]
+                file_in = name[name.find("(...) at ") + 9: name.rfind(":")]
 
                 per_function_res.append(
                     {
@@ -458,8 +458,8 @@ def _standardizer_mi(data):
         new_func = {
             "function name": d["func_name"],
             "line number": d["line_number"],
-            # "NCSS": d["values"]["NCSS"],        # LOC
-            "CCN": d["values"]["CCN"],  # Cyclomatic Complexity
+            "LOC": d["values"]["NCSS"],  # LOC
+            "CC": d["values"]["CCN"],    # Cyclomatic Complexity
             "MI": d["values"]["Maintainability"],
         }
 
@@ -472,16 +472,6 @@ def _standardizer_mi(data):
             for i in formatted_output["files"]:
                 if i["filename"] == d["filename"]:
                     i["functions"].append(new_func)
-
-    # Adding per-file M.I. values
-    for file in formatted_output["files"]:
-        MI = 0
-        count = 0
-        for f in file["functions"]:
-            MI += int(f["MI"])
-            count += 1
-        file["MI"] = MI
-        file["no. functions"] = count
 
     return formatted_output
 

@@ -27,7 +27,7 @@
 	},
 
 	"classes": [{
-		"class name": "...",
+		"class name": "name",
 
 		"SLOC": 0,
 		"LOC": 0,
@@ -42,7 +42,9 @@
 			"WMC": 0,
 			"DIT": 0,
 			"NOC": 0,
-			"CBO": 0
+			"CBO": 0,
+			"RFC": 0,
+			"LCOM": 0
 		}
 	}],
 
@@ -80,9 +82,9 @@
 		},
 
 		"functions":[{
-			"function name": "name(...)",
+			"function name": "name",
 			"line number": 1,
-			"class name": "...",
+			"class name": "name",
 
 			"MI": 0.0,
 			"CC": 0.0,

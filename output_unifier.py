@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import copy
 import json
 import os.path
 from typing import Any, Dict, List
@@ -39,9 +40,9 @@ def _mi_tool_output_reader(xml: minidom):
                     i += 1
 
                 name = item.getAttribute("name")
-                func_name = name[0: name.find("(...) at ")] + "(...)"
-                line_number = name[name.rfind(":") + 1:]
-                file_in = name[name.find("(...) at ") + 9: name.rfind(":")]
+                func_name = name[0 : name.find("(...) at ")] + "(...)"
+                line_number = name[name.rfind(":") + 1 :]
+                file_in = name[name.find("(...) at ") + 9 : name.rfind(":")]
 
                 per_function_res.append(
                     {
@@ -316,9 +317,7 @@ def _standardizer_tokei(data):
             "CppHeader",
             "Rust",
         ]:  # FILTER: Only prints these types.
-            log_debug(
-                "\t(_standardizer_tokei) Skipping data of type '{}'", d
-            )
+            log_debug("\t(_standardizer_tokei) Skipping data of type '{}'", d)
             continue
 
         for s in data[d]["stats"]:
@@ -326,9 +325,10 @@ def _standardizer_tokei(data):
 
             per_file = {
                 "filename": s["name"],
-                "LOC": s["code"],
+                "SLOC": s["lines"],
+                "LOC": int(s["code"]) + int(s["comments"]),
+                "LLOC": s["code"],
                 "CLOC": s["comments"],
-                "Lines": s["lines"],
                 "functions": [],  # Tokei do not give per-function information.
             }
 
@@ -353,13 +353,13 @@ def _standardizer_rust_code_analysis(data):
 
     per_file = {
         "filename": data["name"],
-        "LOC": metrics["sloc"],
-        "CLOC": int(metrics["sloc"]) - int(metrics["lloc"]),
-        "CYCLOMATIC": metrics["cyclomatic"],
-        "HALSTEAD": metrics["halstead"],
+        "SLOC": metrics["loc"]["sloc"],
+        "LLOC": metrics["loc"]["lloc"],
+        "CC": metrics["cyclomatic"],
+        "Halstead": metrics["halstead"],
         "NARGS": metrics["nargs"],
         "NEXITS": metrics["nexits"],
-        "functions": metrics["spaces"],
+        "functions": [],
     }
 
     formatted_output["files"].append(per_file)
@@ -459,7 +459,7 @@ def _standardizer_mi(data):
             "function name": d["func_name"],
             "line number": d["line_number"],
             "LOC": d["values"]["NCSS"],  # LOC
-            "CC": d["values"]["CCN"],    # Cyclomatic Complexity
+            "CC": d["values"]["CCN"],  # Cyclomatic Complexity
             "MI": d["values"]["Maintainability"],
         }
 
@@ -520,7 +520,43 @@ def _find_by_filename(tool_output, name):
     return None
 
 
-def unifier(tool_manager, files_to_analyze):
+def _test_mode(
+    standardized_outputs, global_merged_output, tool_manager, outputs
+):
+    for tool, standardized_output in standardized_outputs.items():
+        global_merged_output_copy = copy.deepcopy(global_merged_output)
+        unifier_merger(global_merged_output_copy, standardized_output)
+        outputs[tool] = global_merged_output_copy
+
+    for tool in ["halstead", "tokei", "cccc", "rust-code-analysis"]:
+        if tool_manager.get_tool_output(tool):
+            output = {}
+            getattr(metrics, "helper_" + tool.replace("-", "_"))(
+                outputs[tool], output
+            )
+            outputs[tool] = output
+
+
+def _producer_mode(
+    standardized_outputs, global_merged_output, tool_manager, outputs
+):
+    # The data are merged with the complete output
+    for standardized_output in standardized_outputs.values():
+        unifier_merger(global_merged_output, standardized_output)
+
+    # Additional metrics, calculated using the available data, can be added here
+    for tool in ["halstead", "tokei", "cccc", "rust-code-analysis"]:
+        if tool_manager.get_tool_output(tool):
+            output = {}
+            getattr(metrics, "helper_" + tool.replace("-", "_"))(
+                global_merged_output, output
+            )
+            global_merged_output = output
+
+    outputs["all"] = global_merged_output
+
+
+def unifier(tool_manager, files_to_analyze, one_json_per_tool):
     # Preparing global output structure.
     global_merged_output = {"files": []}
 
@@ -528,29 +564,21 @@ def unifier(tool_manager, files_to_analyze):
         global_merged_output["files"].append({"filename": f, "functions": []})
 
     # The outputs must be standardized to be merged together.
-    mi = _standardizer_mi(tool_manager.get_tool_output("mi"))
-    tokei = _standardizer_tokei(tool_manager.get_tool_output("tokei"))
-    """rust_code_analysis = _standardizer_rust_code_analysis(
-        tool_manager.get_tool_output("rust-code-analysis")
-    )"""
-    cccc = _standardizer_cccc(tool_manager.get_tool_output("cccc"))
-    halstead = _standardizer_halstead(tool_manager.get_tool_output("halstead"))
+    standardized_outputs = {}
+    for tool in tool_manager.get_enabled_tools():
+        standardized_output = globals()[
+            "_standardizer_" + tool.replace("-", "_")
+        ](tool_manager.get_tool_output(tool))
+        standardized_outputs[tool] = standardized_output
 
-    # The data are merged with the complete output
-    unifier_merger(
-        global_merged_output, cccc
-    )  # CCCC output returns the complete function names.
-    unifier_merger(global_merged_output, mi)
-    unifier_merger(global_merged_output, tokei)
-    # unifier_merger(global_merged_output, rust_code_analysis)
-    unifier_merger(global_merged_output, halstead)
+    outputs = {}
+    if one_json_per_tool:
+        _test_mode(
+            standardized_outputs, global_merged_output, tool_manager, outputs
+        )
+    else:
+        _producer_mode(
+            standardized_outputs, global_merged_output, tool_manager, outputs
+        )
 
-    # Additional metrics, calculated using the available data, can be added here
-    if tool_manager.get_tool_output("halstead"):
-        metrics.helper_halstead(global_merged_output)
-    if tool_manager.get_tool_output("tokei"):
-        metrics.helper_tokei(global_merged_output)
-    if tool_manager.get_tool_output("cccc"):
-        metrics.wmc(global_merged_output)
-
-    return global_merged_output
+    return outputs

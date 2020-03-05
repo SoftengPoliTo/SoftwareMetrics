@@ -24,6 +24,7 @@ class Metrics(enum.Enum):
 
     CC = "CC"
     SLOC = "SLOC"
+    LOC = "LOC"
     LLOC = "LLOC"
     CLOC = "CLOC"
     HALSTEAD = "HALSTEAD"
@@ -48,8 +49,9 @@ class CompareMetrics:
 
         self.metrics_json = {
             Metrics.CC: "CC",
-            Metrics.SLOC: "Lines",
-            Metrics.LLOC: "LOC",
+            Metrics.SLOC: "SLOC",
+            Metrics.LOC: "LOC",
+            Metrics.LLOC: "LLOC",
             Metrics.CLOC: "CLOC",
             Metrics.HALSTEAD: "Halstead",
             Metrics.CK: "C&K",

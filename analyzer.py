@@ -44,9 +44,23 @@ def compile_commands_reader(json_file: os.path) -> list:
     return files
 
 
+def check_tools_correctness(tools, enabled_tools):
+    check = [name for name in tools if name in enabled_tools]
+    return check
+
+
+def save_output(output, path):
+    json_output = json.dumps(output, indent=4)
+
+    with open(path, "w") as output_file:
+        json.dump(output, output_file, indent=4)
+
+    return json_output
+
+
 def analyze(
     enabled_tools,
-    save_json_with_dirname,
+    test_mode,
     path_to_analyze=None,
     files_list=None,
     results_dir=".",
@@ -69,7 +83,9 @@ def analyze(
     t = tools.Tools(tools_path)
 
     if enabled_tools:
-        t.set_enabled_tools(enabled_tools)
+        tool = t.get_tools()
+        correct_tools = check_tools_correctness(tool, enabled_tools)
+        t.set_enabled_tools(correct_tools)
 
     t.check_tools_existence()
 
@@ -84,7 +100,7 @@ def analyze(
         )
 
     output_dir = results_dir
-    if save_json_with_dirname:
+    if test_mode:
         output_name = os.path.basename(os.path.normpath(results_dir))
     else:
         # The output folder in which all the output data will be placed
@@ -110,10 +126,13 @@ def analyze(
     t.run_tools(path_to_analyze, files_list, output_dir)
 
     log_debug(
-        "\tRAW RESULTS:\n" "TOKEI:\n {} "
-        # "\n\nRUST-CODE-ANALYSIS:\n"
-        # "{}"
-        "\n\nCCCC:\n" "{}" "\n\nMI:\n {}" "\n\nHALSTEAD:\n {}\n",
+        "\tRAW RESULTS:\n"
+        "TOKEI:\n {} "
+        "\n\nRUST-CODE-ANALYSIS:\n {}"
+        "\n\nCCCC:\n"
+        "{}"
+        "\n\nMI:\n {}"
+        "\n\nHALSTEAD:\n {}\n",
         t.get_tool_output("tokei"),
         t.get_tool_output("rust-code-analysis"),
         t.get_tool_output("cccc"),
@@ -121,19 +140,22 @@ def analyze(
         t.get_tool_output("halstead"),
     )
 
-    formatted_outputs = t.get_output()
+    formatted_outputs = t.get_output(test_mode)
 
-    json_output = json.dumps(formatted_outputs, sort_keys=True, indent=4)
-    # REMEMBER: Json output *must* be printed to be viewed correctly.
-
-    with open(
-        os.path.join(output_dir, output_name + ".json"), "w"
-    ) as output_file:
-        json.dump(formatted_outputs, output_file, sort_keys=True, indent=4)
+    json_outputs = {}
+    if test_mode:
+        for tool in t.get_enabled_tools():
+            path = os.path.join(output_dir, output_name + "_" + tool + ".json")
+            json_output = save_output(formatted_outputs[tool], path)
+            json_outputs[tool] = json_output
+    else:
+        path = os.path.join(output_dir, output_name + ".json")
+        json_output = save_output(formatted_outputs["all"], path)
+        json_outputs["all"] = json_output
 
     print("Results have been written in folder: '" + output_name + "'")
 
-    return json_output
+    return json_outputs
 
 
 def main():
@@ -153,10 +175,10 @@ def main():
     )
 
     parser.add_argument(
-        "-s",
-        "--save",
+        "-tm",
+        "--test-mode",
         action="store_true",
-        help="Set json filename to the name of the output directory",
+        help="Run the analyzer in test mode",
     )
 
     parser.add_argument(
@@ -208,7 +230,7 @@ def main():
 
     analyze(
         args.tools,
-        args.save,
+        args.test_mode,
         path_to_analyze=args.path,
         files_list=files_list,
         tools_path=os.path.join(

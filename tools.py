@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import sys
+import json
 
 import output_unifier
 from exit_codes import ExitCode, log_debug, log_err, log_info
@@ -46,20 +47,24 @@ class Tools:
         )
 
         self._tool_matcher = {
-            "tokei": self.run_n_parse_tokei,
-            # "rust-code-analysis": self.run_n_parse_rust_code_analysis,
-            "cccc": self.run_n_parse_cccc,
             "mi": self.run_n_parse_mi,
+            "tokei": self.run_n_parse_tokei,
+            "rust-code-analysis": self.run_n_parse_rust_code_analysis,
+            "cccc": self.run_n_parse_cccc,
             "halstead": self.run_n_parse_halstead,
         }
 
         self._enabled_tools = self._tool_matcher.keys()
 
     def set_enabled_tools(self, enabled_tools):
-        names = self._tool_matcher.keys()
-        check = [name for name in enabled_tools if name in names]
-        if check:
-            self._enabled_tools = check
+        if enabled_tools:
+            self._enabled_tools = enabled_tools
+
+    def get_tools(self):
+        return self._tool_matcher.keys()
+
+    def get_enabled_tools(self):
+        return self._enabled_tools
 
     def check_tools_existence(self):
         if not os.path.isdir(self.baseDir):
@@ -71,7 +76,7 @@ class Tools:
 
         tool_path = {
             "tokei": self.TOKEI,
-            # "rust-code-analysis": self.RUST_CODE_ANALYSIS,
+            "rust-code-analysis": self.RUST_CODE_ANALYSIS,
             "cccc": self.CCCC,
             "mi": self.MI_TOOL,
             "halstead": self.HALSTEAD_TOOL,
@@ -145,7 +150,9 @@ class Tools:
             args = [self.RUST_CODE_ANALYSIS, "-m", "-o", ".", "-p"]
             args.extend(files_list)
             results = subprocess.run(args, capture_output=True, check=True)
-            return results.stdout
+            basename = os.path.basename(files_list[0])
+            with open(basename + ".json", "r") as json_output:
+                return json.load(json_output)
 
         except subprocess.CalledProcessError as ex:
             log_err(
@@ -212,9 +219,10 @@ class Tools:
         rust_code_analysis_output_res = self._run_tool_rust_code_analysis(
             filtered_files
         )
-        return output_unifier.rust_code_analysis_output_reader(
+        """return output_unifier.rust_code_analysis_output_reader(
             rust_code_analysis_output_res.decode()
-        )
+        )"""
+        return rust_code_analysis_output_res
 
     def run_n_parse_mi(self, files_list: list, output_dir: os.path):
         filtered_files = _filter_unsupported_files(
@@ -285,11 +293,10 @@ class Tools:
     def get_tool_output(self, tool_name):
         return self.raw_output.get(tool_name, {})
 
-    def get_output(self):
-        return output_unifier.unifier(self, self.files_to_analyze)
-
-
-# End Class: Tools
+    def get_output(self, one_json_per_tool):
+        return output_unifier.unifier(
+            self, self.files_to_analyze, one_json_per_tool
+        )
 
 
 def analyze_path(

@@ -1,0 +1,65 @@
+name: Run tests
+
+on: [push, pull_request]
+
+jobs:
+
+  run-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch: 1
+
+    - name: Install Rust stable
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+
+    - name: Install Python 3.7 version
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+        architecture: 'x64'
+
+    - name: Install pytest
+      run: |
+        pip install pytest
+
+    - name: Checkout submodules
+      shell: bash
+      run: |
+        GIT_PATH=https://github.com/.extraheader
+        AUTH_HEADER="$(git config --local --get http.$GIT_PATH)"
+        git submodule sync --recursive
+        git -c "http.extraheader=$AUTH_HEADER" \
+            -c protocol.version=2 \
+            submodule update --init --force --recursive --depth=1
+
+    - name: Install Tokei
+      run: |
+        make install_local_tokei
+
+    - name: Install rust-code-analysis
+      run: |
+        make install_local_rust_code_analysis
+
+    - name: Install CCCC
+      run: |
+        make install_local_cccc
+
+    - name: Install Halstead Metrics
+      run: |
+        make install_local_halstead_metrics_tool
+
+    - name: Install Maintainability Index
+      run: |
+        make install_local_maintainability_index
+
+    - name: Run tests
+      run: |
+        pytest tests

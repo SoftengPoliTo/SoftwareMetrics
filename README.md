@@ -7,6 +7,14 @@ make install_local_all
 ./analyzer.py -p <path_to_the_code_to_analyze>
 ```
 
+To update submodules:
+
+```
+git submodule update --recursive --remote
+make clean_all
+make install_local_all
+```
+
 ## Used tools:
 
 ### Tokei

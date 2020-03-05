@@ -30,6 +30,9 @@ def helper_halstead(standardized_output: dict, output: dict):
             else:
                 all_operands[i] += int(h["_Operands"][i])
 
+        del file["Halstead"]["_Operators"]
+        del file["Halstead"]["_Operands"]
+
     output["Halstead"] = _helper_halstead(all_operators, all_operands)
 
     output["files"] = standardized_output["files"]
@@ -57,8 +60,6 @@ def _helper_halstead(operators: dict, operands: dict) -> dict:
     programming_time = program_effort / 18
 
     halstead_output = {
-        "_Operators": operators,
-        "_Operands": operands,
         "n1": n1,
         "n2": n2,
         "N1": N1,
@@ -115,6 +116,16 @@ def helper_cccc(standardized_output: dict, output: dict):
     This version uses the McCabe's CC for calculating the weight of
     each method."""
 
+    tot_loc = 0
+    tot_cloc = 0
+
+    for file in standardized_output["files"]:
+        for function in file["functions"]:
+            tot_loc += function["LOC"]
+            tot_cloc += function["CLOC"]
+
+    output["LOC"] = tot_loc
+    output["CLOC"] = tot_cloc
     output["classes"] = standardized_output["classes"]
     output["files"] = standardized_output["files"]
 

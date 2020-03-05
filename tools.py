@@ -49,9 +49,9 @@ class Tools:
         self._tool_matcher = {
             "mi": self.run_n_parse_mi,
             "tokei": self.run_n_parse_tokei,
-            "rust-code-analysis": self.run_n_parse_rust_code_analysis,
             "cccc": self.run_n_parse_cccc,
             "halstead": self.run_n_parse_halstead,
+            "rust-code-analysis": self.run_n_parse_rust_code_analysis,
         }
 
         self._enabled_tools = self._tool_matcher.keys()

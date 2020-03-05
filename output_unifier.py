@@ -321,7 +321,6 @@ def _standardizer_tokei(data):
             continue
 
         for s in data[d]["stats"]:
-            log_debug("{}", s)
 
             per_file = {
                 "filename": s["name"],
@@ -346,17 +345,29 @@ def _standardizer_tokei(data):
 
 def _standardizer_rust_code_analysis(data):
     formatted_output = {"files": []}
+    halstead = {}
 
     metrics = data["metrics"]
 
-    log_debug("{}", metrics)
+    halstead["n1"] = metrics["halstead"]["unique_operators"]
+    halstead["n2"] = metrics["halstead"]["unique_operands"]
+    halstead["N1"] = metrics["halstead"]["operators"]
+    halstead["N2"] = metrics["halstead"]["operands"]
+    halstead["Vocabulary"] = metrics["halstead"]["size"]
+    halstead["Length"] = metrics["halstead"]["length"]
+    halstead["Volume"] = metrics["halstead"]["volume"]
+    halstead["Difficulty"] = metrics["halstead"]["difficulty"]
+    halstead["Effort"] = metrics["halstead"]["effort"]
+    halstead["Programming time"] = metrics["halstead"]["time"]
+    halstead["Estimated program length"] = None
+    halstead["Purity ratio"] = None
 
     per_file = {
         "filename": data["name"],
         "SLOC": metrics["loc"]["sloc"],
         "LLOC": metrics["loc"]["lloc"],
         "CC": metrics["cyclomatic"],
-        "Halstead": metrics["halstead"],
+        "Halstead": halstead,
         "NARGS": metrics["nargs"],
         "NEXITS": metrics["nexits"],
         "functions": [],
@@ -418,7 +429,7 @@ def _standardizer_cccc(data):
                     "function name": func["func_name"],
                     "line number": func["line_number"],
                     "CC": int(func["functionCC"]),
-                    "LOC": int(func["loc"]),
+                    "LOC": int(func["loc"]),  # LOC
                     "CLOC": int(func["cloc"]),
                     "class name": module[
                         "module_name"
@@ -458,9 +469,9 @@ def _standardizer_mi(data):
         new_func = {
             "function name": d["func_name"],
             "line number": d["line_number"],
-            "LOC": d["values"]["NCSS"],  # LOC
-            "CC": d["values"]["CCN"],  # Cyclomatic Complexity
-            "MI": d["values"]["Maintainability"],
+            "LOC": int(d["values"]["NCSS"]),  # LOC
+            "CC": int(d["values"]["CCN"]),  # Cyclomatic Complexity
+            "MI": int(d["values"]["Maintainability"]),
         }
 
         if d["filename"] not in list_of_filenames:
@@ -547,11 +558,9 @@ def _producer_mode(
     # Additional metrics, calculated using the available data, can be added here
     for tool in ["halstead", "tokei", "cccc", "rust-code-analysis"]:
         if tool_manager.get_tool_output(tool):
-            output = {}
             getattr(metrics, "helper_" + tool.replace("-", "_"))(
-                global_merged_output, output
+                global_merged_output, global_merged_output
             )
-            global_merged_output = output
 
     outputs["all"] = global_merged_output
 

@@ -83,14 +83,14 @@ install_local_cccc: build_cccc
 build_halstead_metrics_tool: target_dir
 	@echo
 	@echo Building Halstead Metrics tool...
-	cp -r $(TOOLS_PATH)/Halstead_Metrics_tool $(HALSTEAD_METRICS_TMP_PATH)
+	-mkdir $(HALSTEAD_METRICS_TMP_PATH)
+	cp $(TOOLS_PATH)/Halstead_Metrics_tool_source-code/Halstead-Metrics.jar $(HALSTEAD_METRICS_TMP_PATH)/Halstead-Metrics.jar
 	# --- Halstead Metrics tool ---
 
 install_local_halstead_metrics_tool: build_halstead_metrics_tool
 	@echo
 	-mkdir -p $(HALSTEAD_METRICS_DEST_PATH)
 	cp $(HALSTEAD_METRICS_TMP_PATH)/Halstead-Metrics.jar $(HALSTEAD_METRICS_DEST_PATH)
-	cp $(HALSTEAD_METRICS_TMP_PATH)/halstead-metrics.sh  $(HALSTEAD_METRICS_DEST_PATH)
 
 
 

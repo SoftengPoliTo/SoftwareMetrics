@@ -30,8 +30,8 @@ def helper_halstead(standardized_output: dict, output: dict):
             else:
                 all_operands[i] += int(h["_Operands"][i])
 
-        del file["Halstead"]["_Operators"]
-        del file["Halstead"]["_Operands"]
+        #del file["Halstead"]["_Operators"]
+        #del file["Halstead"]["_Operands"]
 
     output["Halstead"] = _helper_halstead(all_operators, all_operands)
 
@@ -39,16 +39,16 @@ def helper_halstead(standardized_output: dict, output: dict):
 
 
 def _helper_halstead(operators: dict, operands: dict) -> dict:
-    N1 = len(operators)
-    N2 = len(operands)
-    n1 = 0
-    n2 = 0
+    n1 = len(operators)
+    n2 = len(operands)
+    N1 = 0
+    N2 = 0
 
     for i in operators:
-        n1 += operators[i]
+        N1 += operators[i]
 
     for i in operands:
-        n2 += operands[i]
+        N2 += operands[i]
 
     program_length = N1 + N2
     program_vocabulary = n1 + n2

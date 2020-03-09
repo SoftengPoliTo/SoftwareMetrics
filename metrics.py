@@ -83,6 +83,8 @@ def helper_tokei(standardized_output: dict, output: dict):
     tot_lloc = 0
     tot_cloc = 0
 
+    print(standardized_output)
+
     for file in standardized_output["files"]:
         tot_sloc += file["SLOC"]
         tot_loc += file["LOC"]
@@ -93,8 +95,19 @@ def helper_tokei(standardized_output: dict, output: dict):
     output["LOC"] = tot_loc
     output["LLOC"] = tot_lloc
     output["CLOC"] = tot_cloc
+    output["files"] = []
 
-    output["files"] = standardized_output["files"]
+    for file in standardized_output["files"]:
+        file_metrics = {
+            "filename": file["filename"],
+            "type": file["type"],
+            "SLOC": file["SLOC"],
+            "LOC": file["LOC"],
+            "LLOC": file["LLOC"],
+            "CLOC": file["CLOC"],
+            "functions": file["functions"],
+        }
+        output["files"].append(file_metrics)
 
 
 def helper_rust_code_analysis(standardized_output: dict, output: dict):
@@ -108,7 +121,38 @@ def helper_rust_code_analysis(standardized_output: dict, output: dict):
     output["SLOC"] = tot_sloc
     output["LLOC"] = tot_lloc
 
-    output["files"] = standardized_output["files"]
+    output["files"] = []
+
+    for file in standardized_output["files"]:
+        file_metrics = {
+            "filename": file["filename"],
+            "SLOC": file["SLOC"],
+            "LLOC": file["LLOC"],
+            "CC": file["CC"],
+            "NARGS": file["NARGS"],
+            "NEXITS": file["NEXITS"],
+            "Halstead": file["Halstead"],
+            "functions": file["functions"],
+        }
+        output["files"].append(file_metrics)
+
+
+def helper_mi(standardized_output: dict, output: dict):
+
+    output["LOC"] = standardized_output["LOC"]
+    output["CC"] = standardized_output["CC"]
+    output["classes"] = standardized_output["classes"]
+    output["files"] = []
+
+    for file in standardized_output["files"]:
+        file_metrics = {
+            "filename": file["filename"],
+            "LOC": file["LOC"],
+            "CC": file["CC"],
+            "MI": file["MI"],
+            "functions": file["functions"],
+        }
+        output["files"].append(file_metrics)
 
 
 def helper_cccc(standardized_output: dict, output: dict):

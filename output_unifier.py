@@ -2,6 +2,7 @@
 
 import copy
 import json
+import re
 import os.path
 from typing import Any, Dict, List
 from xml.dom import minidom
@@ -11,38 +12,55 @@ from exit_codes import log_debug, log_warn
 
 
 def _mi_tool_output_reader(xml: minidom):
-    per_function_list = []
+    global_metrics = {}
+
     per_function_res = []
+    per_file_res = []
+
+    def _get_label_list(measure_tag):
+        label_list = []
+
+        labels = measure_tag.getElementsByTagName("label")
+        for label in labels:
+            label_list.append(label.firstChild.nodeValue)
+
+        return label_list
+
+    def _get_values_object(item_tag, label_list):
+        metrics_output = {}
+
+        # Get metrics values of a file
+        values = item_tag.getElementsByTagName("value")
+        for label, value in zip(label_list, values):
+            if label == "Maintainability":
+                # To have the standard MI formula
+                metrics_output[label] = str(
+                    int(int(value.firstChild.nodeValue) * 171 / 100)
+                )
+            else:
+                metrics_output[label] = value.firstChild.nodeValue
+
+        return metrics_output
 
     measures = xml.getElementsByTagName("measure")
 
     for measure in measures:
         if measure.getAttribute("type") == "Function":
-            labels = measure.getElementsByTagName("label")
-            for label in labels:
-                per_function_list.append(label.firstChild.nodeValue)
+            # Get metrics name
+            per_function_list = _get_label_list(measure)
 
             items = measure.getElementsByTagName("item")
             for item in items:
-                values = item.getElementsByTagName("value")
-                i = 0
-                per_function_values = {}
-                for value in values:
-                    if per_function_list[i] == "Maintainability":
-                        # To have the standard MI formula
-                        per_function_values[per_function_list[i]] = str(
-                            int(int(value.firstChild.nodeValue) * 171 / 100)
-                        )
-                    else:
-                        per_function_values[
-                            per_function_list[i]
-                        ] = value.firstChild.nodeValue
-                    i += 1
-
+                # Get name, start row and filename of a function
                 name = item.getAttribute("name")
-                func_name = name[0 : name.find("(...) at ")] + "(...)"
+                func_name = name[0 : name.find("(...) at ")]
                 line_number = name[name.rfind(":") + 1 :]
                 file_in = name[name.find("(...) at ") + 9 : name.rfind(":")]
+
+                # Get metrics values of a function
+                per_function_values = _get_values_object(
+                    item, per_function_list
+                )
 
                 per_function_res.append(
                     {
@@ -52,8 +70,42 @@ def _mi_tool_output_reader(xml: minidom):
                         "values": per_function_values,
                     }
                 )
+        elif measure.getAttribute("type") == "File":
 
-    return per_function_res
+            # Get global metrics for each file
+            per_file_list = _get_label_list(measure)
+
+            items = measure.getElementsByTagName("item")
+            for item in items:
+
+                # Get metrics values of a file
+                metrics_output = _get_values_object(item, per_file_list)
+
+                output = {
+                    "filename": item.getAttribute("name"),
+                    **metrics_output,
+                }
+
+                per_file_res.append(output)
+
+            # Get global metrics computed using all files
+            sum_tags = measure.getElementsByTagName("sum")
+            for tag in sum_tags:
+                global_metrics[tag.getAttribute("lable")] = tag.getAttribute(
+                    "value"
+                )
+
+    global_metrics["files"] = []
+    for global_file in per_file_res:
+
+        global_file["functions"] = []
+        for func_name in per_function_res:
+            if func_name["filename"] == global_file["filename"]:
+                global_file["functions"].append(func_name)
+
+        global_metrics["files"].append(global_file)
+
+    return global_metrics
 
 
 def mi_tool_output_reader(xml: str):
@@ -426,11 +478,13 @@ def _standardizer_cccc(data):
 
             if per_func is None:  # New function
                 per_func = {
-                    "function name": func["func_name"],
+                    "function name": re.sub(
+                        r"\([^)]*\)", "", func["func_name"]
+                    ),
                     "line number": func["line_number"],
-                    "CC": int(func["functionCC"]),
                     "LOC": int(func["loc"]),  # LOC
                     "CLOC": int(func["cloc"]),
+                    "CC": float(func["functionCC"]),
                     "class name": module[
                         "module_name"
                     ],  # The function is part of this module
@@ -462,27 +516,33 @@ def _standardizer_cccc(data):
 
 
 def _standardizer_mi(data):
-    formatted_output = {"files": []}
 
-    list_of_filenames = []
-    for d in data:
-        new_func = {
-            "function name": d["func_name"],
-            "line number": d["line_number"],
-            "LOC": int(d["values"]["NCSS"]),  # LOC
-            "CC": int(d["values"]["CCN"]),  # Cyclomatic Complexity
-            "MI": int(d["values"]["Maintainability"]),
-        }
+    formatted_output = {}
 
-        if d["filename"] not in list_of_filenames:
-            list_of_filenames.append(d["filename"])
-            formatted_output["files"].append(
-                {"filename": d["filename"], "functions": [new_func]}
-            )
-        else:
-            for i in formatted_output["files"]:
-                if i["filename"] == d["filename"]:
-                    i["functions"].append(new_func)
+    formatted_output["LOC"] = data["NCSS"]
+    formatted_output["CC"] = data["CCN"]
+    formatted_output["classes"] = []
+    formatted_output["files"] = []
+
+    for file in data["files"]:
+        files = {}
+        files["filename"] = file["filename"]
+        files["LOC"] = int(file["NCSS"])
+        files["CC"] = float(file["CCN"])
+        files["MI"] = float(file["Maintainability"])
+
+        files["functions"] = []
+        for func_name in file["functions"]:
+            funcs = {}
+            funcs["function name"] = func_name["func_name"]
+            funcs["line number"] = func_name["line_number"]
+
+            funcs["LOC"] = int(func_name["values"]["NCSS"])
+            funcs["CC"] = float(func_name["values"]["CCN"])
+            funcs["MI"] = float(func_name["values"]["Maintainability"])
+            files["functions"].append(funcs)
+
+        formatted_output["files"].append(files)
 
     return formatted_output
 
@@ -539,7 +599,7 @@ def _test_mode(
         unifier_merger(global_merged_output_copy, standardized_output)
         outputs[tool] = global_merged_output_copy
 
-    for tool in ["halstead", "tokei", "cccc", "rust-code-analysis"]:
+    for tool in tool_manager.get_enabled_tools():
         if tool_manager.get_tool_output(tool):
             output = {}
             getattr(metrics, "helper_" + tool.replace("-", "_"))(

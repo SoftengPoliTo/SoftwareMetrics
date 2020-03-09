@@ -34,8 +34,8 @@ def _mi_tool_output_reader(xml: minidom):
         for label, value in zip(label_list, values):
             if label == "Maintainability":
                 # To have the standard MI formula
-                metrics_output[label] = str(
-                    int(int(value.firstChild.nodeValue) * 171 / 100)
+                metrics_output[label] = int(
+                    float(value.firstChild.nodeValue) * 171 / 100
                 )
             else:
                 metrics_output[label] = value.firstChild.nodeValue

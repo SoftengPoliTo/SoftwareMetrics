@@ -5,13 +5,6 @@
 	"CLOC": 0,
 
 	"Halstead": {
-		"Operands": {
-			"..." : 0
-		},
-		"Operators": {
-			"..." : 0
-		},
-
 		"n1": 0.0,
 		"n2": 0.0,
 		"N1": 0.0,
@@ -34,17 +27,18 @@
 		"LLOC": 0,
 		"CLOC": 0,
 
-		"CC": 0,
+		"CC": 0.0,
+		"MI": 0.0,
 		"WMC": 0.0,
 		"NOM": 0,
 
 		"C&K": {
-			"WMC": 0,
-			"DIT": 0,
-			"NOC": 0,
-			"CBO": 0,
-			"RFC": 0,
-			"LCOM": 0
+			"WMC": 0.0,
+			"DIT": 0.0,
+			"NOC": 0.0,
+			"CBO": 0.0,
+			"RFC": 0.0,
+			"LCOM": 0.0
 		}
 	}],
 
@@ -57,16 +51,11 @@
 		"LLOC": 0,
 		"CLOC": 0,
 
+		"CC": 0.0,
+		"MI": 0.0,
 		"NOM": 0,
 
 		"Halstead": {
-			"Operands": {
-				"..." : 0
-			},
-			"Operators": {
-				"..." : 0
-			},
-
 			"n1": 0.0,
 			"n2": 0.0,
 			"N1": 0.0,
@@ -86,22 +75,16 @@
 			"line number": 1,
 			"class name": "name",
 
-			"MI": 0.0,
-			"CC": 0.0,
-
 			"SLOC": 0,
 			"LOC": 0,
 			"LLOC": 0,
 			"CLOC": 0,
 
-			"Halstead": {
-				"Operands": {
-					"..." : 0
-				},
-				"Operators": {
-					"..." : 0
-				},
+			"CC": 0.0,
+			"MI": 0.0,
+			"NOM": 0,
 
+			"Halstead": {
 				"n1": 0.0,
 				"n2": 0.0,
 				"N1": 0.0,

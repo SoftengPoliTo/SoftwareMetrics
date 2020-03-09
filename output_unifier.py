@@ -396,34 +396,53 @@ def _standardizer_tokei(data):
 
 
 def _standardizer_rust_code_analysis(data):
+    def _get_halstead(metrics):
+        halstead = {}
+
+        halstead["n1"] = int(metrics["halstead"]["unique_operators"])
+        halstead["n2"] = int(metrics["halstead"]["unique_operands"])
+        halstead["N1"] = int(metrics["halstead"]["operators"])
+        halstead["N2"] = int(metrics["halstead"]["operands"])
+        halstead["Vocabulary"] = int(metrics["halstead"]["size"])
+        halstead["Length"] = int(metrics["halstead"]["length"])
+        halstead["Volume"] = metrics["halstead"]["volume"]
+        halstead["Difficulty"] = metrics["halstead"]["difficulty"]
+        halstead["Effort"] = metrics["halstead"]["effort"]
+        halstead["Programming time"] = metrics["halstead"]["time"]
+        halstead["Estimated program length"] = None
+        halstead["Purity ratio"] = None
+
+        return halstead
+
     formatted_output = {"files": []}
-    halstead = {}
 
     metrics = data["metrics"]
-
-    halstead["n1"] = metrics["halstead"]["unique_operators"]
-    halstead["n2"] = metrics["halstead"]["unique_operands"]
-    halstead["N1"] = metrics["halstead"]["operators"]
-    halstead["N2"] = metrics["halstead"]["operands"]
-    halstead["Vocabulary"] = metrics["halstead"]["size"]
-    halstead["Length"] = metrics["halstead"]["length"]
-    halstead["Volume"] = metrics["halstead"]["volume"]
-    halstead["Difficulty"] = metrics["halstead"]["difficulty"]
-    halstead["Effort"] = metrics["halstead"]["effort"]
-    halstead["Programming time"] = metrics["halstead"]["time"]
-    halstead["Estimated program length"] = None
-    halstead["Purity ratio"] = None
-
     per_file = {
         "filename": data["name"],
-        "SLOC": metrics["loc"]["sloc"],
-        "LLOC": metrics["loc"]["lloc"],
+        "SLOC": int(metrics["loc"]["sloc"]),
+        "LLOC": int(metrics["loc"]["lloc"]),
         "CC": metrics["cyclomatic"],
-        "Halstead": halstead,
-        "NARGS": metrics["nargs"],
-        "NEXITS": metrics["nexits"],
+        "NARGS": int(metrics["nargs"]),
+        "NEXITS": int(metrics["nexits"]),
+        "Halstead": _get_halstead(metrics),
         "functions": [],
     }
+
+    for space in data["spaces"]:
+        if space["kind"] == "function":
+            space_file = {}
+            space_file["function name"] = space["name"]
+            space_file["line number"] = space["start_line"]
+
+            space_metrics = space["metrics"]
+            space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
+            space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
+            space_file["CC"] = space_metrics["cyclomatic"]
+            space_file["NARGS"] = int(space_metrics["nargs"])
+            space_file["NEXITS"] = int(space_metrics["nexits"])
+            space_file["Halstead"] = _get_halstead(space_metrics)
+
+            per_file["functions"].append(space_file)
 
     formatted_output["files"].append(per_file)
 

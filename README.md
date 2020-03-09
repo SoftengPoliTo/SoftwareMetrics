@@ -1,4 +1,5 @@
 # SoftwareMetrics
+
 ## Usage
 
 ```
@@ -15,7 +16,7 @@ make clean_all
 make install_local_all
 ```
 
-## Used tools:
+## Used tools
 
 ### Tokei
 Repo updated @ 2019-11-06.
@@ -59,58 +60,59 @@ Used for: MI
 
     Can analyze an entire Directory
 
-## METRICS:
+## Metrics
 
-### All the desired metrics
-CC
-Ce
-CHANGE
-C&K
-CLOC
-Halstead
-JLOC
-LOC
-LCOM2
-MI
-MPC
-NOM
-NPM
-STAT
-WMC
+### All desired metrics
+
+- CC
+- CE
+- CHANGE
+- C&K
+- CLOC
+- Halstead
+- JLOC
+- LOC
+- LCOM2
+- MI
+- MPC
+- NOM
+- NPM
+- STAT
+- WMC
 
 ### Not used
- -	**CHANGE:** We do not consider this one now, because it is a metric that analyse different versions of the same code.
+ - **CHANGE:** This metric is not considered for now, because it analyses different versions of the same code.
 
- -	**JLOC:** JavaDoc Lines of Code, it returns the number of JavaDoc lines. It can only be applied to Java code, but it is possible to create a similar metric for Rust.
+ - **JLOC:** JavaDoc Lines of Code, it returns the number of JavaDoc lines. It can only be applied to `Java` code, but it is possible to create a similar metric for the `Rust` code.
 
 ### Not yet added
- -	**LCOM2:** Lack of Cohesion in methods. Evolution of LCOM, by C&K.
- 
- -	**STAT:** it counts the Number of Statements in a method.
- 
- -	**MPC:** Message Passing Coupling, it is a metric from the Li & Henry suite.
- 
- -	**NPM:** Number of Public Methods. It returns the number of all the methods of a class that are declared as public.
+ - **LCOM2:** Lack of Cohesion in methods. Evolution of LCOM by C&K.
 
- -	**Ce:** Efferent Coupling, it can be computed per-class only.
+ - **STAT:** It counts the Number of Statements in a method.
+
+ - **MPC:** Message Passing Coupling, it is a metric from the Li & Henry suite.
+
+ - **NPM:** Number of Public Methods. It returns the number of methods in a class that are declared as public.
+
+ - **CE:** Efferent Coupling, it can be computed per-class only.
 
 ### Used ones:
- -	**LOC:** sometimes called SLOC, returns the number of non-blank lines in a code. It can be calculated in different ways, since it does sot have a precise definition. It can refer to a Logical LOC (LLOC) or to a Physical LOC (LOC). Here we use LOC to indicate the Physical LOC.
- 
- -  **LLOC:** Logical lines of Code.
- 
- -	**SLOC:** Source Lines of Code. It returns the total number of lines in a file.
+ - **LOC:** Lines of Code. It returns the number of non-blank lines in a code.
 
- -	**CLOC:** Comment Lines of Code, it returns the number of comment lines.
- 
- -	**CC:** McCabe's Cyclomatic Complexity.
+ - **LLOC:** Logical Lines of Code. It returns the logical number of lines in a file.
 
- -	**C&K:** Chidamber & Kemerer, it can be computed per-class only. Currently, we support only 4 of the 6 metrics defined by this suite.
+ - **SLOC:** Source Lines of Code. It returns the total number of lines in a file.
 
- -	**Halstead:** it calculates the the Halstead suite.
+ - **CLOC:** Comment Lines of Code, it returns the number of comment lines in a file.
 
- -	**MI:** Maintainability Index, it is per-function calculated metric.
+ - **CC:** McCabe's Cyclomatic Complexity.
 
- -	**WMC:** McCabe's Weighted Methods Count, it sums the CC of each methods of a class. Hence, it is a per-class calculated function.
+ - **C&K:** Chidamber & Kemerer can be computed per-class only. Currently, we support only 4 of the 6 metrics defined by this metric suite.
 
- -	**NOM:** Number of Methods. It is a per-class and per-file metric.
+ - **Halstead:** It calculates the Halstead suite.
+
+ - **MI:** Maintainability Index, it is per-function calculated metric.
+
+ - **WMC:** McCabe's Weighted Methods Count. It sums the CC of each methods in a class. Hence, it is a per-class calculated function.
+
+ - **NOM:** Number of Methods. It is a per-class and per-file metric.

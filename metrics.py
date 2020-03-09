@@ -83,8 +83,6 @@ def helper_tokei(standardized_output: dict, output: dict):
     tot_lloc = 0
     tot_cloc = 0
 
-    print(standardized_output)
-
     for file in standardized_output["files"]:
         tot_sloc += file["SLOC"]
         tot_loc += file["LOC"]

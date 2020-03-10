@@ -49,7 +49,7 @@ def compare(
         "./metric-diff.py",
         "-m",
         *metrics,
-        "-f",
+        "-i",
         _build_metrics_path(folder, first_tool_name),
         _build_metrics_path(folder, second_tool_name),
     )

@@ -579,8 +579,8 @@ def _standardizer_halstead(data):
             "n2": h["n2"],
             "N1": h["N1"],
             "N2": h["N2"],
-            "Vocabulary": h["Vocabulary"],
-            "Length": h["Length"],
+            "Vocabulary": int(h["Vocabulary"]),
+            "Length": int(h["Length"]),
             "Volume": h["Volume"],
             "Difficulty": h["Difficulty"],
             "Effort": h["Effort"],
@@ -595,8 +595,6 @@ def _standardizer_halstead(data):
                 "functions": [],  # No per_function data from this tool
             }
         )
-
-        # Global stats will be added to the complete, merged output
 
     return formatted_output
 

@@ -30,12 +30,20 @@ def helper_halstead(standardized_output: dict, output: dict):
             else:
                 all_operands[i] += int(h["_Operands"][i])
 
-        #del file["Halstead"]["_Operators"]
-        #del file["Halstead"]["_Operands"]
+        del file["Halstead"]["_Operators"]
+        del file["Halstead"]["_Operands"]
 
     output["Halstead"] = _helper_halstead(all_operators, all_operands)
 
-    output["files"] = standardized_output["files"]
+    output["files"] = []
+    for file in standardized_output["files"]:
+        files = {
+            "filename": file["filename"],
+            "Halstead": file["Halstead"],
+            "functions": [],
+        }
+
+        output["files"].append(files)
 
 
 def _helper_halstead(operators: dict, operands: dict) -> dict:

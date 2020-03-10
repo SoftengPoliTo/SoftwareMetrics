@@ -15,6 +15,20 @@ import typing as T
 
 from exit_codes import ExitCode, log_conf, log_debug, log_err
 
+# Metric value type
+M = T.TypeVar("M", int, float)
+
+
+def check_missing_field(condition: T.Any, field: str, filename: str) -> None:
+    """Check missing field"""
+
+    if not condition:
+        log_err(
+            "\n\n{} does not have the '" + field + "' field",
+            ExitCode.PROGRAMMING_ERROR,
+            filename,
+        )
+
 
 class Metrics(enum.Enum):
     """List of metrics."""
@@ -28,7 +42,6 @@ class Metrics(enum.Enum):
     LLOC = "LLOC"
     CLOC = "CLOC"
     HALSTEAD = "HALSTEAD"
-    CK = "CK"
 
 
 class CompareMetrics:
@@ -42,8 +55,8 @@ class CompareMetrics:
         second_json_data: T.Dict[str, T.Any],
     ) -> None:
 
-        self.first_json_filename = first_json_filename
-        self.second_json_filename = second_json_filename
+        self.first_json_filename = os.path.basename(first_json_filename)
+        self.second_json_filename = os.path.basename(second_json_filename)
         self.first_json_data = first_json_data
         self.second_json_data = second_json_data
 
@@ -54,42 +67,106 @@ class CompareMetrics:
             Metrics.LLOC: "LLOC",
             Metrics.CLOC: "CLOC",
             Metrics.HALSTEAD: "Halstead",
-            Metrics.CK: "C&K",
         }
 
-    def compare(self, metrics: T.List[Metrics]) -> None:
+    def compare_global_metrics(self, metrics: T.List[Metrics]) -> None:
+        print("\nComparing global metrics...\n")
         for m in metrics:
-            metric_as_string = str(m)
-            json_metric = self.metrics_json.get(m)
-            metric_first_file = self.first_json_data.get(json_metric, None)
-            metric_second_file = self.second_json_data.get(json_metric, None)
+            self._compare_metrics(
+                self.first_json_data, self.second_json_data, m
+            )
 
-            if not metric_first_file:
-                log_err(
-                    "\t{} metric not found in {}",
-                    ExitCode.METRIC_NOT_FOUND,
-                    metric_as_string,
+    def compare_file_metrics(self, metrics: T.List[Metrics]) -> None:
+        print("\nComparing file metrics...\n")
+        for m in metrics:
+            check_missing_field(
+                self.first_json_data["files"], "files", self.first_json_name
+            )
+
+            check_missing_field(
+                self.second_json_data["files"], "files", self.second_json_name
+            )
+
+            for file_one, file_two in zip(
+                self.first_json_data["files"], self.second_json_data["files"]
+            ):
+                self._compare_metrics(file_one, file_two, m)
+
+    def compare_function_metrics(self, metrics: T.List[Metrics]) -> None:
+        print("\nComparing function metrics...\n")
+        for m in metrics:
+
+            for file_one, file_two in zip(
+                self.first_json_data["files"], self.second_json_data["files"]
+            ):
+                check_missing_field(
+                    file_one["functions"],
+                    "functions",
                     self.first_json_filename,
                 )
 
-            if not metric_second_file:
-                log_err(
-                    "\t{} metric not found in {}",
-                    ExitCode.METRIC_NOT_FOUND,
-                    metric_as_string,
+                check_missing_field(
+                    file_two["functions"],
+                    "functions",
                     self.second_json_filename,
                 )
 
-            if metric_first_file != metric_second_file:
-                log_err(
-                    "\n\n{} metric is different\n\n"
-                    "First file: {}\n"
-                    "Second file: {}",
-                    ExitCode.DIFFERENT_METRIC_VALUE,
-                    metric_as_string,
-                    metric_first_file,
-                    metric_second_file,
-                )
+                for function_one, function_two in zip(
+                    file_one["functions"], file_two["functions"]
+                ):
+                    self._compare_metrics(function_one, function_two, m)
+
+    def _compare_metrics(
+        self,
+        dict_one: T.Dict[str, T.Any],
+        dict_two: T.Dict[str, T.Any],
+        metric: Metrics,
+    ) -> None:
+
+        # Get metric
+        json_metric = self.metrics_json.get(metric)
+
+        metric_first_file = dict_one.get(json_metric, None)
+        metric_second_file = dict_two.get(json_metric, None)
+
+        # Compare metrics
+        self._compare_two_metric(
+            metric_first_file, metric_second_file, str(metric)
+        )
+
+    def _compare_two_metric(
+        self,
+        metric_first_file: T.Optional[int],
+        metric_second_file: T.Optional[int],
+        metric_as_string: str,
+    ) -> None:
+
+        if not metric_first_file:
+            log_err(
+                "\n\n{} metric not found in {}",
+                ExitCode.METRIC_NOT_FOUND,
+                metric_as_string,
+                self.first_json_filename,
+            )
+
+        if not metric_second_file:
+            log_err(
+                "\n\n{} metric not found in {}",
+                ExitCode.METRIC_NOT_FOUND,
+                metric_as_string,
+                self.second_json_filename,
+            )
+
+        if metric_first_file != metric_second_file:
+            log_err(
+                "\n\n{} metric is different\n\n" "{}: {}\n" "{}: {}",
+                ExitCode.DIFFERENT_METRIC_VALUE,
+                metric_as_string,
+                self.first_json_filename,
+                metric_first_file,
+                self.second_json_filename,
+                metric_second_file,
+            )
 
 
 def check_metrics(metrics: T.Optional[T.List[str]]) -> T.List[Metrics]:
@@ -107,7 +184,12 @@ def check_metrics(metrics: T.Optional[T.List[str]]) -> T.List[Metrics]:
 
 
 def run_comparison(
-    first_json_file: str, second_json_file: str, metrics: T.List[Metrics]
+    first_json_file: str,
+    second_json_file: str,
+    metrics: T.List[Metrics],
+    enable_global: bool,
+    enable_files: bool,
+    enable_functions: bool,
 ) -> None:
     """Run metrics comparison."""
 
@@ -121,7 +203,18 @@ def run_comparison(
         first_json_file, second_json_file, first_json_data, second_json_data
     )
 
-    diff.compare(metrics)
+    print("Check", *metrics, "metric" if len(metrics) == 1 else "metrics")
+
+    if enable_global:
+        diff.compare_global_metrics(metrics)
+    elif enable_files:
+        diff.compare_file_metrics(metrics)
+    elif enable_functions:
+        diff.compare_function_metrics(metrics)
+    else:
+        diff.compare_global_metrics(metrics)
+
+    print("Done. No differences between analyzed metrics.")
 
 
 def main() -> None:
@@ -140,6 +233,27 @@ def main() -> None:
         help="Increase output verbosity, useful for debugging purposes",
     )
 
+    parser.add_argument(
+        "-g",
+        "--globals",
+        action="store_true",
+        help="Compare json files global metrics",
+    )
+
+    parser.add_argument(
+        "-f",
+        "--files",
+        action="store_true",
+        help="Compare json files file metrics",
+    )
+
+    parser.add_argument(
+        "-fu",
+        "--functions",
+        action="store_true",
+        help="Compare json files function metrics",
+    )
+
     # Args
     parser.add_argument(
         "-m",
@@ -151,8 +265,8 @@ def main() -> None:
     )
 
     parser.add_argument(
-        "-f",
-        "--files",
+        "-i",
+        "--inputs",
         metavar="FILE.json",
         type=str,
         nargs=2,
@@ -171,14 +285,21 @@ def main() -> None:
         if not os.path.isfile(name):
             log_err("\t{} is not a valid file.", ExitCode.WRONG_FILES, name)
 
-    check_json_name(args.files[0])
-    check_json_name(args.files[1])
+    check_json_name(args.inputs[0])
+    check_json_name(args.inputs[1])
 
     # Check metrics inserted by the user
     metrics = check_metrics(args.metrics)
 
     # Run comparison
-    run_comparison(args.files[0], args.files[1], metrics)
+    run_comparison(
+        args.inputs[0],
+        args.inputs[1],
+        metrics,
+        args.globals,
+        args.files,
+        args.functions,
+    )
 
 
 if __name__ == "__main__":

@@ -80,11 +80,15 @@ class CompareMetrics:
         print("\nComparing file metrics...\n")
         for m in metrics:
             check_missing_field(
-                self.first_json_data["files"], "files", self.first_json_name
+                self.first_json_data["files"],
+                "files",
+                self.first_json_filename,
             )
 
             check_missing_field(
-                self.second_json_data["files"], "files", self.second_json_name
+                self.second_json_data["files"],
+                "files",
+                self.second_json_filename,
             )
 
             for file_one, file_two in zip(
@@ -207,11 +211,14 @@ def run_comparison(
 
     if enable_global:
         diff.compare_global_metrics(metrics)
-    elif enable_files:
+
+    if enable_files:
         diff.compare_file_metrics(metrics)
-    elif enable_functions:
+
+    if enable_functions:
         diff.compare_function_metrics(metrics)
-    else:
+
+    if not (enable_global or enable_files or enable_functions):
         diff.compare_global_metrics(metrics)
 
     print("Done. No differences between analyzed metrics.")

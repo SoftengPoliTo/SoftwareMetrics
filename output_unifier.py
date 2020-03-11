@@ -538,8 +538,8 @@ def _standardizer_mi(data):
 
     formatted_output = {}
 
-    formatted_output["LOC"] = data["NCSS"]
-    formatted_output["CC"] = data["CCN"]
+    formatted_output["LOC"] = int(data["NCSS"])
+    formatted_output["CC"] = float(data["CCN"])
     formatted_output["classes"] = []
     formatted_output["files"] = []
 
@@ -619,7 +619,7 @@ def _test_mode(
     for tool in tool_manager.get_enabled_tools():
         if tool_manager.get_tool_output(tool):
             output = {}
-            getattr(metrics, "helper_" + tool.replace("-", "_"))(
+            getattr(metrics, "helper_test_" + tool.replace("-", "_"))(
                 outputs[tool], output
             )
             outputs[tool] = output
@@ -629,14 +629,15 @@ def _producer_mode(
     standardized_outputs, global_merged_output, tool_manager, outputs
 ):
     # The data are merged with the complete output
+    del standardized_outputs["rust-code-analysis"]
     for standardized_output in standardized_outputs.values():
         unifier_merger(global_merged_output, standardized_output)
 
     # Additional metrics, calculated using the available data, can be added here
-    for tool in ["halstead", "tokei", "cccc", "rust-code-analysis"]:
+    for tool in ["halstead", "tokei", "cccc"]:
         if tool_manager.get_tool_output(tool):
             getattr(metrics, "helper_" + tool.replace("-", "_"))(
-                global_merged_output, global_merged_output
+                global_merged_output
             )
 
     outputs["all"] = global_merged_output

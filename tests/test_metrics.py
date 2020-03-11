@@ -66,7 +66,7 @@ def test_rust_code_analysis_mi() -> None:
     ret_value = compare(
         "rust-code-analysis",
         "mi",
-        ["-f", "-fu"],
+        ["-fu"],
         ["CC"],
         "C-C++",
         "bubble_sort.c",

@@ -9,6 +9,7 @@ import argparse
 import enum
 import json
 import logging
+import math
 import os
 import sys
 import typing as T
@@ -161,7 +162,7 @@ class CompareMetrics:
                 self.second_json_filename,
             )
 
-        if metric_first_file != metric_second_file:
+        if self._check_metrics_types(metric_first_file, metric_second_file):
             log_err(
                 "\n\n{} metric is different\n\n" "{}: {}\n" "{}: {}",
                 ExitCode.DIFFERENT_METRIC_VALUE,
@@ -171,6 +172,26 @@ class CompareMetrics:
                 self.second_json_filename,
                 metric_second_file,
             )
+
+    def _check_metrics_types(
+        self, metric_one: T.Any, metric_two: T.Any
+    ) -> bool:
+        if type(metric_one) is int:
+            return metric_one != metric_two
+        elif type(metric_one) is float:
+            return not math.isclose(metric_one, metric_two, rel_tol=1e-6)
+        else:
+            for halstead_one, halstead_two in zip(
+                metric_one.values(), metric_two.values()
+            ):
+                if type(halstead_one) is int:
+                    return halstead_one != halstead_two
+                else:
+                    return not math.isclose(
+                        halstead_one, halstead_two, rel_tol=1e-6
+                    )
+
+        return True
 
 
 def check_metrics(metrics: T.Optional[T.List[str]]) -> T.List[Metrics]:

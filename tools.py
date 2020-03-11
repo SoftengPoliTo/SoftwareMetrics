@@ -285,6 +285,12 @@ class Tools:
 
         log_debug("\tFILES_LIST:\n{}", self.files_to_analyze)
 
+        # rust-code-analysis can read just a single file
+        if len(self.files_to_analyze) != 1 and os.path.isdir(
+            self.files_to_analyze[0]
+        ):
+            self._enabled_tools.remove("rust-code-analysis")
+
         for name in self._enabled_tools:
             self._run_tool(name, outputs, output_dir)
 

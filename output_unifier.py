@@ -629,7 +629,7 @@ def _producer_mode(
     standardized_outputs, global_merged_output, tool_manager, outputs
 ):
     # The data are merged with the complete output
-    del standardized_outputs["rust-code-analysis"]
+    standardized_outputs.pop("rust-code-analysis", None)
     for standardized_output in standardized_outputs.values():
         unifier_merger(global_merged_output, standardized_output)
 

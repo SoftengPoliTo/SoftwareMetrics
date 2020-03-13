@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import shutil
 import subprocess
 import sys
 import json
@@ -91,19 +90,21 @@ class Tools:
                     self.baseDir,
                 )
 
+    def _output_subdir(self, output_dir):
+        output_subdir = os.path.join(output_dir, "outputs")
+        if not os.path.exists(output_subdir):
+            os.mkdir(output_subdir)
+        return output_subdir
+
     def _run_tool_cccc(self, files_list: list, output_dir: str):
         try:
             files = _filter_unsupported_files(
                 files_list, _SUPPORTED_EXTENSIONS_CCCC_
             )
-            outputs_subdir = os.path.join(output_dir, "outputs")
-            if os.path.exists(
-                outputs_subdir
-            ):  # Probably unnecessary, but it prevents the
-                shutil.rmtree(outputs_subdir)
-            os.mkdir(outputs_subdir)
 
-            args = [self.CCCC, "--outdir=" + outputs_subdir]
+            output_subdir = self._output_subdir(output_dir)
+
+            args = [self.CCCC, "--outdir=" + output_subdir]
             args.extend(files)
             return subprocess.run(args, capture_output=True, check=True)
 
@@ -145,13 +146,16 @@ class Tools:
                 ex.stderr,
             )
 
-    def _run_tool_rust_code_analysis(self, files_list: list):
+    def _run_tool_rust_code_analysis(self, files_list: list, output_dir: str):
         try:
-            args = [self.RUST_CODE_ANALYSIS, "-m", "-o", ".", "-p"]
+            output_subdir = os.path.join(self._output_subdir(output_dir))
+            args = [self.RUST_CODE_ANALYSIS, "-m", "-o", output_subdir, "-p"]
             args.extend(files_list)
             results = subprocess.run(args, capture_output=True, check=True)
             basename = os.path.basename(files_list[0])
-            with open(basename + ".json", "r") as json_output:
+            with open(
+                os.path.join(output_subdir, (basename + ".json")), "r"
+            ) as json_output:
                 return json.load(json_output)
 
         except subprocess.CalledProcessError as ex:
@@ -217,7 +221,7 @@ class Tools:
             return None
         log_debug("\tFILTERED FILES:\n{}", filtered_files)
         rust_code_analysis_output_res = self._run_tool_rust_code_analysis(
-            filtered_files
+            filtered_files, output_dir
         )
         """return output_unifier.rust_code_analysis_output_reader(
             rust_code_analysis_output_res.decode()

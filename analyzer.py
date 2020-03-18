@@ -41,7 +41,7 @@ def compile_commands_reader(json_file: os.path) -> list:
             json_file,
         )
 
-    return files
+    return list(dict.fromkeys(files).keys())
 
 
 def check_tools_correctness(tools, enabled_tools):

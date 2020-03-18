@@ -39,7 +39,7 @@ class Tools:
             self.baseDir, "rust-code-analysis", "rust-code-analysis"
         )
         self.HALSTEAD_TOOL = os.path.join(
-            self.baseDir, "Halstead_Metrics", "Halstead-Metrics.jar"
+            self.baseDir, "Halstead_Metrics_Tool", "Halstead-Metrics.jar"
         )
         self.MI_TOOL = os.path.join(
             self.baseDir, "Maintainability_Index", "lizard"

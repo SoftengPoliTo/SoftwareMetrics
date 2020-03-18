@@ -4,7 +4,7 @@
 
 ```
 git clone --recurse-submodules -j8 https://github.com/SoftengPoliTo/SoftwareMetrics
-make install_local_all
+make install
 ./analyzer.py -p <path_to_the_code_to_analyze>
 ```
 
@@ -12,8 +12,8 @@ To update submodules:
 
 ```
 git submodule update --recursive --remote
-make clean_all
-make install_local_all
+make clean
+make install
 ```
 
 ## Used tools

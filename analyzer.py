@@ -234,7 +234,7 @@ def main():
         path_to_analyze=args.path,
         files_list=files_list,
         tools_path=os.path.join(
-            os.path.dirname(os.path.realpath(sys.argv[0])), "CC++_Tools"
+            os.path.dirname(os.path.realpath(sys.argv[0])), "tools"
         ),
         results_dir=args.results_dir,
     )

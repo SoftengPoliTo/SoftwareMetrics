@@ -42,23 +42,23 @@ jobs:
 
     - name: Install Tokei
       run: |
-        make install_local_tokei
+        make install_tokei
 
     - name: Install rust-code-analysis
       run: |
-        make install_local_rust_code_analysis
+        make install_rust_code_analysis
 
     - name: Install CCCC
       run: |
-        make install_local_cccc
+        make install_cccc
 
     - name: Install Halstead Metrics
       run: |
-        make install_local_halstead_metrics_tool
+        make install_halstead_metrics_tool
 
     - name: Install Maintainability Index
       run: |
-        make install_local_maintainability_index
+        make install_maintainability_index
 
     - name: Run tests
       run: |

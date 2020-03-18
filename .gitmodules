@@ -1,15 +1,15 @@
-[submodule "CC++_Tools_SourceCodes/Tokei"]
-	path = CC++_Tools_SourceCodes/Tokei
+[submodule "tools_source_codes/Tokei"]
+	path = tools_source_codes/Tokei
 	url = https://github.com/XAMPPRocky/tokei
-[submodule "CC++_Tools_SourceCodes/rust-code-analysis"]
-	path = CC++_Tools_SourceCodes/rust-code-analysis
+[submodule "tools_source_codes/rust-code-analysis"]
+	path = tools_source_codes/rust-code-analysis
 	url = https://github.com/SoftengPoliTo/rust-code-analysis
-[submodule "CC++_Tools_SourceCodes/CCCC"]
-	path = CC++_Tools_SourceCodes/CCCC
+[submodule "tools_source_codes/CCCC"]
+	path = tools_source_codes/CCCC
 	url = https://github.com/SoftengPoliTo/CCCC
-[submodule "CC++_Tools_SourceCodes/Halstead_Metrics_tool_source-code"]
-	path = CC++_Tools_SourceCodes/Halstead_Metrics_tool_source-code
+[submodule "tools_source_codes/Halstead_Metrics_Tool"]
+	path = tools_source_codes/Halstead_Metrics_Tool
 	url = https://github.com/SoftengPoliTo/Halstead-Metrics-Tool
-[submodule "CC++_Tools_SourceCodes/maintainability_index"]
-	path = CC++_Tools_SourceCodes/maintainability_index
+[submodule "tools_source_codes/Maintainability_Index"]
+	path = tools_source_codes/Maintainability_Index
 	url = https://github.com/SoftengPoliTo/MI

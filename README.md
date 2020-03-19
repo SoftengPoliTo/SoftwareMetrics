@@ -35,8 +35,6 @@ Used for: C&K, CC, WMC
     * Building: Ok
     * Local installation: Ok
 
-    Can analyze a file at a time only.
-
 
 ### Halstead Metrics Tool
 Repo @ last available version.

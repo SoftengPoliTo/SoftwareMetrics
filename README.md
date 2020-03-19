@@ -19,17 +19,19 @@ make install
 ## Used tools
 
 ### Tokei
-Repo updated @ 2019-11-06.
+Repository: updated at 2019-11-06.
+
 Used for: LOC, CLOC
 
     * Building: Ok
     * Local installation: Ok
 
-    Can analyze an entire Directory
+    Can analyze an entire directory
 
 
 ### CCCC
-Repo @ last available version + already patched.
+Repository: last available version + some patches.
+
 Used for: C&K, CC, WMC
 
     * Building: Ok
@@ -37,10 +39,11 @@ Used for: C&K, CC, WMC
 
 
 ### Halstead Metrics Tool
-Repo @ last available version.
+Repository: last available version.
+
 Used for: Halstead
 
-    * Building:	Ok (simple copy)
+    * Building: Ok (simple copy)
     * Local installation: Ok (simple copy)
 
     It has been corrected (Volume calculation was wrong).
@@ -50,13 +53,14 @@ Used for: Halstead
 
 
 ### Maintainability Index
-Repo @ last available version.
+Repository: last available version.
+
 Used for: MI
 
     * Dependencies: pep8, pylint, nose (for python3)
     * MI is calculated w/ the 3-Metrics equations, but its value is divided by 1.71!
 
-    Can analyze an entire Directory
+    Can analyze an entire directory
 
 ## Metrics
 

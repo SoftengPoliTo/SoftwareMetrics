@@ -399,18 +399,20 @@ def _standardizer_rust_code_analysis(data):
     def _get_halstead(metrics):
         halstead = {}
 
-        halstead["n1"] = int(metrics["halstead"]["unique_operators"])
-        halstead["n2"] = int(metrics["halstead"]["unique_operands"])
-        halstead["N1"] = int(metrics["halstead"]["operators"])
-        halstead["N2"] = int(metrics["halstead"]["operands"])
-        halstead["Vocabulary"] = int(metrics["halstead"]["size"])
+        halstead["n1"] = int(metrics["halstead"]["n1"])
+        halstead["n2"] = int(metrics["halstead"]["n2"])
+        halstead["N1"] = int(metrics["halstead"]["N1"])
+        halstead["N2"] = int(metrics["halstead"]["N2"])
+        halstead["Vocabulary"] = int(metrics["halstead"]["vocabulary"])
         halstead["Length"] = int(metrics["halstead"]["length"])
         halstead["Volume"] = metrics["halstead"]["volume"]
         halstead["Difficulty"] = metrics["halstead"]["difficulty"]
         halstead["Effort"] = metrics["halstead"]["effort"]
         halstead["Programming time"] = metrics["halstead"]["time"]
-        halstead["Estimated program length"] = None
-        halstead["Purity ratio"] = None
+        halstead["Estimated program length"] = metrics["halstead"][
+            "estimated_program_length"
+        ]
+        halstead["Purity ratio"] = metrics["halstead"]["purity_ratio"]
 
         return halstead
 

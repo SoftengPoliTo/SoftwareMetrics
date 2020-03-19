@@ -35,7 +35,7 @@ def test_rust_code_analysis_halstead() -> None:
         ["-f"],
         ["HALSTEAD"],
         "C-C++",
-        "bubble_sort.c",
+        "loc_test.c",
     )
 
     assert ret_value == 0

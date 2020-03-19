@@ -503,7 +503,9 @@ def _standardizer_cccc(data):
                     "line number": func["line_number"],
                     "LOC": int(func["loc"]),  # LOC
                     "CLOC": int(func["cloc"]),
-                    "CC": float(func["functionCC"]),
+                    # Probably CCCC doesn't count the most external scope of
+                    # the function for CC, so add it
+                    "CC": float(func["functionCC"]) + 1.0,
                     "class name": module[
                         "module_name"
                     ],  # The function is part of this module

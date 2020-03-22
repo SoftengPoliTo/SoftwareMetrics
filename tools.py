@@ -1,23 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import json
 import os
 import subprocess
 import sys
-import json
 
 import output_unifier
 from exit_codes import ExitCode, log_debug, log_err, log_info
 
 ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "hh", "rs"]
-
-_SUPPORTED_EXTENSIONS_CCCC_ = ["c", "cc", "cpp", "c++", "h", "hpp", "hh"]
-_SUPPORTED_EXTENSIONS_TOKEI_ = (
-    ACCEPTED_EXTENSIONS  # [""]   # Tokei supports a huge variety of languages
-)
-_SUPPORTED_EXTENSIONS_RUST_CODE_ANALYSIS_ = ACCEPTED_EXTENSIONS
-_SUPPORTED_EXTENSIONS_HALSTEAD_TOOL_ = ["c", "cc", "cpp", "c++"]
-_SUPPORTED_EXTENSIONS_MI_TOOL_ = ["c", "cc", "cpp", "c++"]
 
 
 class Tools:
@@ -53,7 +45,15 @@ class Tools:
             "rust-code-analysis": self.run_n_parse_rust_code_analysis,
         }
 
-        self._enabled_tools = self._tool_matcher.keys()
+        self._tool_extensions = {
+            "mi": ["c", "cc", "cpp", "c++"],
+            "tokei": ACCEPTED_EXTENSIONS,
+            "cccc": ["c", "cc", "cpp", "c++", "h", "hpp", "hh"],
+            "halstead": ["c", "cc", "cpp", "c++"],
+            "rust-code-analysis": ACCEPTED_EXTENSIONS,
+        }
+
+        self._enabled_tools = list(self._tool_matcher.keys())
 
     def set_enabled_tools(self, enabled_tools):
         if enabled_tools:
@@ -98,14 +98,10 @@ class Tools:
 
     def _run_tool_cccc(self, files_list: list, output_dir: str):
         try:
-            files = _filter_unsupported_files(
-                files_list, _SUPPORTED_EXTENSIONS_CCCC_
-            )
-
             output_subdir = self._output_subdir(output_dir)
 
             args = [self.CCCC, "--outdir=" + output_subdir]
-            args.extend(files)
+            args.extend(files_list)
             return subprocess.run(args, capture_output=True, check=True)
 
         except subprocess.CalledProcessError as ex:
@@ -191,37 +187,20 @@ class Tools:
             )
 
     def run_n_parse_cccc(self, files_list: list, output_dir: os.path):
-        filtered_files = _filter_unsupported_files(
-            files_list, _SUPPORTED_EXTENSIONS_CCCC_
-        )
-        if not filtered_files:
-            return None
-        self._run_tool_cccc(filtered_files, output_dir)
+        self._run_tool_cccc(files_list, output_dir)
         return output_unifier.cccc_output_reader(
             os.path.join(output_dir, "outputs")
         )
 
     def run_n_parse_tokei(self, files_list: list, output_dir: os.path):
-        filtered_files = _filter_unsupported_files(
-            files_list, _SUPPORTED_EXTENSIONS_TOKEI_
-        )
-        if not filtered_files:
-            return None
-        log_debug("\tFILTERED FILES:\n{}", filtered_files)
-        tokei_output_res = self._run_tool_tokei(filtered_files)
+        tokei_output_res = self._run_tool_tokei(files_list)
         return output_unifier.tokei_output_reader(tokei_output_res.decode())
 
     def run_n_parse_rust_code_analysis(
         self, files_list: list, output_dir: os.path
     ):
-        filtered_files = _filter_unsupported_files(
-            files_list, _SUPPORTED_EXTENSIONS_RUST_CODE_ANALYSIS_
-        )
-        if not filtered_files:
-            return None
-        log_debug("\tFILTERED FILES:\n{}", filtered_files)
         rust_code_analysis_output_res = self._run_tool_rust_code_analysis(
-            filtered_files, output_dir
+            files_list, output_dir
         )
         """return output_unifier.rust_code_analysis_output_reader(
             rust_code_analysis_output_res.decode()
@@ -229,22 +208,12 @@ class Tools:
         return rust_code_analysis_output_res
 
     def run_n_parse_mi(self, files_list: list, output_dir: os.path):
-        filtered_files = _filter_unsupported_files(
-            files_list, _SUPPORTED_EXTENSIONS_MI_TOOL_
-        )
-        if not filtered_files:
-            return None
-        mi_tool_res = self._run_tool_mi(filtered_files)
+        mi_tool_res = self._run_tool_mi(files_list)
         return output_unifier.mi_tool_output_reader(mi_tool_res.decode())
 
     def run_n_parse_halstead(self, files_list: list, output_dir: os.path):
-        filtered_files = _filter_unsupported_files(
-            files_list, _SUPPORTED_EXTENSIONS_HALSTEAD_TOOL_
-        )
-        if not filtered_files:
-            return None
         results = []
-        for file in filtered_files:
+        for file in files_list:
             results.append(self._run_n_parse_halstead(file, output_dir))
         return results
 
@@ -263,12 +232,10 @@ class Tools:
         hm_tool_res = self._run_tool_halstead(file)
         return output_unifier.halstead_metric_tool_reader(hm_tool_res)
 
-    def _run_tool(self, name, outputs, output_dir):
+    def _run_tool(self, name, tool_files, outputs, output_dir):
         print("Running {}...".format(name))
         run_tool = self._tool_matcher.get(name)
-        tool_output = run_tool(self.files_to_analyze, output_dir)
-        if tool_output:
-            outputs[name] = tool_output
+        outputs[name] = run_tool(tool_files, output_dir)
 
     def run_tools(
         self, path_to_analyze: os.path, files_list: list, output_dir: os.path
@@ -280,23 +247,45 @@ class Tools:
 
         outputs = {}
 
-        if files_list is None:
+        if not files_list:
             self.files_to_analyze = list_of_files(
                 path_to_analyze, ACCEPTED_EXTENSIONS
             )
         else:
             self.files_to_analyze = files_list
 
-        log_debug("\tFILES_LIST:\n{}", self.files_to_analyze)
+        # Check extensions supported by tools
+        filtered_files_per_tool = {}
+        current_enabled_tools = [
+            tool_name for tool_name in self._enabled_tools
+        ]
+        for tool_name in current_enabled_tools:
+            filtered_files = _filter_unsupported_files(
+                self.files_to_analyze, self._tool_extensions.get(tool_name)
+            )
 
-        # rust-code-analysis can read just a single file
-        if len(self.files_to_analyze) != 1 and os.path.isdir(
-            self.files_to_analyze[0]
+            log_debug("\t{} FILES_LIST:\n{}", tool_name, filtered_files)
+
+            if not filtered_files:
+                self._enabled_tools.remove(tool_name)
+            else:
+                filtered_files_per_tool[tool_name] = filtered_files
+
+        # rust-code-analysis can read just a single json file
+        rust_code_analysis_file = filtered_files_per_tool.get(
+            "rust-code-analysis", None
+        )
+        if (
+            rust_code_analysis_file
+            and len(rust_code_analysis_file) != 1
+            and os.path.isdir(rust_code_analysis_file[0])
         ):
             self._enabled_tools.remove("rust-code-analysis")
 
         for name in self._enabled_tools:
-            self._run_tool(name, outputs, output_dir)
+            self._run_tool(
+                name, filtered_files_per_tool[name], outputs, output_dir
+            )
 
         self.raw_output = outputs
 

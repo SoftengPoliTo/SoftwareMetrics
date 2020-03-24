@@ -16,7 +16,7 @@ def test_rust_code_analysis_tokei() -> None:
         "rust-code-analysis",
         "tokei",
         ["-g", "-f"],
-        ["SLOC", "LLOC"],
+        ["SLOC", "LLOC", "CLOC"],
         "C-C++",
         "resample.c",
     )

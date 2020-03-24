@@ -423,6 +423,7 @@ def _standardizer_rust_code_analysis(data):
         "filename": data["name"],
         "SLOC": int(metrics["loc"]["sloc"]),
         "LLOC": int(metrics["loc"]["lloc"]),
+        "CLOC": int(metrics["loc"]["cloc"]),
         "CC": metrics["cyclomatic"],
         "NARGS": int(metrics["nargs"]),
         "NEXITS": int(metrics["nexits"]),

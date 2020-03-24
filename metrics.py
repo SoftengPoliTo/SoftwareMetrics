@@ -161,13 +161,16 @@ def helper_test_tokei(standardized_output: dict, output: dict):
 def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
     tot_sloc = 0
     tot_lloc = 0
+    tot_cloc = 0
 
     for file in standardized_output["files"]:
         tot_sloc += file["SLOC"]
         tot_lloc += file["LLOC"]
+        tot_cloc += file["CLOC"]
 
     output["SLOC"] = tot_sloc
     output["LLOC"] = tot_lloc
+    output["CLOC"] = tot_cloc
 
     output["files"] = []
 
@@ -176,6 +179,7 @@ def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
             "filename": file["filename"],
             "SLOC": file["SLOC"],
             "LLOC": file["LLOC"],
+            "CLOC": file["CLOC"],
             "CC": file["CC"],
             "NARGS": file["NARGS"],
             "NEXITS": file["NEXITS"],

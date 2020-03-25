@@ -1,4 +1,4 @@
-// SLOC = 8, CLOC = 2, LOC = 7, LLOC = 8
+// SLOC = 8, CLOC = 2, LOC = 7, LLOC = 4
 void loc_test() {
     a = 6;
     b = 5;

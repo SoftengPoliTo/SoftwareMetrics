@@ -146,7 +146,7 @@ class CompareMetrics:
         metric_as_string: str,
     ) -> None:
 
-        if not metric_first_file:
+        if metric_first_file is None:
             log_err(
                 "\n\n{} metric not found in {}",
                 ExitCode.METRIC_NOT_FOUND,
@@ -154,7 +154,7 @@ class CompareMetrics:
                 self.first_json_filename,
             )
 
-        if not metric_second_file:
+        if metric_second_file is None:
             log_err(
                 "\n\n{} metric not found in {}",
                 ExitCode.METRIC_NOT_FOUND,

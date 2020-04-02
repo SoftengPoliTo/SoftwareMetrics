@@ -87,23 +87,23 @@ Used for: MI
 
  - **SLOC:** Source Lines of Code. It returns the total number of lines in a file.
 
- - **LOC:** Lines of Code. It returns the number of instruction and comment lines in a file.
+ - **LOC:** Lines of Code. It returns the number of instructions and comment lines in a file.
 
- - **LLOC:** Logical Lines of Code. It returns the number of logical and comment lines in a file
+ - **LLOC:** Logical Lines of Code. It returns the number of logical lines in a file (statements)
 
  - **CLOC:** Comment Lines of Code, it returns the number of comment lines in a file.
+
+ - **STAT:** Statements. It counts the number of statements in a method/class. (a more precise LLOC)
+
+ - **NOM:** Number of Methods. It counts the number of methods in a file.
 
  - **CC:** McCabe's Cyclomatic Complexity.
 
  - **Halstead:** It calculates the Halstead suite.
 
+ - **MI:** Maintainability Index. It is a suite to measure the maintainability of a code. It is calculated both for files and functions.
+
 ### Metrics to be implemented
-
- - **MI:** Maintainability Index, it is per-function calculated metric.
-
- - **NOM:** Number of Methods. It is a per-class and per-file metric.
-
- - **STAT:** It counts the Number of Statements in a method.
 
  - **CHANGE:** It analyses different versions of the same code.
 

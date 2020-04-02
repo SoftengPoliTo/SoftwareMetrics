@@ -440,6 +440,7 @@ def _standardizer_rust_code_analysis(data):
             space_metrics = space["metrics"]
             space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
             space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
+            space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
             space_file["CC"] = space_metrics["cyclomatic"]
             space_file["NARGS"] = int(space_metrics["nargs"])
             space_file["NEXITS"] = int(space_metrics["nexits"])

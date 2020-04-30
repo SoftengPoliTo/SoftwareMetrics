@@ -5,9 +5,8 @@
 `SoftwareMetrics` compares different programming languages in order to determine
 which one is better than another according to a specific set of metrics.
 
-Applying a series of tool on the same algorithm, but written in different
-programming languages, we obtain a set of metrics necessary to make the
-comparisons between languages.
+Applying a series of tool on an algorithm written in different
+programming languages, we obtain a set of metrics necessary to make the comparisons between languages.
 
 ## Usage
 

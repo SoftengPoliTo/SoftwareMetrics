@@ -41,12 +41,24 @@ jobs:
             submodule update --init --force --recursive --depth=1
 
     - name: Install Tokei
+      env:
+        LINK: https://github.com/XAMPPRocky/tokei/releases/download
+        TOKEI_VERSION: 12.0.4
+        DEST_DIR: ./tools/Tokei
       run: |
-        make install_tokei
+        mkdir -p $DEST_DIR
+        curl -L "$LINK/v$TOKEI_VERSION/tokei-x86_64-unknown-linux-musl.tar.gz" |
+        tar xz -C $DEST_DIR
 
     - name: Install rust-code-analysis
+      env:
+        LINK: https://github.com/mozilla/rust-code-analysis/releases/download
+        RCA_VERSION: 0.0.17
+        DEST_DIR: ./tools/rust-code-analysis
       run: |
-        make install_rust_code_analysis
+        mkdir -p $DEST_DIR
+        curl -L "$LINK/v$RCA_VERSION/rust-code-analysis-linux-x86_64.tar.gz" |
+        tar xz -C $DEST_DIR
 
     - name: Run tests
       run: |

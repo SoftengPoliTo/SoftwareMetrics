@@ -30,16 +30,6 @@ jobs:
       run: |
         pip install pytest
 
-    - name: Checkout submodules
-      shell: bash
-      run: |
-        GIT_PATH=https://github.com/.extraheader
-        AUTH_HEADER="$(git config --local --get http.$GIT_PATH)"
-        git submodule sync --recursive
-        git -c "http.extraheader=$AUTH_HEADER" \
-            -c protocol.version=2 \
-            submodule update --init --force --recursive --depth=1
-
     - name: Install Tokei
       env:
         LINK: https://github.com/XAMPPRocky/tokei/releases/download

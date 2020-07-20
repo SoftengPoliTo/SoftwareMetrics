@@ -48,18 +48,6 @@ jobs:
       run: |
         make install_rust_code_analysis
 
-    - name: Install CCCC
-      run: |
-        make install_cccc
-
-    - name: Install Halstead Metrics
-      run: |
-        make install_halstead_metrics_tool
-
-    - name: Install Maintainability Index
-      run: |
-        make install_maintainability_index
-
     - name: Run tests
       run: |
         pytest tests

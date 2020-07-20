@@ -48,7 +48,7 @@ build_rust_code_analysis: target_dir
 	@echo
 	@echo Building rust-code-analysis...
 	cp -r $(TOOLS_PATH)/rust-code-analysis $(RUST_CODE_ANALYSIS_TMP_PATH)
-	cd $(RUST_CODE_ANALYSIS_TMP_PATH) && cargo build --release --all-features
+	cd $(RUST_CODE_ANALYSIS_TMP_PATH) && cargo build --workspace --release --all-features
 	# ---  RUST_CODE_ANALYSIS  ---
 
 clean_rust_code_analysis:
@@ -57,7 +57,7 @@ clean_rust_code_analysis:
 install_rust_code_analysis: build_rust_code_analysis
 	@echo
 	-mkdir -p $(RUST_CODE_ANALYSIS_DEST_PATH)
-	cp $(RUST_CODE_ANALYSIS_TMP_PATH)/target/release/rust-code-analysis \
+	cp $(RUST_CODE_ANALYSIS_TMP_PATH)/target/release/rust-code-analysis-cli \
 	   $(RUST_CODE_ANALYSIS_DEST_PATH)
 
 

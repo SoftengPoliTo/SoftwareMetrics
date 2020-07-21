@@ -73,23 +73,17 @@ class CompareMetrics:
     def compare_global_metrics(self, metrics: T.List[Metrics]) -> None:
         print("\nComparing global metrics...\n")
         for m in metrics:
-            self._compare_metrics(
-                self.first_json_data, self.second_json_data, m
-            )
+            self._compare_metrics(self.first_json_data, self.second_json_data, m)
 
     def compare_file_metrics(self, metrics: T.List[Metrics]) -> None:
         print("\nComparing file metrics...\n")
         for m in metrics:
             check_missing_field(
-                self.first_json_data["files"],
-                "files",
-                self.first_json_filename,
+                self.first_json_data["files"], "files", self.first_json_filename,
             )
 
             check_missing_field(
-                self.second_json_data["files"],
-                "files",
-                self.second_json_filename,
+                self.second_json_data["files"], "files", self.second_json_filename,
             )
 
             for file_one, file_two in zip(
@@ -105,15 +99,11 @@ class CompareMetrics:
                 self.first_json_data["files"], self.second_json_data["files"]
             ):
                 check_missing_field(
-                    file_one["functions"],
-                    "functions",
-                    self.first_json_filename,
+                    file_one["functions"], "functions", self.first_json_filename,
                 )
 
                 check_missing_field(
-                    file_two["functions"],
-                    "functions",
-                    self.second_json_filename,
+                    file_two["functions"], "functions", self.second_json_filename,
                 )
 
                 for function_one, function_two in zip(
@@ -135,9 +125,7 @@ class CompareMetrics:
         metric_second_file = dict_two.get(json_metric, None)
 
         # Compare metrics
-        self._compare_two_metric(
-            metric_first_file, metric_second_file, str(metric)
-        )
+        self._compare_two_metric(metric_first_file, metric_second_file, str(metric))
 
     def _compare_two_metric(
         self,
@@ -173,9 +161,7 @@ class CompareMetrics:
                 metric_second_file,
             )
 
-    def _check_metrics_types(
-        self, metric_one: T.Any, metric_two: T.Any
-    ) -> bool:
+    def _check_metrics_types(self, metric_one: T.Any, metric_two: T.Any) -> bool:
         if type(metric_one) is int:
             return metric_one != metric_two
         elif type(metric_one) is float:
@@ -187,9 +173,7 @@ class CompareMetrics:
                 if type(halstead_one) is int:
                     return halstead_one != halstead_two
                 else:
-                    return not math.isclose(
-                        halstead_one, halstead_two, rel_tol=1e-6
-                    )
+                    return not math.isclose(halstead_one, halstead_two, rel_tol=1e-6)
 
         return True
 
@@ -269,10 +253,7 @@ def main() -> None:
     )
 
     parser.add_argument(
-        "-f",
-        "--files",
-        action="store_true",
-        help="Compare json files file metrics",
+        "-f", "--files", action="store_true", help="Compare json files file metrics",
     )
 
     parser.add_argument(

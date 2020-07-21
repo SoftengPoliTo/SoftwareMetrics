@@ -104,9 +104,7 @@ def analyze(
         output_name = os.path.basename(os.path.normpath(results_dir))
     else:
         # The output folder in which all the output data will be placed
-        output_name = datetime.datetime.now().strftime(
-            "results_%Y.%m.%d_%H.%M.%S"
-        )
+        output_name = datetime.datetime.now().strftime("results_%Y.%m.%d_%H.%M.%S")
 
         output_dir = os.path.join(output_dir, output_name)
 
@@ -175,18 +173,11 @@ def main():
     )
 
     parser.add_argument(
-        "-tm",
-        "--test-mode",
-        action="store_true",
-        help="Run the analyzer in test mode",
+        "-tm", "--test-mode", action="store_true", help="Run the analyzer in test mode",
     )
 
     parser.add_argument(
-        "-t",
-        "--tools",
-        type=str,
-        nargs="+",
-        help="List of tools to be executed",
+        "-t", "--tools", type=str, nargs="+", help="List of tools to be executed",
     )
 
     # Args

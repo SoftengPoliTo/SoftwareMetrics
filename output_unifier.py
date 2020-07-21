@@ -58,9 +58,7 @@ def _mi_tool_output_reader(xml: minidom):
                 file_in = name[name.find("(...) at ") + 9 : name.rfind(":")]
 
                 # Get metrics values of a function
-                per_function_values = _get_values_object(
-                    item, per_function_list
-                )
+                per_function_values = _get_values_object(item, per_function_list)
 
                 per_function_res.append(
                     {
@@ -91,9 +89,7 @@ def _mi_tool_output_reader(xml: minidom):
             # Get global metrics computed using all files
             sum_tags = measure.getElementsByTagName("sum")
             for tag in sum_tags:
-                global_metrics[tag.getAttribute("lable")] = tag.getAttribute(
-                    "value"
-                )
+                global_metrics[tag.getAttribute("lable")] = tag.getAttribute("value")
 
     global_metrics["files"] = []
     for global_file in per_file_res:
@@ -116,13 +112,8 @@ def mi_tool_output_reader_from_file(xml_file_path: os.path):
     return _mi_tool_output_reader(minidom.parse(xml_file_path))
 
 
-def _tokei_output_reader(tokei: json):
-    inner = tokei.get("inner")
-    return inner
-
-
 def tokei_output_reader(json_output: str):
-    return _tokei_output_reader(json.loads(json_output))
+    return json.loads(json_output)
 
 
 def tokei_output_reader_from_file(json_output_file_path: os.path):
@@ -144,43 +135,33 @@ def cccc_output_reader(cccc_xml_directory_path: str):
     base_dir = os.path.realpath(cccc_xml_directory_path)
     per_function_res = []
 
-    with open(
-        os.path.join(cccc_xml_directory_path, "cccc.xml"), "r"
-    ) as cccc_file:
+    with open(os.path.join(cccc_xml_directory_path, "cccc.xml"), "r") as cccc_file:
         cccc_xml = minidom.parse(cccc_file)
 
     project = cccc_xml.getElementsByTagName("CCCC_Project")
     modules = (
-        project[0]
-        .getElementsByTagName("oo_design")[0]
-        .getElementsByTagName("module")
+        project[0].getElementsByTagName("oo_design")[0].getElementsByTagName("module")
     )
     for module in modules:
-        module_name = module.getElementsByTagName("name")[
-            0
-        ].firstChild.nodeValue
+        module_name = module.getElementsByTagName("name")[0].firstChild.nodeValue
 
         WMC = module.getElementsByTagName("weighted_methods_per_class_unity")[
             0
         ].getAttribute("value")
-        DIT = module.getElementsByTagName("depth_of_inheritance_tree")[
-            0
-        ].getAttribute("value")
-        NOC = module.getElementsByTagName("number_of_children")[
-            0
-        ].getAttribute("value")
-        CBO = module.getElementsByTagName("coupling_between_objects")[
-            0
-        ].getAttribute("value")
+        DIT = module.getElementsByTagName("depth_of_inheritance_tree")[0].getAttribute(
+            "value"
+        )
+        NOC = module.getElementsByTagName("number_of_children")[0].getAttribute("value")
+        CBO = module.getElementsByTagName("coupling_between_objects")[0].getAttribute(
+            "value"
+        )
 
         log_debug(
             "\tCCCC output reader. Reading path: {}",
             os.path.join(base_dir, module_name + ".xml"),
         )
 
-        with open(
-            os.path.join(base_dir, module_name + ".xml"), "r"
-        ) as moduleFile:
+        with open(os.path.join(base_dir, module_name + ".xml"), "r") as moduleFile:
             module_xml = minidom.parse(moduleFile)
 
         CC_module = (
@@ -188,33 +169,31 @@ def cccc_output_reader(cccc_xml_directory_path: str):
             .getElementsByTagName("McCabes_cyclomatic_complexity")[0]
             .getAttribute("value")
         )
-        member_functions = module_xml.getElementsByTagName(
-            "procedural_detail"
-        )[0].getElementsByTagName("member_function")
+        member_functions = module_xml.getElementsByTagName("procedural_detail")[
+            0
+        ].getElementsByTagName("member_function")
 
         list_of_member_functions: List[Dict[str, Any]] = []
         for member_function in member_functions:
-            member_function_name = member_function.getElementsByTagName(
-                "name"
-            )[0].firstChild.nodeValue
+            member_function_name = member_function.getElementsByTagName("name")[
+                0
+            ].firstChild.nodeValue
 
             file_in = None
             line_number = None
             definition_only = True
             for extent in member_function.getElementsByTagName("extent"):
                 if (
-                    extent.getElementsByTagName("description")[
-                        0
-                    ].firstChild.nodeValue
+                    extent.getElementsByTagName("description")[0].firstChild.nodeValue
                     == "definition"
                 ):
                     definition_only = False
                     file_in = extent.getElementsByTagName("source_reference")[
                         0
                     ].getAttribute("file")
-                    line_number = extent.getElementsByTagName(
-                        "source_reference"
-                    )[0].getAttribute("line")
+                    line_number = extent.getElementsByTagName("source_reference")[
+                        0
+                    ].getAttribute("line")
             if definition_only:
                 # If it is not the implementation of the function, we skip it
                 continue
@@ -222,12 +201,12 @@ def cccc_output_reader(cccc_xml_directory_path: str):
             member_function_cc = member_function.getElementsByTagName(
                 "McCabes_cyclomatic_complexity"
             )[0].getAttribute("value")
-            lines_of_code = member_function.getElementsByTagName(
-                "lines_of_code"
-            )[0].getAttribute("value")
-            lines_of_comment = member_function.getElementsByTagName(
-                "lines_of_comment"
-            )[0].getAttribute("value")
+            lines_of_code = member_function.getElementsByTagName("lines_of_code")[
+                0
+            ].getAttribute("value")
+            lines_of_comment = member_function.getElementsByTagName("lines_of_comment")[
+                0
+            ].getAttribute("value")
 
             per_function_values = {
                 "file": file_in,
@@ -274,9 +253,7 @@ def unifier_merger(data: dict, tool_output: dict):
         if stat == "files":
             continue
 
-        if (
-            stat not in data
-        ):  # The default behaviour is to write ONLY the new values.
+        if stat not in data:  # The default behaviour is to write ONLY the new values.
             data[stat] = tool_output[stat]
     #  END  Merging global metrics.
 
@@ -334,20 +311,16 @@ def unifier_merger(data: dict, tool_output: dict):
                     for stat in per_func_tool:
                         if stat == "line number":
                             continue
-                        if (
-                            stat == "function name"
-                        ):  # Copy function name if possible
+                        if stat == "function name":  # Copy function name if possible
                             if "function name" not in file["functions"][i]:
-                                file["functions"][i][
+                                file["functions"][i]["function name"] = per_func_tool[
                                     "function name"
-                                ] = per_func_tool["function name"]
+                                ]
                         else:  # Copy the stats.
                             if (
                                 stat not in file["functions"][i]
                             ):  # Copy only the new ones
-                                file["functions"][i][stat] = per_func_tool[
-                                    stat
-                                ]
+                                file["functions"][i][stat] = per_func_tool[stat]
             # We are assuming that every tool also includes the line number of
             # the function.
             #  END  Merging per-function metrics...
@@ -372,15 +345,16 @@ def _standardizer_tokei(data):
             log_debug("\t(_standardizer_tokei) Skipping data of type '{}'", d)
             continue
 
-        for s in data[d]["stats"]:
+        for reports in data[d]["reports"]:
 
+            s = reports["stats"]
             per_file = {
-                "filename": s["name"],
-                "SLOC": s["lines"],
+                "filename": reports["name"],
+                "SLOC": int(s["code"]) + int(s["comments"]) + int(s["blanks"]),
                 "LOC": int(s["code"]) + int(s["comments"]),
                 "LLOC": s["code"],
                 "CLOC": s["comments"],
-                "functions": [],  # Tokei do not give per-function information.
+                "functions": [],  # Tokei does not give per-function information.
             }
 
             # Tokei discriminates CHeaders from CppHeaders from the extension.
@@ -422,7 +396,7 @@ def _standardizer_rust_code_analysis(data):
     per_file = {
         "filename": data["name"],
         "SLOC": int(metrics["loc"]["sloc"]),
-        "LLOC": int(metrics["loc"]["lloc"]),
+        "LLOC": int(metrics["loc"]["ploc"]),
         "CLOC": int(metrics["loc"]["cloc"]),
         "CC": metrics["cyclomatic"],
         "NARGS": int(metrics["nargs"]),
@@ -439,7 +413,7 @@ def _standardizer_rust_code_analysis(data):
 
             space_metrics = space["metrics"]
             space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
-            space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
+            space_file["LLOC"] = int(space_metrics["loc"]["ploc"])
             space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
             space_file["CC"] = space_metrics["cyclomatic"]
             space_file["NARGS"] = int(space_metrics["nargs"])
@@ -485,9 +459,7 @@ def _standardizer_cccc(data):
             }
 
         for func in module["functions"]:
-            if (
-                func["file"] not in tmp_dict_files
-            ):  # Create new per_file struct
+            if func["file"] not in tmp_dict_files:  # Create new per_file struct
                 per_file = {"filename": func["file"], "functions": []}
                 tmp_dict_files[func["file"]] = per_file
             else:
@@ -501,9 +473,7 @@ def _standardizer_cccc(data):
 
             if per_func is None:  # New function
                 per_func = {
-                    "function name": re.sub(
-                        r"\([^)]*\)", "", func["func_name"]
-                    ),
+                    "function name": re.sub(r"\([^)]*\)", "", func["func_name"]),
                     "line number": func["line_number"],
                     "LOC": int(func["loc"]),  # LOC
                     "CLOC": int(func["cloc"]),
@@ -527,9 +497,7 @@ def _standardizer_cccc(data):
     formatted_output = {"classes": [], "files": []}
 
     for module in tmp_dict_modules:
-        if (
-            module != "anonymous"
-        ):  # Do not add the per_module stats if in "anonymous"
+        if module != "anonymous":  # Do not add the per_module stats if in "anonymous"
             formatted_output["classes"].append(tmp_dict_modules[module])
 
     for file in tmp_dict_files.values():
@@ -612,9 +580,7 @@ def _find_by_filename(tool_output, name):
     return None
 
 
-def _test_mode(
-    standardized_outputs, global_merged_output, tool_manager, outputs
-):
+def _test_mode(standardized_outputs, global_merged_output, tool_manager, outputs):
     for tool, standardized_output in standardized_outputs.items():
         global_merged_output_copy = copy.deepcopy(global_merged_output)
         unifier_merger(global_merged_output_copy, standardized_output)
@@ -629,9 +595,7 @@ def _test_mode(
             outputs[tool] = output
 
 
-def _producer_mode(
-    standardized_outputs, global_merged_output, tool_manager, outputs
-):
+def _producer_mode(standardized_outputs, global_merged_output, tool_manager, outputs):
     # The data are merged with the complete output
     standardized_outputs.pop("rust-code-analysis", None)
     for standardized_output in standardized_outputs.values():
@@ -640,9 +604,7 @@ def _producer_mode(
     # Additional metrics, calculated using the available data, can be added here
     for tool in ["halstead", "tokei", "cccc"]:
         if tool_manager.get_tool_output(tool):
-            getattr(metrics, "helper_" + tool.replace("-", "_"))(
-                global_merged_output
-            )
+            getattr(metrics, "helper_" + tool.replace("-", "_"))(global_merged_output)
 
     outputs["all"] = global_merged_output
 
@@ -657,16 +619,14 @@ def unifier(tool_manager, files_to_analyze, one_json_per_tool):
     # The outputs must be standardized to be merged together.
     standardized_outputs = {}
     for tool in tool_manager.get_enabled_tools():
-        standardized_output = globals()[
-            "_standardizer_" + tool.replace("-", "_")
-        ](tool_manager.get_tool_output(tool))
+        standardized_output = globals()["_standardizer_" + tool.replace("-", "_")](
+            tool_manager.get_tool_output(tool)
+        )
         standardized_outputs[tool] = standardized_output
 
     outputs = {}
     if one_json_per_tool:
-        _test_mode(
-            standardized_outputs, global_merged_output, tool_manager, outputs
-        )
+        _test_mode(standardized_outputs, global_merged_output, tool_manager, outputs)
     else:
         _producer_mode(
             standardized_outputs, global_merged_output, tool_manager, outputs

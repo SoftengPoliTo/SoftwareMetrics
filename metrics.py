@@ -30,9 +30,7 @@ def helper_halstead(standardized_output: dict):
             else:
                 all_operands[i] += int(h["_Operands"][i])
 
-    standardized_output["Halstead"] = _helper_halstead(
-        all_operators, all_operands
-    )
+    standardized_output["Halstead"] = _helper_halstead(all_operators, all_operands)
 
 
 def helper_test_halstead(standardized_output: dict, output: dict):

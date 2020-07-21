@@ -23,6 +23,7 @@ def test_rust_code_analysis_tokei_c() -> None:
 
     assert ret_value == 0
 
+
 def test_rust_code_analysis_tokei_rust() -> None:
     """These tests evaluates if rust-code-analysis and tokei produce
        the same metrics values for Rust language.
@@ -32,7 +33,7 @@ def test_rust_code_analysis_tokei_rust() -> None:
         "rust-code-analysis",
         "tokei",
         ["-g", "-f"],
-        ["SLOC", "LLOC"],
+        ["LLOC"], # Do not consider SLOC because it is wrong in Tokei
         "Rust",
         "resample.rs",
     )

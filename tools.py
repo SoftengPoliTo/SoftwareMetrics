@@ -28,14 +28,12 @@ class Tools:
         self.CCCC = os.path.join(self.baseDir, "CCCC", "cccc")
         self.TOKEI = os.path.join(self.baseDir, "Tokei", "tokei")
         self.RUST_CODE_ANALYSIS = os.path.join(
-            self.baseDir, "rust-code-analysis", "rust-code-analysis"
+            self.baseDir, "rust-code-analysis", "rust-code-analysis-cli"
         )
         self.HALSTEAD_TOOL = os.path.join(
             self.baseDir, "Halstead_Metrics_Tool", "Halstead-Metrics.jar"
         )
-        self.MI_TOOL = os.path.join(
-            self.baseDir, "Maintainability_Index", "lizard"
-        )
+        self.MI_TOOL = os.path.join(self.baseDir, "Maintainability_Index", "lizard")
 
         self._tool_matcher = {
             "mi": self.run_n_parse_mi,
@@ -145,7 +143,15 @@ class Tools:
     def _run_tool_rust_code_analysis(self, files_list: list, output_dir: str):
         try:
             output_subdir = os.path.join(self._output_subdir(output_dir))
-            args = [self.RUST_CODE_ANALYSIS, "-m", "-o", output_subdir, "-p"]
+            args = [
+                self.RUST_CODE_ANALYSIS,
+                "-m",
+                "-O",
+                "json",
+                "-o",
+                output_subdir,
+                "-p",
+            ]
             args.extend(files_list)
             results = subprocess.run(args, capture_output=True, check=True)
             basename = os.path.basename(files_list[0])
@@ -188,17 +194,13 @@ class Tools:
 
     def run_n_parse_cccc(self, files_list: list, output_dir: os.path):
         self._run_tool_cccc(files_list, output_dir)
-        return output_unifier.cccc_output_reader(
-            os.path.join(output_dir, "outputs")
-        )
+        return output_unifier.cccc_output_reader(os.path.join(output_dir, "outputs"))
 
     def run_n_parse_tokei(self, files_list: list, output_dir: os.path):
         tokei_output_res = self._run_tool_tokei(files_list)
         return output_unifier.tokei_output_reader(tokei_output_res.decode())
 
-    def run_n_parse_rust_code_analysis(
-        self, files_list: list, output_dir: os.path
-    ):
+    def run_n_parse_rust_code_analysis(self, files_list: list, output_dir: os.path):
         rust_code_analysis_output_res = self._run_tool_rust_code_analysis(
             files_list, output_dir
         )
@@ -217,9 +219,7 @@ class Tools:
             results.append(self._run_n_parse_halstead(file, output_dir))
         return results
 
-    def run_n_parse_halstead_dir(
-        self, path_to_analyze: os.path, output_dir: os.path
-    ):
+    def run_n_parse_halstead_dir(self, path_to_analyze: os.path, output_dir: os.path):
         return analyze_path(
             self,
             path_to_analyze,
@@ -248,17 +248,13 @@ class Tools:
         outputs = {}
 
         if not files_list:
-            self.files_to_analyze = list_of_files(
-                path_to_analyze, ACCEPTED_EXTENSIONS
-            )
+            self.files_to_analyze = list_of_files(path_to_analyze, ACCEPTED_EXTENSIONS)
         else:
             self.files_to_analyze = files_list
 
         # Check extensions supported by tools
         filtered_files_per_tool = {}
-        current_enabled_tools = [
-            tool_name for tool_name in self._enabled_tools
-        ]
+        current_enabled_tools = [tool_name for tool_name in self._enabled_tools]
         for tool_name in current_enabled_tools:
             filtered_files = _filter_unsupported_files(
                 self.files_to_analyze, self._tool_extensions.get(tool_name)
@@ -283,9 +279,7 @@ class Tools:
             self._enabled_tools.remove("rust-code-analysis")
 
         for name in self._enabled_tools:
-            self._run_tool(
-                name, filtered_files_per_tool[name], outputs, output_dir
-            )
+            self._run_tool(name, filtered_files_per_tool[name], outputs, output_dir)
 
         self.raw_output = outputs
 
@@ -293,14 +287,10 @@ class Tools:
         return self.raw_output.get(tool_name, {})
 
     def get_output(self, one_json_per_tool):
-        return output_unifier.unifier(
-            self, self.files_to_analyze, one_json_per_tool
-        )
+        return output_unifier.unifier(self, self.files_to_analyze, one_json_per_tool)
 
 
-def analyze_path(
-    tool: Tools, path, accepted_extensions, run_n_parse_funct, output_dir
-):
+def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct, output_dir):
     results = []
     _analyze_path(
         tool, path, accepted_extensions, run_n_parse_funct, output_dir, results
@@ -351,9 +341,7 @@ def list_of_files(path: os.path, accepted_extensions: list) -> list:
     return all_files
 
 
-def _list_of_files(
-    path: os.path, accepted_extensions: list, output_list: list
-):
+def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
     if os.path.isfile(path):
         base_name = os.path.basename(path)
         extension = base_name[base_name.rfind(".") + 1 :]

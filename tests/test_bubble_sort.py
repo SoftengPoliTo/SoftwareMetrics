@@ -23,6 +23,7 @@ def test_rust_code_analysis_tokei_c() -> None:
 
     assert ret_value == 0
 
+
 def test_rust_code_analysis_tokei_Rust() -> None:
     """These tests evaluates if rust-code-analysis and tokei produce
        the same metrics values for Rust language.

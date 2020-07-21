@@ -48,7 +48,7 @@ jobs:
       run: |
         mkdir -p $DEST_DIR
         curl -L "$LINK/v$RCA_VERSION/rust-code-analysis-linux-x86_64.tar.gz" |
-        tar xz -C $DEST_DIR
+        tar xz -C $DEST_DIR --strip-components 1
 
     - name: Run tests
       run: |

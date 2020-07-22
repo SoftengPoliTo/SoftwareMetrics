@@ -16,7 +16,7 @@ def test_rust_code_analysis_tokei_c() -> None:
         "rust-code-analysis",
         "tokei",
         ["-g", "-f"],
-        ["SLOC", "LLOC"],
+        ["SLOC", "PLOC"],
         "C-C++",
         "resample.c",
     )
@@ -33,7 +33,7 @@ def test_rust_code_analysis_tokei_rust() -> None:
         "rust-code-analysis",
         "tokei",
         ["-g", "-f"],
-        ["LLOC"], # Do not consider SLOC because it is wrong in Tokei
+        ["PLOC"], # Do not consider SLOC because it is wrong in Tokei
         "Rust",
         "resample.rs",
     )

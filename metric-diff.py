@@ -39,9 +39,10 @@ class Metrics(enum.Enum):
 
     CC = "CC"
     SLOC = "SLOC"
-    LOC = "LOC"
+    PLOC = "PLOC"
     LLOC = "LLOC"
     CLOC = "CLOC"
+    BLANK = "BLANK"
     HALSTEAD = "HALSTEAD"
 
 
@@ -64,9 +65,10 @@ class CompareMetrics:
         self.metrics_json = {
             Metrics.CC: "CC",
             Metrics.SLOC: "SLOC",
-            Metrics.LOC: "LOC",
+            Metrics.PLOC: "PLOC",
             Metrics.LLOC: "LLOC",
             Metrics.CLOC: "CLOC",
+            Metrics.BLANK: "BLANK",
             Metrics.HALSTEAD: "Halstead",
         }
 

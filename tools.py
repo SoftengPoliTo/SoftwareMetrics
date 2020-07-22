@@ -148,17 +148,11 @@ class Tools:
                 "-m",
                 "-O",
                 "json",
-                "-o",
-                output_subdir,
                 "-p",
             ]
             args.extend(files_list)
             results = subprocess.run(args, capture_output=True, check=True)
-            basename = os.path.basename(files_list[0])
-            with open(
-                os.path.join(output_subdir, (basename + ".json")), "r"
-            ) as json_output:
-                return json.load(json_output)
+            return results.stdout
 
         except subprocess.CalledProcessError as ex:
             log_err(
@@ -204,10 +198,9 @@ class Tools:
         rust_code_analysis_output_res = self._run_tool_rust_code_analysis(
             files_list, output_dir
         )
-        """return output_unifier.rust_code_analysis_output_reader(
+        return output_unifier.rust_code_analysis_output_reader(
             rust_code_analysis_output_res.decode()
-        )"""
-        return rust_code_analysis_output_res
+        )
 
     def run_n_parse_mi(self, files_list: list, output_dir: os.path):
         mi_tool_res = self._run_tool_mi(files_list)

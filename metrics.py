@@ -127,20 +127,20 @@ def helper_tokei(standardized_output: dict):
 
 def helper_test_tokei(standardized_output: dict, output: dict):
     tot_sloc = 0
-    tot_loc = 0
-    tot_lloc = 0
+    tot_ploc = 0
     tot_cloc = 0
+    tot_blank = 0
 
     for file in standardized_output["files"]:
         tot_sloc += file["SLOC"]
-        tot_loc += file["LOC"]
-        tot_lloc += file["LLOC"]
+        tot_ploc += file["PLOC"]
         tot_cloc += file["CLOC"]
+        tot_blank += file["BLANK"]
 
     output["SLOC"] = tot_sloc
-    output["LOC"] = tot_loc
-    output["LLOC"] = tot_lloc
+    output["PLOC"] = tot_ploc
     output["CLOC"] = tot_cloc
+    output["BLANK"] = tot_blank
     output["files"] = []
 
     for file in standardized_output["files"]:
@@ -148,9 +148,9 @@ def helper_test_tokei(standardized_output: dict, output: dict):
             "filename": file["filename"],
             "type": file["type"],
             "SLOC": file["SLOC"],
-            "LOC": file["LOC"],
-            "LLOC": file["LLOC"],
+            "PLOC": file["PLOC"],
             "CLOC": file["CLOC"],
+            "BLANK": file["BLANK"],
             "functions": file["functions"],
         }
         output["files"].append(file_metrics)
@@ -158,17 +158,23 @@ def helper_test_tokei(standardized_output: dict, output: dict):
 
 def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
     tot_sloc = 0
+    tot_ploc = 0
     tot_lloc = 0
     tot_cloc = 0
+    tot_blank = 0
 
     for file in standardized_output["files"]:
         tot_sloc += file["SLOC"]
+        tot_ploc += file["PLOC"]
         tot_lloc += file["LLOC"]
         tot_cloc += file["CLOC"]
+        tot_blank += file["BLANK"]
 
     output["SLOC"] = tot_sloc
+    output["PLOC"] = tot_ploc
     output["LLOC"] = tot_lloc
     output["CLOC"] = tot_cloc
+    output["BLANK"] = tot_blank
 
     output["files"] = []
 
@@ -176,11 +182,14 @@ def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
         file_metrics = {
             "filename": file["filename"],
             "SLOC": file["SLOC"],
+            "PLOC": file["PLOC"],
             "LLOC": file["LLOC"],
             "CLOC": file["CLOC"],
+            "BLANK": file["BLANK"],
             "CC": file["CC"],
             "NARGS": file["NARGS"],
             "NEXITS": file["NEXITS"],
+            "NOM": file["NOM"],
             "Halstead": file["Halstead"],
             "functions": file["functions"],
         }

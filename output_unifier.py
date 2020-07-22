@@ -351,9 +351,9 @@ def _standardizer_tokei(data):
             per_file = {
                 "filename": reports["name"],
                 "SLOC": int(s["code"]) + int(s["comments"]) + int(s["blanks"]),
-                "LOC": int(s["code"]) + int(s["comments"]),
-                "LLOC": s["code"],
+                "PLOC": s["code"],
                 "CLOC": s["comments"],
+                "BLANK": s["blanks"],
                 "functions": [],  # Tokei does not give per-function information.
             }
 
@@ -370,6 +370,16 @@ def _standardizer_tokei(data):
 
 
 def _standardizer_rust_code_analysis(data):
+
+    def _get_nom(metrics):
+        nom = {}
+
+        nom["functions"] = int(metrics["nom"]["functions"])
+        nom["closures"] = int(metrics["nom"]["closures"])
+        nom["total"] = int(metrics["nom"]["total"])
+
+        return nom
+
     def _get_halstead(metrics):
         halstead = {}
 
@@ -396,11 +406,14 @@ def _standardizer_rust_code_analysis(data):
     per_file = {
         "filename": data["name"],
         "SLOC": int(metrics["loc"]["sloc"]),
-        "LLOC": int(metrics["loc"]["ploc"]),
+        "PLOC": int(metrics["loc"]["ploc"]),
+        "LLOC": int(metrics["loc"]["lloc"]),
         "CLOC": int(metrics["loc"]["cloc"]),
+        "BLANK": int(metrics["loc"]["blank"]),
         "CC": metrics["cyclomatic"],
         "NARGS": int(metrics["nargs"]),
         "NEXITS": int(metrics["nexits"]),
+        "NOM": _get_nom(metrics),
         "Halstead": _get_halstead(metrics),
         "functions": [],
     }
@@ -413,11 +426,14 @@ def _standardizer_rust_code_analysis(data):
 
             space_metrics = space["metrics"]
             space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
-            space_file["LLOC"] = int(space_metrics["loc"]["ploc"])
+            space_file["PLOC"] = int(space_metrics["loc"]["ploc"])
+            space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
             space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
+            space_file["BLANK"] = int(space_metrics["loc"]["blank"])
             space_file["CC"] = space_metrics["cyclomatic"]
             space_file["NARGS"] = int(space_metrics["nargs"])
             space_file["NEXITS"] = int(space_metrics["nexits"])
+            space_file["NOM"] = _get_nom(space_metrics)
             space_file["Halstead"] = _get_halstead(space_metrics)
 
             per_file["functions"].append(space_file)

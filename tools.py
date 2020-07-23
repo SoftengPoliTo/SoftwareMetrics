@@ -1,12 +1,14 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import json
 import os
-import subprocess
 import sys
 
+import tokei
+import halstead
+import mi
+import rust_code_analysis
+import cccc
+
 import output_unifier
+
 from exit_codes import ExitCode, log_debug, log_err, log_info
 
 ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "hh", "rs"]
@@ -25,30 +27,26 @@ class Tools:
         self.baseDir = os.path.realpath(wrapper_path)
 
         # TOOLS
-        self.CCCC = os.path.join(self.baseDir, "CCCC", "cccc")
-        self.TOKEI = os.path.join(self.baseDir, "Tokei", "tokei")
-        self.RUST_CODE_ANALYSIS = os.path.join(
-            self.baseDir, "rust-code-analysis", "rust-code-analysis-cli"
-        )
-        self.HALSTEAD_TOOL = os.path.join(
-            self.baseDir, "Halstead_Metrics_Tool", "Halstead-Metrics.jar"
-        )
-        self.MI_TOOL = os.path.join(self.baseDir, "Maintainability_Index", "lizard")
+        self.cccc_tool = cccc.Cccc(self.baseDir)
+        self.halstead_tool = halstead.Halstead(self.baseDir)
+        self.mi_tool = mi.Mi(self.baseDir)
+        self.rca_tool = rust_code_analysis.RustCodeAnalysis(self.baseDir)
+        self.tokei_tool = tokei.Tokei(self.baseDir)
 
         self._tool_matcher = {
-            "mi": self.run_n_parse_mi,
-            "tokei": self.run_n_parse_tokei,
-            "cccc": self.run_n_parse_cccc,
-            "halstead": self.run_n_parse_halstead,
-            "rust-code-analysis": self.run_n_parse_rust_code_analysis,
+            "mi": self.mi_tool.run_n_parse_mi,
+            "tokei": self.tokei_tool.run_n_parse_tokei,
+            "cccc": self.cccc_tool.run_n_parse_cccc,
+            "halstead": self.halstead_tool.run_n_parse_halstead,
+            "rust-code-analysis": self.rca_tool.run_n_parse_rust_code_analysis,
         }
 
         self._tool_extensions = {
-            "mi": ["c", "cc", "cpp", "c++"],
-            "tokei": ACCEPTED_EXTENSIONS,
-            "cccc": ["c", "cc", "cpp", "c++", "h", "hpp", "hh"],
-            "halstead": ["c", "cc", "cpp", "c++"],
-            "rust-code-analysis": ACCEPTED_EXTENSIONS,
+            "mi": mi.MI_EXTENSIONS,
+            "tokei": tokei.TOKEI_EXTENSIONS,
+            "cccc": cccc.CCCC_EXTENSIONS,
+            "halstead": halstead.HALSTEAD_EXCEPTIONS,
+            "rust-code-analysis": rust_code_analysis.RCA_EXTENSIONS,
         }
 
         self._enabled_tools = list(self._tool_matcher.keys())
@@ -72,11 +70,11 @@ class Tools:
             )
 
         tool_path = {
-            "tokei": self.TOKEI,
-            "rust-code-analysis": self.RUST_CODE_ANALYSIS,
-            "cccc": self.CCCC,
-            "mi": self.MI_TOOL,
-            "halstead": self.HALSTEAD_TOOL,
+            "tokei": self.tokei_tool.tokei_path,
+            "rust-code-analysis": self.rca_tool.rust_code_analysis_path,
+            "cccc": self.cccc_tool.cccc_path,
+            "mi": self.mi_tool.mi_path,
+            "halstead": self.halstead_tool.halstead_path,
         }
 
         for name in self._enabled_tools:
@@ -87,143 +85,6 @@ class Tools:
                     ExitCode.TOOLS_NOT_FOUND,
                     self.baseDir,
                 )
-
-    def _output_subdir(self, output_dir):
-        output_subdir = os.path.join(output_dir, "outputs")
-        if not os.path.exists(output_subdir):
-            os.mkdir(output_subdir)
-        return output_subdir
-
-    def _run_tool_cccc(self, files_list: list, output_dir: str):
-        try:
-            output_subdir = self._output_subdir(output_dir)
-
-            args = [self.CCCC, "--outdir=" + output_subdir]
-            args.extend(files_list)
-            return subprocess.run(args, capture_output=True, check=True)
-
-        except subprocess.CalledProcessError as ex:
-            log_err(
-                "\tCCCC exited with an error.\n{}\n{}\n",
-                ExitCode.CCCC_TOOL_ERR,
-                ex.stdout,
-                ex.stderr,
-            )
-
-    def _run_tool_mi(self, files_list: list):
-        try:
-            args = [self.MI_TOOL, "-X"]
-            args.extend(files_list)
-            results = subprocess.run(args, capture_output=True, check=True)
-            return results.stdout
-
-        except subprocess.CalledProcessError as ex:
-            log_err(
-                "\tMaintainability Index Tool exited with an error.\n{}\n{}\n",
-                ExitCode.MI_TOOL_ERR,
-                ex.stdout,
-                ex.stderr,
-            )
-
-    def _run_tool_tokei(self, files_list: list):
-        try:
-            args = [self.TOKEI, "-o", "json"]
-            args.extend(files_list)
-            results = subprocess.run(args, capture_output=True, check=True)
-            return results.stdout
-
-        except subprocess.CalledProcessError as ex:
-            log_err(
-                "\tTokei exited with an error.\n{}\n{}\n",
-                ExitCode.TOKEI_TOOL_ERR,
-                ex.stdout,
-                ex.stderr,
-            )
-
-    def _run_tool_rust_code_analysis(self, files_list: list, output_dir: str):
-        try:
-            output_subdir = os.path.join(self._output_subdir(output_dir))
-            args = [
-                self.RUST_CODE_ANALYSIS,
-                "-m",
-                "-O",
-                "json",
-                "-p",
-            ]
-            args.extend(files_list)
-            results = subprocess.run(args, capture_output=True, check=True)
-            return results.stdout
-
-        except subprocess.CalledProcessError as ex:
-            log_err(
-                "\trust-code-analysis exited with an error.\n{}\n{}\n",
-                ExitCode.RUST_CODE_ANALYSIS_TOOL_ERR,
-                ex.stdout,
-                ex.stderr,
-            )
-
-    def _run_tool_halstead(self, path_to_analyze: str):
-        try:
-            results = subprocess.run(
-                [
-                    "/usr/bin/java",
-                    "-Duser.country=US",
-                    "-Duser.language=en",
-                    "-jar",
-                    self.HALSTEAD_TOOL,
-                    path_to_analyze,
-                ],
-                capture_output=True,
-                check=True,
-            )
-            return results.stdout
-
-        except subprocess.CalledProcessError as ex:
-            log_err(
-                "\tHalstead Metric Tool exited with an error.\n{}\n{}\n",
-                ExitCode.HALSTEAD_TOOL_ERR,
-                ex.stdout,
-                ex.stderr,
-            )
-
-    def run_n_parse_cccc(self, files_list: list, output_dir: os.path):
-        self._run_tool_cccc(files_list, output_dir)
-        return output_unifier.cccc_output_reader(os.path.join(output_dir, "outputs"))
-
-    def run_n_parse_tokei(self, files_list: list, output_dir: os.path):
-        tokei_output_res = self._run_tool_tokei(files_list)
-        return output_unifier.tokei_output_reader(tokei_output_res.decode())
-
-    def run_n_parse_rust_code_analysis(self, files_list: list, output_dir: os.path):
-        rust_code_analysis_output_res = self._run_tool_rust_code_analysis(
-            files_list, output_dir
-        )
-        return output_unifier.rust_code_analysis_output_reader(
-            rust_code_analysis_output_res.decode()
-        )
-
-    def run_n_parse_mi(self, files_list: list, output_dir: os.path):
-        mi_tool_res = self._run_tool_mi(files_list)
-        return output_unifier.mi_tool_output_reader(mi_tool_res.decode())
-
-    def run_n_parse_halstead(self, files_list: list, output_dir: os.path):
-        results = []
-        for file in files_list:
-            results.append(self._run_n_parse_halstead(file, output_dir))
-        return results
-
-    def run_n_parse_halstead_dir(self, path_to_analyze: os.path, output_dir: os.path):
-        return analyze_path(
-            self,
-            path_to_analyze,
-            _SUPPORTED_EXTENSIONS_HALSTEAD_TOOL_,
-            self._run_n_parse_halstead,
-            output_dir,
-        )
-
-    def _run_n_parse_halstead(self, file: os.path, output_dir: str):
-        hm_tool_res = self._run_tool_halstead(file)
-        return output_unifier.halstead_metric_tool_reader(hm_tool_res)
 
     def _run_tool(self, name, tool_files, outputs, output_dir):
         print("Running {}...".format(name))
@@ -241,13 +102,17 @@ class Tools:
         outputs = {}
 
         if not files_list:
-            self.files_to_analyze = list_of_files(path_to_analyze, ACCEPTED_EXTENSIONS)
+            self.files_to_analyze = list_of_files(
+                path_to_analyze, ACCEPTED_EXTENSIONS
+            )
         else:
             self.files_to_analyze = files_list
 
         # Check extensions supported by tools
         filtered_files_per_tool = {}
-        current_enabled_tools = [tool_name for tool_name in self._enabled_tools]
+        current_enabled_tools = [
+            tool_name for tool_name in self._enabled_tools
+        ]
         for tool_name in current_enabled_tools:
             filtered_files = _filter_unsupported_files(
                 self.files_to_analyze, self._tool_extensions.get(tool_name)
@@ -272,7 +137,9 @@ class Tools:
             self._enabled_tools.remove("rust-code-analysis")
 
         for name in self._enabled_tools:
-            self._run_tool(name, filtered_files_per_tool[name], outputs, output_dir)
+            self._run_tool(
+                name, filtered_files_per_tool[name], outputs, output_dir
+            )
 
         self.raw_output = outputs
 
@@ -280,10 +147,14 @@ class Tools:
         return self.raw_output.get(tool_name, {})
 
     def get_output(self, one_json_per_tool):
-        return output_unifier.unifier(self, self.files_to_analyze, one_json_per_tool)
+        return output_unifier.unifier(
+            self, self.files_to_analyze, one_json_per_tool
+        )
 
 
-def analyze_path(tool: Tools, path, accepted_extensions, run_n_parse_funct, output_dir):
+def analyze_path(
+    tool: Tools, path, accepted_extensions, run_n_parse_funct, output_dir
+):
     results = []
     _analyze_path(
         tool, path, accepted_extensions, run_n_parse_funct, output_dir, results
@@ -334,7 +205,9 @@ def list_of_files(path: os.path, accepted_extensions: list) -> list:
     return all_files
 
 
-def _list_of_files(path: os.path, accepted_extensions: list, output_list: list):
+def _list_of_files(
+    path: os.path, accepted_extensions: list, output_list: list
+):
     if os.path.isfile(path):
         base_name = os.path.basename(path)
         extension = base_name[base_name.rfind(".") + 1 :]

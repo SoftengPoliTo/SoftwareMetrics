@@ -21,7 +21,7 @@ def test_rust_code_analysis_tokei_c() -> None:
         # Do not consider CLOC because comments are counted differently
         # among the two software.
         ["SLOC", "PLOC"],
-        "C-C++",
+        "C",
         "resample.c",
     )
 

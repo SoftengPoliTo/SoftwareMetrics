@@ -17,7 +17,7 @@ def test_rust_code_analysis_tokei_c() -> None:
         "tokei",
         ["-g", "-f"],
         ["SLOC", "PLOC", "CLOC", "BLANK"],
-        "C-C++",
+        "C",
         "bubble_sort.c",
     )
 

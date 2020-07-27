@@ -2,6 +2,7 @@
 
 import argparse
 import datetime
+import pathlib
 import json
 import os
 import sys
@@ -143,7 +144,8 @@ def analyze(
     json_outputs = {}
     if test_mode:
         for tool in t.get_enabled_tools():
-            path = os.path.join(output_dir, output_name + "_" + tool + ".json")
+            output_final_name = output_name + "_" + pathlib.Path(path_to_analyze).name + ".json"
+            path = os.path.join(output_dir, output_final_name)
             json_output = save_output(formatted_outputs[tool], path)
             json_outputs[tool] = json_output
     else:

@@ -33,23 +33,36 @@ Used for: SLOC, LLOC, CLOC, BLANK
     * Building: Ok
     * Local installation: Ok
 
-    Can analyze an entire directory
+    Can analyze either a single file or an entire directory
 
 ### Rust Code Analysis
 
-Used for: SLOC, LLOC, CLOC, BLANK, NOM, CC, HALSTEAD, MI
+Used for: SLOC, PLOC, LLOC, CLOC, BLANK, NOM, CC, HALSTEAD, MI
 
     * Building: Ok
     * Local installation: Ok
 
-    Can analyze an entire directory
+    Can analyze either a single file or an entire directory
 
-## Metrics
+## Comparisons among different programming languages
 
-### Considered metrics
+To run the series of comparisons among the metrics produced by
+`rust-code-analysis` on some codes written in different programming languages,
+it is necessary to install `json-diff`:
+
+1. Install `npm` as described [here](https://nodejs.org/en/download/)
+2. Install `json-diff` following these [instructions](https://www.npmjs.com/package/json-diff)
+
+At this point, the results of the comparisons can be obtained in this way:
+
+```
+./compare.py
+```
+
+## Considered Metrics
 
 - SLOC
-- LOC
+- PLOC
 - LLOC
 - CLOC
 - CC
@@ -69,7 +82,7 @@ Used for: SLOC, LLOC, CLOC, BLANK, NOM, CC, HALSTEAD, MI
 
  - **SLOC:** Source Lines of Code. It returns the total number of lines in a file.
 
- - **LOC:** Lines of Code. It returns the number of instructions and comment lines in a file.
+ - **PLOC:** Physical Lines of Code. It returns the number of instructions and comment lines in a file.
 
  - **LLOC:** Logical Lines of Code. It returns the number of logical lines (statements) in a file.
 

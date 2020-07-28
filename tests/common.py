@@ -13,8 +13,10 @@ def _run_subprocess(cmd: str, *args: T.Any) -> int:
     return ret.returncode
 
 
-def _build_metrics_path(folder: str, tool_name: str) -> pathlib.Path:
-    output_file = folder + "_" + tool_name + ".json"
+def _build_metrics_path(
+    folder: str, tool_name: str, filename: str
+) -> pathlib.Path:
+    output_file = tool_name + "_" + filename + ".json"
     return RESULTS_DIR / folder / output_file
 
 
@@ -50,8 +52,8 @@ def compare(
         "-m",
         *metrics,
         "-i",
-        _build_metrics_path(folder, first_tool_name),
-        _build_metrics_path(folder, second_tool_name),
+        _build_metrics_path(folder, first_tool_name, filename),
+        _build_metrics_path(folder, second_tool_name, filename),
     )
 
     if ret_value != 0:

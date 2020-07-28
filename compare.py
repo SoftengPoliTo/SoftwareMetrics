@@ -49,8 +49,8 @@ def run_subprocess(cmd: str, *args: T.Any) -> subprocess.CompletedProcess:
 
 
 def build_json_name(directory: str, filename: str) -> pathlib.Path:
-    output_file = directory + "_" + filename + EXTENSIONS[directory] + ".json"
-    return RESULTS_DIR / directory / output_file
+    output_file = "rust-code-analysis" + "_" + filename + EXTENSIONS[directory]
+    return RESULTS_DIR / directory / (output_file + ".json")
 
 
 def compute_metrics(directory: str, filename: str) -> None:

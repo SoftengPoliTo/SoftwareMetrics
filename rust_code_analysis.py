@@ -1,4 +1,5 @@
 import json
+import math
 import os
 import subprocess
 
@@ -25,12 +26,18 @@ class RustCodeAnalysis:
     def run_n_parse_rust_code_analysis(
         self, files_list: list, output_dir: os.path
     ):
-        rust_code_analysis_output_res = self.run_tool_rust_code_analysis(
-            files_list, output_dir
-        )
-        return json.loads(rust_code_analysis_output_res.decode())
+        list_of_files = {"files": []}
+        for single_file in files_list:
+            rust_code_analysis_output_res = self.run_tool_rust_code_analysis(
+                single_file, output_dir
+            )
+            list_of_files["files"].append(
+                json.loads(rust_code_analysis_output_res.decode())
+            )
 
-    def run_tool_rust_code_analysis(self, files_list: list, output_dir: str):
+        return list_of_files
+
+    def run_tool_rust_code_analysis(self, single_file: str, output_dir: str):
         try:
             args = [
                 self.rust_code_analysis_path,
@@ -39,7 +46,7 @@ class RustCodeAnalysis:
                 "json",
                 "-p",
             ]
-            args.extend(files_list)
+            args.append(single_file)
             results = subprocess.run(args, capture_output=True, check=True)
             return results.stdout
 
@@ -52,7 +59,8 @@ class RustCodeAnalysis:
             )
 
 
-def standardizer_rust_code_analysis(data):
+def standardizer_rust_code_analysis(data_list):
+    # FIXME: Add all spaces, parse them recursively
     def _get_nom(metrics):
         nom = {}
 
@@ -73,8 +81,10 @@ def standardizer_rust_code_analysis(data):
         halstead["Length"] = int(metrics["halstead"]["length"])
         halstead["Volume"] = metrics["halstead"]["volume"]
         halstead["Difficulty"] = metrics["halstead"]["difficulty"]
+        halstead["Level"] = metrics["halstead"]["level"]
         halstead["Effort"] = metrics["halstead"]["effort"]
         halstead["Programming time"] = metrics["halstead"]["time"]
+        halstead["Bugs"] = metrics["halstead"]["bugs"]
         halstead["Estimated program length"] = metrics["halstead"][
             "estimated_program_length"
         ]
@@ -84,53 +94,125 @@ def standardizer_rust_code_analysis(data):
 
     formatted_output = {"files": []}
 
-    metrics = data["metrics"]
-    per_file = {
-        "filename": data["name"],
-        "SLOC": int(metrics["loc"]["sloc"]),
-        "PLOC": int(metrics["loc"]["ploc"]),
-        "LLOC": int(metrics["loc"]["lloc"]),
-        "CLOC": int(metrics["loc"]["cloc"]),
-        "BLANK": int(metrics["loc"]["blank"]),
-        "CC": metrics["cyclomatic"],
-        "NARGS": int(metrics["nargs"]),
-        "NEXITS": int(metrics["nexits"]),
-        "NOM": _get_nom(metrics),
-        "Halstead": _get_halstead(metrics),
-        "functions": [],
-    }
+    for data in data_list["files"]:
+        metrics = data["metrics"]
+        per_file = {
+            "filename": data["name"],
+            "SLOC": int(metrics["loc"]["sloc"]),
+            "PLOC": int(metrics["loc"]["ploc"]),
+            "LLOC": int(metrics["loc"]["lloc"]),
+            "CLOC": int(metrics["loc"]["cloc"]),
+            "BLANK": int(metrics["loc"]["blank"]),
+            "CC": metrics["cyclomatic"],
+            "NARGS": int(metrics["nargs"]),
+            "NEXITS": int(metrics["nexits"]),
+            "NOM": _get_nom(metrics),
+            "Halstead": _get_halstead(metrics),
+            "functions": [],
+        }
 
-    for space in data["spaces"]:
-        if space["kind"] == "function":
-            space_file = {}
-            space_file["function name"] = space["name"]
-            space_file["line number"] = space["start_line"]
+        for space in data["spaces"]:
+            if space["kind"] == "function":
+                space_file = {}
+                space_file["function name"] = space["name"]
+                space_file["line number"] = space["start_line"]
 
-            space_metrics = space["metrics"]
-            space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
-            space_file["PLOC"] = int(space_metrics["loc"]["ploc"])
-            space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
-            space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
-            space_file["BLANK"] = int(space_metrics["loc"]["blank"])
-            space_file["CC"] = space_metrics["cyclomatic"]
-            space_file["NARGS"] = int(space_metrics["nargs"])
-            space_file["NEXITS"] = int(space_metrics["nexits"])
-            space_file["NOM"] = _get_nom(space_metrics)
-            space_file["Halstead"] = _get_halstead(space_metrics)
+                space_metrics = space["metrics"]
+                space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
+                space_file["PLOC"] = int(space_metrics["loc"]["ploc"])
+                space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
+                space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
+                space_file["BLANK"] = int(space_metrics["loc"]["blank"])
+                space_file["CC"] = space_metrics["cyclomatic"]
+                space_file["NARGS"] = int(space_metrics["nargs"])
+                space_file["NEXITS"] = int(space_metrics["nexits"])
+                space_file["NOM"] = _get_nom(space_metrics)
+                space_file["Halstead"] = _get_halstead(space_metrics)
 
-            per_file["functions"].append(space_file)
+                per_file["functions"].append(space_file)
 
-    formatted_output["files"].append(per_file)
+        formatted_output["files"].append(per_file)
 
     return formatted_output
 
 
 def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
+
+    # FIXME: CC, MI
     tot_sloc = 0
     tot_ploc = 0
     tot_lloc = 0
     tot_cloc = 0
     tot_blank = 0
+    tot_halstead_n1 = 0
+    tot_halstead_n2 = 0
+    tot_halstead_N1 = 0
+    tot_halstead_N2 = 0
+    tot_functions = 0
+    tot_closures = 0
+    tot_functions_and_closures = 0
+    tot_nexits = 0
+    tot_nargs = 0
+
+    def _global_halstead():
+        vocabulary = tot_halstead_n1 + tot_halstead_n2
+        length = tot_halstead_N1 + tot_halstead_N2
+        volume = length * math.log2(vocabulary)
+        difficulty = tot_halstead_n1 / 2.0 * tot_halstead_N2 / tot_halstead_n2
+        level = 1.0 / difficulty
+        effort = difficulty * volume
+        prog_time = effort / 18.0
+        bugs = math.pow(effort, (2.0 / 3.0)) / 3000.0
+        est_prog_length = tot_halstead_n1 * math.log2(
+            tot_halstead_n1
+        ) + tot_halstead_n2 * math.log2(tot_halstead_n2)
+        purity_ratio = est_prog_length / length
+        return {
+            "n1": tot_halstead_n1,
+            "n2": tot_halstead_n2,
+            "N1": tot_halstead_N1,
+            "N2": tot_halstead_N2,
+            "Vocabulary": vocabulary,
+            "Length": length,
+            "Volume": volume,
+            "Difficulty": difficulty,
+            "Level": level,
+            "Effort": effort,
+            "Programming time": prog_time,
+            "Bugs": bugs,
+            "Estimated program length": est_prog_length,
+            "Purity ratio": purity_ratio,
+        }
+
+    def _global_mi(
+        sloc, cloc, cc, halstead_length, halstead_volume, halstead_vocabulary
+    ):
+        comments_percentage = cloc / sloc
+        mi_visual_studio = (
+            171.0
+            - 5.2 * math.ln(halstead_volume)
+            - 0.23 * cc
+            - 16.2 * math.ln(sloc)
+        )
+        return {
+            "mi_original": 171.0
+            - 5.2 * math.ln(halstead_volume)
+            - 0.23 * cc
+            - 16.2 * math.ln(sloc),
+            "mi_sei": 171.0
+            - 5.2 * math.log2(halstead_volume)
+            - 0.23 * cc
+            - 16.2 * math.log2(sloc)
+            + 50.0 * math.sin(math.sqrt(comments_peentage * 2.4)),
+            "mi_visual_studio": math.max((formula * 100.0 / 171.0), 0.0),
+        }
+
+    def _global_nom():
+        return {
+            "functions": tot_functions,
+            "closures": tot_closures,
+            "total": tot_functions_and_closures,
+        }
 
     for file in standardized_output["files"]:
         tot_sloc += file["SLOC"]
@@ -138,12 +220,33 @@ def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
         tot_lloc += file["LLOC"]
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
+        tot_halstead_n1 += file["Halstead"]["n1"]
+        tot_halstead_n2 += file["Halstead"]["n2"]
+        tot_halstead_N1 += file["Halstead"]["N1"]
+        tot_halstead_N2 += file["Halstead"]["N2"]
+        tot_functions += file["NOM"]["functions"]
+        tot_closures += file["NOM"]["closures"]
+        tot_functions_and_closures += file["NOM"]["total"]
+        tot_nexits += file["NEXITS"]
+        tot_nargs += file["NARGS"]
 
     output["SLOC"] = tot_sloc
     output["PLOC"] = tot_ploc
     output["LLOC"] = tot_lloc
     output["CLOC"] = tot_cloc
     output["BLANK"] = tot_blank
+    output["HALSTEAD"] = _global_halstead()
+    output["NOM"] = _global_nom()
+    """output["MI"] = _global_mi(
+        output["SLOC"],
+        output["CLOC"],
+        output["CC"],
+        output["HALSTEAD"]["length"],
+        output["HALSTEAD"]["volume"],
+        output["HALSTEAD"]["vocabulary"]
+    )"""
+    output["NEXITS"] = tot_nexits
+    output["NARGS"] = tot_nargs
 
     output["files"] = []
 

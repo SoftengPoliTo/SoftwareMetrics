@@ -108,7 +108,7 @@ def standardizer_rust_code_analysis(data_list):
             "NEXITS": int(metrics["nexits"]),
             "NOM": _get_nom(metrics),
             "Halstead": _get_halstead(metrics),
-            "functions": [],
+            "spaces": [],
         }
 
         for space in data["spaces"]:
@@ -129,14 +129,14 @@ def standardizer_rust_code_analysis(data_list):
                 space_file["NOM"] = _get_nom(space_metrics)
                 space_file["Halstead"] = _get_halstead(space_metrics)
 
-                per_file["functions"].append(space_file)
+                per_file["spaces"].append(space_file)
 
         formatted_output["files"].append(per_file)
 
     return formatted_output
 
 
-def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
+def helper_test_rust_code_analysis(standardized_output: dict):
 
     # FIXME: CC, MI
     tot_sloc = 0
@@ -230,6 +230,8 @@ def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
         tot_nexits += file["NEXITS"]
         tot_nargs += file["NARGS"]
 
+    output = {}
+
     output["SLOC"] = tot_sloc
     output["PLOC"] = tot_ploc
     output["LLOC"] = tot_lloc
@@ -263,6 +265,8 @@ def helper_test_rust_code_analysis(standardized_output: dict, output: dict):
             "NEXITS": file["NEXITS"],
             "NOM": file["NOM"],
             "Halstead": file["Halstead"],
-            "functions": file["functions"],
+            "spaces": file["spaces"],
         }
         output["files"].append(file_metrics)
+
+    return output

@@ -35,16 +35,6 @@ def standardizer_tokei(data):
     formatted_output = {"files": []}
 
     for d in data:
-        if d not in [
-            "C",
-            "Cpp",
-            "CHeader",
-            "CppHeader",
-            "Rust",
-        ]:  # FILTER: Only prints these types.
-            log_debug("\t(_standardizer_tokei) Skipping data of type '{}'", d)
-            continue
-
         for reports in data[d]["reports"]:
 
             s = reports["stats"]
@@ -54,7 +44,7 @@ def standardizer_tokei(data):
                 "PLOC": s["code"],
                 "CLOC": s["comments"],
                 "BLANK": s["blanks"],
-                "functions": [],  # Tokei does not give per-function information.
+                "spaces": [],  # Tokei does not consider per-spaces information
             }
 
             # Tokei discriminates CHeaders from CppHeaders from the extension.
@@ -69,22 +59,7 @@ def standardizer_tokei(data):
     return formatted_output
 
 
-def helper_tokei(standardized_output: dict):
-    tot_loc = 0
-    tot_cloc = 0
-    tot_sloc = 0
-
-    for file in standardized_output["files"]:
-        tot_sloc += file["SLOC"]
-        tot_loc += file["LOC"]
-        tot_cloc += file["CLOC"]
-
-    standardized_output["SLOC"] = tot_sloc
-    standardized_output["LOC"] = tot_loc
-    standardized_output["CLOC"] = tot_cloc
-
-
-def helper_test_tokei(standardized_output: dict, output: dict):
+def helper_test_tokei(standardized_output: dict):
     tot_sloc = 0
     tot_ploc = 0
     tot_cloc = 0
@@ -96,6 +71,7 @@ def helper_test_tokei(standardized_output: dict, output: dict):
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
 
+    output = {}
     output["SLOC"] = tot_sloc
     output["PLOC"] = tot_ploc
     output["CLOC"] = tot_cloc
@@ -110,6 +86,8 @@ def helper_test_tokei(standardized_output: dict, output: dict):
             "PLOC": file["PLOC"],
             "CLOC": file["CLOC"],
             "BLANK": file["BLANK"],
-            "functions": file["functions"],
+            "spaces": file["spaces"],
         }
         output["files"].append(file_metrics)
+
+    return output

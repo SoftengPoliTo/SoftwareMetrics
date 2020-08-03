@@ -60,7 +60,6 @@ class RustCodeAnalysis:
 
 
 def standardizer_rust_code_analysis(data_list):
-    # FIXME: Add all spaces, parse them recursively
     def _get_nom(metrics):
         nom = {}
 
@@ -92,7 +91,37 @@ def standardizer_rust_code_analysis(data_list):
 
         return halstead
 
+    def _get_space(write_space, space_data):
+        nspace = 0
+        for space in space_data:
+            nspace += 1
+            space_file = {}
+            space_file["name"] = space["name"]
+            space_file["kind"] = space["kind"]
+            space_file["start_line"] = space["start_line"]
+            space_file["end_line"] = space["end_line"]
+
+            space_metrics = space["metrics"]
+            space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
+            space_file["PLOC"] = int(space_metrics["loc"]["ploc"])
+            space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
+            space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
+            space_file["BLANK"] = int(space_metrics["loc"]["blank"])
+            space_file["CC"] = space_metrics["cyclomatic"]
+            space_file["NARGS"] = int(space_metrics["nargs"])
+            space_file["NEXITS"] = int(space_metrics["nexits"])
+            space_file["NOM"] = _get_nom(space_metrics)
+            space_file["Halstead"] = _get_halstead(space_metrics)
+
+            if space["spaces"]:
+                space_file["spaces"] = []
+                nspace += _get_space(space_file, space["spaces"])
+
+            write_space["spaces"].append(space_file)
+        return nspace
+
     formatted_output = {"files": []}
+    nspace = 0
 
     for data in data_list["files"]:
         metrics = data["metrics"]
@@ -111,34 +140,17 @@ def standardizer_rust_code_analysis(data_list):
             "spaces": [],
         }
 
-        for space in data["spaces"]:
-            if space["kind"] == "function":
-                space_file = {}
-                space_file["function name"] = space["name"]
-                space_file["line number"] = space["start_line"]
-
-                space_metrics = space["metrics"]
-                space_file["SLOC"] = int(space_metrics["loc"]["sloc"])
-                space_file["PLOC"] = int(space_metrics["loc"]["ploc"])
-                space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
-                space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
-                space_file["BLANK"] = int(space_metrics["loc"]["blank"])
-                space_file["CC"] = space_metrics["cyclomatic"]
-                space_file["NARGS"] = int(space_metrics["nargs"])
-                space_file["NEXITS"] = int(space_metrics["nexits"])
-                space_file["NOM"] = _get_nom(space_metrics)
-                space_file["Halstead"] = _get_halstead(space_metrics)
-
-                per_file["spaces"].append(space_file)
+        nspace += _get_space(per_file, data["spaces"])
 
         formatted_output["files"].append(per_file)
 
-    return formatted_output
+    return (formatted_output, nspace)
 
 
-def helper_test_rust_code_analysis(standardized_output: dict):
+def helper_test_rust_code_analysis(standardized_output: dict, nspace: int = 0):
 
     # FIXME: CC, MI
+    print(nspace)
     tot_sloc = 0
     tot_ploc = 0
     tot_lloc = 0

@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+import typing as T
 
 from exit_codes import ExitCode, log_debug, log_err
 
@@ -56,10 +57,10 @@ def standardizer_tokei(data):
 
             formatted_output["files"].append(per_file)
 
-    return (formatted_output, 0)
+    return (formatted_output, [])
 
 
-def helper_test_tokei(standardized_output: dict, spaces=0):
+def helper_test_tokei(standardized_output: dict, _files_nspaces: T.List):
     tot_sloc = 0
     tot_ploc = 0
     tot_cloc = 0

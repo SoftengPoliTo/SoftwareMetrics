@@ -2,6 +2,7 @@ import json
 import math
 import os
 import subprocess
+import typing as T
 
 from exit_codes import ExitCode, log_err
 
@@ -91,6 +92,14 @@ def standardizer_rust_code_analysis(data_list):
 
         return halstead
 
+    def _get_mi(metrics):
+        mi = {}
+        mi["Original"] = metrics["mi"]["mi_original"]
+        mi["Sei"] = metrics["mi"]["mi_sei"]
+        mi["Visual Studio"] = metrics["mi"]["mi_visual_studio"]
+
+        return mi
+
     def _get_space(write_space, space_data):
         nspace = 0
         for space in space_data:
@@ -112,6 +121,7 @@ def standardizer_rust_code_analysis(data_list):
             space_file["NEXITS"] = int(space_metrics["nexits"])
             space_file["NOM"] = _get_nom(space_metrics)
             space_file["Halstead"] = _get_halstead(space_metrics)
+            space_file["Mi"] = _get_mi(space_metrics)
 
             if space["spaces"]:
                 space_file["spaces"] = []
@@ -121,7 +131,7 @@ def standardizer_rust_code_analysis(data_list):
         return nspace
 
     formatted_output = {"files": []}
-    nspace = 0
+    files_nspace = []
 
     for data in data_list["files"]:
         metrics = data["metrics"]
@@ -137,25 +147,27 @@ def standardizer_rust_code_analysis(data_list):
             "NEXITS": int(metrics["nexits"]),
             "NOM": _get_nom(metrics),
             "Halstead": _get_halstead(metrics),
+            "Mi": _get_mi(metrics),
             "spaces": [],
         }
 
-        nspace += _get_space(per_file, data["spaces"])
+        files_nspace.append(_get_space(per_file, data["spaces"]))
 
         formatted_output["files"].append(per_file)
 
-    return (formatted_output, nspace)
+    return (formatted_output, files_nspace)
 
 
-def helper_test_rust_code_analysis(standardized_output: dict, nspace: int = 0):
+def helper_test_rust_code_analysis(
+    standardized_output: dict, files_nspace: T.List
+):
 
-    # FIXME: CC, MI
-    print(nspace)
     tot_sloc = 0
     tot_ploc = 0
     tot_lloc = 0
     tot_cloc = 0
     tot_blank = 0
+    tot_cc = 0
     tot_halstead_n1 = 0
     tot_halstead_n2 = 0
     tot_halstead_N1 = 0
@@ -200,23 +212,20 @@ def helper_test_rust_code_analysis(standardized_output: dict, nspace: int = 0):
         sloc, cloc, cc, halstead_length, halstead_volume, halstead_vocabulary
     ):
         comments_percentage = cloc / sloc
-        mi_visual_studio = (
+        mi_original = (
             171.0
-            - 5.2 * math.ln(halstead_volume)
+            - 5.2 * math.log(halstead_volume)
             - 0.23 * cc
-            - 16.2 * math.ln(sloc)
+            - 16.2 * math.log(sloc)
         )
         return {
-            "mi_original": 171.0
-            - 5.2 * math.ln(halstead_volume)
-            - 0.23 * cc
-            - 16.2 * math.ln(sloc),
-            "mi_sei": 171.0
+            "Original": mi_original,
+            "Sei": 171.0
             - 5.2 * math.log2(halstead_volume)
             - 0.23 * cc
             - 16.2 * math.log2(sloc)
-            + 50.0 * math.sin(math.sqrt(comments_peentage * 2.4)),
-            "mi_visual_studio": math.max((formula * 100.0 / 171.0), 0.0),
+            + 50.0 * math.sin(math.sqrt(comments_percentage * 2.4)),
+            "Visual Studio": max((mi_original * 100.0 / 171.0), 0.0),
         }
 
     def _global_nom():
@@ -226,12 +235,13 @@ def helper_test_rust_code_analysis(standardized_output: dict, nspace: int = 0):
             "total": tot_functions_and_closures,
         }
 
-    for file in standardized_output["files"]:
+    for file, cc_file in zip(standardized_output["files"], files_nspace):
         tot_sloc += file["SLOC"]
         tot_ploc += file["PLOC"]
         tot_lloc += file["LLOC"]
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
+        tot_cc += file["CC"] * (cc_file + 1)  # Unit space counts as 1
         tot_halstead_n1 += file["Halstead"]["n1"]
         tot_halstead_n2 += file["Halstead"]["n2"]
         tot_halstead_N1 += file["Halstead"]["N1"]
@@ -249,18 +259,19 @@ def helper_test_rust_code_analysis(standardized_output: dict, nspace: int = 0):
     output["LLOC"] = tot_lloc
     output["CLOC"] = tot_cloc
     output["BLANK"] = tot_blank
-    output["HALSTEAD"] = _global_halstead()
+    output["CC"] = tot_cc / (sum(files_nspace) + len(files_nspace))
+    output["NARGS"] = tot_nargs
+    output["NEXITS"] = tot_nexits
     output["NOM"] = _global_nom()
-    """output["MI"] = _global_mi(
+    output["HALSTEAD"] = _global_halstead()
+    output["MI"] = _global_mi(
         output["SLOC"],
         output["CLOC"],
         output["CC"],
-        output["HALSTEAD"]["length"],
-        output["HALSTEAD"]["volume"],
-        output["HALSTEAD"]["vocabulary"]
-    )"""
-    output["NEXITS"] = tot_nexits
-    output["NARGS"] = tot_nargs
+        output["HALSTEAD"]["Length"],
+        output["HALSTEAD"]["Volume"],
+        output["HALSTEAD"]["Vocabulary"],
+    )
 
     output["files"] = []
 
@@ -277,6 +288,7 @@ def helper_test_rust_code_analysis(standardized_output: dict, nspace: int = 0):
             "NEXITS": file["NEXITS"],
             "NOM": file["NOM"],
             "Halstead": file["Halstead"],
+            "Mi": file["Mi"],
             "spaces": file["spaces"],
         }
         output["files"].append(file_metrics)

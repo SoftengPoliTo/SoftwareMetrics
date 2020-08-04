@@ -19,14 +19,14 @@ def unifier(tool_manager, files_to_analyze, one_json_per_tool):
     outputs = {}
     for tool in tool_manager.get_enabled_tools():
         # Standardize the output of each tool
-        standardized_output, nspace = globals()[
+        standardized_output, files_nspace = globals()[
             "standardizer_" + tool.replace("-", "_")
         ](tool_manager.get_tool_output(tool))
         # Compute the final global metrics starting from the standardized
         # output of a tool
         if tool_manager.get_tool_output(tool):
             outputs[tool] = globals()["helper_test_" + tool.replace("-", "_")](
-                standardized_output, nspace
+                standardized_output, files_nspace
             )
 
     return outputs

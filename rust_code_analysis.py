@@ -101,9 +101,7 @@ def standardizer_rust_code_analysis(data_list):
         return mi
 
     def _get_space(write_space, space_data):
-        nspace = 0
         for space in space_data:
-            nspace += 1
             space_file = {}
             space_file["name"] = space["name"]
             space_file["kind"] = space["kind"]
@@ -116,7 +114,7 @@ def standardizer_rust_code_analysis(data_list):
             space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
             space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
             space_file["BLANK"] = int(space_metrics["loc"]["blank"])
-            space_file["CC"] = space_metrics["cyclomatic"]
+            space_file["CC"] = space_metrics["cyclomatic"]["sum"]
             space_file["NARGS"] = int(space_metrics["nargs"])
             space_file["NEXITS"] = int(space_metrics["nexits"])
             space_file["NOM"] = _get_nom(space_metrics)
@@ -125,13 +123,11 @@ def standardizer_rust_code_analysis(data_list):
 
             if space["spaces"]:
                 space_file["spaces"] = []
-                nspace += _get_space(space_file, space["spaces"])
+                _get_space(space_file, space["spaces"])
 
             write_space["spaces"].append(space_file)
-        return nspace
 
     formatted_output = {"files": []}
-    files_nspace = []
 
     for data in data_list["files"]:
         metrics = data["metrics"]
@@ -142,7 +138,7 @@ def standardizer_rust_code_analysis(data_list):
             "LLOC": int(metrics["loc"]["lloc"]),
             "CLOC": int(metrics["loc"]["cloc"]),
             "BLANK": int(metrics["loc"]["blank"]),
-            "CC": metrics["cyclomatic"],
+            "CC": metrics["cyclomatic"]["sum"],
             "NARGS": int(metrics["nargs"]),
             "NEXITS": int(metrics["nexits"]),
             "NOM": _get_nom(metrics),
@@ -151,16 +147,14 @@ def standardizer_rust_code_analysis(data_list):
             "spaces": [],
         }
 
-        files_nspace.append(_get_space(per_file, data["spaces"]))
+        _get_space(per_file, data["spaces"])
 
         formatted_output["files"].append(per_file)
 
-    return (formatted_output, files_nspace)
+    return formatted_output
 
 
-def helper_test_rust_code_analysis(
-    standardized_output: dict, files_nspace: T.List
-):
+def helper_test_rust_code_analysis(standardized_output: dict):
 
     tot_sloc = 0
     tot_ploc = 0
@@ -235,13 +229,13 @@ def helper_test_rust_code_analysis(
             "total": tot_functions_and_closures,
         }
 
-    for file, cc_file in zip(standardized_output["files"], files_nspace):
+    for file in standardized_output["files"]:
         tot_sloc += file["SLOC"]
         tot_ploc += file["PLOC"]
         tot_lloc += file["LLOC"]
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
-        tot_cc += file["CC"] * (cc_file + 1)  # Unit space counts as 1
+        tot_cc += file["CC"]
         tot_halstead_n1 += file["Halstead"]["n1"]
         tot_halstead_n2 += file["Halstead"]["n2"]
         tot_halstead_N1 += file["Halstead"]["N1"]
@@ -259,7 +253,7 @@ def helper_test_rust_code_analysis(
     output["LLOC"] = tot_lloc
     output["CLOC"] = tot_cloc
     output["BLANK"] = tot_blank
-    output["CC"] = tot_cc / (sum(files_nspace) + len(files_nspace))
+    output["CC"] = tot_cc
     output["NARGS"] = tot_nargs
     output["NEXITS"] = tot_nexits
     output["NOM"] = _global_nom()

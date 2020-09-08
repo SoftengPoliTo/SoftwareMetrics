@@ -32,6 +32,7 @@ class Conf(enum.Enum):
 # Pair of files and configurations associated
 FILE_DICT = {
     "binarytrees": Conf.C_RUST.value,
+    "bubble_sort": Conf.C_RUST.value,
     "fannkuchredux": Conf.C_RUST.value,
     "fasta": Conf.C_RUST.value,
     "knucleotide": Conf.C_RUST.value,
@@ -113,7 +114,7 @@ def run_comparison(
 
     # Maintain only global metrics for each file
     for single_file in diff_json["files"]:
-        del single_file[1]["functions"]
+        del single_file[1]["spaces"]
 
     # Dump json file of difference
     output_path = COMPARE_DIR / output_dir / (filename + ".json")

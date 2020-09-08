@@ -1,0 +1,277 @@
+{
+    "SLOC": 247,
+    "PLOC": 135,
+    "LLOC": 56,
+    "CLOC": 56,
+    "BLANK": 56,
+    "CC": 27.0,
+    "NARGS": 0,
+    "NEXITS": 4,
+    "NOM": {
+        "functions": 4,
+        "closures": 0,
+        "total": 4
+    },
+    "HALSTEAD": {
+        "n1": 34,
+        "n2": 79,
+        "N1": 482,
+        "N2": 385,
+        "Vocabulary": 113,
+        "Length": 867,
+        "Volume": 5913.095160413968,
+        "Difficulty": 82.84810126582279,
+        "Level": 0.012070282658517952,
+        "Effort": 489888.7066444231,
+        "Programming time": 27216.039258023506,
+        "Bugs": 2.0714622848378177,
+        "Estimated program length": 670.9724157085027,
+        "Purity ratio": 0.7739012868610181
+    },
+    "MI": {
+        "Original": 30.376300563228924,
+        "Sei": 4.499605876006868,
+        "Visual Studio": 17.76391845802861
+    },
+    "files": [
+        {
+            "filename": "Assets/C/knucleotide.c",
+            "SLOC": 247,
+            "PLOC": 135,
+            "LLOC": 56,
+            "CLOC": 56,
+            "BLANK": 56,
+            "CC": 27.0,
+            "NARGS": 0,
+            "NEXITS": 4,
+            "NOM": {
+                "functions": 4,
+                "closures": 0,
+                "total": 4
+            },
+            "Halstead": {
+                "n1": 34,
+                "n2": 79,
+                "N1": 482,
+                "N2": 385,
+                "Vocabulary": 113,
+                "Length": 867,
+                "Volume": 5913.095160413968,
+                "Difficulty": 82.84810126582279,
+                "Level": 0.012070282658517952,
+                "Effort": 489888.7066444231,
+                "Programming time": 27216.039258023506,
+                "Bugs": 2.0714622848378177,
+                "Estimated program length": 670.9724157085027,
+                "Purity ratio": 0.7739012868610181
+            },
+            "Mi": {
+                "Original": 30.376300563228924,
+                "Sei": 4.499605876006868,
+                "Visual Studio": 17.76391845802861
+            },
+            "spaces": [
+                {
+                    "name": null,
+                    "kind": "struct",
+                    "start_line": 29,
+                    "end_line": 32,
+                    "SLOC": 4,
+                    "PLOC": 4,
+                    "LLOC": 0,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 1.0,
+                    "NARGS": 0,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 0,
+                        "closures": 0,
+                        "total": 0
+                    },
+                    "Halstead": {
+                        "n1": 3,
+                        "n2": 2,
+                        "N1": 5,
+                        "N2": 2,
+                        "Vocabulary": 5,
+                        "Length": 7,
+                        "Volume": 16.253496664211536,
+                        "Difficulty": 1.5,
+                        "Level": 0.6666666666666666,
+                        "Effort": 24.380244996317302,
+                        "Programming time": 1.3544580553509613,
+                        "Bugs": 0.002802662411680566,
+                        "Estimated program length": 6.754887502163468,
+                        "Purity ratio": 0.9649839288804954
+                    },
+                    "Mi": {
+                        "Original": 133.81282941204452,
+                        "Sei": 117.45207326746916,
+                        "Visual Studio": 78.25311661523071
+                    }
+                },
+                {
+                    "name": "element_Compare",
+                    "kind": "function",
+                    "start_line": 50,
+                    "end_line": 60,
+                    "SLOC": 11,
+                    "PLOC": 6,
+                    "LLOC": 5,
+                    "CLOC": 3,
+                    "BLANK": 2,
+                    "CC": 4.0,
+                    "NARGS": 2,
+                    "NEXITS": 3,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 13,
+                        "n2": 8,
+                        "N1": 27,
+                        "N2": 21,
+                        "Vocabulary": 21,
+                        "Length": 48,
+                        "Volume": 210.83123629338053,
+                        "Difficulty": 17.0625,
+                        "Level": 0.05860805860805861,
+                        "Effort": 3597.3079692558053,
+                        "Programming time": 199.85044273643362,
+                        "Bugs": 0.07825831483091096,
+                        "Estimated program length": 72.10571633583419,
+                        "Purity ratio": 1.5022024236632123
+                    },
+                    "Mi": {
+                        "Original": 103.4085950563288,
+                        "Sei": 110.07473513428087,
+                        "Visual Studio": 60.472862606040245
+                    }
+                },
+                {
+                    "name": "generate_Frequencies_For_Desired_Length_Oligonucleotides",
+                    "kind": "function",
+                    "start_line": 65,
+                    "end_line": 131,
+                    "SLOC": 67,
+                    "PLOC": 41,
+                    "LLOC": 18,
+                    "CLOC": 12,
+                    "BLANK": 14,
+                    "CC": 6.0,
+                    "NARGS": 4,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 25,
+                        "n2": 40,
+                        "N1": 178,
+                        "N2": 137,
+                        "Vocabulary": 65,
+                        "Length": 315,
+                        "Volume": 1897.045861103963,
+                        "Difficulty": 42.8125,
+                        "Level": 0.02335766423357664,
+                        "Effort": 81217.27592851342,
+                        "Programming time": 4512.0708849174125,
+                        "Bugs": 0.6251405798301125,
+                        "Estimated program length": 328.9735285398626,
+                        "Purity ratio": 1.044360408063056
+                    },
+                    "Mi": {
+                        "Original": 62.25410321062918,
+                        "Sei": 45.20669176373086,
+                        "Visual Studio": 36.405908310309464
+                    }
+                },
+                {
+                    "name": "generate_Count_For_Oligonucleotide",
+                    "kind": "function",
+                    "start_line": 136,
+                    "end_line": 180,
+                    "SLOC": 45,
+                    "PLOC": 27,
+                    "LLOC": 13,
+                    "CLOC": 8,
+                    "BLANK": 10,
+                    "CC": 6.0,
+                    "NARGS": 4,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 20,
+                        "n2": 31,
+                        "N1": 122,
+                        "N2": 102,
+                        "Vocabulary": 51,
+                        "Length": 224,
+                        "Volume": 1270.6232766016149,
+                        "Difficulty": 32.903225806451616,
+                        "Level": 0.030392156862745094,
+                        "Effort": 41807.60458495637,
+                        "Programming time": 2322.6446991642424,
+                        "Bugs": 0.4015277838922641,
+                        "Estimated program length": 240.0186475197404,
+                        "Purity ratio": 1.0715118192845554
+                    },
+                    "Mi": {
+                        "Original": 70.78630095989944,
+                        "Sei": 57.419542462309025,
+                        "Visual Studio": 41.39549763736809
+                    }
+                },
+                {
+                    "name": "main",
+                    "kind": "function",
+                    "start_line": 183,
+                    "end_line": 247,
+                    "SLOC": 65,
+                    "PLOC": 45,
+                    "LLOC": 20,
+                    "CLOC": 9,
+                    "BLANK": 11,
+                    "CC": 9.0,
+                    "NARGS": 0,
+                    "NEXITS": 1,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 19,
+                        "n2": 36,
+                        "N1": 136,
+                        "N2": 109,
+                        "Vocabulary": 55,
+                        "Length": 245,
+                        "Volume": 1416.4331298135417,
+                        "Difficulty": 28.76388888888889,
+                        "Level": 0.03476581361661033,
+                        "Effort": 40742.12516449785,
+                        "Programming time": 2263.4513980276583,
+                        "Bugs": 0.3946764359272125,
+                        "Estimated program length": 266.82792280735134,
+                        "Purity ratio": 1.089093562478985
+                    },
+                    "Mi": {
+                        "Original": 63.574261255078184,
+                        "Sei": 44.18682649988503,
+                        "Visual Studio": 37.177930558525254
+                    }
+                }
+            ]
+        }
+    ]
+}

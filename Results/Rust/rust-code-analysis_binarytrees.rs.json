@@ -1,0 +1,361 @@
+{
+    "SLOC": 75,
+    "PLOC": 56,
+    "LLOC": 74,
+    "CLOC": 7,
+    "BLANK": 12,
+    "CC": 12.0,
+    "NARGS": 0,
+    "NEXITS": 3,
+    "NOM": {
+        "functions": 4,
+        "closures": 3,
+        "total": 7
+    },
+    "HALSTEAD": {
+        "n1": 22,
+        "n2": 43,
+        "N1": 193,
+        "N2": 140,
+        "Vocabulary": 65,
+        "Length": 333,
+        "Volume": 2005.4484817384753,
+        "Difficulty": 35.81395348837209,
+        "Level": 0.02792207792207792,
+        "Effort": 71823.03864830818,
+        "Programming time": 3990.168813794899,
+        "Bugs": 0.5759541722145377,
+        "Estimated program length": 331.4368800622107,
+        "Purity ratio": 0.9953059461327649
+    },
+    "MI": {
+        "Original": 58.75785297946959,
+        "Sei": 33.08134287773029,
+        "Visual Studio": 34.36131753185356
+    },
+    "files": [
+        {
+            "filename": "Assets/Rust/binarytrees.rs",
+            "SLOC": 75,
+            "PLOC": 56,
+            "LLOC": 74,
+            "CLOC": 7,
+            "BLANK": 12,
+            "CC": 12.0,
+            "NARGS": 0,
+            "NEXITS": 3,
+            "NOM": {
+                "functions": 4,
+                "closures": 3,
+                "total": 7
+            },
+            "Halstead": {
+                "n1": 22,
+                "n2": 43,
+                "N1": 193,
+                "N2": 140,
+                "Vocabulary": 65,
+                "Length": 333,
+                "Volume": 2005.4484817384753,
+                "Difficulty": 35.81395348837209,
+                "Level": 0.02792207792207792,
+                "Effort": 71823.03864830818,
+                "Programming time": 3990.168813794899,
+                "Bugs": 0.5759541722145377,
+                "Estimated program length": 331.4368800622107,
+                "Purity ratio": 0.9953059461327649
+            },
+            "Mi": {
+                "Original": 58.75785297946959,
+                "Sei": 33.08134287773029,
+                "Visual Studio": 34.36131753185356
+            },
+            "spaces": [
+                {
+                    "name": "item_check",
+                    "kind": "function",
+                    "start_line": 19,
+                    "end_line": 25,
+                    "SLOC": 7,
+                    "PLOC": 7,
+                    "LLOC": 4,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 2.0,
+                    "NARGS": 1,
+                    "NEXITS": 1,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 11,
+                        "n2": 6,
+                        "N1": 18,
+                        "N2": 12,
+                        "Vocabulary": 17,
+                        "Length": 30,
+                        "Volume": 122.62388523751017,
+                        "Difficulty": 11.0,
+                        "Level": 0.09090909090909091,
+                        "Effort": 1348.862737612612,
+                        "Programming time": 74.93681875625622,
+                        "Bugs": 0.04069339433303162,
+                        "Estimated program length": 53.5635228093372,
+                        "Purity ratio": 1.78545076031124
+                    },
+                    "Mi": {
+                        "Original": 114.0088220848072,
+                        "Sei": 88.98274996613964,
+                        "Visual Studio": 66.67182578058902
+                    }
+                },
+                {
+                    "name": "bottom_up_tree",
+                    "kind": "function",
+                    "start_line": 27,
+                    "end_line": 36,
+                    "SLOC": 10,
+                    "PLOC": 10,
+                    "LLOC": 12,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 2.0,
+                    "NARGS": 2,
+                    "NEXITS": 1,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 14,
+                        "n2": 11,
+                        "N1": 39,
+                        "N2": 28,
+                        "Vocabulary": 25,
+                        "Length": 67,
+                        "Volume": 311.1383647149065,
+                        "Difficulty": 17.818181818181817,
+                        "Level": 0.056122448979591844,
+                        "Effort": 5543.91995310197,
+                        "Programming time": 307.99555295010947,
+                        "Bugs": 0.10441351414033229,
+                        "Estimated program length": 91.35671671381672,
+                        "Purity ratio": 1.3635330852808467
+                    },
+                    "Mi": {
+                        "Original": 103.38888537102609,
+                        "Sei": 73.66141993461304,
+                        "Visual Studio": 60.461336474284266
+                    }
+                },
+                {
+                    "name": "inner",
+                    "kind": "function",
+                    "start_line": 38,
+                    "end_line": 45,
+                    "SLOC": 8,
+                    "PLOC": 8,
+                    "LLOC": 15,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 2.0,
+                    "NARGS": 2,
+                    "NEXITS": 1,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 1,
+                        "total": 2
+                    },
+                    "Halstead": {
+                        "n1": 12,
+                        "n2": 14,
+                        "N1": 31,
+                        "N2": 21,
+                        "Vocabulary": 26,
+                        "Length": 52,
+                        "Volume": 244.42286534333678,
+                        "Difficulty": 9.0,
+                        "Level": 0.1111111111111111,
+                        "Effort": 2199.805788090031,
+                        "Programming time": 122.21143267166839,
+                        "Bugs": 0.05638128531994684,
+                        "Estimated program length": 96.32251891746033,
+                        "Purity ratio": 1.8523561330280833
+                    },
+                    "Mi": {
+                        "Original": 108.25876816892941,
+                        "Sei": 80.68717569685859,
+                        "Visual Studio": 63.3092211514207
+                    },
+                    "spaces": [
+                        {
+                            "name": "<anonymous>",
+                            "kind": "function",
+                            "start_line": 39,
+                            "end_line": 43,
+                            "SLOC": 5,
+                            "PLOC": 5,
+                            "LLOC": 6,
+                            "CLOC": 0,
+                            "BLANK": 0,
+                            "CC": 1.0,
+                            "NARGS": 3,
+                            "NEXITS": 0,
+                            "NOM": {
+                                "functions": 0,
+                                "closures": 1,
+                                "total": 1
+                            },
+                            "Halstead": {
+                                "n1": 7,
+                                "n2": 8,
+                                "N1": 12,
+                                "N2": 10,
+                                "Vocabulary": 15,
+                                "Length": 22,
+                                "Volume": 85.95159310338741,
+                                "Difficulty": 4.375,
+                                "Level": 0.22857142857142856,
+                                "Effort": 376.0382198273199,
+                                "Programming time": 20.891012212628883,
+                                "Bugs": 0.017366010954952174,
+                                "Estimated program length": 43.65148445440323,
+                                "Purity ratio": 1.984158384291056
+                            },
+                            "Mi": {
+                                "Original": 121.53742763073245,
+                                "Sei": 99.74241199265069,
+                                "Visual Studio": 71.07451908229969
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "main",
+                    "kind": "function",
+                    "start_line": 47,
+                    "end_line": 75,
+                    "SLOC": 29,
+                    "PLOC": 24,
+                    "LLOC": 43,
+                    "CLOC": 0,
+                    "BLANK": 5,
+                    "CC": 5.0,
+                    "NARGS": 0,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 2,
+                        "total": 3
+                    },
+                    "Halstead": {
+                        "n1": 20,
+                        "n2": 29,
+                        "N1": 90,
+                        "N2": 68,
+                        "Vocabulary": 49,
+                        "Length": 158,
+                        "Volume": 887.124155370203,
+                        "Difficulty": 23.448275862068964,
+                        "Level": 0.04264705882352941,
+                        "Effort": 20801.53191902545,
+                        "Programming time": 1155.6406621680806,
+                        "Bugs": 0.2521209635979267,
+                        "Estimated program length": 227.32001075644683,
+                        "Purity ratio": 1.4387342452939673
+                    },
+                    "Mi": {
+                        "Original": 80.00228584153547,
+                        "Sei": 40.22714834837414,
+                        "Visual Studio": 46.784962480430096
+                    },
+                    "spaces": [
+                        {
+                            "name": "<anonymous>",
+                            "kind": "function",
+                            "start_line": 49,
+                            "end_line": 49,
+                            "SLOC": 1,
+                            "PLOC": 1,
+                            "LLOC": 5,
+                            "CLOC": 0,
+                            "BLANK": 0,
+                            "CC": 1.0,
+                            "NARGS": 3,
+                            "NEXITS": 0,
+                            "NOM": {
+                                "functions": 0,
+                                "closures": 1,
+                                "total": 1
+                            },
+                            "Halstead": {
+                                "n1": 3,
+                                "n2": 1,
+                                "N1": 6,
+                                "N2": 2,
+                                "Vocabulary": 4,
+                                "Length": 8,
+                                "Volume": 16.0,
+                                "Difficulty": 3.0,
+                                "Level": 0.3333333333333333,
+                                "Effort": 48.0,
+                                "Programming time": 2.6666666666666665,
+                                "Bugs": 0.004402569665192835,
+                                "Estimated program length": 4.754887502163468,
+                                "Purity ratio": 0.5943609377704335
+                            },
+                            "Mi": {
+                                "Original": 156.35253864435316,
+                                "Sei": 149.97,
+                                "Visual Studio": 91.43423312535272
+                            }
+                        },
+                        {
+                            "name": "<anonymous>",
+                            "kind": "function",
+                            "start_line": 64,
+                            "end_line": 68,
+                            "SLOC": 5,
+                            "PLOC": 5,
+                            "LLOC": 6,
+                            "CLOC": 0,
+                            "BLANK": 0,
+                            "CC": 1.0,
+                            "NARGS": 3,
+                            "NEXITS": 0,
+                            "NOM": {
+                                "functions": 0,
+                                "closures": 1,
+                                "total": 1
+                            },
+                            "Halstead": {
+                                "n1": 11,
+                                "n2": 8,
+                                "N1": 16,
+                                "N2": 12,
+                                "Vocabulary": 19,
+                                "Length": 28,
+                                "Volume": 118.94197037642039,
+                                "Difficulty": 8.25,
+                                "Level": 0.12121212121212122,
+                                "Effort": 981.2712556054682,
+                                "Programming time": 54.515069755859344,
+                                "Bugs": 0.03291582894714386,
+                                "Estimated program length": 62.05374780501027,
+                                "Purity ratio": 2.2162052787503668
+                            },
+                            "Mi": {
+                                "Original": 119.84820002111704,
+                                "Sei": 97.30537169732585,
+                                "Visual Studio": 70.08666667901582
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

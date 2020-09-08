@@ -1,0 +1,17 @@
+{
+    "SLOC": 25,
+    "PLOC": 20,
+    "CLOC": 0,
+    "BLANK": 5,
+    "files": [
+        {
+            "filename": "Assets/Rust/bubble_sort.rs",
+            "type": "Rust",
+            "SLOC": 25,
+            "PLOC": 20,
+            "CLOC": 0,
+            "BLANK": 5,
+            "spaces": []
+        }
+    ]
+}

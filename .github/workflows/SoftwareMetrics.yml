@@ -4,6 +4,52 @@ on: [push, pull_request]
 
 jobs:
 
+  test-compare:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch: 1
+
+    - name: Install Rust stable
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+
+    - name: Install Python 3.7 version
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+        architecture: 'x64'
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: Install json-diff
+      run: |
+        npm install -g json-diff
+
+    - name: Install rust-code-analysis
+      env:
+        LINK: https://github.com/mozilla/rust-code-analysis/releases/download
+        RCA_VERSION: 0.0.17
+        DEST_DIR: ./tools/rust-code-analysis
+      run: |
+        mkdir -p $DEST_DIR
+        curl -L "$LINK/v$RCA_VERSION/rust-code-analysis-linux-x86_64.tar.gz" |
+        tar xz -C $DEST_DIR --strip-components 1
+
+    - name: Run compare
+      run: |
+        ./compare.py
+
+
   run-tests:
 
     runs-on: ubuntu-latest

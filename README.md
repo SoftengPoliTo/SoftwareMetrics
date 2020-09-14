@@ -69,6 +69,8 @@ At this point, the results of the comparisons can be obtained in this way:
 - Halstead
 - MI
 - NOM
+- NARGS
+- NEXITS
 - STAT
 - CHANGE
 - MPC
@@ -91,6 +93,12 @@ At this point, the results of the comparisons can be obtained in this way:
  - **STAT:** Statements. It is a LLOC applied only on methods/classes.
 
  - **NOM:** Number of Methods. It counts the number of methods in a file.
+
+ - **NARGS**: Number of Arguments. It counts the number of arguments of
+   each method in a file.
+
+ - **NEXITS**: Number of Exit Points. It counts the number of exit points of
+   each method in a file.
 
  - **CC:** McCabe's Cyclomatic Complexity. It calculates the code complexity
    examining the control flow of a program.

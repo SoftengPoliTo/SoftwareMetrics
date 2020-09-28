@@ -28,22 +28,21 @@ class Conf(enum.Enum):
 
     C_CPP = ("C", "C++", "C-C++"),
     C_RUST = ("C", "Rust", "C-Rust"),
-    CPP_RUST = ("C++", "Rust", "C++-Rust"),
 
 
 # Pair of files and configurations associated
 FILE_DICT = {
-    "binarytrees": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "bubble_sort": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "fannkuchredux": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "fasta": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "knucleotide": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "mandelbrot": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "nbody": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "pidigits": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "regexredux": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
-    "revcomp": (Conf.C_CPP.value, Conf.C_RUST.value), # Problems comparing Conf.CPP_RUST.value
-    "spectralnorm": (Conf.C_CPP.value, Conf.C_RUST.value, Conf.CPP_RUST.value),
+    "binarytrees": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "bubble_sort": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "fannkuchredux": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "fasta": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "knucleotide": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "mandelbrot": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "nbody": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "pidigits": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "regexredux": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "revcomp": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "spectralnorm": (Conf.C_CPP.value, Conf.C_RUST.value),
 }
 
 

@@ -1,0 +1,117 @@
+{
+    "SLOC": 94,
+    "PLOC": 71,
+    "LLOC": 23,
+    "CLOC": 7,
+    "BLANK": 16,
+    "CC": 6.0,
+    "NARGS": 0,
+    "NEXITS": 0,
+    "NOM": {
+        "functions": 1,
+        "closures": 0,
+        "total": 1
+    },
+    "HALSTEAD": {
+        "n1": 22,
+        "n2": 71,
+        "N1": 218,
+        "N2": 161,
+        "Vocabulary": 93,
+        "Length": 379,
+        "Volume": 2478.3411894099436,
+        "Difficulty": 24.943661971830984,
+        "Level": 0.04009034443817053,
+        "Effort": 61818.90487950718,
+        "Programming time": 3434.3836044170657,
+        "Bugs": 0.5211462496741232,
+        "Estimated program length": 534.7395410948529,
+        "Purity ratio": 1.4109222720180816
+    },
+    "MI": {
+        "Original": 55.37883187857979,
+        "Sei": 25.31864346324061,
+        "Visual Studio": 32.38528180033906
+    },
+    "files": [
+        {
+            "filename": "Assets/C++/regexredux.cpp",
+            "SLOC": 94,
+            "PLOC": 71,
+            "LLOC": 23,
+            "CLOC": 7,
+            "BLANK": 16,
+            "CC": 6.0,
+            "NARGS": 0,
+            "NEXITS": 0,
+            "NOM": {
+                "functions": 1,
+                "closures": 0,
+                "total": 1
+            },
+            "Halstead": {
+                "n1": 22,
+                "n2": 71,
+                "N1": 218,
+                "N2": 161,
+                "Vocabulary": 93,
+                "Length": 379,
+                "Volume": 2478.3411894099436,
+                "Difficulty": 24.943661971830984,
+                "Level": 0.04009034443817053,
+                "Effort": 61818.90487950718,
+                "Programming time": 3434.3836044170657,
+                "Bugs": 0.5211462496741232,
+                "Estimated program length": 534.7395410948529,
+                "Purity ratio": 1.4109222720180816
+            },
+            "Mi": {
+                "Original": 55.37883187857979,
+                "Sei": 25.31864346324061,
+                "Visual Studio": 32.38528180033906
+            },
+            "spaces": [
+                {
+                    "name": "main",
+                    "kind": "function",
+                    "start_line": 19,
+                    "end_line": 94,
+                    "SLOC": 76,
+                    "PLOC": 64,
+                    "LLOC": 23,
+                    "CLOC": 0,
+                    "BLANK": 12,
+                    "CC": 5.0,
+                    "NARGS": 1,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 22,
+                        "n2": 65,
+                        "N1": 208,
+                        "N2": 154,
+                        "Vocabulary": 87,
+                        "Length": 362,
+                        "Volume": 2332.3455454972395,
+                        "Difficulty": 26.06153846153846,
+                        "Level": 0.03837072018890201,
+                        "Effort": 60784.513139574214,
+                        "Programming time": 3376.9173966430117,
+                        "Bugs": 0.5153164903467059,
+                        "Estimated program length": 489.56140345687004,
+                        "Purity ratio": 1.3523795675604144
+                    },
+                    "Mi": {
+                        "Original": 59.368045384479785,
+                        "Sei": 10.458231968469477,
+                        "Visual Studio": 34.718155195602215
+                    }
+                }
+            ]
+        }
+    ]
+}

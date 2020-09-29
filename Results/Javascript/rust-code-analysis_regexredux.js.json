@@ -1,0 +1,76 @@
+{
+    "SLOC": 33,
+    "PLOC": 22,
+    "LLOC": 10,
+    "CLOC": 8,
+    "BLANK": 3,
+    "CC": 4.0,
+    "NARGS": 0,
+    "NEXITS": 0,
+    "NOM": {
+        "functions": 0,
+        "closures": 0,
+        "total": 0
+    },
+    "HALSTEAD": {
+        "n1": 14,
+        "n2": 23,
+        "N1": 113,
+        "N2": 50,
+        "Vocabulary": 37,
+        "Length": 163,
+        "Volume": 849.1408985975189,
+        "Difficulty": 15.217391304347826,
+        "Level": 0.06571428571428571,
+        "Effort": 12921.709326483984,
+        "Programming time": 717.8727403602213,
+        "Bugs": 0.18355183201932318,
+        "Estimated program length": 157.34489389811776,
+        "Purity ratio": 0.9653060975344648
+    },
+    "MI": {
+        "Original": 78.36660682386069,
+        "Sei": 72.31187482648421,
+        "Visual Studio": 45.82842504319339
+    },
+    "files": [
+        {
+            "filename": "Assets/Javascript/regexredux.js",
+            "SLOC": 33,
+            "PLOC": 22,
+            "LLOC": 10,
+            "CLOC": 8,
+            "BLANK": 3,
+            "CC": 4.0,
+            "NARGS": 0,
+            "NEXITS": 0,
+            "NOM": {
+                "functions": 0,
+                "closures": 0,
+                "total": 0
+            },
+            "Halstead": {
+                "n1": 14,
+                "n2": 23,
+                "N1": 113,
+                "N2": 50,
+                "Vocabulary": 37,
+                "Length": 163,
+                "Volume": 849.1408985975189,
+                "Difficulty": 15.217391304347826,
+                "Level": 0.06571428571428571,
+                "Effort": 12921.709326483984,
+                "Programming time": 717.8727403602213,
+                "Bugs": 0.18355183201932318,
+                "Estimated program length": 157.34489389811776,
+                "Purity ratio": 0.9653060975344648
+            },
+            "Mi": {
+                "Original": 78.36660682386069,
+                "Sei": 72.31187482648421,
+                "Visual Studio": 45.82842504319339
+            },
+            "spaces": []
+        }
+    ]
+}

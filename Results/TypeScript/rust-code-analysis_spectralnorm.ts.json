@@ -1,0 +1,277 @@
+{
+    "SLOC": 55,
+    "PLOC": 41,
+    "LLOC": 40,
+    "CLOC": 5,
+    "BLANK": 9,
+    "CC": 13.0,
+    "NARGS": 0,
+    "NEXITS": 2,
+    "NOM": {
+        "functions": 5,
+        "closures": 0,
+        "total": 5
+    },
+    "HALSTEAD": {
+        "n1": 18,
+        "n2": 26,
+        "N1": 166,
+        "N2": 135,
+        "Vocabulary": 44,
+        "Length": 301,
+        "Volume": 1643.2889172098264,
+        "Difficulty": 46.73076923076923,
+        "Level": 0.02139917695473251,
+        "Effort": 76792.15516961305,
+        "Programming time": 4266.23084275628,
+        "Bugs": 0.6022220451854204,
+        "Estimated program length": 197.27008269763002,
+        "Purity ratio": 0.6553823345436213
+    },
+    "MI": {
+        "Original": 64.58803665956509,
+        "Sei": 41.31855991679847,
+        "Visual Studio": 37.77078167226029
+    },
+    "files": [
+        {
+            "filename": "Assets/TypeScript/spectralnorm.ts",
+            "SLOC": 55,
+            "PLOC": 41,
+            "LLOC": 40,
+            "CLOC": 5,
+            "BLANK": 9,
+            "CC": 13.0,
+            "NARGS": 0,
+            "NEXITS": 2,
+            "NOM": {
+                "functions": 5,
+                "closures": 0,
+                "total": 5
+            },
+            "Halstead": {
+                "n1": 18,
+                "n2": 26,
+                "N1": 166,
+                "N2": 135,
+                "Vocabulary": 44,
+                "Length": 301,
+                "Volume": 1643.2889172098264,
+                "Difficulty": 46.73076923076923,
+                "Level": 0.02139917695473251,
+                "Effort": 76792.15516961305,
+                "Programming time": 4266.23084275628,
+                "Bugs": 0.6022220451854204,
+                "Estimated program length": 197.27008269763002,
+                "Purity ratio": 0.6553823345436213
+            },
+            "Mi": {
+                "Original": 64.58803665956509,
+                "Sei": 41.31855991679847,
+                "Visual Studio": 37.77078167226029
+            },
+            "spaces": [
+                {
+                    "name": "approximate",
+                    "kind": "function",
+                    "start_line": 9,
+                    "end_line": 24,
+                    "SLOC": 16,
+                    "PLOC": 16,
+                    "LLOC": 16,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 4.0,
+                    "NARGS": 1,
+                    "NEXITS": 1,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 15,
+                        "n2": 14,
+                        "N1": 55,
+                        "N2": 51,
+                        "Vocabulary": 29,
+                        "Length": 106,
+                        "Volume": 514.9459854835226,
+                        "Difficulty": 27.321428571428573,
+                        "Level": 0.03660130718954248,
+                        "Effort": 14069.059960531957,
+                        "Programming time": 781.6144422517754,
+                        "Bugs": 0.19426242195744972,
+                        "Estimated program length": 111.90632784293425,
+                        "Purity ratio": 1.0557200739899457
+                    },
+                    "Mi": {
+                        "Original": 92.69494023415963,
+                        "Sei": 58.43695803692603,
+                        "Visual Studio": 54.20756738839745
+                    }
+                },
+                {
+                    "name": "a",
+                    "kind": "function",
+                    "start_line": 26,
+                    "end_line": 28,
+                    "SLOC": 3,
+                    "PLOC": 3,
+                    "LLOC": 2,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 1.0,
+                    "NARGS": 2,
+                    "NEXITS": 1,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 8,
+                        "n2": 6,
+                        "N1": 18,
+                        "N2": 12,
+                        "Vocabulary": 14,
+                        "Length": 30,
+                        "Volume": 114.22064766172812,
+                        "Difficulty": 8.0,
+                        "Level": 0.125,
+                        "Effort": 913.765181293825,
+                        "Programming time": 50.764732294101385,
+                        "Bugs": 0.03138834968102933,
+                        "Estimated program length": 39.50977500432694,
+                        "Purity ratio": 1.3169925001442313
+                    },
+                    "Mi": {
+                        "Original": 128.33419408926648,
+                        "Sei": 109.54807325645817,
+                        "Visual Studio": 75.04923630951257
+                    }
+                },
+                {
+                    "name": "multiplyAv",
+                    "kind": "function",
+                    "start_line": 30,
+                    "end_line": 37,
+                    "SLOC": 8,
+                    "PLOC": 8,
+                    "LLOC": 9,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 3.0,
+                    "NARGS": 3,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 13,
+                        "n2": 10,
+                        "N1": 33,
+                        "N2": 26,
+                        "Vocabulary": 23,
+                        "Length": 59,
+                        "Volume": 266.89015540736375,
+                        "Difficulty": 16.9,
+                        "Level": 0.0591715976331361,
+                        "Effort": 4510.443626384447,
+                        "Programming time": 250.58020146580262,
+                        "Bugs": 0.0909965481281181,
+                        "Estimated program length": 81.32499728470782,
+                        "Purity ratio": 1.3783897844865731
+                    },
+                    "Mi": {
+                        "Original": 107.57149373671945,
+                        "Sei": 79.797468141184,
+                        "Visual Studio": 62.907306278783295
+                    }
+                },
+                {
+                    "name": "multiplyAtv",
+                    "kind": "function",
+                    "start_line": 39,
+                    "end_line": 46,
+                    "SLOC": 8,
+                    "PLOC": 8,
+                    "LLOC": 9,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 3.0,
+                    "NARGS": 3,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 13,
+                        "n2": 10,
+                        "N1": 33,
+                        "N2": 26,
+                        "Vocabulary": 23,
+                        "Length": 59,
+                        "Volume": 266.89015540736375,
+                        "Difficulty": 16.9,
+                        "Level": 0.0591715976331361,
+                        "Effort": 4510.443626384447,
+                        "Programming time": 250.58020146580262,
+                        "Bugs": 0.0909965481281181,
+                        "Estimated program length": 81.32499728470782,
+                        "Purity ratio": 1.3783897844865731
+                    },
+                    "Mi": {
+                        "Original": 107.57149373671945,
+                        "Sei": 79.797468141184,
+                        "Visual Studio": 62.907306278783295
+                    }
+                },
+                {
+                    "name": "multiplyAtAv",
+                    "kind": "function",
+                    "start_line": 48,
+                    "end_line": 52,
+                    "SLOC": 5,
+                    "PLOC": 5,
+                    "LLOC": 3,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 1.0,
+                    "NARGS": 3,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 8,
+                        "n2": 8,
+                        "N1": 19,
+                        "N2": 15,
+                        "Vocabulary": 16,
+                        "Length": 34,
+                        "Volume": 136.0,
+                        "Difficulty": 7.5,
+                        "Level": 0.13333333333333333,
+                        "Effort": 1020.0,
+                        "Programming time": 56.666666666666664,
+                        "Bugs": 0.03377630931340478,
+                        "Estimated program length": 48.0,
+                        "Purity ratio": 1.411764705882353
+                    },
+                    "Mi": {
+                        "Original": 119.15130041274011,
+                        "Sei": 96.299958088323,
+                        "Visual Studio": 69.67912304838603
+                    }
+                }
+            ]
+        }
+    ]
+}

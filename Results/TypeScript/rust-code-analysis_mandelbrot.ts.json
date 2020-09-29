@@ -1,0 +1,76 @@
+{
+    "SLOC": 49,
+    "PLOC": 32,
+    "LLOC": 36,
+    "CLOC": 7,
+    "BLANK": 10,
+    "CC": 8.0,
+    "NARGS": 0,
+    "NEXITS": 0,
+    "NOM": {
+        "functions": 0,
+        "closures": 0,
+        "total": 0
+    },
+    "HALSTEAD": {
+        "n1": 23,
+        "n2": 31,
+        "N1": 118,
+        "N2": 113,
+        "Vocabulary": 54,
+        "Length": 231,
+        "Volume": 1329.3790129997612,
+        "Difficulty": 41.91935483870968,
+        "Level": 0.023855328972681798,
+        "Effort": 55726.71056107064,
+        "Programming time": 3095.9283645039245,
+        "Bugs": 0.48631875375637595,
+        "Estimated program length": 257.6220106113044,
+        "Purity ratio": 1.1152467991831359
+    },
+    "MI": {
+        "Original": 68.71168170636773,
+        "Sei": 51.8761864722328,
+        "Visual Studio": 40.182270003723815
+    },
+    "files": [
+        {
+            "filename": "Assets/TypeScript/mandelbrot.ts",
+            "SLOC": 49,
+            "PLOC": 32,
+            "LLOC": 36,
+            "CLOC": 7,
+            "BLANK": 10,
+            "CC": 8.0,
+            "NARGS": 0,
+            "NEXITS": 0,
+            "NOM": {
+                "functions": 0,
+                "closures": 0,
+                "total": 0
+            },
+            "Halstead": {
+                "n1": 23,
+                "n2": 31,
+                "N1": 118,
+                "N2": 113,
+                "Vocabulary": 54,
+                "Length": 231,
+                "Volume": 1329.3790129997612,
+                "Difficulty": 41.91935483870968,
+                "Level": 0.023855328972681798,
+                "Effort": 55726.71056107064,
+                "Programming time": 3095.9283645039245,
+                "Bugs": 0.48631875375637595,
+                "Estimated program length": 257.6220106113044,
+                "Purity ratio": 1.1152467991831359
+            },
+            "Mi": {
+                "Original": 68.71168170636773,
+                "Sei": 51.8761864722328,
+                "Visual Studio": 40.182270003723815
+            },
+            "spaces": []
+        }
+    ]
+}

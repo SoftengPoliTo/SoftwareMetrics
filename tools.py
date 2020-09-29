@@ -11,7 +11,7 @@ import output_unifier
 
 from exit_codes import ExitCode, log_debug, log_err, log_info
 
-ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "hh", "js", "py", "rs"]
+ACCEPTED_EXTENSIONS = ["c", "cc", "cpp", "c++", "h", "hpp", "hh", "js", "py", "rs", "ts"]
 
 
 class Tools:

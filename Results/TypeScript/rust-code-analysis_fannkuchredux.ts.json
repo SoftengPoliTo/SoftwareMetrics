@@ -1,0 +1,117 @@
+{
+    "SLOC": 64,
+    "PLOC": 46,
+    "LLOC": 58,
+    "CLOC": 7,
+    "BLANK": 11,
+    "CC": 14.0,
+    "NARGS": 0,
+    "NEXITS": 2,
+    "NOM": {
+        "functions": 1,
+        "closures": 0,
+        "total": 1
+    },
+    "HALSTEAD": {
+        "n1": 26,
+        "n2": 27,
+        "N1": 156,
+        "N2": 146,
+        "Vocabulary": 53,
+        "Length": 302,
+        "Volume": 1729.831977278086,
+        "Difficulty": 70.29629629629629,
+        "Level": 0.014225500526870391,
+        "Effort": 121600.78121754841,
+        "Programming time": 6755.598956530467,
+        "Bugs": 0.8181563811397001,
+        "Estimated program length": 250.59339523008202,
+        "Purity ratio": 0.8297794544042452
+    },
+    "MI": {
+        "Original": 61.63604033853822,
+        "Sei": 39.15787082613978,
+        "Visual Studio": 36.04446803423288
+    },
+    "files": [
+        {
+            "filename": "Assets/TypeScript/fannkuchredux.ts",
+            "SLOC": 64,
+            "PLOC": 46,
+            "LLOC": 58,
+            "CLOC": 7,
+            "BLANK": 11,
+            "CC": 14.0,
+            "NARGS": 0,
+            "NEXITS": 2,
+            "NOM": {
+                "functions": 1,
+                "closures": 0,
+                "total": 1
+            },
+            "Halstead": {
+                "n1": 26,
+                "n2": 27,
+                "N1": 156,
+                "N2": 146,
+                "Vocabulary": 53,
+                "Length": 302,
+                "Volume": 1729.831977278086,
+                "Difficulty": 70.29629629629629,
+                "Level": 0.014225500526870391,
+                "Effort": 121600.78121754841,
+                "Programming time": 6755.598956530467,
+                "Bugs": 0.8181563811397001,
+                "Estimated program length": 250.59339523008202,
+                "Purity ratio": 0.8297794544042452
+            },
+            "Mi": {
+                "Original": 61.63604033853822,
+                "Sei": 39.15787082613978,
+                "Visual Studio": 36.04446803423288
+            },
+            "spaces": [
+                {
+                    "name": "fannkuch",
+                    "kind": "function",
+                    "start_line": 9,
+                    "end_line": 60,
+                    "SLOC": 52,
+                    "PLOC": 44,
+                    "LLOC": 57,
+                    "CLOC": 2,
+                    "BLANK": 6,
+                    "CC": 13.0,
+                    "NARGS": 1,
+                    "NEXITS": 2,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 26,
+                        "n2": 24,
+                        "N1": 145,
+                        "N2": 137,
+                        "Vocabulary": 50,
+                        "Length": 282,
+                        "Volume": 1591.5674455164722,
+                        "Difficulty": 74.20833333333333,
+                        "Level": 0.01347557551937114,
+                        "Effort": 118107.5675193682,
+                        "Programming time": 6561.531528853789,
+                        "Bugs": 0.8024116559482926,
+                        "Estimated program length": 232.25053268897614,
+                        "Purity ratio": 0.8235834492516885
+                    },
+                    "Mi": {
+                        "Original": 65.66298371205812,
+                        "Sei": 35.312924862823095,
+                        "Visual Studio": 38.39940567956615
+                    }
+                }
+            ]
+        }
+    ]
+}

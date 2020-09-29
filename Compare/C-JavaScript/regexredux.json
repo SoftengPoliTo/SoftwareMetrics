@@ -115,7 +115,7 @@
             {
                 "filename": {
                     "__old": "Assets/C/regexredux.c",
-                    "__new": "Assets/Javascript/regexredux.js"
+                    "__new": "Assets/JavaScript/regexredux.js"
                 },
                 "SLOC": {
                     "__old": 208,

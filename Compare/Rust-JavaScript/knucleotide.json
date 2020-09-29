@@ -115,7 +115,7 @@
             {
                 "filename": {
                     "__old": "Assets/Rust/knucleotide.rs",
-                    "__new": "Assets/Javascript/knucleotide.js"
+                    "__new": "Assets/JavaScript/knucleotide.js"
                 },
                 "SLOC": {
                     "__old": 196,

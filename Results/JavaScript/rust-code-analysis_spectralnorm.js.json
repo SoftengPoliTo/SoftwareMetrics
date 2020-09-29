@@ -35,7 +35,7 @@
     },
     "files": [
         {
-            "filename": "Assets/Javascript/spectralnorm.js",
+            "filename": "Assets/JavaScript/spectralnorm.js",
             "SLOC": 50,
             "PLOC": 39,
             "LLOC": 42,

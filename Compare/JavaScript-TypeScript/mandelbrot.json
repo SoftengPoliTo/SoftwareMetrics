@@ -114,7 +114,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/mandelbrot.js",
+                    "__old": "Assets/JavaScript/mandelbrot.js",
                     "__new": "Assets/TypeScript/mandelbrot.ts"
                 },
                 "SLOC": {

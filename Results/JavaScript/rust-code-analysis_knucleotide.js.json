@@ -35,7 +35,7 @@
     },
     "files": [
         {
-            "filename": "Assets/Javascript/knucleotide.js",
+            "filename": "Assets/JavaScript/knucleotide.js",
             "SLOC": 92,
             "PLOC": 76,
             "LLOC": 64,

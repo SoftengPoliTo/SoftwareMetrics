@@ -114,7 +114,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/regexredux.js",
+                    "__old": "Assets/JavaScript/regexredux.js",
                     "__new": "Assets/TypeScript/regexredux.ts"
                 },
                 "SLOC": {

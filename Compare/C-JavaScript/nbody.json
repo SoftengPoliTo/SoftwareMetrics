@@ -115,7 +115,7 @@
             {
                 "filename": {
                     "__old": "Assets/C/nbody.c",
-                    "__new": "Assets/Javascript/nbody.js"
+                    "__new": "Assets/JavaScript/nbody.js"
                 },
                 "SLOC": {
                     "__old": 160,

@@ -92,7 +92,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/revcomp.js",
+                    "__old": "Assets/JavaScript/revcomp.js",
                     "__new": "Assets/TypeScript/revcomp.ts"
                 },
                 "SLOC": {

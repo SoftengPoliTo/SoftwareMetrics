@@ -88,7 +88,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/spectralnorm.js",
+                    "__old": "Assets/JavaScript/spectralnorm.js",
                     "__new": "Assets/TypeScript/spectralnorm.ts"
                 },
                 "SLOC": {

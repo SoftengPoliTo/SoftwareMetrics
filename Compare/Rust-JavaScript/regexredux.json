@@ -119,7 +119,7 @@
             {
                 "filename": {
                     "__old": "Assets/Rust/regexredux.rs",
-                    "__new": "Assets/Javascript/regexredux.js"
+                    "__new": "Assets/JavaScript/regexredux.js"
                 },
                 "SLOC": {
                     "__old": 86,

@@ -35,7 +35,7 @@
     },
     "files": [
         {
-            "filename": "Assets/Javascript/binarytrees.js",
+            "filename": "Assets/JavaScript/binarytrees.js",
             "SLOC": 50,
             "PLOC": 36,
             "LLOC": 25,

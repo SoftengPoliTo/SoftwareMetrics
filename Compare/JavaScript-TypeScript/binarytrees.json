@@ -92,7 +92,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/binarytrees.js",
+                    "__old": "Assets/JavaScript/binarytrees.js",
                     "__new": "Assets/TypeScript/binarytrees.ts"
                 },
                 "SLOC": {

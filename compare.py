@@ -24,7 +24,7 @@ EXTENSIONS = {
     "Rust": ".rs",
     "C++": ".cpp",
     "Python": ".py",
-    "Javascript": ".js",
+    "JavaScript": ".js",
     "TypeScript": ".ts"
 }
 
@@ -34,13 +34,13 @@ class Conf(enum.Enum):
         of programming languages """
 
     C_CPP = ("C", "C++", "C-C++")
-    C_JS = ("C", "Javascript", "C-Javascript")
+    C_JS = ("C", "JavaScript", "C-JavaScript")
     C_TS = ("C", "TypeScript", "C-TypeScript")
     C_PYTHON = ("C", "Python", "C-Python")
     C_RUST = ("C", "Rust", "C-Rust")
     CPP_PYTHON = ("C++", "Python", "C++-Python")
-    JS_TS = ("Javascript", "TypeScript", "JavaScript-TypeScript")
-    RUST_JS = ("Rust", "Javascript", "Rust-Javascript")
+    JS_TS = ("JavaScript", "TypeScript", "JavaScript-TypeScript")
+    RUST_JS = ("Rust", "JavaScript", "Rust-JavaScript")
     RUST_TS = ("Rust", "TypeScript", "Rust-TypeScript")
     RUST_PYTHON = ("Rust", "Python", "Rust-Python")
 

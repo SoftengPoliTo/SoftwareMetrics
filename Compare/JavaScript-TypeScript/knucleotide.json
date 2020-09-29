@@ -114,7 +114,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/knucleotide.js",
+                    "__old": "Assets/JavaScript/knucleotide.js",
                     "__new": "Assets/TypeScript/knucleotide.ts"
                 },
                 "SLOC": {

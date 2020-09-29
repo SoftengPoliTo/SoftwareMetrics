@@ -119,7 +119,7 @@
             {
                 "filename": {
                     "__old": "Assets/Rust/nbody.rs",
-                    "__new": "Assets/Javascript/nbody.js"
+                    "__new": "Assets/JavaScript/nbody.js"
                 },
                 "SLOC": {
                     "__old": 204,

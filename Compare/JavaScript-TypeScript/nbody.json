@@ -100,7 +100,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/nbody.js",
+                    "__old": "Assets/JavaScript/nbody.js",
                     "__new": "Assets/TypeScript/nbody.ts"
                 },
                 "SLOC": {

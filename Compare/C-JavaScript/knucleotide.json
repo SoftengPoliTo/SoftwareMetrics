@@ -119,7 +119,7 @@
             {
                 "filename": {
                     "__old": "Assets/C/knucleotide.c",
-                    "__new": "Assets/Javascript/knucleotide.js"
+                    "__new": "Assets/JavaScript/knucleotide.js"
                 },
                 "SLOC": {
                     "__old": 247,

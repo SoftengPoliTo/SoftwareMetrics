@@ -119,7 +119,7 @@
             {
                 "filename": {
                     "__old": "Assets/Rust/fannkuchredux.rs",
-                    "__new": "Assets/Javascript/fannkuchredux.js"
+                    "__new": "Assets/JavaScript/fannkuchredux.js"
                 },
                 "SLOC": {
                     "__old": 145,

@@ -118,7 +118,7 @@
             "~",
             {
                 "filename": {
-                    "__old": "Assets/Javascript/fasta.js",
+                    "__old": "Assets/JavaScript/fasta.js",
                     "__new": "Assets/TypeScript/fasta.ts"
                 },
                 "SLOC": {

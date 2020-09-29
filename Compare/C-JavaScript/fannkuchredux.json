@@ -101,7 +101,7 @@
             {
                 "filename": {
                     "__old": "Assets/C/fannkuchredux.c",
-                    "__new": "Assets/Javascript/fannkuchredux.js"
+                    "__new": "Assets/JavaScript/fannkuchredux.js"
                 },
                 "SLOC": {
                     "__old": 174,

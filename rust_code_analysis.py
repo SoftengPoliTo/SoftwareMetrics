@@ -14,6 +14,7 @@ RCA_EXTENSIONS = [
     "h",
     "hpp",
     "hh",
+    "py",
     "rs",
 ]
 

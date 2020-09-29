@@ -19,35 +19,52 @@ RESULTS_DIR = pathlib.Path("Results")
 COMPARE_DIR = pathlib.Path("Compare")
 
 # The extensions of files present in a directory
-EXTENSIONS = {"C": ".c", "Rust": ".rs", "C++": ".cpp"}
+EXTENSIONS = {"C": ".c", "Rust": ".rs", "C++": ".cpp", "Python": ".py"}
 
 
 class Conf(enum.Enum):
     """ Each configuration contains some information to compare a pair
         of programming languages """
 
-    C_CPP = ("C", "C++", "C-C++"),
-    C_RUST = ("C", "Rust", "C-Rust"),
+    C_CPP = ("C", "C++", "C-C++")
+    C_PYTHON = ("C", "Python", "C-Python")
+    C_RUST = ("C", "Rust", "C-Rust")
+    CPP_PYTHON = ("C++", "Python", "C++-Python")
+    RUST_PYTHON = ("Rust", "Python", "Rust-Python")
 
+
+# The configuration tuple used for each file
+COMMON_CONF = (
+    Conf.C_CPP.value,
+    Conf.C_PYTHON.value,
+    Conf.C_RUST.value,
+    Conf.CPP_PYTHON.value,
+    Conf.RUST_PYTHON.value,
+)
 
 # Pair of files and configurations associated
 FILE_DICT = {
-    "binarytrees": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "binarytrees": COMMON_CONF,
     "bubble_sort": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "fannkuchredux": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "fasta": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "knucleotide": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "mandelbrot": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "nbody": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "pidigits": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "regexredux": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "revcomp": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "spectralnorm": (Conf.C_CPP.value, Conf.C_RUST.value),
+    "fannkuchredux": COMMON_CONF,
+    "fasta": COMMON_CONF,
+    "knucleotide": COMMON_CONF,
+    "mandelbrot": COMMON_CONF,
+    "nbody": COMMON_CONF,
+    "pidigits": COMMON_CONF,
+    "regexredux": COMMON_CONF,
+    "revcomp": COMMON_CONF,
+    "spectralnorm": COMMON_CONF,
 }
 
 
 def run_subprocess(cmd: str, *args: T.Any) -> subprocess.CompletedProcess:
-    return subprocess.run([cmd, *args], text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return subprocess.run(
+        [cmd, *args],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
 
 
 def build_json_name(directory: str, filename: str) -> pathlib.Path:
@@ -122,6 +139,7 @@ def run_comparison(
     with open(output_path, "w") as output_file:
         json.dump(diff_json, output_file, indent=4)
 
+
 def main() -> None:
 
     # Initialize logging functions
@@ -131,7 +149,10 @@ def main() -> None:
     for filename, languages_conf in FILE_DICT.items():
         for language_conf in languages_conf:
             run_comparison(
-                language_conf[0][0], language_conf[0][1], filename, language_conf[0][2],
+                language_conf[0],
+                language_conf[1],
+                filename,
+                language_conf[2],
             )
 
 

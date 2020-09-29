@@ -19,7 +19,7 @@ RESULTS_DIR = pathlib.Path("Results")
 COMPARE_DIR = pathlib.Path("Compare")
 
 # The extensions of files present in a directory
-EXTENSIONS = {"C": ".c", "Rust": ".rs", "C++": ".cpp", "Python": ".py"}
+EXTENSIONS = {"C": ".c", "Rust": ".rs", "C++": ".cpp", "Python": ".py", "Javascript": ".js"}
 
 
 class Conf(enum.Enum):
@@ -27,14 +27,27 @@ class Conf(enum.Enum):
         of programming languages """
 
     C_CPP = ("C", "C++", "C-C++")
+    C_JS = ("C", "Javascript", "C-Javascript")
     C_PYTHON = ("C", "Python", "C-Python")
     C_RUST = ("C", "Rust", "C-Rust")
     CPP_PYTHON = ("C++", "Python", "C++-Python")
+    RUST_JS = ("Rust", "Javascript", "Rust-Javascript")
     RUST_PYTHON = ("Rust", "Python", "Rust-Python")
 
 
-# The configuration tuple used for each file
-COMMON_CONF = (
+# All supported configurations for files
+GLOBAL_CONF = (
+    Conf.C_CPP.value,
+    Conf.C_JS.value,
+    Conf.C_PYTHON.value,
+    Conf.C_RUST.value,
+    Conf.CPP_PYTHON.value,
+    Conf.RUST_JS.value,
+    Conf.RUST_PYTHON.value,
+)
+
+# Pidigits configuration, since it is not implemented in Javascript
+PIDIGITS_CONF = (
     Conf.C_CPP.value,
     Conf.C_PYTHON.value,
     Conf.C_RUST.value,
@@ -44,17 +57,17 @@ COMMON_CONF = (
 
 # Pair of files and configurations associated
 FILE_DICT = {
-    "binarytrees": COMMON_CONF,
+    "binarytrees": GLOBAL_CONF,
     "bubble_sort": (Conf.C_CPP.value, Conf.C_RUST.value),
-    "fannkuchredux": COMMON_CONF,
-    "fasta": COMMON_CONF,
-    "knucleotide": COMMON_CONF,
-    "mandelbrot": COMMON_CONF,
-    "nbody": COMMON_CONF,
-    "pidigits": COMMON_CONF,
-    "regexredux": COMMON_CONF,
-    "revcomp": COMMON_CONF,
-    "spectralnorm": COMMON_CONF,
+    "fannkuchredux": GLOBAL_CONF,
+    "fasta": GLOBAL_CONF,
+    "knucleotide": GLOBAL_CONF,
+    "mandelbrot": GLOBAL_CONF,
+    "nbody": GLOBAL_CONF,
+    "pidigits": PIDIGITS_CONF,
+    "regexredux": GLOBAL_CONF,
+    "revcomp": GLOBAL_CONF,
+    "spectralnorm": GLOBAL_CONF,
 }
 
 

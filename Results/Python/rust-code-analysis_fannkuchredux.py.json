@@ -1,0 +1,237 @@
+{
+    "SLOC": 106,
+    "PLOC": 85,
+    "LLOC": 77,
+    "CLOC": 5,
+    "BLANK": 16,
+    "CC": 33.0,
+    "NARGS": 0,
+    "NEXITS": 1,
+    "NOM": {
+        "functions": 4,
+        "closures": 1,
+        "total": 5
+    },
+    "HALSTEAD": {
+        "n1": 31,
+        "n2": 72,
+        "N1": 266,
+        "N2": 281,
+        "Vocabulary": 103,
+        "Length": 547,
+        "Volume": 3657.5157883692204,
+        "Difficulty": 60.49305555555556,
+        "Level": 0.01653082309723338,
+        "Effort": 221254.30578114084,
+        "Programming time": 12291.905876730047,
+        "Bugs": 1.2193823355953217,
+        "Estimated program length": 597.8146857258396,
+        "Purity ratio": 1.092897048858939
+    },
+    "MI": {
+        "Original": 45.1986815374873,
+        "Sei": 9.374655371045023,
+        "Visual Studio": 26.431977507302516
+    },
+    "files": [
+        {
+            "filename": "Assets/Python/fannkuchredux.py",
+            "SLOC": 106,
+            "PLOC": 85,
+            "LLOC": 77,
+            "CLOC": 5,
+            "BLANK": 16,
+            "CC": 33.0,
+            "NARGS": 0,
+            "NEXITS": 1,
+            "NOM": {
+                "functions": 4,
+                "closures": 1,
+                "total": 5
+            },
+            "Halstead": {
+                "n1": 31,
+                "n2": 72,
+                "N1": 266,
+                "N2": 281,
+                "Vocabulary": 103,
+                "Length": 547,
+                "Volume": 3657.5157883692204,
+                "Difficulty": 60.49305555555556,
+                "Level": 0.01653082309723338,
+                "Effort": 221254.30578114084,
+                "Programming time": 12291.905876730047,
+                "Bugs": 1.2193823355953217,
+                "Estimated program length": 597.8146857258396,
+                "Purity ratio": 1.092897048858939
+            },
+            "Mi": {
+                "Original": 45.1986815374873,
+                "Sei": 9.374655371045023,
+                "Visual Studio": 26.431977507302516
+            },
+            "spaces": [
+                {
+                    "name": "permutations",
+                    "kind": "function",
+                    "start_line": 12,
+                    "end_line": 51,
+                    "SLOC": 40,
+                    "PLOC": 36,
+                    "LLOC": 33,
+                    "CLOC": 0,
+                    "BLANK": 4,
+                    "CC": 15.0,
+                    "NARGS": 3,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 22,
+                        "n2": 29,
+                        "N1": 119,
+                        "N2": 126,
+                        "Vocabulary": 51,
+                        "Length": 245,
+                        "Volume": 1389.7442087830163,
+                        "Difficulty": 47.793103448275865,
+                        "Level": 0.020923520923520924,
+                        "Effort": 66420.188737009,
+                        "Programming time": 3690.0104853893886,
+                        "Bugs": 0.5466954786792335,
+                        "Estimated program length": 238.9889444687201,
+                        "Purity ratio": 0.9754650794641636
+                    },
+                    "Mi": {
+                        "Original": 70.15840291234646,
+                        "Sei": 27.043625857386218,
+                        "Visual Studio": 41.028305796693836
+                    }
+                },
+                {
+                    "name": "alternating_flips_generator",
+                    "kind": "function",
+                    "start_line": 53,
+                    "end_line": 71,
+                    "SLOC": 19,
+                    "PLOC": 19,
+                    "LLOC": 18,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 6.0,
+                    "NARGS": 3,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 17,
+                        "n2": 14,
+                        "N1": 38,
+                        "N2": 44,
+                        "Vocabulary": 31,
+                        "Length": 82,
+                        "Volume": 406.24409745172375,
+                        "Difficulty": 26.714285714285715,
+                        "Level": 0.0374331550802139,
+                        "Effort": 10852.520889067478,
+                        "Programming time": 602.9178271704154,
+                        "Bugs": 0.16339264339074822,
+                        "Estimated program length": 122.78983721006222,
+                        "Purity ratio": 1.4974370391471001
+                    },
+                    "Mi": {
+                        "Original": 90.68392667572196,
+                        "Sei": 55.739318467816474,
+                        "Visual Studio": 53.03153606767366
+                    }
+                },
+                {
+                    "name": "task",
+                    "kind": "function",
+                    "start_line": 73,
+                    "end_line": 75,
+                    "SLOC": 3,
+                    "PLOC": 3,
+                    "LLOC": 2,
+                    "CLOC": 0,
+                    "BLANK": 0,
+                    "CC": 1.0,
+                    "NARGS": 3,
+                    "NEXITS": 1,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 0,
+                        "total": 1
+                    },
+                    "Halstead": {
+                        "n1": 4,
+                        "n2": 9,
+                        "N1": 13,
+                        "N2": 15,
+                        "Vocabulary": 13,
+                        "Length": 28,
+                        "Volume": 103.61231210795059,
+                        "Difficulty": 3.3333333333333335,
+                        "Level": 0.3,
+                        "Effort": 345.37437369316865,
+                        "Programming time": 19.187465205176036,
+                        "Bugs": 0.016408623577911046,
+                        "Estimated program length": 36.529325012980806,
+                        "Purity ratio": 1.3046187504636002
+                    },
+                    "Mi": {
+                        "Original": 128.84106886295072,
+                        "Sei": 110.27933897880416,
+                        "Visual Studio": 75.34565430581914
+                    }
+                },
+                {
+                    "name": "fannkuch",
+                    "kind": "function",
+                    "start_line": 77,
+                    "end_line": 103,
+                    "SLOC": 27,
+                    "PLOC": 21,
+                    "LLOC": 18,
+                    "CLOC": 0,
+                    "BLANK": 6,
+                    "CC": 9.0,
+                    "NARGS": 1,
+                    "NEXITS": 0,
+                    "NOM": {
+                        "functions": 1,
+                        "closures": 1,
+                        "total": 2
+                    },
+                    "Halstead": {
+                        "n1": 20,
+                        "n2": 35,
+                        "N1": 81,
+                        "N2": 80,
+                        "Vocabulary": 55,
+                        "Length": 161,
+                        "Volume": 930.7989138774702,
+                        "Difficulty": 22.857142857142858,
+                        "Level": 0.04375,
+                        "Effort": 21275.40374577075,
+                        "Programming time": 1181.9668747650417,
+                        "Bugs": 0.2559355526067478,
+                        "Estimated program length": 265.9634674908211,
+                        "Purity ratio": 1.651947003048578
+                    },
+                    "Mi": {
+                        "Original": 79.99001779503075,
+                        "Sei": 40.616728736138185,
+                        "Visual Studio": 46.77778818422851
+                    }
+                }
+            ]
+        }
+    ]
+}

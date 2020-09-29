@@ -1,0 +1,76 @@
+{
+    "SLOC": 57,
+    "PLOC": 41,
+    "LLOC": 40,
+    "CLOC": 8,
+    "BLANK": 8,
+    "CC": 6.0,
+    "NARGS": 0,
+    "NEXITS": 0,
+    "NOM": {
+        "functions": 0,
+        "closures": 0,
+        "total": 0
+    },
+    "HALSTEAD": {
+        "n1": 19,
+        "n2": 40,
+        "N1": 118,
+        "N2": 141,
+        "Vocabulary": 59,
+        "Length": 259,
+        "Volume": 1523.604549784717,
+        "Difficulty": 33.4875,
+        "Level": 0.029861888764464356,
+        "Effort": 51021.7073609157,
+        "Programming time": 2834.53929782865,
+        "Bugs": 0.45854511407427156,
+        "Estimated program length": 293.5877465509226,
+        "Purity ratio": 1.133543422976535
+    },
+    "MI": {
+        "Original": 66.01263151288485,
+        "Sei": 47.56329275165993,
+        "Visual Studio": 38.60387807771044
+    },
+    "files": [
+        {
+            "filename": "Assets/Python/pidigits.py",
+            "SLOC": 57,
+            "PLOC": 41,
+            "LLOC": 40,
+            "CLOC": 8,
+            "BLANK": 8,
+            "CC": 6.0,
+            "NARGS": 0,
+            "NEXITS": 0,
+            "NOM": {
+                "functions": 0,
+                "closures": 0,
+                "total": 0
+            },
+            "Halstead": {
+                "n1": 19,
+                "n2": 40,
+                "N1": 118,
+                "N2": 141,
+                "Vocabulary": 59,
+                "Length": 259,
+                "Volume": 1523.604549784717,
+                "Difficulty": 33.4875,
+                "Level": 0.029861888764464356,
+                "Effort": 51021.7073609157,
+                "Programming time": 2834.53929782865,
+                "Bugs": 0.45854511407427156,
+                "Estimated program length": 293.5877465509226,
+                "Purity ratio": 1.133543422976535
+            },
+            "Mi": {
+                "Original": 66.01263151288485,
+                "Sei": 47.56329275165993,
+                "Visual Studio": 38.60387807771044
+            },
+            "spaces": []
+        }
+    ]
+}

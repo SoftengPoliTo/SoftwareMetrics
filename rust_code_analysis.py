@@ -17,6 +17,7 @@ RCA_EXTENSIONS = [
     "js",
     "py",
     "rs",
+    "ts",
 ]
 
 

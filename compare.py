@@ -19,7 +19,14 @@ RESULTS_DIR = pathlib.Path("Results")
 COMPARE_DIR = pathlib.Path("Compare")
 
 # The extensions of files present in a directory
-EXTENSIONS = {"C": ".c", "Rust": ".rs", "C++": ".cpp", "Python": ".py", "Javascript": ".js"}
+EXTENSIONS = {
+    "C": ".c",
+    "Rust": ".rs",
+    "C++": ".cpp",
+    "Python": ".py",
+    "Javascript": ".js",
+    "TypeScript": ".ts"
+}
 
 
 class Conf(enum.Enum):
@@ -28,10 +35,13 @@ class Conf(enum.Enum):
 
     C_CPP = ("C", "C++", "C-C++")
     C_JS = ("C", "Javascript", "C-Javascript")
+    C_TS = ("C", "TypeScript", "C-TypeScript")
     C_PYTHON = ("C", "Python", "C-Python")
     C_RUST = ("C", "Rust", "C-Rust")
     CPP_PYTHON = ("C++", "Python", "C++-Python")
+    JS_TS = ("Javascript", "TypeScript", "JavaScript-TypeScript")
     RUST_JS = ("Rust", "Javascript", "Rust-Javascript")
+    RUST_TS = ("Rust", "TypeScript", "Rust-TypeScript")
     RUST_PYTHON = ("Rust", "Python", "Rust-Python")
 
 
@@ -39,14 +49,17 @@ class Conf(enum.Enum):
 GLOBAL_CONF = (
     Conf.C_CPP.value,
     Conf.C_JS.value,
+    Conf.C_TS.value,
     Conf.C_PYTHON.value,
     Conf.C_RUST.value,
     Conf.CPP_PYTHON.value,
+    Conf.JS_TS.value,
     Conf.RUST_JS.value,
+    Conf.RUST_TS.value,
     Conf.RUST_PYTHON.value,
 )
 
-# Pidigits configuration, since it is not implemented in Javascript
+# Pidigits configuration, since it is not implemented in JavaScript and TypeScript
 PIDIGITS_CONF = (
     Conf.C_CPP.value,
     Conf.C_PYTHON.value,

@@ -40,6 +40,7 @@ class Conf(enum.Enum):
     C_PYTHON = ("C", "Python", "C-Python")
     C_RUST = ("C", "Rust", "C-Rust")
     CPP_JS = ("C++", "JavaScript", "C++-JavaScript")
+    CPP_TS = ("C++", "TypeScript", "C++-TypeScript")
     CPP_PYTHON = ("C++", "Python", "C++-Python")
     CPP_RUST = ("C++", "Rust", "C++-Rust")
     JS_TS = ("JavaScript", "TypeScript", "JavaScript-TypeScript")
@@ -56,6 +57,7 @@ GLOBAL_CONF = (
     Conf.C_PYTHON.value,
     Conf.C_RUST.value,
     Conf.CPP_JS.value,
+    Conf.CPP_TS.value,
     Conf.CPP_PYTHON.value,
     Conf.CPP_RUST.value,
     Conf.JS_TS.value,

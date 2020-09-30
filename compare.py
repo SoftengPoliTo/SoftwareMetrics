@@ -10,6 +10,7 @@ import json
 import pathlib
 import subprocess
 import sys
+import tempfile
 import typing as T
 
 from exit_codes import ExitCode, log_conf, log_err, log_info
@@ -39,6 +40,7 @@ class Conf(enum.Enum):
     C_PYTHON = ("C", "Python", "C-Python")
     C_RUST = ("C", "Rust", "C-Rust")
     CPP_PYTHON = ("C++", "Python", "C++-Python")
+    CPP_RUST = ("C++", "Rust", "C++-Rust")
     JS_TS = ("JavaScript", "TypeScript", "JavaScript-TypeScript")
     RUST_JS = ("Rust", "JavaScript", "Rust-JavaScript")
     RUST_TS = ("Rust", "TypeScript", "Rust-TypeScript")
@@ -53,6 +55,7 @@ GLOBAL_CONF = (
     Conf.C_PYTHON.value,
     Conf.C_RUST.value,
     Conf.CPP_PYTHON.value,
+    Conf.CPP_RUST.value,
     Conf.JS_TS.value,
     Conf.RUST_JS.value,
     Conf.RUST_TS.value,
@@ -65,6 +68,7 @@ PIDIGITS_CONF = (
     Conf.C_PYTHON.value,
     Conf.C_RUST.value,
     Conf.CPP_PYTHON.value,
+    Conf.CPP_RUST.value,
     Conf.RUST_PYTHON.value,
 )
 
@@ -139,13 +143,17 @@ def run_comparison(
     # Open second json file
     second_json_filename = build_json_name(second_dir, filename)
 
-    # Compute the difference between json files
-    ret_value = run_subprocess(
-        "json-diff", "-j", first_json_filename, second_json_filename
-    )
+    # Compute the difference between two json files
+    with tempfile.TemporaryFile(mode = "w+") as fp:
+        subprocess.call(
+            ["json-diff", "-j", first_json_filename, second_json_filename],
+            stdout=fp,
+        )
+        fp.seek(0)
+        json_diff_str = fp.read()
 
-    # Interrupt the comparison if two files are identical
-    if not ret_value.stdout:
+    # Interrupt the comparison if the two json files are identical
+    if not json_diff_str:
         log_info(
             "\t{} and {} are identical.",
             first_json_filename,
@@ -153,8 +161,8 @@ def run_comparison(
         )
         return None
 
-    # Load json file of difference
-    diff_json = json.loads(ret_value.stdout)
+    # Load the json diff object
+    diff_json = json.loads(json_diff_str)
 
     # Maintain only global metrics for each file
     for single_file in diff_json["files"]:

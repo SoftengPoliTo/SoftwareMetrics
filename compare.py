@@ -91,6 +91,9 @@ FILE_DICT = {
     "spectralnorm": GLOBAL_CONF,
 }
 
+# Do not compute the same metrics many times
+metrics_already_computed = []
+
 
 def run_subprocess(cmd: str, *args: T.Any) -> subprocess.CompletedProcess:
     return subprocess.run(
@@ -136,10 +139,16 @@ def run_comparison(
     """Run programming languages comparison."""
 
     # Compute metrics for the first file
-    compute_metrics(first_dir, filename + EXTENSIONS[first_dir])
+    first_metric_filename = filename + EXTENSIONS[first_dir]
+    if first_metric_filename not in metrics_already_computed:
+        compute_metrics(first_dir, first_metric_filename)
+        metrics_already_computed.append(first_metric_filename)
 
     # Compute metrics for the second file
-    compute_metrics(second_dir, filename + EXTENSIONS[second_dir])
+    second_metric_filename = filename + EXTENSIONS[second_dir]
+    if second_metric_filename not in metrics_already_computed:
+        compute_metrics(second_dir, second_metric_filename)
+        metrics_already_computed.append(second_metric_filename)
 
     # Open first json file
     first_json_filename = build_json_name(first_dir, filename)

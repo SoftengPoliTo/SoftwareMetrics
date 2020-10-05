@@ -122,6 +122,7 @@ def standardizer_rust_code_analysis(data_list):
                 if isinstance(space_metrics["cyclomatic"], float)
                 else space_metrics["cyclomatic"]["sum"]
             )
+            space_file["COGNITIVE"] = int(space_metrics["cognitive"])
             space_file["NARGS"] = int(space_metrics["nargs"])
             space_file["NEXITS"] = int(space_metrics["nexits"])
             space_file["NOM"] = _get_nom(space_metrics)
@@ -150,6 +151,7 @@ def standardizer_rust_code_analysis(data_list):
                 if isinstance(metrics["cyclomatic"], float)
                 else metrics["cyclomatic"]["sum"]
             ),
+            "COGNITIVE": int(metrics["cognitive"]),
             "NARGS": int(metrics["nargs"]),
             "NEXITS": int(metrics["nexits"]),
             "NOM": _get_nom(metrics),
@@ -173,6 +175,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     tot_cloc = 0
     tot_blank = 0
     tot_cc = 0
+    tot_cognitive = 0
     tot_halstead_n1 = 0
     tot_halstead_n2 = 0
     tot_halstead_N1 = 0
@@ -247,6 +250,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
         tot_cc += file["CC"]
+        tot_cognitive += file["COGNITIVE"]
         tot_halstead_n1 += file["Halstead"]["n1"]
         tot_halstead_n2 += file["Halstead"]["n2"]
         tot_halstead_N1 += file["Halstead"]["N1"]
@@ -265,6 +269,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     output["CLOC"] = tot_cloc
     output["BLANK"] = tot_blank
     output["CC"] = tot_cc
+    output["COGNITIVE"] = tot_cognitive
     output["NARGS"] = tot_nargs
     output["NEXITS"] = tot_nexits
     output["NOM"] = _global_nom()
@@ -289,6 +294,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
             "CLOC": file["CLOC"],
             "BLANK": file["BLANK"],
             "CC": file["CC"],
+            "COGNITIVE": file["COGNITIVE"],
             "NARGS": file["NARGS"],
             "NEXITS": file["NEXITS"],
             "NOM": file["NOM"],

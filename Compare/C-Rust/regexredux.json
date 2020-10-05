@@ -23,6 +23,10 @@
         "__old": 12,
         "__new": 10
     },
+    "COGNITIVE": {
+        "__old": 11,
+        "__new": 3
+    },
     "NOM": {
         "closures": {
             "__old": 0,
@@ -136,6 +140,10 @@
                 "CC": {
                     "__old": 12,
                     "__new": 10
+                },
+                "COGNITIVE": {
+                    "__old": 11,
+                    "__new": 3
                 },
                 "NOM": {
                     "closures": {

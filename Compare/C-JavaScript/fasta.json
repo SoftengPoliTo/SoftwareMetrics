@@ -19,6 +19,10 @@
         "__old": 40,
         "__new": 60
     },
+    "COGNITIVE": {
+        "__old": 42,
+        "__new": 23
+    },
     "NEXITS": {
         "__old": 4,
         "__new": 17
@@ -132,6 +136,10 @@
                 "BLANK": {
                     "__old": 40,
                     "__new": 60
+                },
+                "COGNITIVE": {
+                    "__old": 42,
+                    "__new": 23
                 },
                 "NEXITS": {
                     "__old": 4,

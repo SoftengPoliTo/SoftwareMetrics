@@ -23,6 +23,10 @@
         "__old": 9,
         "__new": 10
     },
+    "COGNITIVE": {
+        "__old": 7,
+        "__new": 0
+    },
     "NEXITS": {
         "__old": 2,
         "__new": 1
@@ -126,6 +130,10 @@
                 "CC": {
                     "__old": 9,
                     "__new": 10
+                },
+                "COGNITIVE": {
+                    "__old": 7,
+                    "__new": 0
                 },
                 "NEXITS": {
                     "__old": 2,

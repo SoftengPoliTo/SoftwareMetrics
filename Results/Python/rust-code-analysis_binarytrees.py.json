@@ -5,6 +5,7 @@
     "CLOC": 6,
     "BLANK": 22,
     "CC": 16.0,
+    "COGNITIVE": 13,
     "NARGS": 0,
     "NEXITS": 5,
     "NOM": {
@@ -13,25 +14,25 @@
         "total": 5
     },
     "HALSTEAD": {
-        "n1": 23,
+        "n1": 22,
         "n2": 52,
-        "N1": 132,
+        "N1": 94,
         "N2": 142,
-        "Vocabulary": 75,
-        "Length": 274,
-        "Volume": 1706.6963211958712,
-        "Difficulty": 31.403846153846153,
-        "Level": 0.03184323331292101,
-        "Effort": 53596.828702170336,
-        "Programming time": 2977.601594565019,
-        "Bugs": 0.473847006044388,
-        "Estimated program length": 400.464790332648,
-        "Purity ratio": 1.4615503296811971
+        "Vocabulary": 74,
+        "Length": 236,
+        "Volume": 1465.4309942884322,
+        "Difficulty": 30.03846153846154,
+        "Level": 0.03329065300896287,
+        "Effort": 44019.29255920252,
+        "Programming time": 2445.516253289029,
+        "Bugs": 0.4155667428621877,
+        "Estimated program length": 394.5303609533573,
+        "Purity ratio": 1.6717388175989716
     },
     "MI": {
-        "Original": 58.46208290180243,
-        "Sei": 31.354698957570236,
-        "Visual Studio": 34.18835257415347
+        "Original": 59.254615591723194,
+        "Sei": 32.498081939061336,
+        "Visual Studio": 34.651821983463854
     },
     "files": [
         {
@@ -42,6 +43,7 @@
             "CLOC": 6,
             "BLANK": 22,
             "CC": 16.0,
+            "COGNITIVE": 13,
             "NARGS": 0,
             "NEXITS": 5,
             "NOM": {
@@ -50,25 +52,25 @@
                 "total": 5
             },
             "Halstead": {
-                "n1": 23,
+                "n1": 22,
                 "n2": 52,
-                "N1": 132,
+                "N1": 94,
                 "N2": 142,
-                "Vocabulary": 75,
-                "Length": 274,
-                "Volume": 1706.6963211958712,
-                "Difficulty": 31.403846153846153,
-                "Level": 0.03184323331292101,
-                "Effort": 53596.828702170336,
-                "Programming time": 2977.601594565019,
-                "Bugs": 0.473847006044388,
-                "Estimated program length": 400.464790332648,
-                "Purity ratio": 1.4615503296811971
+                "Vocabulary": 74,
+                "Length": 236,
+                "Volume": 1465.4309942884322,
+                "Difficulty": 30.03846153846154,
+                "Level": 0.03329065300896287,
+                "Effort": 44019.29255920252,
+                "Programming time": 2445.516253289029,
+                "Bugs": 0.4155667428621877,
+                "Estimated program length": 394.5303609533573,
+                "Purity ratio": 1.6717388175989716
             },
             "Mi": {
-                "Original": 58.46208290180243,
-                "Sei": 31.354698957570236,
-                "Visual Studio": 34.18835257415347
+                "Original": 59.254615591723194,
+                "Sei": 32.498081939061336,
+                "Visual Studio": 34.651821983463854
             },
             "spaces": [
                 {
@@ -82,6 +84,7 @@
                     "CLOC": 0,
                     "BLANK": 1,
                     "CC": 2.0,
+                    "COGNITIVE": 1,
                     "NARGS": 1,
                     "NEXITS": 2,
                     "NOM": {
@@ -92,23 +95,23 @@
                     "Halstead": {
                         "n1": 6,
                         "n2": 5,
-                        "N1": 12,
+                        "N1": 8,
                         "N2": 12,
                         "Vocabulary": 11,
-                        "Length": 24,
-                        "Volume": 83.02635884729514,
+                        "Length": 20,
+                        "Volume": 69.18863237274594,
                         "Difficulty": 7.2,
                         "Level": 0.1388888888888889,
-                        "Effort": 597.789783700525,
-                        "Programming time": 33.21054353891806,
-                        "Bugs": 0.023654352859280702,
+                        "Effort": 498.1581530837708,
+                        "Programming time": 27.67545294909838,
+                        "Bugs": 0.02094708397031986,
                         "Estimated program length": 27.11941547876375,
-                        "Purity ratio": 1.1299756449484895
+                        "Purity ratio": 1.3559707739381874
                     },
                     "Mi": {
-                        "Original": 118.53387430246835,
-                        "Sei": 95.51102036032302,
-                        "Visual Studio": 69.31805514764231
+                        "Original": 119.48194639779692,
+                        "Sei": 96.87879927065873,
+                        "Visual Studio": 69.87248327356545
                     }
                 },
                 {
@@ -122,6 +125,7 @@
                     "CLOC": 0,
                     "BLANK": 1,
                     "CC": 2.0,
+                    "COGNITIVE": 2,
                     "NARGS": 1,
                     "NEXITS": 2,
                     "NOM": {
@@ -132,23 +136,23 @@
                     "Halstead": {
                         "n1": 8,
                         "n2": 6,
-                        "N1": 13,
+                        "N1": 10,
                         "N2": 13,
                         "Vocabulary": 14,
-                        "Length": 26,
-                        "Volume": 98.99122797349771,
+                        "Length": 23,
+                        "Volume": 87.56916320732489,
                         "Difficulty": 8.666666666666666,
                         "Level": 0.11538461538461539,
-                        "Effort": 857.9239757703135,
-                        "Programming time": 47.66244309835075,
-                        "Bugs": 0.030096173501807447,
+                        "Effort": 758.9327477968156,
+                        "Programming time": 42.162930433156426,
+                        "Bugs": 0.027734112565912995,
                         "Estimated program length": 39.50977500432694,
-                        "Purity ratio": 1.5196067309356516
+                        "Purity ratio": 1.717816304535954
                     },
                     "Mi": {
-                        "Original": 115.12209313792525,
-                        "Sei": 90.58886059363832,
-                        "Visual Studio": 67.32286148416681
+                        "Original": 115.75962521280539,
+                        "Sei": 91.50862495647553,
+                        "Visual Studio": 67.69568725895051
                     }
                 },
                 {
@@ -162,6 +166,7 @@
                     "CLOC": 0,
                     "BLANK": 1,
                     "CC": 1.0,
+                    "COGNITIVE": 0,
                     "NARGS": 3,
                     "NEXITS": 1,
                     "NOM": {
@@ -172,23 +177,23 @@
                     "Halstead": {
                         "n1": 4,
                         "n2": 8,
-                        "N1": 10,
+                        "N1": 8,
                         "N2": 12,
                         "Vocabulary": 12,
-                        "Length": 22,
-                        "Volume": 78.86917501586544,
+                        "Length": 20,
+                        "Volume": 71.69925001442311,
                         "Difficulty": 3.0,
                         "Level": 0.3333333333333333,
-                        "Effort": 236.6075250475963,
-                        "Programming time": 13.144862502644239,
-                        "Bugs": 0.012751593131822912,
+                        "Effort": 215.09775004326934,
+                        "Programming time": 11.949875002403852,
+                        "Bugs": 0.011966560027609794,
                         "Estimated program length": 32.0,
-                        "Purity ratio": 1.4545454545454546
+                        "Purity ratio": 1.6
                     },
                     "Mi": {
-                        "Original": 125.5995209198702,
-                        "Sei": 105.60277383651805,
-                        "Visual Studio": 73.45001223384222
+                        "Original": 126.09513385485269,
+                        "Sei": 106.31779216001772,
+                        "Visual Studio": 73.73984435956298
                     }
                 },
                 {
@@ -202,6 +207,7 @@
                     "CLOC": 0,
                     "BLANK": 1,
                     "CC": 5.0,
+                    "COGNITIVE": 4,
                     "NARGS": 3,
                     "NEXITS": 0,
                     "NOM": {
@@ -210,25 +216,25 @@
                         "total": 1
                     },
                     "Halstead": {
-                        "n1": 14,
+                        "n1": 13,
                         "n2": 13,
-                        "N1": 29,
+                        "N1": 21,
                         "N2": 27,
-                        "Vocabulary": 27,
-                        "Length": 56,
-                        "Volume": 266.2737001211542,
-                        "Difficulty": 14.538461538461538,
-                        "Level": 0.06878306878306878,
-                        "Effort": 3871.209947915242,
-                        "Programming time": 215.06721932862456,
-                        "Bugs": 0.0821819727279875,
-                        "Estimated program length": 101.40868524464065,
-                        "Purity ratio": 1.810869379368583
+                        "Vocabulary": 26,
+                        "Length": 48,
+                        "Volume": 225.62110647077242,
+                        "Difficulty": 13.5,
+                        "Level": 0.07407407407407407,
+                        "Effort": 3045.8849373554276,
+                        "Programming time": 169.2158298530793,
+                        "Bugs": 0.07004133374308373,
+                        "Estimated program length": 96.21143267166839,
+                        "Purity ratio": 2.0044048473264247
                     },
                     "Mi": {
-                        "Original": 101.96456799713795,
-                        "Sei": 71.912023900866,
-                        "Visual Studio": 59.62840233750757
+                        "Original": 102.82603980471151,
+                        "Sei": 73.15486500551803,
+                        "Visual Studio": 60.13218702029913
                     }
                 },
                 {
@@ -242,6 +248,7 @@
                     "CLOC": 0,
                     "BLANK": 5,
                     "CC": 4.0,
+                    "COGNITIVE": 5,
                     "NARGS": 2,
                     "NEXITS": 0,
                     "NOM": {
@@ -252,23 +259,23 @@
                     "Halstead": {
                         "n1": 13,
                         "n2": 33,
-                        "N1": 59,
+                        "N1": 41,
                         "N2": 68,
                         "Vocabulary": 46,
-                        "Length": 127,
-                        "Volume": 701.4923684192406,
+                        "Length": 109,
+                        "Volume": 602.0682532102144,
                         "Difficulty": 13.393939393939394,
                         "Level": 0.0746606334841629,
-                        "Effort": 9395.746267918314,
-                        "Programming time": 521.9859037732397,
-                        "Bugs": 0.14842245086319214,
+                        "Effort": 8064.065694512568,
+                        "Programming time": 448.0036496951427,
+                        "Bugs": 0.13404422765369406,
                         "Estimated program length": 214.57072227466315,
-                        "Purity ratio": 1.6895332462571901
+                        "Purity ratio": 1.9685387364647995
                     },
                     "Mi": {
-                        "Original": 83.85751953034203,
-                        "Sei": 45.68725501327893,
-                        "Visual Studio": 49.03948510546318
+                        "Original": 84.65228339233518,
+                        "Sei": 46.83385689565418,
+                        "Visual Studio": 49.50425929376326
                     }
                 }
             ]

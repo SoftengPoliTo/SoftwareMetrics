@@ -5,6 +5,7 @@
     "CLOC": 0,
     "BLANK": 5,
     "CC": 6.0,
+    "COGNITIVE": 6,
     "NARGS": 0,
     "NEXITS": 0,
     "NOM": {
@@ -42,6 +43,7 @@
             "CLOC": 0,
             "BLANK": 5,
             "CC": 6.0,
+            "COGNITIVE": 6,
             "NARGS": 0,
             "NEXITS": 0,
             "NOM": {
@@ -82,6 +84,7 @@
                     "CLOC": 0,
                     "BLANK": 3,
                     "CC": 4.0,
+                    "COGNITIVE": 6,
                     "NARGS": 1,
                     "NEXITS": 0,
                     "NOM": {
@@ -122,6 +125,7 @@
                     "CLOC": 0,
                     "BLANK": 1,
                     "CC": 1.0,
+                    "COGNITIVE": 0,
                     "NARGS": 0,
                     "NEXITS": 0,
                     "NOM": {

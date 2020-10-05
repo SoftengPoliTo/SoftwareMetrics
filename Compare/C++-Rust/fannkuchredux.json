@@ -23,6 +23,10 @@
         "__old": 28,
         "__new": 22
     },
+    "COGNITIVE": {
+        "__old": 46,
+        "__new": 38
+    },
     "NOM": {
         "functions": {
             "__old": 5,
@@ -136,6 +140,10 @@
                 "CC": {
                     "__old": 28,
                     "__new": 22
+                },
+                "COGNITIVE": {
+                    "__old": 46,
+                    "__new": 38
                 },
                 "NOM": {
                     "functions": {

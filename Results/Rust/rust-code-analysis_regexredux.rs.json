@@ -5,6 +5,7 @@
     "CLOC": 19,
     "BLANK": 13,
     "CC": 10.0,
+    "COGNITIVE": 3,
     "NARGS": 0,
     "NEXITS": 1,
     "NOM": {
@@ -42,6 +43,7 @@
             "CLOC": 19,
             "BLANK": 13,
             "CC": 10.0,
+            "COGNITIVE": 3,
             "NARGS": 0,
             "NEXITS": 1,
             "NOM": {
@@ -82,6 +84,7 @@
                     "CLOC": 1,
                     "BLANK": 1,
                     "CC": 4.0,
+                    "COGNITIVE": 0,
                     "NARGS": 0,
                     "NEXITS": 1,
                     "NOM": {
@@ -122,6 +125,7 @@
                     "CLOC": 9,
                     "BLANK": 7,
                     "CC": 5.0,
+                    "COGNITIVE": 3,
                     "NARGS": 0,
                     "NEXITS": 0,
                     "NOM": {
@@ -162,6 +166,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 1.0,
+                            "COGNITIVE": 0,
                             "NARGS": 2,
                             "NEXITS": 0,
                             "NOM": {

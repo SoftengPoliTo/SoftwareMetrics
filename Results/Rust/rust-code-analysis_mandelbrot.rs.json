@@ -5,6 +5,7 @@
     "CLOC": 6,
     "BLANK": 18,
     "CC": 28.0,
+    "COGNITIVE": 10,
     "NARGS": 0,
     "NEXITS": 8,
     "NOM": {
@@ -42,6 +43,7 @@
             "CLOC": 6,
             "BLANK": 18,
             "CC": 28.0,
+            "COGNITIVE": 10,
             "NARGS": 0,
             "NEXITS": 8,
             "NOM": {
@@ -82,6 +84,7 @@
                     "CLOC": 0,
                     "BLANK": 0,
                     "CC": 3.0,
+                    "COGNITIVE": 0,
                     "NARGS": 0,
                     "NEXITS": 1,
                     "NOM": {
@@ -122,6 +125,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 1.0,
+                            "COGNITIVE": 0,
                             "NARGS": 2,
                             "NEXITS": 1,
                             "NOM": {
@@ -164,6 +168,7 @@
                     "CLOC": 0,
                     "BLANK": 0,
                     "CC": 3.0,
+                    "COGNITIVE": 0,
                     "NARGS": 0,
                     "NEXITS": 1,
                     "NOM": {
@@ -204,6 +209,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 1.0,
+                            "COGNITIVE": 0,
                             "NARGS": 2,
                             "NEXITS": 1,
                             "NOM": {
@@ -246,6 +252,7 @@
                     "CLOC": 0,
                     "BLANK": 0,
                     "CC": 3.0,
+                    "COGNITIVE": 0,
                     "NARGS": 0,
                     "NEXITS": 1,
                     "NOM": {
@@ -286,6 +293,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 1.0,
+                            "COGNITIVE": 0,
                             "NARGS": 2,
                             "NEXITS": 1,
                             "NOM": {
@@ -328,6 +336,7 @@
                     "CLOC": 0,
                     "BLANK": 6,
                     "CC": 13.0,
+                    "COGNITIVE": 7,
                     "NARGS": 0,
                     "NEXITS": 5,
                     "NOM": {
@@ -368,6 +377,7 @@
                             "CLOC": 0,
                             "BLANK": 1,
                             "CC": 1.0,
+                            "COGNITIVE": 0,
                             "NARGS": 1,
                             "NEXITS": 1,
                             "NOM": {
@@ -408,6 +418,7 @@
                             "CLOC": 0,
                             "BLANK": 1,
                             "CC": 3.0,
+                            "COGNITIVE": 3,
                             "NARGS": 3,
                             "NEXITS": 2,
                             "NOM": {
@@ -448,6 +459,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 2.0,
+                            "COGNITIVE": 1,
                             "NARGS": 2,
                             "NEXITS": 0,
                             "NOM": {
@@ -488,6 +500,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 2.0,
+                            "COGNITIVE": 0,
                             "NARGS": 1,
                             "NEXITS": 1,
                             "NOM": {
@@ -528,6 +541,7 @@
                                     "CLOC": 0,
                                     "BLANK": 0,
                                     "CC": 1.0,
+                                    "COGNITIVE": 0,
                                     "NARGS": 3,
                                     "NEXITS": 0,
                                     "NOM": {
@@ -570,6 +584,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 4.0,
+                            "COGNITIVE": 3,
                             "NARGS": 1,
                             "NEXITS": 1,
                             "NOM": {
@@ -610,6 +625,7 @@
                                     "CLOC": 0,
                                     "BLANK": 0,
                                     "CC": 2.0,
+                                    "COGNITIVE": 3,
                                     "NARGS": 3,
                                     "NEXITS": 0,
                                     "NOM": {
@@ -650,6 +666,7 @@
                                     "CLOC": 0,
                                     "BLANK": 0,
                                     "CC": 1.0,
+                                    "COGNITIVE": 0,
                                     "NARGS": 4,
                                     "NEXITS": 0,
                                     "NOM": {
@@ -694,6 +711,7 @@
                     "CLOC": 0,
                     "BLANK": 2,
                     "CC": 5.0,
+                    "COGNITIVE": 3,
                     "NARGS": 0,
                     "NEXITS": 0,
                     "NOM": {
@@ -734,6 +752,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 1.0,
+                            "COGNITIVE": 0,
                             "NARGS": 3,
                             "NEXITS": 0,
                             "NOM": {
@@ -774,6 +793,7 @@
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": 2.0,
+                            "COGNITIVE": 2,
                             "NARGS": 3,
                             "NEXITS": 0,
                             "NOM": {

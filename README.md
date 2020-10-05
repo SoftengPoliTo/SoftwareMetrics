@@ -37,7 +37,7 @@ Used for: SLOC, LLOC, CLOC, BLANK
 
 ### Rust Code Analysis
 
-Used for: SLOC, PLOC, LLOC, CLOC, BLANK, NOM, CC, HALSTEAD, MI
+Used for: SLOC, PLOC, LLOC, CLOC, BLANK, NOM, CC, COGNITIVE, HALSTEAD, MI
 
     * Building: Ok
     * Local installation: Ok
@@ -66,6 +66,7 @@ At this point, the results of the comparisons can be obtained in this way:
 - LLOC
 - CLOC
 - CC
+- COGNITIVE
 - Halstead
 - MI
 - NOM
@@ -102,6 +103,9 @@ At this point, the results of the comparisons can be obtained in this way:
 
  - **CC:** McCabe's Cyclomatic Complexity. It calculates the code complexity
    examining the control flow of a program.
+
+ - **COGNITIVE**: Cognitive Complexity. It is a measure of how difficult
+   a unit of code is to intuitively understand.
 
  - **Halstead:** It calculates the Halstead suite.
 

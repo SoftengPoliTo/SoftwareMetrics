@@ -19,10 +19,6 @@
         "__old": 6,
         "__new": 8
     },
-    "COGNITIVE": {
-        "__old": 5,
-        "__new": 6
-    },
     "NOM": {
         "closures": {
             "__old": 0,

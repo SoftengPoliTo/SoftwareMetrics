@@ -23,10 +23,6 @@
         "__old": 22,
         "__new": 16
     },
-    "COGNITIVE": {
-        "__old": 56,
-        "__new": 46
-    },
     "HALSTEAD": {
         "n1": {
             "__old": 30,

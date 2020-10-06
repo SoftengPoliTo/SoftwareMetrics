@@ -175,7 +175,6 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     tot_cloc = 0
     tot_blank = 0
     tot_cc = 0
-    tot_cognitive = 0
     tot_halstead_n1 = 0
     tot_halstead_n2 = 0
     tot_halstead_N1 = 0
@@ -250,7 +249,6 @@ def helper_test_rust_code_analysis(standardized_output: dict):
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
         tot_cc += file["CC"]
-        tot_cognitive += file["COGNITIVE"]
         tot_halstead_n1 += file["Halstead"]["n1"]
         tot_halstead_n2 += file["Halstead"]["n2"]
         tot_halstead_N1 += file["Halstead"]["N1"]
@@ -269,7 +267,6 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     output["CLOC"] = tot_cloc
     output["BLANK"] = tot_blank
     output["CC"] = tot_cc
-    output["COGNITIVE"] = tot_cognitive
     output["NARGS"] = tot_nargs
     output["NEXITS"] = tot_nexits
     output["NOM"] = _global_nom()

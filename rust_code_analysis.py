@@ -117,11 +117,7 @@ def standardizer_rust_code_analysis(data_list):
             space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
             space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
             space_file["BLANK"] = int(space_metrics["loc"]["blank"])
-            space_file["CC"] = (
-                space_metrics["cyclomatic"]
-                if isinstance(space_metrics["cyclomatic"], float)
-                else space_metrics["cyclomatic"]["sum"]
-            )
+            space_file["CC"] = int(space_metrics["cyclomatic"]["sum"])
             space_file["COGNITIVE"] = int(space_metrics["cognitive"])
             space_file["NARGS"] = int(space_metrics["nargs"])
             space_file["NEXITS"] = int(space_metrics["nexits"])
@@ -146,11 +142,7 @@ def standardizer_rust_code_analysis(data_list):
             "LLOC": int(metrics["loc"]["lloc"]),
             "CLOC": int(metrics["loc"]["cloc"]),
             "BLANK": int(metrics["loc"]["blank"]),
-            "CC": (
-                metrics["cyclomatic"]
-                if isinstance(metrics["cyclomatic"], float)
-                else metrics["cyclomatic"]["sum"]
-            ),
+            "CC": int(metrics["cyclomatic"]["sum"]),
             "COGNITIVE": int(metrics["cognitive"]),
             "NARGS": int(metrics["nargs"]),
             "NEXITS": int(metrics["nexits"]),

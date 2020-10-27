@@ -1,6 +1,7 @@
 import json
 import math
 import os
+import pathlib
 import subprocess
 import typing as T
 
@@ -48,10 +49,18 @@ class RustCodeAnalysis:
                 "-m",
                 "-O",
                 "json",
+                "--pr",
                 "-p",
             ]
             args.append(single_file)
             results = subprocess.run(args, capture_output=True, check=True)
+
+            input_name = pathlib.Path(single_file).name
+            filename = "rca-json/" + input_name + ".json"
+
+            with open(filename, "w") as f:
+                f.write(results.stdout.decode("utf-8"))
+
             return results.stdout
 
         except subprocess.CalledProcessError as ex:

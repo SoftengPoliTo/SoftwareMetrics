@@ -73,7 +73,6 @@ At this point, the results of the comparisons can be obtained in this way:
 - NOM
 - NARGS
 - NEXITS
-- STAT
 - CHANGE
 - MPC
 - NPM
@@ -93,8 +92,6 @@ At this point, the results of the comparisons can be obtained in this way:
  - **CLOC:** Comment Lines of Code. It returns the number of comment lines in a file.
 
  - **BLANK:** Blank Lines of Code. It returns the number of blank lines in a file.
-
- - **STAT:** Statements. It is a LLOC applied only on methods/classes.
 
  - **NOM:** Number of Methods. It counts the number of methods in a file.
 
@@ -135,3 +132,8 @@ At this point, the results of the comparisons can be obtained in this way:
  - **LCOM2:** Lack of Cohesion 2. An alternative way to calculate LCOM by C&K.
 
  - **CE:** Efferent Coupling. It can be computed per-class only.
+
+### Alternative metric names
+
+ - **STAT:** Statements. In scientific literature, LLOC applied only on
+   methods/classes is better known with this name.

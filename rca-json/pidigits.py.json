@@ -1,0 +1,49 @@
+{
+  "name": "Assets/Python/pidigits.py",
+  "start_line": 1,
+  "end_line": 57,
+  "kind": "unit",
+  "spaces": [],
+  "metrics": {
+    "nargs": 0.0,
+    "nexits": 0.0,
+    "cognitive": 11.0,
+    "cyclomatic": {
+      "sum": 6.0,
+      "average": 6.0
+    },
+    "halstead": {
+      "n1": 17.0,
+      "N1": 83.0,
+      "n2": 40.0,
+      "N2": 141.0,
+      "length": 224.0,
+      "estimated_program_length": 282.3639920967503,
+      "purity_ratio": 1.2605535361462066,
+      "vocabulary": 57.0,
+      "volume": 1306.567363172902,
+      "difficulty": 29.9625,
+      "level": 0.033375052148518984,
+      "effort": 39148.02461906808,
+      "time": 2174.890256614893,
+      "bugs": 0.3843132109389379
+    },
+    "loc": {
+      "sloc": 57.0,
+      "ploc": 41.0,
+      "lloc": 40.0,
+      "cloc": 8.0,
+      "blank": 8.0
+    },
+    "nom": {
+      "functions": 0.0,
+      "closures": 0.0,
+      "total": 0.0
+    },
+    "mi": {
+      "mi_original": 66.81174451406555,
+      "mi_sei": 48.71616911557324,
+      "mi_visual_studio": 39.071195622260554
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Assets/JavaScript/regexredux.js",
+  "start_line": 1,
+  "end_line": 33,
+  "kind": "unit",
+  "spaces": [],
+  "metrics": {
+    "nargs": 0.0,
+    "nexits": 0.0,
+    "cognitive": 4.0,
+    "cyclomatic": {
+      "sum": 4.0,
+      "average": 4.0
+    },
+    "halstead": {
+      "n1": 14.0,
+      "N1": 113.0,
+      "n2": 23.0,
+      "N2": 50.0,
+      "length": 163.0,
+      "estimated_program_length": 157.34489389811776,
+      "purity_ratio": 0.9653060975344648,
+      "vocabulary": 37.0,
+      "volume": 849.1408985975189,
+      "difficulty": 15.217391304347826,
+      "level": 0.06571428571428571,
+      "effort": 12921.709326483984,
+      "time": 717.8727403602213,
+      "bugs": 0.18355183201932318
+    },
+    "loc": {
+      "sloc": 33.0,
+      "ploc": 22.0,
+      "lloc": 10.0,
+      "cloc": 8.0,
+      "blank": 3.0
+    },
+    "nom": {
+      "functions": 0.0,
+      "closures": 0.0,
+      "total": 0.0
+    },
+    "mi": {
+      "mi_original": 78.36660682386069,
+      "mi_sei": 72.31187482648421,
+      "mi_visual_studio": 45.82842504319339
+    }
+  }
+}

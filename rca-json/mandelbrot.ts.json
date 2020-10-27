@@ -1,0 +1,49 @@
+{
+  "name": "Assets/TypeScript/mandelbrot.ts",
+  "start_line": 1,
+  "end_line": 49,
+  "kind": "unit",
+  "spaces": [],
+  "metrics": {
+    "nargs": 0.0,
+    "nexits": 0.0,
+    "cognitive": 14.0,
+    "cyclomatic": {
+      "sum": 8.0,
+      "average": 8.0
+    },
+    "halstead": {
+      "n1": 23.0,
+      "N1": 118.0,
+      "n2": 31.0,
+      "N2": 113.0,
+      "length": 231.0,
+      "estimated_program_length": 257.6220106113044,
+      "purity_ratio": 1.1152467991831359,
+      "vocabulary": 54.0,
+      "volume": 1329.3790129997612,
+      "difficulty": 41.91935483870968,
+      "level": 0.023855328972681798,
+      "effort": 55726.71056107064,
+      "time": 3095.9283645039245,
+      "bugs": 0.48631875375637595
+    },
+    "loc": {
+      "sloc": 49.0,
+      "ploc": 32.0,
+      "lloc": 36.0,
+      "cloc": 7.0,
+      "blank": 10.0
+    },
+    "nom": {
+      "functions": 0.0,
+      "closures": 0.0,
+      "total": 0.0
+    },
+    "mi": {
+      "mi_original": 68.71168170636773,
+      "mi_sei": 51.8761864722328,
+      "mi_visual_studio": 40.182270003723815
+    }
+  }
+}

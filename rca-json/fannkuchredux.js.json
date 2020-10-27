@@ -1,0 +1,99 @@
+{
+  "name": "Assets/JavaScript/fannkuchredux.js",
+  "start_line": 1,
+  "end_line": 52,
+  "kind": "unit",
+  "spaces": [
+    {
+      "name": "fannkuch",
+      "start_line": 8,
+      "end_line": 48,
+      "kind": "function",
+      "spaces": [],
+      "metrics": {
+        "nargs": 1.0,
+        "nexits": 1.0,
+        "cognitive": 46.0,
+        "cyclomatic": {
+          "sum": 15.0,
+          "average": 15.0
+        },
+        "halstead": {
+          "n1": 25.0,
+          "N1": 165.0,
+          "n2": 21.0,
+          "N2": 147.0,
+          "length": 312.0,
+          "estimated_program_length": 208.33507062272207,
+          "purity_ratio": 0.667740610970263,
+          "vocabulary": 46.0,
+          "volume": 1723.3513302897882,
+          "difficulty": 87.5,
+          "level": 0.011428571428571429,
+          "effort": 150793.24140035646,
+          "time": 8377.402300019803,
+          "bugs": 0.9443507504668395
+        },
+        "loc": {
+          "sloc": 41.0,
+          "ploc": 38.0,
+          "lloc": 59.0,
+          "cloc": 10.0,
+          "blank": 0.0
+        },
+        "nom": {
+          "functions": 1.0,
+          "closures": 0.0,
+          "total": 1.0
+        },
+        "mi": {
+          "mi_original": 68.63959668557246,
+          "mi_sei": 59.48262179442385,
+          "mi_visual_studio": 40.14011502080261
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "nargs": 0.0,
+    "nexits": 1.0,
+    "cognitive": 46.0,
+    "cyclomatic": {
+      "sum": 16.0,
+      "average": 8.0
+    },
+    "halstead": {
+      "n1": 25.0,
+      "N1": 182.0,
+      "n2": 27.0,
+      "N2": 162.0,
+      "length": 344.0,
+      "estimated_program_length": 244.47836730278175,
+      "purity_ratio": 0.7106929282057609,
+      "vocabulary": 52.0,
+      "volume": 1960.9512630405357,
+      "difficulty": 75.0,
+      "level": 0.013333333333333334,
+      "effort": 147071.34472804016,
+      "time": 8170.630262668898,
+      "bugs": 0.9287470646953468
+    },
+    "loc": {
+      "sloc": 52.0,
+      "ploc": 41.0,
+      "lloc": 60.0,
+      "cloc": 16.0,
+      "blank": 0.0
+    },
+    "nom": {
+      "functions": 1.0,
+      "closures": 0.0,
+      "total": 1.0
+    },
+    "mi": {
+      "mi_original": 63.887689900566386,
+      "mi_sei": 55.96923838032948,
+      "mi_visual_studio": 37.36122216407391
+    }
+  }
+}

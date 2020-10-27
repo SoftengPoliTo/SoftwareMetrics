@@ -1,0 +1,99 @@
+{
+  "name": "Assets/C++/regexredux.cpp",
+  "start_line": 1,
+  "end_line": 94,
+  "kind": "unit",
+  "spaces": [
+    {
+      "name": "main",
+      "start_line": 19,
+      "end_line": 94,
+      "kind": "function",
+      "spaces": [],
+      "metrics": {
+        "nargs": 1.0,
+        "nexits": 0.0,
+        "cognitive": 5.0,
+        "cyclomatic": {
+          "sum": 5.0,
+          "average": 5.0
+        },
+        "halstead": {
+          "n1": 22.0,
+          "N1": 208.0,
+          "n2": 65.0,
+          "N2": 154.0,
+          "length": 362.0,
+          "estimated_program_length": 489.56140345687004,
+          "purity_ratio": 1.3523795675604144,
+          "vocabulary": 87.0,
+          "volume": 2332.3455454972395,
+          "difficulty": 26.06153846153846,
+          "level": 0.03837072018890201,
+          "effort": 60784.513139574214,
+          "time": 3376.9173966430117,
+          "bugs": 0.5153164903467059
+        },
+        "loc": {
+          "sloc": 76.0,
+          "ploc": 64.0,
+          "lloc": 23.0,
+          "cloc": 0.0,
+          "blank": 12.0
+        },
+        "nom": {
+          "functions": 1.0,
+          "closures": 0.0,
+          "total": 1.0
+        },
+        "mi": {
+          "mi_original": 59.368045384479785,
+          "mi_sei": 10.458231968469477,
+          "mi_visual_studio": 34.718155195602215
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "nargs": 0.0,
+    "nexits": 0.0,
+    "cognitive": 5.0,
+    "cyclomatic": {
+      "sum": 6.0,
+      "average": 3.0
+    },
+    "halstead": {
+      "n1": 22.0,
+      "N1": 218.0,
+      "n2": 71.0,
+      "N2": 161.0,
+      "length": 379.0,
+      "estimated_program_length": 534.7395410948529,
+      "purity_ratio": 1.4109222720180816,
+      "vocabulary": 93.0,
+      "volume": 2478.3411894099436,
+      "difficulty": 24.943661971830984,
+      "level": 0.04009034443817053,
+      "effort": 61818.90487950718,
+      "time": 3434.3836044170657,
+      "bugs": 0.5211462496741232
+    },
+    "loc": {
+      "sloc": 94.0,
+      "ploc": 71.0,
+      "lloc": 23.0,
+      "cloc": 7.0,
+      "blank": 16.0
+    },
+    "nom": {
+      "functions": 1.0,
+      "closures": 0.0,
+      "total": 1.0
+    },
+    "mi": {
+      "mi_original": 55.37883187857979,
+      "mi_sei": 25.31864346324061,
+      "mi_visual_studio": 32.38528180033906
+    }
+  }
+}

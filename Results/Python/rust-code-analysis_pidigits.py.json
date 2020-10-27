@@ -4,7 +4,7 @@
     "LLOC": 40,
     "CLOC": 8,
     "BLANK": 8,
-    "CC": 6.0,
+    "CC": 6,
     "NARGS": 0,
     "NEXITS": 0,
     "NOM": {
@@ -41,7 +41,7 @@
             "LLOC": 40,
             "CLOC": 8,
             "BLANK": 8,
-            "CC": 6.0,
+            "CC": 6,
             "COGNITIVE": 11,
             "NARGS": 0,
             "NEXITS": 0,

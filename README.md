@@ -65,6 +65,7 @@ At this point, the results of the comparisons can be obtained in this way:
 - PLOC
 - LLOC
 - CLOC
+- BLANK
 - CC
 - COGNITIVE
 - Halstead
@@ -90,6 +91,8 @@ At this point, the results of the comparisons can be obtained in this way:
  - **LLOC:** Logical Lines of Code. It returns the number of logical lines (statements) in a file.
 
  - **CLOC:** Comment Lines of Code. It returns the number of comment lines in a file.
+
+ - **BLANK:** Blank Lines of Code. It returns the number of blank lines in a file.
 
  - **STAT:** Statements. It is a LLOC applied only on methods/classes.
 

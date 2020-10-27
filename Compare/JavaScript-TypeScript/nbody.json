@@ -23,6 +23,14 @@
         "__old": 18,
         "__new": 20
     },
+    "NARGS_SUM": {
+        "__old": 12,
+        "__new": 11
+    },
+    "NARGS_AVG": {
+        "__old": 1.2,
+        "__new": 1.1
+    },
     "HALSTEAD": {
         "n1": {
             "__old": 18,
@@ -126,6 +134,14 @@
                 "CC": {
                     "__old": 18,
                     "__new": 20
+                },
+                "NARGS_SUM": {
+                    "__old": 12,
+                    "__new": 11
+                },
+                "NARGS_AVG": {
+                    "__old": 1.2,
+                    "__new": 1.1
                 },
                 "Halstead": {
                     "n1": {

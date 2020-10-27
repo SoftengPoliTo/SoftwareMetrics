@@ -23,6 +23,14 @@
         "__old": 44,
         "__new": 6
     },
+    "NARGS_SUM": {
+        "__old": 38,
+        "__new": 0
+    },
+    "NARGS_AVG": {
+        "__old": 1.9,
+        "__new": 0
+    },
     "NEXITS": {
         "__old": 10,
         "__new": 0
@@ -144,6 +152,14 @@
                 "CC": {
                     "__old": 44,
                     "__new": 6
+                },
+                "NARGS_SUM": {
+                    "__old": 38,
+                    "__new": 0
+                },
+                "NARGS_AVG": {
+                    "__old": 1.9,
+                    "__new": 0
                 },
                 "NEXITS": {
                     "__old": 10,

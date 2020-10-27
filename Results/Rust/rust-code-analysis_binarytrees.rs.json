@@ -5,7 +5,8 @@
     "CLOC": 7,
     "BLANK": 12,
     "CC": 12,
-    "NARGS": 0,
+    "NARGS_SUM": 14,
+    "NARGS_AVG": 2.0,
     "NEXITS": 3,
     "NOM": {
         "functions": 4,
@@ -43,7 +44,8 @@
             "BLANK": 12,
             "CC": 12,
             "COGNITIVE": 5,
-            "NARGS": 0,
+            "NARGS_SUM": 14,
+            "NARGS_AVG": 2.0,
             "NEXITS": 3,
             "NOM": {
                 "functions": 4,

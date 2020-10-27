@@ -19,6 +19,10 @@
         "__old": 6,
         "__new": 8
     },
+    "NARGS_SUM": {
+        "__old": 1,
+        "__new": 4
+    },
     "NOM": {
         "closures": {
             "__old": 0,
@@ -132,6 +136,10 @@
                 "COGNITIVE": {
                     "__old": 5,
                     "__new": 6
+                },
+                "NARGS_SUM": {
+                    "__old": 1,
+                    "__new": 4
                 },
                 "NOM": {
                     "closures": {

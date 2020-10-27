@@ -19,6 +19,10 @@
         "__old": 28,
         "__new": 17
     },
+    "NARGS_SUM": {
+        "__old": 12,
+        "__new": 9
+    },
     "NEXITS": {
         "__old": 5,
         "__new": 1
@@ -140,6 +144,10 @@
                 "COGNITIVE": {
                     "__old": 15,
                     "__new": 12
+                },
+                "NARGS_SUM": {
+                    "__old": 12,
+                    "__new": 9
                 },
                 "NEXITS": {
                     "__old": 5,

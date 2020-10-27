@@ -23,6 +23,10 @@
         "__old": 28,
         "__new": 14
     },
+    "NARGS_SUM": {
+        "__old": 5,
+        "__new": 1
+    },
     "NOM": {
         "functions": {
             "__old": 5,
@@ -140,6 +144,10 @@
                 "COGNITIVE": {
                     "__old": 46,
                     "__new": 28
+                },
+                "NARGS_SUM": {
+                    "__old": 5,
+                    "__new": 1
                 },
                 "NOM": {
                     "functions": {

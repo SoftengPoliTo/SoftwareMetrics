@@ -19,6 +19,14 @@
         "__old": 8,
         "__new": 6
     },
+    "NARGS_SUM": {
+        "__old": 2,
+        "__new": 1
+    },
+    "NARGS_AVG": {
+        "__old": 1,
+        "__new": 0.5
+    },
     "HALSTEAD": {
         "n1": {
             "__old": 14,
@@ -122,6 +130,14 @@
                 "COGNITIVE": {
                     "__old": 8,
                     "__new": 6
+                },
+                "NARGS_SUM": {
+                    "__old": 2,
+                    "__new": 1
+                },
+                "NARGS_AVG": {
+                    "__old": 1,
+                    "__new": 0.5
                 },
                 "Halstead": {
                     "n1": {

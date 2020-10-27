@@ -38,7 +38,7 @@ jobs:
     - name: Install rust-code-analysis
       env:
         LINK: https://github.com/mozilla/rust-code-analysis/releases/download
-        RCA_VERSION: 0.0.17
+        RCA_VERSION: 0.0.18
         DEST_DIR: ./tools/rust-code-analysis
       run: |
         mkdir -p $DEST_DIR
@@ -89,7 +89,7 @@ jobs:
     - name: Install rust-code-analysis
       env:
         LINK: https://github.com/mozilla/rust-code-analysis/releases/download
-        RCA_VERSION: 0.0.17
+        RCA_VERSION: 0.0.18
         DEST_DIR: ./tools/rust-code-analysis
       run: |
         mkdir -p $DEST_DIR

@@ -186,6 +186,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     tot_cloc = 0
     tot_blank = 0
     tot_cc = 0
+    tot_cognitive = 0
     tot_halstead_n1 = 0
     tot_halstead_n2 = 0
     tot_halstead_N1 = 0
@@ -260,6 +261,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
         tot_cc += file["CC"]
+        tot_cognitive += file["COGNITIVE"]
         tot_halstead_n1 += file["Halstead"]["n1"]
         tot_halstead_n2 += file["Halstead"]["n2"]
         tot_halstead_N1 += file["Halstead"]["N1"]
@@ -280,6 +282,8 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     output["CLOC"] = tot_cloc
     output["BLANK"] = tot_blank
     output["CC"] = tot_cc
+    output["COGNITIVE_SUM"] = tot_cognitive
+    output["COGNITIVE_AVG"] = tot_cognitive / max(1, nom["total"])
     output["NARGS_SUM"] = tot_nargs
     output["NARGS_AVG"] = tot_nargs / max(1, nom["total"])
     output["NEXITS"] = tot_nexits
@@ -305,7 +309,8 @@ def helper_test_rust_code_analysis(standardized_output: dict):
             "CLOC": file["CLOC"],
             "BLANK": file["BLANK"],
             "CC": file["CC"],
-            "COGNITIVE": file["COGNITIVE"],
+            "COGNITIVE_SUM": file["COGNITIVE"],
+            "COGNITIVE_AVG": file["COGNITIVE"] / max(1, file["NOM"]["total"]),
             "NARGS_SUM": file["NARGS"],
             "NARGS_AVG": file["NARGS"] / max(1, file["NOM"]["total"]),
             "NEXITS": file["NEXITS"],

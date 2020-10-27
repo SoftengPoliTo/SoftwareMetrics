@@ -23,6 +23,14 @@
         "__old": 17,
         "__new": 25
     },
+    "COGNITIVE_SUM": {
+        "__old": 21,
+        "__new": 40
+    },
+    "COGNITIVE_AVG": {
+        "__old": 10.5,
+        "__new": 10
+    },
     "NARGS_AVG": {
         "__old": 1.5,
         "__new": 0.75
@@ -145,9 +153,13 @@
                     "__old": 17,
                     "__new": 25
                 },
-                "COGNITIVE": {
+                "COGNITIVE_SUM": {
                     "__old": 21,
                     "__new": 40
+                },
+                "COGNITIVE_AVG": {
+                    "__old": 10.5,
+                    "__new": 10
                 },
                 "NARGS_AVG": {
                     "__old": 1.5,

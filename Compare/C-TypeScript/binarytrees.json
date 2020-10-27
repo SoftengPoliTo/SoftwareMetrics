@@ -23,6 +23,14 @@
         "__old": 12,
         "__new": 9
     },
+    "COGNITIVE_SUM": {
+        "__old": 9,
+        "__new": 7
+    },
+    "COGNITIVE_AVG": {
+        "__old": 3,
+        "__new": 2.3333333333333335
+    },
     "HALSTEAD": {
         "n1": {
             "__old": 23,
@@ -127,9 +135,13 @@
                     "__old": 12,
                     "__new": 9
                 },
-                "COGNITIVE": {
+                "COGNITIVE_SUM": {
                     "__old": 9,
                     "__new": 7
+                },
+                "COGNITIVE_AVG": {
+                    "__old": 3,
+                    "__new": 2.3333333333333335
                 },
                 "Halstead": {
                     "n1": {

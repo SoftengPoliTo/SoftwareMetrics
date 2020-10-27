@@ -23,6 +23,14 @@
         "__old": 16,
         "__new": 14
     },
+    "COGNITIVE_SUM": {
+        "__old": 46,
+        "__new": 28
+    },
+    "COGNITIVE_AVG": {
+        "__old": 46,
+        "__new": 28
+    },
     "NEXITS": {
         "__old": 1,
         "__new": 2
@@ -127,7 +135,11 @@
                     "__old": 16,
                     "__new": 14
                 },
-                "COGNITIVE": {
+                "COGNITIVE_SUM": {
+                    "__old": 46,
+                    "__new": 28
+                },
+                "COGNITIVE_AVG": {
                     "__old": 46,
                     "__new": 28
                 },

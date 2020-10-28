@@ -4,7 +4,8 @@
     "LLOC": 42,
     "CLOC": 5,
     "BLANK": 6,
-    "CC": 13,
+    "CC_SUM": 13,
+    "CC_AVG": 2.1666666666666665,
     "COGNITIVE_SUM": 9,
     "COGNITIVE_AVG": 1.8,
     "NARGS_SUM": 10,
@@ -44,7 +45,8 @@
             "LLOC": 42,
             "CLOC": 5,
             "BLANK": 6,
-            "CC": 13,
+            "CC_SUM": 13,
+            "CC_AVG": 2.1666666666666665,
             "COGNITIVE_SUM": 9,
             "COGNITIVE_AVG": 1.8,
             "NARGS_SUM": 10,
@@ -87,7 +89,10 @@
                     "LLOC": 2,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 1,
+                    "CC": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "COGNITIVE": 0,
                     "NARGS": 2,
                     "NEXITS": 1,
@@ -128,7 +133,10 @@
                     "LLOC": 8,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 3,
+                    "CC": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
                     "COGNITIVE": 3,
                     "NARGS": 2,
                     "NEXITS": 0,
@@ -169,7 +177,10 @@
                     "LLOC": 8,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 3,
+                    "CC": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
                     "COGNITIVE": 3,
                     "NARGS": 2,
                     "NEXITS": 0,
@@ -210,7 +221,10 @@
                     "LLOC": 3,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 1,
+                    "CC": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "COGNITIVE": 0,
                     "NARGS": 3,
                     "NEXITS": 0,
@@ -251,7 +265,10 @@
                     "LLOC": 20,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 4,
+                    "CC": {
+                        "sum": 4,
+                        "average": 4.0
+                    },
                     "COGNITIVE": 3,
                     "NARGS": 1,
                     "NEXITS": 1,

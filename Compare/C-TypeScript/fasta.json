@@ -19,9 +19,13 @@
         "__old": 40,
         "__new": 15
     },
-    "CC": {
+    "CC_SUM": {
         "__old": 35,
         "__new": 23
+    },
+    "CC_AVG": {
+        "__old": 3.5,
+        "__new": 2.875
     },
     "COGNITIVE_SUM": {
         "__old": 42,
@@ -153,9 +157,13 @@
                     "__old": 40,
                     "__new": 15
                 },
-                "CC": {
+                "CC_SUM": {
                     "__old": 35,
                     "__new": 23
+                },
+                "CC_AVG": {
+                    "__old": 3.5,
+                    "__new": 2.875
                 },
                 "COGNITIVE_SUM": {
                     "__old": 42,

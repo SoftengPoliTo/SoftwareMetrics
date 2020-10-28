@@ -4,7 +4,8 @@
     "LLOC": 16,
     "CLOC": 7,
     "BLANK": 10,
-    "CC": 8,
+    "CC_SUM": 8,
+    "CC_AVG": 1.6,
     "COGNITIVE_SUM": 6,
     "COGNITIVE_AVG": 1.5,
     "NARGS_SUM": 4,
@@ -44,7 +45,8 @@
             "LLOC": 16,
             "CLOC": 7,
             "BLANK": 10,
-            "CC": 8,
+            "CC_SUM": 8,
+            "CC_AVG": 1.6,
             "COGNITIVE_SUM": 6,
             "COGNITIVE_AVG": 1.5,
             "NARGS_SUM": 4,
@@ -87,7 +89,10 @@
                     "LLOC": 4,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 2,
+                    "CC": {
+                        "sum": 2,
+                        "average": 2.0
+                    },
                     "COGNITIVE": 2,
                     "NARGS": 0,
                     "NEXITS": 0,
@@ -128,7 +133,10 @@
                     "LLOC": 2,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 3,
+                    "CC": {
+                        "sum": 3,
+                        "average": 1.5
+                    },
                     "COGNITIVE": 3,
                     "NARGS": 0,
                     "NEXITS": 0,
@@ -169,7 +177,10 @@
                             "LLOC": 2,
                             "CLOC": 0,
                             "BLANK": 0,
-                            "CC": 2,
+                            "CC": {
+                                "sum": 2,
+                                "average": 2.0
+                            },
                             "COGNITIVE": 3,
                             "NARGS": 0,
                             "NEXITS": 0,
@@ -212,7 +223,10 @@
                     "LLOC": 8,
                     "CLOC": 0,
                     "BLANK": 1,
-                    "CC": 2,
+                    "CC": {
+                        "sum": 2,
+                        "average": 2.0
+                    },
                     "COGNITIVE": 1,
                     "NARGS": 4,
                     "NEXITS": 0,

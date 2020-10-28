@@ -4,7 +4,8 @@
     "LLOC": 50,
     "CLOC": 6,
     "BLANK": 14,
-    "CC": 29,
+    "CC_SUM": 29,
+    "CC_AVG": 1.9333333333333333,
     "COGNITIVE_SUM": 11,
     "COGNITIVE_AVG": 0.9166666666666666,
     "NARGS_SUM": 17,
@@ -44,7 +45,8 @@
             "LLOC": 50,
             "CLOC": 6,
             "BLANK": 14,
-            "CC": 29,
+            "CC_SUM": 29,
+            "CC_AVG": 1.9333333333333333,
             "COGNITIVE_SUM": 11,
             "COGNITIVE_AVG": 0.9166666666666666,
             "NARGS_SUM": 17,
@@ -87,7 +89,10 @@
                     "LLOC": 8,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 1,
+                    "CC": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "COGNITIVE": 0,
                     "NARGS": 0,
                     "NEXITS": 0,
@@ -128,7 +133,10 @@
                     "LLOC": 14,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 10,
+                    "CC": {
+                        "sum": 10,
+                        "average": 1.25
+                    },
                     "COGNITIVE": 2,
                     "NARGS": 0,
                     "NEXITS": 4,
@@ -169,7 +177,10 @@
                             "LLOC": 1,
                             "CLOC": 0,
                             "BLANK": 0,
-                            "CC": 1,
+                            "CC": {
+                                "sum": 1,
+                                "average": 1.0
+                            },
                             "COGNITIVE": 0,
                             "NARGS": 1,
                             "NEXITS": 0,
@@ -210,7 +221,10 @@
                             "LLOC": 5,
                             "CLOC": 0,
                             "BLANK": 0,
-                            "CC": 2,
+                            "CC": {
+                                "sum": 2,
+                                "average": 2.0
+                            },
                             "COGNITIVE": 1,
                             "NARGS": 3,
                             "NEXITS": 0,
@@ -251,7 +265,10 @@
                             "LLOC": 1,
                             "CLOC": 0,
                             "BLANK": 0,
-                            "CC": 1,
+                            "CC": {
+                                "sum": 1,
+                                "average": 1.0
+                            },
                             "COGNITIVE": 0,
                             "NARGS": 1,
                             "NEXITS": 1,
@@ -292,7 +309,10 @@
                             "LLOC": 1,
                             "CLOC": 0,
                             "BLANK": 0,
-                            "CC": 1,
+                            "CC": {
+                                "sum": 1,
+                                "average": 1.0
+                            },
                             "COGNITIVE": 0,
                             "NARGS": 1,
                             "NEXITS": 1,
@@ -333,7 +353,10 @@
                             "LLOC": 5,
                             "CLOC": 0,
                             "BLANK": 0,
-                            "CC": 2,
+                            "CC": {
+                                "sum": 2,
+                                "average": 2.0
+                            },
                             "COGNITIVE": 1,
                             "NARGS": 0,
                             "NEXITS": 1,
@@ -374,7 +397,10 @@
                             "LLOC": 1,
                             "CLOC": 0,
                             "BLANK": 0,
-                            "CC": 2,
+                            "CC": {
+                                "sum": 2,
+                                "average": 1.0
+                            },
                             "COGNITIVE": 0,
                             "NARGS": 0,
                             "NEXITS": 1,
@@ -415,7 +441,10 @@
                                     "LLOC": 1,
                                     "CLOC": 0,
                                     "BLANK": 0,
-                                    "CC": 1,
+                                    "CC": {
+                                        "sum": 1,
+                                        "average": 1.0
+                                    },
                                     "COGNITIVE": 0,
                                     "NARGS": 1,
                                     "NEXITS": 1,
@@ -460,7 +489,10 @@
                     "LLOC": 4,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 2,
+                    "CC": {
+                        "sum": 2,
+                        "average": 2.0
+                    },
                     "COGNITIVE": 1,
                     "NARGS": 4,
                     "NEXITS": 1,
@@ -501,7 +533,10 @@
                     "LLOC": 5,
                     "CLOC": 0,
                     "BLANK": 3,
-                    "CC": 4,
+                    "CC": {
+                        "sum": 4,
+                        "average": 4.0
+                    },
                     "COGNITIVE": 2,
                     "NARGS": 2,
                     "NEXITS": 1,
@@ -542,7 +577,10 @@
                     "LLOC": 3,
                     "CLOC": 0,
                     "BLANK": 0,
-                    "CC": 4,
+                    "CC": {
+                        "sum": 4,
+                        "average": 4.0
+                    },
                     "COGNITIVE": 0,
                     "NARGS": 2,
                     "NEXITS": 0,
@@ -583,7 +621,10 @@
                     "LLOC": 1,
                     "CLOC": 0,
                     "BLANK": 1,
-                    "CC": 1,
+                    "CC": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "COGNITIVE": 0,
                     "NARGS": 2,
                     "NEXITS": 0,
@@ -624,7 +665,10 @@
                     "LLOC": 15,
                     "CLOC": 0,
                     "BLANK": 1,
-                    "CC": 6,
+                    "CC": {
+                        "sum": 6,
+                        "average": 6.0
+                    },
                     "COGNITIVE": 6,
                     "NARGS": 0,
                     "NEXITS": 0,

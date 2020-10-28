@@ -73,6 +73,13 @@ class RustCodeAnalysis:
 
 
 def standardizer_rust_code_analysis(data_list):
+    def _get_cc(metrics):
+        cc = {}
+        cc["sum"] = int(metrics["cyclomatic"]["sum"])
+        cc["average"] = metrics["cyclomatic"]["average"]
+
+        return cc
+
     def _get_nom(metrics):
         nom = {}
 
@@ -114,6 +121,7 @@ def standardizer_rust_code_analysis(data_list):
 
     def _get_space(write_space, space_data):
         nargs = 0
+        nspace = 0
         for space in space_data:
             space_file = {}
             space_file["name"] = space["name"]
@@ -127,7 +135,7 @@ def standardizer_rust_code_analysis(data_list):
             space_file["LLOC"] = int(space_metrics["loc"]["lloc"])
             space_file["CLOC"] = int(space_metrics["loc"]["cloc"])
             space_file["BLANK"] = int(space_metrics["loc"]["blank"])
-            space_file["CC"] = int(space_metrics["cyclomatic"]["sum"])
+            space_file["CC"] = _get_cc(space_metrics)
             space_file["COGNITIVE"] = int(space_metrics["cognitive"])
             space_file["NARGS"] = int(space_metrics["nargs"])
             space_file["NEXITS"] = int(space_metrics["nexits"])
@@ -135,18 +143,22 @@ def standardizer_rust_code_analysis(data_list):
             space_file["Halstead"] = _get_halstead(space_metrics)
             space_file["Mi"] = _get_mi(space_metrics)
 
+            nspace += 1
             nargs += space_file["NARGS"]
 
             if space["spaces"]:
                 space_file["spaces"] = []
-                nargs += _get_space(space_file, space["spaces"])
+                nspace_med, nargs_med = _get_space(space_file, space["spaces"])
+                nspace += nspace_med
+                nargs += nargs_med
 
             write_space["spaces"].append(space_file)
 
-        return nargs
+        return (nspace, nargs)
 
     formatted_output = {"files": []}
 
+    files_nspace = []
     nargs = 0
 
     for data in data_list["files"]:
@@ -158,10 +170,10 @@ def standardizer_rust_code_analysis(data_list):
             "LLOC": int(metrics["loc"]["lloc"]),
             "CLOC": int(metrics["loc"]["cloc"]),
             "BLANK": int(metrics["loc"]["blank"]),
-            "CC": int(metrics["cyclomatic"]["sum"]),
+            "CC": _get_cc(metrics),
             "COGNITIVE": int(metrics["cognitive"]),
             # rust-code-analysis doesn't sum all nargs of a function
-            "NARGS": nargs, #int(metrics["nargs"]),
+            "NARGS": nargs,  # int(metrics["nargs"]),
             "NEXITS": int(metrics["nexits"]),
             "NOM": _get_nom(metrics),
             "Halstead": _get_halstead(metrics),
@@ -169,16 +181,20 @@ def standardizer_rust_code_analysis(data_list):
             "spaces": [],
         }
 
-        nargs += _get_space(per_file, data["spaces"])
+        (nspace, nargs_med) = _get_space(per_file, data["spaces"])
+        files_nspace.append(nspace)
+        nargs += nargs_med
 
         per_file["NARGS"] = nargs
 
         formatted_output["files"].append(per_file)
 
-    return formatted_output
+    return (formatted_output, files_nspace)
 
 
-def helper_test_rust_code_analysis(standardized_output: dict):
+def helper_test_rust_code_analysis(
+    standardized_output: dict, files_nspace: T.List
+):
 
     tot_sloc = 0
     tot_ploc = 0
@@ -186,6 +202,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     tot_cloc = 0
     tot_blank = 0
     tot_cc = 0
+    tot_cc_avg = 0
     tot_cognitive = 0
     tot_halstead_n1 = 0
     tot_halstead_n2 = 0
@@ -254,13 +271,14 @@ def helper_test_rust_code_analysis(standardized_output: dict):
             "total": tot_functions_and_closures,
         }
 
-    for file in standardized_output["files"]:
+    for file, cc_file in zip(standardized_output["files"], files_nspace):
         tot_sloc += file["SLOC"]
         tot_ploc += file["PLOC"]
         tot_lloc += file["LLOC"]
         tot_cloc += file["CLOC"]
         tot_blank += file["BLANK"]
-        tot_cc += file["CC"]
+        tot_cc += file["CC"]["sum"]
+        tot_cc_avg += file["CC"]["average"] * (cc_file + 1)
         tot_cognitive += file["COGNITIVE"]
         tot_halstead_n1 += file["Halstead"]["n1"]
         tot_halstead_n2 += file["Halstead"]["n2"]
@@ -281,7 +299,8 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     output["LLOC"] = tot_lloc
     output["CLOC"] = tot_cloc
     output["BLANK"] = tot_blank
-    output["CC"] = tot_cc
+    output["CC_SUM"] = tot_cc
+    output["CC_AVG"] = tot_cc_avg / (sum(files_nspace) + len(files_nspace))
     output["COGNITIVE_SUM"] = tot_cognitive
     output["COGNITIVE_AVG"] = tot_cognitive / max(1, nom["total"])
     output["NARGS_SUM"] = tot_nargs
@@ -292,7 +311,7 @@ def helper_test_rust_code_analysis(standardized_output: dict):
     output["MI"] = _global_mi(
         output["SLOC"],
         output["CLOC"],
-        output["CC"],
+        output["CC_SUM"],
         output["HALSTEAD"]["Length"],
         output["HALSTEAD"]["Volume"],
         output["HALSTEAD"]["Vocabulary"],
@@ -308,7 +327,8 @@ def helper_test_rust_code_analysis(standardized_output: dict):
             "LLOC": file["LLOC"],
             "CLOC": file["CLOC"],
             "BLANK": file["BLANK"],
-            "CC": file["CC"],
+            "CC_SUM": file["CC"]["sum"],
+            "CC_AVG": file["CC"]["average"],
             "COGNITIVE_SUM": file["COGNITIVE"],
             "COGNITIVE_AVG": file["COGNITIVE"] / max(1, file["NOM"]["total"]),
             "NARGS_SUM": file["NARGS"],

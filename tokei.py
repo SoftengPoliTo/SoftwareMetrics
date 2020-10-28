@@ -57,10 +57,10 @@ def standardizer_tokei(data):
 
             formatted_output["files"].append(per_file)
 
-    return formatted_output
+    return (formatted_output, [])
 
 
-def helper_test_tokei(standardized_output: dict):
+def helper_test_tokei(standardized_output: dict, _files_nspaces: T.List):
     tot_sloc = 0
     tot_ploc = 0
     tot_cloc = 0

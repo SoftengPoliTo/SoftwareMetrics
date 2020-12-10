@@ -1,83 +1,8 @@
 {
-    "SLOC": 99,
-    "PLOC": 76,
     "LLOC": 51,
-    "CLOC": 11,
-    "BLANK": 12,
-    "CC_SUM": 17,
-    "CC_AVG": 4.25,
-    "COGNITIVE_SUM": 26,
-    "COGNITIVE_AVG": 8.666666666666666,
-    "NARGS_SUM": 3,
-    "NARGS_AVG": 1.0,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 3,
-        "closures": 0,
-        "total": 3
-    },
-    "HALSTEAD": {
-        "n1": 29,
-        "n2": 56,
-        "N1": 229,
-        "N2": 179,
-        "Vocabulary": 85,
-        "Length": 408,
-        "Volume": 2615.0315019441823,
-        "Difficulty": 46.348214285714285,
-        "Level": 0.021575804276632634,
-        "Effort": 121202.04041600223,
-        "Programming time": 6733.446689777902,
-        "Bugs": 0.8163668592877504,
-        "Estimated program length": 466.09332449392537,
-        "Purity ratio": 1.142385599249817
-    },
-    "MI": {
-        "Original": 51.730095027912654,
-        "Sei": 25.34837941970405,
-        "Visual Studio": 30.25151756018284
-    },
     "files": [
         {
-            "filename": "Assets/JavaScript/mandelbrot.js",
-            "SLOC": 99,
-            "PLOC": 76,
             "LLOC": 51,
-            "CLOC": 11,
-            "BLANK": 12,
-            "CC_SUM": 17,
-            "CC_AVG": 4.25,
-            "COGNITIVE_SUM": 26,
-            "COGNITIVE_AVG": 8.666666666666666,
-            "NARGS_SUM": 3,
-            "NARGS_AVG": 1.0,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 3,
-                "closures": 0,
-                "total": 3
-            },
-            "Halstead": {
-                "n1": 29,
-                "n2": 56,
-                "N1": 229,
-                "N2": 179,
-                "Vocabulary": 85,
-                "Length": 408,
-                "Volume": 2615.0315019441823,
-                "Difficulty": 46.348214285714285,
-                "Level": 0.021575804276632634,
-                "Effort": 121202.04041600223,
-                "Programming time": 6733.446689777902,
-                "Bugs": 0.8163668592877504,
-                "Estimated program length": 466.09332449392537,
-                "Purity ratio": 1.142385599249817
-            },
-            "Mi": {
-                "Original": 51.730095027912654,
-                "Sei": 25.34837941970405,
-                "Visual Studio": 30.25151756018284
-            },
             "spaces": [
                 {
                     "name": "<anonymous>",
@@ -93,9 +18,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 10,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

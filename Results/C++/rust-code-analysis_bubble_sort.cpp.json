@@ -1,83 +1,8 @@
 {
-    "SLOC": 31,
-    "PLOC": 26,
     "LLOC": 13,
-    "CLOC": 0,
-    "BLANK": 5,
-    "CC_SUM": 7,
-    "CC_AVG": 2.3333333333333335,
-    "COGNITIVE_SUM": 7,
-    "COGNITIVE_AVG": 3.5,
-    "NARGS_SUM": 2,
-    "NARGS_AVG": 1.0,
-    "NEXITS": 0,
-    "NOM": {
-        "functions": 2,
-        "closures": 0,
-        "total": 2
-    },
-    "HALSTEAD": {
-        "n1": 20,
-        "n2": 28,
-        "N1": 110,
-        "N2": 70,
-        "Vocabulary": 48,
-        "Length": 180,
-        "Volume": 1005.2932501298081,
-        "Difficulty": 25.0,
-        "Level": 0.04,
-        "Effort": 25132.331253245204,
-        "Programming time": 1396.240625180289,
-        "Bugs": 0.28600080933168737,
-        "Estimated program length": 221.04449971536013,
-        "Purity ratio": 1.2280249984186673
-    },
-    "MI": {
-        "Original": 77.81162752799801,
-        "Sei": 37.27033618196039,
-        "Visual Studio": 45.50387574736726
-    },
     "files": [
         {
-            "filename": "Assets/C++/bubble_sort.cpp",
-            "SLOC": 31,
-            "PLOC": 26,
             "LLOC": 13,
-            "CLOC": 0,
-            "BLANK": 5,
-            "CC_SUM": 7,
-            "CC_AVG": 2.3333333333333335,
-            "COGNITIVE_SUM": 7,
-            "COGNITIVE_AVG": 3.5,
-            "NARGS_SUM": 2,
-            "NARGS_AVG": 1.0,
-            "NEXITS": 0,
-            "NOM": {
-                "functions": 2,
-                "closures": 0,
-                "total": 2
-            },
-            "Halstead": {
-                "n1": 20,
-                "n2": 28,
-                "N1": 110,
-                "N2": 70,
-                "Vocabulary": 48,
-                "Length": 180,
-                "Volume": 1005.2932501298081,
-                "Difficulty": 25.0,
-                "Level": 0.04,
-                "Effort": 25132.331253245204,
-                "Programming time": 1396.240625180289,
-                "Bugs": 0.28600080933168737,
-                "Estimated program length": 221.04449971536013,
-                "Purity ratio": 1.2280249984186673
-            },
-            "Mi": {
-                "Original": 77.81162752799801,
-                "Sei": 37.27033618196039,
-                "Visual Studio": 45.50387574736726
-            },
             "spaces": [
                 {
                     "name": "bubble_sort",
@@ -93,9 +18,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

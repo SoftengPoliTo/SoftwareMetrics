@@ -1,83 +1,8 @@
 {
-    "SLOC": 138,
-    "PLOC": 79,
     "LLOC": 68,
-    "CLOC": 28,
-    "BLANK": 31,
-    "CC_SUM": 15,
-    "CC_AVG": 3.0,
-    "COGNITIVE_SUM": 12,
-    "COGNITIVE_AVG": 3.0,
-    "NARGS_SUM": 6,
-    "NARGS_AVG": 1.5,
-    "NEXITS": 2,
-    "NOM": {
-        "functions": 4,
-        "closures": 0,
-        "total": 4
-    },
-    "HALSTEAD": {
-        "n1": 18,
-        "n2": 91,
-        "N1": 140,
-        "N2": 234,
-        "Vocabulary": 109,
-        "Length": 374,
-        "Volume": 2531.3009374665703,
-        "Difficulty": 23.142857142857142,
-        "Level": 0.043209876543209874,
-        "Effort": 58581.5359813692,
-        "Programming time": 3254.5297767427332,
-        "Bugs": 0.5027891705409683,
-        "Estimated program length": 667.2679622840429,
-        "Purity ratio": 1.7841389365883502
-    },
-    "MI": {
-        "Original": 46.97874929915429,
-        "Sei": 25.729998103367933,
-        "Visual Studio": 27.472952806522976
-    },
     "files": [
         {
-            "filename": "Assets/Python/fasta.py",
-            "SLOC": 138,
-            "PLOC": 79,
             "LLOC": 68,
-            "CLOC": 28,
-            "BLANK": 31,
-            "CC_SUM": 15,
-            "CC_AVG": 3.0,
-            "COGNITIVE_SUM": 12,
-            "COGNITIVE_AVG": 3.0,
-            "NARGS_SUM": 6,
-            "NARGS_AVG": 1.5,
-            "NEXITS": 2,
-            "NOM": {
-                "functions": 4,
-                "closures": 0,
-                "total": 4
-            },
-            "Halstead": {
-                "n1": 18,
-                "n2": 91,
-                "N1": 140,
-                "N2": 234,
-                "Vocabulary": 109,
-                "Length": 374,
-                "Volume": 2531.3009374665703,
-                "Difficulty": 23.142857142857142,
-                "Level": 0.043209876543209874,
-                "Effort": 58581.5359813692,
-                "Programming time": 3254.5297767427332,
-                "Bugs": 0.5027891705409683,
-                "Estimated program length": 667.2679622840429,
-                "Purity ratio": 1.7841389365883502
-            },
-            "Mi": {
-                "Original": 46.97874929915429,
-                "Sei": 25.729998103367933,
-                "Visual Studio": 27.472952806522976
-            },
             "spaces": [
                 {
                     "name": "make_cumulative",
@@ -93,9 +18,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 3,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

@@ -1,83 +1,8 @@
 {
-    "SLOC": 29,
-    "PLOC": 47,
     "LLOC": 10,
-    "CLOC": 2,
-    "BLANK": 0,
-    "CC_SUM": 10,
-    "CC_AVG": 2.0,
-    "COGNITIVE_SUM": 0,
-    "COGNITIVE_AVG": 0.0,
-    "NARGS_SUM": 2,
-    "NARGS_AVG": 0.5,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 4,
-        "closures": 0,
-        "total": 4
-    },
-    "HALSTEAD": {
-        "n1": 24,
-        "n2": 34,
-        "N1": 147,
-        "N2": 110,
-        "Vocabulary": 58,
-        "Length": 257,
-        "Volume": 1505.501115747786,
-        "Difficulty": 38.8235294117647,
-        "Level": 0.02575757575757576,
-        "Effort": 58448.86684667874,
-        "Programming time": 3247.15926925993,
-        "Bugs": 0.5020297753264329,
-        "Estimated program length": 283.01283661981927,
-        "Purity ratio": 1.1012172631121373
-    },
-    "MI": {
-        "Original": 76.10202589123216,
-        "Sei": 54.89473685255974,
-        "Visual Studio": 44.5041087083229
-    },
     "files": [
         {
-            "filename": "Assets/C++/pidigits.cpp",
-            "SLOC": 29,
-            "PLOC": 47,
             "LLOC": 10,
-            "CLOC": 2,
-            "BLANK": 0,
-            "CC_SUM": 10,
-            "CC_AVG": 2.0,
-            "COGNITIVE_SUM": 0,
-            "COGNITIVE_AVG": 0.0,
-            "NARGS_SUM": 2,
-            "NARGS_AVG": 0.5,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 4,
-                "closures": 0,
-                "total": 4
-            },
-            "Halstead": {
-                "n1": 24,
-                "n2": 34,
-                "N1": 147,
-                "N2": 110,
-                "Vocabulary": 58,
-                "Length": 257,
-                "Volume": 1505.501115747786,
-                "Difficulty": 38.8235294117647,
-                "Level": 0.02575757575757576,
-                "Effort": 58448.86684667874,
-                "Programming time": 3247.15926925993,
-                "Bugs": 0.5020297753264329,
-                "Estimated program length": 283.01283661981927,
-                "Purity ratio": 1.1012172631121373
-            },
-            "Mi": {
-                "Original": 76.10202589123216,
-                "Sei": 54.89473685255974,
-                "Visual Studio": 44.5041087083229
-            },
             "spaces": [
                 {
                     "name": "LFT",
@@ -93,9 +18,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

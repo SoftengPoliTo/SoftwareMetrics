@@ -1,83 +1,8 @@
 {
-    "SLOC": 52,
-    "PLOC": 41,
     "LLOC": 60,
-    "CLOC": 16,
-    "BLANK": 0,
-    "CC_SUM": 16,
-    "CC_AVG": 8.0,
-    "COGNITIVE_SUM": 46,
-    "COGNITIVE_AVG": 46.0,
-    "NARGS_SUM": 1,
-    "NARGS_AVG": 1.0,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 1,
-        "closures": 0,
-        "total": 1
-    },
-    "HALSTEAD": {
-        "n1": 25,
-        "n2": 27,
-        "N1": 182,
-        "N2": 162,
-        "Vocabulary": 52,
-        "Length": 344,
-        "Volume": 1960.9512630405357,
-        "Difficulty": 75.0,
-        "Level": 0.013333333333333334,
-        "Effort": 147071.34472804016,
-        "Programming time": 8170.630262668898,
-        "Bugs": 0.9287470646953468,
-        "Estimated program length": 244.47836730278175,
-        "Purity ratio": 0.7106929282057609
-    },
-    "MI": {
-        "Original": 63.887689900566386,
-        "Sei": 55.96923838032948,
-        "Visual Studio": 37.36122216407391
-    },
     "files": [
         {
-            "filename": "Assets/JavaScript/fannkuchredux.js",
-            "SLOC": 52,
-            "PLOC": 41,
             "LLOC": 60,
-            "CLOC": 16,
-            "BLANK": 0,
-            "CC_SUM": 16,
-            "CC_AVG": 8.0,
-            "COGNITIVE_SUM": 46,
-            "COGNITIVE_AVG": 46.0,
-            "NARGS_SUM": 1,
-            "NARGS_AVG": 1.0,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 1,
-                "closures": 0,
-                "total": 1
-            },
-            "Halstead": {
-                "n1": 25,
-                "n2": 27,
-                "N1": 182,
-                "N2": 162,
-                "Vocabulary": 52,
-                "Length": 344,
-                "Volume": 1960.9512630405357,
-                "Difficulty": 75.0,
-                "Level": 0.013333333333333334,
-                "Effort": 147071.34472804016,
-                "Programming time": 8170.630262668898,
-                "Bugs": 0.9287470646953468,
-                "Estimated program length": 244.47836730278175,
-                "Purity ratio": 0.7106929282057609
-            },
-            "Mi": {
-                "Original": 63.887689900566386,
-                "Sei": 55.96923838032948,
-                "Visual Studio": 37.36122216407391
-            },
             "spaces": [
                 {
                     "name": "fannkuch",
@@ -93,9 +18,6 @@
                         "sum": 15,
                         "average": 15.0
                     },
-                    "COGNITIVE": 46,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

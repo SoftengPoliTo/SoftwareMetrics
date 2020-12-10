@@ -1,83 +1,8 @@
 {
-    "SLOC": 143,
-    "PLOC": 119,
-    "LLOC": 137,
-    "CLOC": 6,
-    "BLANK": 18,
-    "CC_SUM": 28,
-    "CC_AVG": 1.4736842105263157,
-    "COGNITIVE_SUM": 10,
-    "COGNITIVE_AVG": 0.7142857142857143,
-    "NARGS_SUM": 30,
-    "NARGS_AVG": 2.142857142857143,
-    "NEXITS": 8,
-    "NOM": {
-        "functions": 9,
-        "closures": 5,
-        "total": 14
-    },
-    "HALSTEAD": {
-        "n1": 26,
-        "n2": 76,
-        "N1": 322,
-        "N2": 228,
-        "Vocabulary": 102,
-        "Length": 550,
-        "Volume": 3669.833938084322,
-        "Difficulty": 39.0,
-        "Level": 0.02564102564102564,
-        "Effort": 143123.52358528855,
-        "Programming time": 7951.306865849364,
-        "Bugs": 0.9120516325555061,
-        "Estimated program length": 597.0539236933809,
-        "Purity ratio": 1.0855525885334196
-    },
-    "MI": {
-        "Original": 41.48082819374778,
-        "Sei": 2.595911126556201,
-        "Visual Studio": 24.25779426534958
-    },
+    "LLOC": 41,
     "files": [
         {
-            "filename": "Assets/Rust/mandelbrot.rs",
-            "SLOC": 143,
-            "PLOC": 119,
-            "LLOC": 137,
-            "CLOC": 6,
-            "BLANK": 18,
-            "CC_SUM": 28,
-            "CC_AVG": 1.4736842105263157,
-            "COGNITIVE_SUM": 10,
-            "COGNITIVE_AVG": 0.7142857142857143,
-            "NARGS_SUM": 30,
-            "NARGS_AVG": 2.142857142857143,
-            "NEXITS": 8,
-            "NOM": {
-                "functions": 9,
-                "closures": 5,
-                "total": 14
-            },
-            "Halstead": {
-                "n1": 26,
-                "n2": 76,
-                "N1": 322,
-                "N2": 228,
-                "Vocabulary": 102,
-                "Length": 550,
-                "Volume": 3669.833938084322,
-                "Difficulty": 39.0,
-                "Level": 0.02564102564102564,
-                "Effort": 143123.52358528855,
-                "Programming time": 7951.306865849364,
-                "Bugs": 0.9120516325555061,
-                "Estimated program length": 597.0539236933809,
-                "Purity ratio": 1.0855525885334196
-            },
-            "Mi": {
-                "Original": 41.48082819374778,
-                "Sei": 2.595911126556201,
-                "Visual Studio": 24.25779426534958
-            },
+            "LLOC": 41,
             "spaces": [
                 {
                     "name": "Vecf64",
@@ -93,9 +18,6 @@
                         "sum": 3,
                         "average": 1.5
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 2,
-                            "NEXITS": 1,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -183,9 +102,6 @@
                         "sum": 3,
                         "average": 1.5
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -227,9 +143,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 2,
-                            "NEXITS": 1,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -273,9 +186,6 @@
                         "sum": 3,
                         "average": 1.5
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -317,9 +227,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 2,
-                            "NEXITS": 1,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -356,16 +263,13 @@
                     "end_line": 114,
                     "SLOC": 53,
                     "PLOC": 47,
-                    "LLOC": 68,
+                    "LLOC": 19,
                     "CLOC": 0,
                     "BLANK": 6,
                     "CC": {
                         "sum": 13,
                         "average": 1.4444444444444444
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 0,
-                    "NEXITS": 5,
                     "NOM": {
                         "functions": 5,
                         "closures": 3,
@@ -407,9 +311,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 1,
-                            "NEXITS": 1,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -444,16 +345,13 @@
                             "end_line": 91,
                             "SLOC": 16,
                             "PLOC": 15,
-                            "LLOC": 23,
+                            "LLOC": 11,
                             "CLOC": 0,
                             "BLANK": 1,
                             "CC": {
                                 "sum": 3,
                                 "average": 3.0
                             },
-                            "COGNITIVE": 3,
-                            "NARGS": 3,
-                            "NEXITS": 2,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -488,16 +386,13 @@
                             "end_line": 100,
                             "SLOC": 8,
                             "PLOC": 8,
-                            "LLOC": 21,
+                            "LLOC": 5,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 2,
                                 "average": 2.0
                             },
-                            "COGNITIVE": 1,
-                            "NARGS": 2,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -532,16 +427,13 @@
                             "end_line": 104,
                             "SLOC": 3,
                             "PLOC": 3,
-                            "LLOC": 9,
+                            "LLOC": 1,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 2,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 1,
-                            "NEXITS": 1,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 1,
@@ -576,16 +468,13 @@
                                     "end_line": 103,
                                     "SLOC": 1,
                                     "PLOC": 1,
-                                    "LLOC": 1,
+                                    "LLOC": 0,
                                     "CLOC": 0,
                                     "BLANK": 0,
                                     "CC": {
                                         "sum": 1,
                                         "average": 1.0
                                     },
-                                    "COGNITIVE": 0,
-                                    "NARGS": 3,
-                                    "NEXITS": 0,
                                     "NOM": {
                                         "functions": 0,
                                         "closures": 1,
@@ -622,16 +511,13 @@
                             "end_line": 113,
                             "SLOC": 8,
                             "PLOC": 8,
-                            "LLOC": 15,
+                            "LLOC": 2,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 4,
                                 "average": 1.3333333333333333
                             },
-                            "COGNITIVE": 3,
-                            "NARGS": 1,
-                            "NEXITS": 1,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 2,
@@ -666,16 +552,13 @@
                                     "end_line": 111,
                                     "SLOC": 1,
                                     "PLOC": 1,
-                                    "LLOC": 2,
+                                    "LLOC": 1,
                                     "CLOC": 0,
                                     "BLANK": 0,
                                     "CC": {
                                         "sum": 2,
                                         "average": 2.0
                                     },
-                                    "COGNITIVE": 3,
-                                    "NARGS": 3,
-                                    "NEXITS": 0,
                                     "NOM": {
                                         "functions": 0,
                                         "closures": 1,
@@ -710,16 +593,13 @@
                                     "end_line": 112,
                                     "SLOC": 1,
                                     "PLOC": 1,
-                                    "LLOC": 1,
+                                    "LLOC": 0,
                                     "CLOC": 0,
                                     "BLANK": 0,
                                     "CC": {
                                         "sum": 1,
                                         "average": 1.0
                                     },
-                                    "COGNITIVE": 0,
-                                    "NARGS": 4,
-                                    "NEXITS": 0,
                                     "NOM": {
                                         "functions": 0,
                                         "closures": 1,
@@ -758,16 +638,13 @@
                     "end_line": 143,
                     "SLOC": 27,
                     "PLOC": 25,
-                    "LLOC": 64,
+                    "LLOC": 18,
                     "CLOC": 0,
                     "BLANK": 2,
                     "CC": {
                         "sum": 5,
                         "average": 1.6666666666666667
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 2,
@@ -802,16 +679,13 @@
                             "end_line": 118,
                             "SLOC": 1,
                             "PLOC": 1,
-                            "LLOC": 5,
+                            "LLOC": 0,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 3,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,
@@ -846,16 +720,13 @@
                             "end_line": 137,
                             "SLOC": 6,
                             "PLOC": 6,
-                            "LLOC": 13,
+                            "LLOC": 4,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 2,
                                 "average": 2.0
                             },
-                            "COGNITIVE": 2,
-                            "NARGS": 3,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,

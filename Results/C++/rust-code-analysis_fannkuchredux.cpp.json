@@ -1,83 +1,8 @@
 {
-    "SLOC": 198,
-    "PLOC": 124,
     "LLOC": 51,
-    "CLOC": 41,
-    "BLANK": 33,
-    "CC_SUM": 28,
-    "CC_AVG": 4.0,
-    "COGNITIVE_SUM": 46,
-    "COGNITIVE_AVG": 9.2,
-    "NARGS_SUM": 5,
-    "NARGS_AVG": 1.0,
-    "NEXITS": 2,
-    "NOM": {
-        "functions": 5,
-        "closures": 0,
-        "total": 5
-    },
-    "HALSTEAD": {
-        "n1": 33,
-        "n2": 48,
-        "N1": 332,
-        "N2": 235,
-        "Vocabulary": 81,
-        "Length": 567,
-        "Volume": 3594.694951635582,
-        "Difficulty": 80.78125,
-        "Level": 0.012379110251450677,
-        "Effort": 290383.95156181185,
-        "Programming time": 16132.441753433992,
-        "Bugs": 1.4617075354179188,
-        "Estimated program length": 434.5432059734445,
-        "Purity ratio": 0.7663901339919656
-    },
-    "MI": {
-        "Original": 36.31655915490933,
-        "Sei": 11.94402167986491,
-        "Visual Studio": 21.23775389175984
-    },
     "files": [
         {
-            "filename": "Assets/C++/fannkuchredux.cpp",
-            "SLOC": 198,
-            "PLOC": 124,
             "LLOC": 51,
-            "CLOC": 41,
-            "BLANK": 33,
-            "CC_SUM": 28,
-            "CC_AVG": 4.0,
-            "COGNITIVE_SUM": 46,
-            "COGNITIVE_AVG": 9.2,
-            "NARGS_SUM": 5,
-            "NARGS_AVG": 1.0,
-            "NEXITS": 2,
-            "NOM": {
-                "functions": 5,
-                "closures": 0,
-                "total": 5
-            },
-            "Halstead": {
-                "n1": 33,
-                "n2": 48,
-                "N1": 332,
-                "N2": 235,
-                "Vocabulary": 81,
-                "Length": 567,
-                "Volume": 3594.694951635582,
-                "Difficulty": 80.78125,
-                "Level": 0.012379110251450677,
-                "Effort": 290383.95156181185,
-                "Programming time": 16132.441753433992,
-                "Bugs": 1.4617075354179188,
-                "Estimated program length": 434.5432059734445,
-                "Purity ratio": 0.7663901339919656
-            },
-            "Mi": {
-                "Original": 36.31655915490933,
-                "Sei": 11.94402167986491,
-                "Visual Studio": 21.23775389175984
-            },
             "spaces": [
                 {
                     "name": "initializeFact",
@@ -93,9 +18,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 0,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 5,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +182,6 @@
                         "sum": 8,
                         "average": 8.0
                     },
-                    "COGNITIVE": 18,
-                    "NARGS": 0,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -313,9 +223,6 @@
                         "sum": 8,
                         "average": 8.0
                     },
-                    "COGNITIVE": 19,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

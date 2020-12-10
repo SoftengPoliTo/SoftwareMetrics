@@ -1,83 +1,8 @@
 {
-    "SLOC": 25,
-    "PLOC": 20,
-    "LLOC": 19,
-    "CLOC": 0,
-    "BLANK": 5,
-    "CC_SUM": 6,
-    "CC_AVG": 2.0,
-    "COGNITIVE_SUM": 6,
-    "COGNITIVE_AVG": 3.0,
-    "NARGS_SUM": 1,
-    "NARGS_AVG": 0.5,
-    "NEXITS": 0,
-    "NOM": {
-        "functions": 2,
-        "closures": 0,
-        "total": 2
-    },
-    "HALSTEAD": {
-        "n1": 17,
-        "n2": 21,
-        "N1": 56,
-        "N2": 46,
-        "Vocabulary": 38,
-        "Length": 102,
-        "Volume": 535.2886063712457,
-        "Difficulty": 18.61904761904762,
-        "Level": 0.053708439897698204,
-        "Effort": 9966.56405195986,
-        "Programming time": 553.6980028866589,
-        "Bugs": 0.15437455548216625,
-        "Estimated program length": 161.72553417960972,
-        "Purity ratio": 1.5855444527412719
-    },
-    "MI": {
-        "Original": 84.80362016358531,
-        "Sei": 47.25582942384983,
-        "Visual Studio": 49.592760329582056
-    },
+    "LLOC": 13,
     "files": [
         {
-            "filename": "Assets/Rust/bubble_sort.rs",
-            "SLOC": 25,
-            "PLOC": 20,
-            "LLOC": 19,
-            "CLOC": 0,
-            "BLANK": 5,
-            "CC_SUM": 6,
-            "CC_AVG": 2.0,
-            "COGNITIVE_SUM": 6,
-            "COGNITIVE_AVG": 3.0,
-            "NARGS_SUM": 1,
-            "NARGS_AVG": 0.5,
-            "NEXITS": 0,
-            "NOM": {
-                "functions": 2,
-                "closures": 0,
-                "total": 2
-            },
-            "Halstead": {
-                "n1": 17,
-                "n2": 21,
-                "N1": 56,
-                "N2": 46,
-                "Vocabulary": 38,
-                "Length": 102,
-                "Volume": 535.2886063712457,
-                "Difficulty": 18.61904761904762,
-                "Level": 0.053708439897698204,
-                "Effort": 9966.56405195986,
-                "Programming time": 553.6980028866589,
-                "Bugs": 0.15437455548216625,
-                "Estimated program length": 161.72553417960972,
-                "Purity ratio": 1.5855444527412719
-            },
-            "Mi": {
-                "Original": 84.80362016358531,
-                "Sei": 47.25582942384983,
-                "Visual Studio": 49.592760329582056
-            },
+            "LLOC": 13,
             "spaces": [
                 {
                     "name": "bubble_sort",
@@ -86,16 +11,13 @@
                     "end_line": 17,
                     "SLOC": 17,
                     "PLOC": 14,
-                    "LLOC": 14,
+                    "LLOC": 9,
                     "CLOC": 0,
                     "BLANK": 3,
                     "CC": {
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 6,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -130,16 +52,13 @@
                     "end_line": 25,
                     "SLOC": 7,
                     "PLOC": 6,
-                    "LLOC": 5,
+                    "LLOC": 4,
                     "CLOC": 0,
                     "BLANK": 1,
                     "CC": {
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

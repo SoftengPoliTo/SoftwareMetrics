@@ -1,83 +1,8 @@
 {
-    "SLOC": 58,
-    "PLOC": 41,
     "LLOC": 24,
-    "CLOC": 7,
-    "BLANK": 10,
-    "CC_SUM": 9,
-    "CC_AVG": 1.8,
-    "COGNITIVE_SUM": 7,
-    "COGNITIVE_AVG": 2.3333333333333335,
-    "NARGS_SUM": 3,
-    "NARGS_AVG": 1.0,
-    "NEXITS": 4,
-    "NOM": {
-        "functions": 3,
-        "closures": 0,
-        "total": 3
-    },
-    "HALSTEAD": {
-        "n1": 21,
-        "n2": 26,
-        "N1": 115,
-        "N2": 77,
-        "Vocabulary": 47,
-        "Length": 192,
-        "Volume": 1066.4810595221065,
-        "Difficulty": 31.096153846153847,
-        "Level": 0.032158317872603585,
-        "Effort": 33163.459100908585,
-        "Programming time": 1842.4143944949215,
-        "Bugs": 0.3440740826917404,
-        "Estimated program length": 214.45009855002235,
-        "Purity ratio": 1.1169275966146996
-    },
-    "MI": {
-        "Original": 66.89580038208805,
-        "Sei": 47.35516817393005,
-        "Visual Studio": 39.12035110063629
-    },
     "files": [
         {
-            "filename": "Assets/TypeScript/binarytrees.ts",
-            "SLOC": 58,
-            "PLOC": 41,
             "LLOC": 24,
-            "CLOC": 7,
-            "BLANK": 10,
-            "CC_SUM": 9,
-            "CC_AVG": 1.8,
-            "COGNITIVE_SUM": 7,
-            "COGNITIVE_AVG": 2.3333333333333335,
-            "NARGS_SUM": 3,
-            "NARGS_AVG": 1.0,
-            "NEXITS": 4,
-            "NOM": {
-                "functions": 3,
-                "closures": 0,
-                "total": 3
-            },
-            "Halstead": {
-                "n1": 21,
-                "n2": 26,
-                "N1": 115,
-                "N2": 77,
-                "Vocabulary": 47,
-                "Length": 192,
-                "Volume": 1066.4810595221065,
-                "Difficulty": 31.096153846153847,
-                "Level": 0.032158317872603585,
-                "Effort": 33163.459100908585,
-                "Programming time": 1842.4143944949215,
-                "Bugs": 0.3440740826917404,
-                "Estimated program length": 214.45009855002235,
-                "Purity ratio": 1.1169275966146996
-            },
-            "Mi": {
-                "Original": 66.89580038208805,
-                "Sei": 47.35516817393005,
-                "Visual Studio": 39.12035110063629
-            },
             "spaces": [
                 {
                     "name": "TreeNode",
@@ -93,9 +18,6 @@
                         "sum": 4,
                         "average": 1.3333333333333333
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 0,
-                    "NEXITS": 2,
                     "NOM": {
                         "functions": 2,
                         "closures": 0,
@@ -137,9 +59,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 2,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -181,9 +100,6 @@
                                 "sum": 2,
                                 "average": 2.0
                             },
-                            "COGNITIVE": 2,
-                            "NARGS": 0,
-                            "NEXITS": 2,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -227,9 +143,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 1,
-                    "NEXITS": 2,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

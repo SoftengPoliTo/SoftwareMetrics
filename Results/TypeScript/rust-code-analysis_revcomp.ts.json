@@ -1,83 +1,8 @@
 {
-    "SLOC": 187,
-    "PLOC": 154,
     "LLOC": 110,
-    "CLOC": 19,
-    "BLANK": 14,
-    "CC_SUM": 25,
-    "CC_AVG": 4.166666666666667,
-    "COGNITIVE_SUM": 40,
-    "COGNITIVE_AVG": 10.0,
-    "NARGS_SUM": 3,
-    "NARGS_AVG": 0.75,
-    "NEXITS": 2,
-    "NOM": {
-        "functions": 4,
-        "closures": 0,
-        "total": 4
-    },
-    "HALSTEAD": {
-        "n1": 31,
-        "n2": 69,
-        "N1": 453,
-        "N2": 289,
-        "Vocabulary": 100,
-        "Length": 742,
-        "Volume": 4929.741292812845,
-        "Difficulty": 64.92028985507247,
-        "Level": 0.015403504855452617,
-        "Effort": 320040.23363992956,
-        "Programming time": 17780.012979996085,
-        "Bugs": 1.5596068397265666,
-        "Estimated program length": 575.0682731396869,
-        "Purity ratio": 0.7750246268728934
-    },
-    "MI": {
-        "Original": 36.29022310125957,
-        "Sei": 2.8996639994044955,
-        "Visual Studio": 21.22235269079507
-    },
     "files": [
         {
-            "filename": "Assets/TypeScript/revcomp.ts",
-            "SLOC": 187,
-            "PLOC": 154,
             "LLOC": 110,
-            "CLOC": 19,
-            "BLANK": 14,
-            "CC_SUM": 25,
-            "CC_AVG": 4.166666666666667,
-            "COGNITIVE_SUM": 40,
-            "COGNITIVE_AVG": 10.0,
-            "NARGS_SUM": 3,
-            "NARGS_AVG": 0.75,
-            "NEXITS": 2,
-            "NOM": {
-                "functions": 4,
-                "closures": 0,
-                "total": 4
-            },
-            "Halstead": {
-                "n1": 31,
-                "n2": 69,
-                "N1": 453,
-                "N2": 289,
-                "Vocabulary": 100,
-                "Length": 742,
-                "Volume": 4929.741292812845,
-                "Difficulty": 64.92028985507247,
-                "Level": 0.015403504855452617,
-                "Effort": 320040.23363992956,
-                "Programming time": 17780.012979996085,
-                "Bugs": 1.5596068397265666,
-                "Estimated program length": 575.0682731396869,
-                "Purity ratio": 0.7750246268728934
-            },
-            "Mi": {
-                "Original": 36.29022310125957,
-                "Sei": 2.8996639994044955,
-                "Visual Studio": 21.22235269079507
-            },
             "spaces": [
                 {
                     "name": "LinkedArray",
@@ -93,9 +18,6 @@
                         "sum": 2,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 1,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -183,9 +102,6 @@
                         "sum": 12,
                         "average": 12.0
                     },
-                    "COGNITIVE": 26,
-                    "NARGS": 0,
-                    "NEXITS": 2,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -227,9 +143,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 6,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -271,9 +184,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 8,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

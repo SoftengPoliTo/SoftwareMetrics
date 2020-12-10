@@ -1,83 +1,8 @@
 {
-    "SLOC": 74,
-    "PLOC": 61,
     "LLOC": 62,
-    "CLOC": 4,
-    "BLANK": 9,
-    "CC_SUM": 25,
-    "CC_AVG": 5.0,
-    "COGNITIVE_SUM": 38,
-    "COGNITIVE_AVG": 9.5,
-    "NARGS_SUM": 8,
-    "NARGS_AVG": 2.0,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 4,
-        "closures": 0,
-        "total": 4
-    },
-    "HALSTEAD": {
-        "n1": 24,
-        "n2": 73,
-        "N1": 135,
-        "N2": 199,
-        "Vocabulary": 97,
-        "Length": 334,
-        "Volume": 2204.3708892905006,
-        "Difficulty": 32.71232876712329,
-        "Level": 0.030569514237855946,
-        "Effort": 72110.10525514679,
-        "Programming time": 4006.116958619266,
-        "Bugs": 0.5774878237182266,
-        "Estimated program length": 561.896292815549,
-        "Purity ratio": 1.6823242299866739
-    },
-    "MI": {
-        "Original": 55.4935188218906,
-        "Sei": 24.527009670842695,
-        "Visual Studio": 32.45235018824012
-    },
     "files": [
         {
-            "filename": "Assets/Python/revcomp.py",
-            "SLOC": 74,
-            "PLOC": 61,
             "LLOC": 62,
-            "CLOC": 4,
-            "BLANK": 9,
-            "CC_SUM": 25,
-            "CC_AVG": 5.0,
-            "COGNITIVE_SUM": 38,
-            "COGNITIVE_AVG": 9.5,
-            "NARGS_SUM": 8,
-            "NARGS_AVG": 2.0,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 4,
-                "closures": 0,
-                "total": 4
-            },
-            "Halstead": {
-                "n1": 24,
-                "n2": 73,
-                "N1": 135,
-                "N2": 199,
-                "Vocabulary": 97,
-                "Length": 334,
-                "Volume": 2204.3708892905006,
-                "Difficulty": 32.71232876712329,
-                "Level": 0.030569514237855946,
-                "Effort": 72110.10525514679,
-                "Programming time": 4006.116958619266,
-                "Bugs": 0.5774878237182266,
-                "Estimated program length": 561.896292815549,
-                "Purity ratio": 1.6823242299866739
-            },
-            "Mi": {
-                "Original": 55.4935188218906,
-                "Sei": 24.527009670842695,
-                "Visual Studio": 32.45235018824012
-            },
             "spaces": [
                 {
                     "name": "reverse_complement",
@@ -93,9 +18,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 11,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 5,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

@@ -1,83 +1,8 @@
 {
-    "SLOC": 86,
-    "PLOC": 54,
-    "LLOC": 67,
-    "CLOC": 19,
-    "BLANK": 13,
-    "CC_SUM": 10,
-    "CC_AVG": 2.5,
-    "COGNITIVE_SUM": 3,
-    "COGNITIVE_AVG": 1.0,
-    "NARGS_SUM": 2,
-    "NARGS_AVG": 0.6666666666666666,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 2,
-        "closures": 1,
-        "total": 3
-    },
-    "HALSTEAD": {
-        "n1": 21,
-        "n2": 70,
-        "N1": 163,
-        "N2": 136,
-        "Vocabulary": 91,
-        "Length": 299,
-        "Volume": 1945.8305974194102,
-        "Difficulty": 20.4,
-        "Level": 0.04901960784313726,
-        "Effort": 39694.94418735596,
-        "Programming time": 2205.274677075331,
-        "Bugs": 0.38788430677563934,
-        "Estimated program length": 521.2884770645016,
-        "Purity ratio": 1.7434397226237512
-    },
-    "MI": {
-        "Original": 57.15766392288438,
-        "Sei": 41.053693253235366,
-        "Visual Studio": 33.425534457827126
-    },
+    "LLOC": 26,
     "files": [
         {
-            "filename": "Assets/Rust/regexredux.rs",
-            "SLOC": 86,
-            "PLOC": 54,
-            "LLOC": 67,
-            "CLOC": 19,
-            "BLANK": 13,
-            "CC_SUM": 10,
-            "CC_AVG": 2.5,
-            "COGNITIVE_SUM": 3,
-            "COGNITIVE_AVG": 1.0,
-            "NARGS_SUM": 2,
-            "NARGS_AVG": 0.6666666666666666,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 2,
-                "closures": 1,
-                "total": 3
-            },
-            "Halstead": {
-                "n1": 21,
-                "n2": 70,
-                "N1": 163,
-                "N2": 136,
-                "Vocabulary": 91,
-                "Length": 299,
-                "Volume": 1945.8305974194102,
-                "Difficulty": 20.4,
-                "Level": 0.04901960784313726,
-                "Effort": 39694.94418735596,
-                "Programming time": 2205.274677075331,
-                "Bugs": 0.38788430677563934,
-                "Estimated program length": 521.2884770645016,
-                "Purity ratio": 1.7434397226237512
-            },
-            "Mi": {
-                "Original": 57.15766392288438,
-                "Sei": 41.053693253235366,
-                "Visual Studio": 33.425534457827126
-            },
+            "LLOC": 26,
             "spaces": [
                 {
                     "name": "read",
@@ -86,16 +11,13 @@
                     "end_line": 29,
                     "SLOC": 9,
                     "PLOC": 7,
-                    "LLOC": 12,
+                    "LLOC": 5,
                     "CLOC": 1,
                     "BLANK": 1,
                     "CC": {
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -130,16 +52,13 @@
                     "end_line": 86,
                     "SLOC": 56,
                     "PLOC": 40,
-                    "LLOC": 55,
+                    "LLOC": 21,
                     "CLOC": 9,
                     "BLANK": 7,
                     "CC": {
                         "sum": 5,
                         "average": 2.5
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 1,
@@ -174,16 +93,13 @@
                             "end_line": 59,
                             "SLOC": 1,
                             "PLOC": 1,
-                            "LLOC": 5,
+                            "LLOC": 0,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 2,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,

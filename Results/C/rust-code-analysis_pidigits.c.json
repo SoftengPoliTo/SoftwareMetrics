@@ -1,83 +1,8 @@
 {
-    "SLOC": 65,
-    "PLOC": 45,
     "LLOC": 28,
-    "CLOC": 6,
-    "BLANK": 14,
-    "CC_SUM": 9,
-    "CC_AVG": 1.8,
-    "COGNITIVE_SUM": 7,
-    "COGNITIVE_AVG": 1.75,
-    "NARGS_SUM": 5,
-    "NARGS_AVG": 1.25,
-    "NEXITS": 2,
-    "NOM": {
-        "functions": 4,
-        "closures": 0,
-        "total": 4
-    },
-    "HALSTEAD": {
-        "n1": 19,
-        "n2": 39,
-        "N1": 133,
-        "N2": 116,
-        "Vocabulary": 58,
-        "Length": 249,
-        "Volume": 1458.6372677867655,
-        "Difficulty": 28.256410256410255,
-        "Level": 0.0353901996370236,
-        "Effort": 41215.85305387219,
-        "Programming time": 2289.7696141040105,
-        "Bugs": 0.3977299301367299,
-        "Estimated program length": 286.84130929105584,
-        "Purity ratio": 1.1519731296829552
-    },
-    "MI": {
-        "Original": 63.42158514454242,
-        "Sei": 39.38809862139142,
-        "Visual Studio": 37.088646283358145
-    },
     "files": [
         {
-            "filename": "Assets/C/pidigits.c",
-            "SLOC": 65,
-            "PLOC": 45,
             "LLOC": 28,
-            "CLOC": 6,
-            "BLANK": 14,
-            "CC_SUM": 9,
-            "CC_AVG": 1.8,
-            "COGNITIVE_SUM": 7,
-            "COGNITIVE_AVG": 1.75,
-            "NARGS_SUM": 5,
-            "NARGS_AVG": 1.25,
-            "NEXITS": 2,
-            "NOM": {
-                "functions": 4,
-                "closures": 0,
-                "total": 4
-            },
-            "Halstead": {
-                "n1": 19,
-                "n2": 39,
-                "N1": 133,
-                "N2": 116,
-                "Vocabulary": 58,
-                "Length": 249,
-                "Volume": 1458.6372677867655,
-                "Difficulty": 28.256410256410255,
-                "Level": 0.0353901996370236,
-                "Effort": 41215.85305387219,
-                "Programming time": 2289.7696141040105,
-                "Bugs": 0.3977299301367299,
-                "Estimated program length": 286.84130929105584,
-                "Purity ratio": 1.1519731296829552
-            },
-            "Mi": {
-                "Original": 63.42158514454242,
-                "Sei": 39.38809862139142,
-                "Visual Studio": 37.088646283358145
-            },
             "spaces": [
                 {
                     "name": "extract_digit",
@@ -93,9 +18,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

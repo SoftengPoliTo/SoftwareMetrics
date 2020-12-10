@@ -1,83 +1,8 @@
 {
-    "SLOC": 116,
-    "PLOC": 89,
     "LLOC": 53,
-    "CLOC": 7,
-    "BLANK": 20,
-    "CC_SUM": 15,
-    "CC_AVG": 2.5,
-    "COGNITIVE_SUM": 12,
-    "COGNITIVE_AVG": 2.4,
-    "NARGS_SUM": 15,
-    "NARGS_AVG": 3.0,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 5,
-        "closures": 0,
-        "total": 5
-    },
-    "HALSTEAD": {
-        "n1": 18,
-        "n2": 104,
-        "N1": 228,
-        "N2": 295,
-        "Vocabulary": 122,
-        "Length": 523,
-        "Volume": 3624.77562754539,
-        "Difficulty": 25.528846153846153,
-        "Level": 0.039171374764595104,
-        "Effort": 92536.33933781741,
-        "Programming time": 5140.907740989856,
-        "Bugs": 0.6819517089673753,
-        "Estimated program length": 771.9043807126351,
-        "Purity ratio": 1.4759165979209083
-    },
-    "MI": {
-        "Original": 47.92499102255418,
-        "Sei": 13.539717969646862,
-        "Visual Studio": 28.026310539505367
-    },
     "files": [
         {
-            "filename": "Assets/Python/nbody.py",
-            "SLOC": 116,
-            "PLOC": 89,
             "LLOC": 53,
-            "CLOC": 7,
-            "BLANK": 20,
-            "CC_SUM": 15,
-            "CC_AVG": 2.5,
-            "COGNITIVE_SUM": 12,
-            "COGNITIVE_AVG": 2.4,
-            "NARGS_SUM": 15,
-            "NARGS_AVG": 3.0,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 5,
-                "closures": 0,
-                "total": 5
-            },
-            "Halstead": {
-                "n1": 18,
-                "n2": 104,
-                "N1": 228,
-                "N2": 295,
-                "Vocabulary": 122,
-                "Length": 523,
-                "Volume": 3624.77562754539,
-                "Difficulty": 25.528846153846153,
-                "Level": 0.039171374764595104,
-                "Effort": 92536.33933781741,
-                "Programming time": 5140.907740989856,
-                "Bugs": 0.6819517089673753,
-                "Estimated program length": 771.9043807126351,
-                "Purity ratio": 1.4759165979209083
-            },
-            "Mi": {
-                "Original": 47.92499102255418,
-                "Sei": 13.539717969646862,
-                "Visual Studio": 28.026310539505367
-            },
             "spaces": [
                 {
                     "name": "combinations",
@@ -93,9 +18,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 5,
-                    "NARGS": 4,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 5,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +182,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

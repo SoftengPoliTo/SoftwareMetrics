@@ -1,83 +1,8 @@
 {
-    "SLOC": 201,
-    "PLOC": 140,
     "LLOC": 60,
-    "CLOC": 22,
-    "BLANK": 39,
-    "CC_SUM": 39,
-    "CC_AVG": 4.875,
-    "COGNITIVE_SUM": 33,
-    "COGNITIVE_AVG": 4.714285714285714,
-    "NARGS_SUM": 17,
-    "NARGS_AVG": 2.4285714285714284,
-    "NEXITS": 5,
-    "NOM": {
-        "functions": 7,
-        "closures": 0,
-        "total": 7
-    },
-    "HALSTEAD": {
-        "n1": 33,
-        "n2": 78,
-        "N1": 500,
-        "N2": 395,
-        "Vocabulary": 111,
-        "Length": 895,
-        "Volume": 6081.002200383345,
-        "Difficulty": 83.5576923076923,
-        "Level": 0.011967779056386652,
-        "Effort": 508114.5107820314,
-        "Programming time": 28228.583932335077,
-        "Bugs": 2.122526610378524,
-        "Estimated program length": 656.7263790100843,
-        "Purity ratio": 0.7337724905140607
-    },
-    "MI": {
-        "Original": 30.8092515452214,
-        "Sei": -2.7623552082978513,
-        "Visual Studio": 18.01710616679614
-    },
     "files": [
         {
-            "filename": "Assets/C/mandelbrot.c",
-            "SLOC": 201,
-            "PLOC": 140,
             "LLOC": 60,
-            "CLOC": 22,
-            "BLANK": 39,
-            "CC_SUM": 39,
-            "CC_AVG": 4.875,
-            "COGNITIVE_SUM": 33,
-            "COGNITIVE_AVG": 4.714285714285714,
-            "NARGS_SUM": 17,
-            "NARGS_AVG": 2.4285714285714284,
-            "NEXITS": 5,
-            "NOM": {
-                "functions": 7,
-                "closures": 0,
-                "total": 7
-            },
-            "Halstead": {
-                "n1": 33,
-                "n2": 78,
-                "N1": 500,
-                "N2": 395,
-                "Vocabulary": 111,
-                "Length": 895,
-                "Volume": 6081.002200383345,
-                "Difficulty": 83.5576923076923,
-                "Level": 0.011967779056386652,
-                "Effort": 508114.5107820314,
-                "Programming time": 28228.583932335077,
-                "Bugs": 2.122526610378524,
-                "Estimated program length": 656.7263790100843,
-                "Purity ratio": 0.7337724905140607
-            },
-            "Mi": {
-                "Original": 30.8092515452214,
-                "Sei": -2.7623552082978513,
-                "Visual Studio": 18.01710616679614
-            },
             "spaces": [
                 {
                     "name": "numDigits",
@@ -93,9 +18,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 9,
                         "average": 9.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 9,
                         "average": 9.0
                     },
-                    "COGNITIVE": 8,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 5,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +182,6 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -313,9 +223,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -357,9 +264,6 @@
                         "sum": 8,
                         "average": 8.0
                     },
-                    "COGNITIVE": 14,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

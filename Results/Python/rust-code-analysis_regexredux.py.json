@@ -1,83 +1,8 @@
 {
-    "SLOC": 55,
-    "PLOC": 37,
     "LLOC": 23,
-    "CLOC": 8,
-    "BLANK": 10,
-    "CC_SUM": 7,
-    "CC_AVG": 1.75,
-    "COGNITIVE_SUM": 3,
-    "COGNITIVE_AVG": 1.0,
-    "NARGS_SUM": 2,
-    "NARGS_AVG": 0.6666666666666666,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 3,
-        "closures": 0,
-        "total": 3
-    },
-    "HALSTEAD": {
-        "n1": 12,
-        "n2": 53,
-        "N1": 55,
-        "N2": 93,
-        "Vocabulary": 65,
-        "Length": 148,
-        "Volume": 891.3104363282113,
-        "Difficulty": 10.528301886792454,
-        "Level": 0.09498207885304659,
-        "Effort": 9383.985348512111,
-        "Programming time": 521.332519361784,
-        "Bugs": 0.1482985686437413,
-        "Estimated program length": 346.5993341005034,
-        "Purity ratio": 2.341887392570969
-    },
-    "MI": {
-        "Original": 69.14919994231667,
-        "Sei": 52.626000681014844,
-        "Visual Studio": 40.43812862123782
-    },
     "files": [
         {
-            "filename": "Assets/Python/regexredux.py",
-            "SLOC": 55,
-            "PLOC": 37,
             "LLOC": 23,
-            "CLOC": 8,
-            "BLANK": 10,
-            "CC_SUM": 7,
-            "CC_AVG": 1.75,
-            "COGNITIVE_SUM": 3,
-            "COGNITIVE_AVG": 1.0,
-            "NARGS_SUM": 2,
-            "NARGS_AVG": 0.6666666666666666,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 3,
-                "closures": 0,
-                "total": 3
-            },
-            "Halstead": {
-                "n1": 12,
-                "n2": 53,
-                "N1": 55,
-                "N2": 93,
-                "Vocabulary": 65,
-                "Length": 148,
-                "Volume": 891.3104363282113,
-                "Difficulty": 10.528301886792454,
-                "Level": 0.09498207885304659,
-                "Effort": 9383.985348512111,
-                "Programming time": 521.332519361784,
-                "Bugs": 0.1482985686437413,
-                "Estimated program length": 346.5993341005034,
-                "Purity ratio": 2.341887392570969
-            },
-            "Mi": {
-                "Original": 69.14919994231667,
-                "Sei": 52.626000681014844,
-                "Visual Studio": 40.43812862123782
-            },
             "spaces": [
                 {
                     "name": "init",
@@ -93,9 +18,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

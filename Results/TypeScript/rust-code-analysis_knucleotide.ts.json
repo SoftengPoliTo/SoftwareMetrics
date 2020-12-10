@@ -1,83 +1,8 @@
 {
-    "SLOC": 78,
-    "PLOC": 63,
     "LLOC": 42,
-    "CLOC": 6,
-    "BLANK": 9,
-    "CC_SUM": 17,
-    "CC_AVG": 1.5454545454545454,
-    "COGNITIVE_SUM": 12,
-    "COGNITIVE_AVG": 1.3333333333333333,
-    "NARGS_SUM": 9,
-    "NARGS_AVG": 1.0,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 5,
-        "closures": 4,
-        "total": 9
-    },
-    "HALSTEAD": {
-        "n1": 28,
-        "n2": 51,
-        "N1": 200,
-        "N2": 140,
-        "Vocabulary": 79,
-        "Length": 340,
-        "Volume": 2143.285454380215,
-        "Difficulty": 38.431372549019606,
-        "Level": 0.026020408163265306,
-        "Effort": 82369.4017761808,
-        "Programming time": 4576.077876454489,
-        "Bugs": 0.6310387372075408,
-        "Estimated program length": 423.89963025815916,
-        "Purity ratio": 1.2467636184063504
-    },
-    "MI": {
-        "Original": 56.626822020841715,
-        "Sei": 28.553813090055428,
-        "Visual Studio": 33.11510059698346
-    },
     "files": [
         {
-            "filename": "Assets/TypeScript/knucleotide.ts",
-            "SLOC": 78,
-            "PLOC": 63,
             "LLOC": 42,
-            "CLOC": 6,
-            "BLANK": 9,
-            "CC_SUM": 17,
-            "CC_AVG": 1.5454545454545454,
-            "COGNITIVE_SUM": 12,
-            "COGNITIVE_AVG": 1.3333333333333333,
-            "NARGS_SUM": 9,
-            "NARGS_AVG": 1.0,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 5,
-                "closures": 4,
-                "total": 9
-            },
-            "Halstead": {
-                "n1": 28,
-                "n2": 51,
-                "N1": 200,
-                "N2": 140,
-                "Vocabulary": 79,
-                "Length": 340,
-                "Volume": 2143.285454380215,
-                "Difficulty": 38.431372549019606,
-                "Level": 0.026020408163265306,
-                "Effort": 82369.4017761808,
-                "Programming time": 4576.077876454489,
-                "Bugs": 0.6310387372075408,
-                "Estimated program length": 423.89963025815916,
-                "Purity ratio": 1.2467636184063504
-            },
-            "Mi": {
-                "Original": 56.626822020841715,
-                "Sei": 28.553813090055428,
-                "Visual Studio": 33.11510059698346
-            },
             "spaces": [
                 {
                     "name": "RefNum",
@@ -93,9 +18,6 @@
                         "sum": 2,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 1,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 1,
                                 "closures": 0,
@@ -183,9 +102,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 4,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -227,9 +143,6 @@
                         "sum": 4,
                         "average": 1.3333333333333333
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 2,
@@ -271,9 +184,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 2,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,
@@ -315,9 +225,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 0,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,
@@ -361,9 +268,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -405,9 +309,6 @@
                         "sum": 5,
                         "average": 1.6666666666666667
                     },
-                    "COGNITIVE": 6,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 2,
@@ -449,9 +350,6 @@
                                 "sum": 3,
                                 "average": 3.0
                             },
-                            "COGNITIVE": 6,
-                            "NARGS": 0,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,
@@ -493,9 +391,6 @@
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 0,
-                            "NEXITS": 0,
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,

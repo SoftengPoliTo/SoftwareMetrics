@@ -1,83 +1,8 @@
 {
-    "SLOC": 247,
-    "PLOC": 135,
     "LLOC": 56,
-    "CLOC": 56,
-    "BLANK": 56,
-    "CC_SUM": 27,
-    "CC_AVG": 4.5,
-    "COGNITIVE_SUM": 28,
-    "COGNITIVE_AVG": 7.0,
-    "NARGS_SUM": 10,
-    "NARGS_AVG": 2.5,
-    "NEXITS": 4,
-    "NOM": {
-        "functions": 4,
-        "closures": 0,
-        "total": 4
-    },
-    "HALSTEAD": {
-        "n1": 34,
-        "n2": 79,
-        "N1": 482,
-        "N2": 385,
-        "Vocabulary": 113,
-        "Length": 867,
-        "Volume": 5913.095160413968,
-        "Difficulty": 82.84810126582279,
-        "Level": 0.012070282658517952,
-        "Effort": 489888.7066444231,
-        "Programming time": 27216.039258023506,
-        "Bugs": 2.0714622848378177,
-        "Estimated program length": 670.9724157085027,
-        "Purity ratio": 0.7739012868610181
-    },
-    "MI": {
-        "Original": 30.376300563228924,
-        "Sei": 4.499605876006868,
-        "Visual Studio": 17.76391845802861
-    },
     "files": [
         {
-            "filename": "Assets/C/knucleotide.c",
-            "SLOC": 247,
-            "PLOC": 135,
             "LLOC": 56,
-            "CLOC": 56,
-            "BLANK": 56,
-            "CC_SUM": 27,
-            "CC_AVG": 4.5,
-            "COGNITIVE_SUM": 28,
-            "COGNITIVE_AVG": 7.0,
-            "NARGS_SUM": 10,
-            "NARGS_AVG": 2.5,
-            "NEXITS": 4,
-            "NOM": {
-                "functions": 4,
-                "closures": 0,
-                "total": 4
-            },
-            "Halstead": {
-                "n1": 34,
-                "n2": 79,
-                "N1": 482,
-                "N2": 385,
-                "Vocabulary": 113,
-                "Length": 867,
-                "Volume": 5913.095160413968,
-                "Difficulty": 82.84810126582279,
-                "Level": 0.012070282658517952,
-                "Effort": 489888.7066444231,
-                "Programming time": 27216.039258023506,
-                "Bugs": 2.0714622848378177,
-                "Estimated program length": 670.9724157085027,
-                "Purity ratio": 0.7739012868610181
-            },
-            "Mi": {
-                "Original": 30.376300563228924,
-                "Sei": 4.499605876006868,
-                "Visual Studio": 17.76391845802861
-            },
             "spaces": [
                 {
                     "name": null,
@@ -93,9 +18,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 0,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 2,
-                    "NEXITS": 3,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 8,
-                    "NARGS": 4,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 6,
-                    "NARGS": 4,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +182,6 @@
                         "sum": 9,
                         "average": 9.0
                     },
-                    "COGNITIVE": 12,
-                    "NARGS": 0,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

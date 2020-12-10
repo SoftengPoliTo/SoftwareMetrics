@@ -1,83 +1,8 @@
 {
-    "SLOC": 174,
-    "PLOC": 86,
     "LLOC": 41,
-    "CLOC": 54,
-    "BLANK": 34,
-    "CC_SUM": 22,
-    "CC_AVG": 11.0,
-    "COGNITIVE_SUM": 56,
-    "COGNITIVE_AVG": 56.0,
-    "NARGS_SUM": 2,
-    "NARGS_AVG": 2.0,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 1,
-        "closures": 0,
-        "total": 1
-    },
-    "HALSTEAD": {
-        "n1": 30,
-        "n2": 33,
-        "N1": 285,
-        "N2": 240,
-        "Vocabulary": 63,
-        "Length": 525,
-        "Volume": 3138.0719598374562,
-        "Difficulty": 109.0909090909091,
-        "Level": 0.009166666666666667,
-        "Effort": 342335.12289135886,
-        "Programming time": 19018.617938408825,
-        "Bugs": 1.6312219298557251,
-        "Estimated program length": 313.6717238070845,
-        "Purity ratio": 0.5974699501087324
-    },
-    "MI": {
-        "Original": 40.49621205585848,
-        "Sei": 22.95379571466426,
-        "Visual Studio": 23.681995354303204
-    },
     "files": [
         {
-            "filename": "Assets/C/fannkuchredux.c",
-            "SLOC": 174,
-            "PLOC": 86,
             "LLOC": 41,
-            "CLOC": 54,
-            "BLANK": 34,
-            "CC_SUM": 22,
-            "CC_AVG": 11.0,
-            "COGNITIVE_SUM": 56,
-            "COGNITIVE_AVG": 56.0,
-            "NARGS_SUM": 2,
-            "NARGS_AVG": 2.0,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 1,
-                "closures": 0,
-                "total": 1
-            },
-            "Halstead": {
-                "n1": 30,
-                "n2": 33,
-                "N1": 285,
-                "N2": 240,
-                "Vocabulary": 63,
-                "Length": 525,
-                "Volume": 3138.0719598374562,
-                "Difficulty": 109.0909090909091,
-                "Level": 0.009166666666666667,
-                "Effort": 342335.12289135886,
-                "Programming time": 19018.617938408825,
-                "Bugs": 1.6312219298557251,
-                "Estimated program length": 313.6717238070845,
-                "Purity ratio": 0.5974699501087324
-            },
-            "Mi": {
-                "Original": 40.49621205585848,
-                "Sei": 22.95379571466426,
-                "Visual Studio": 23.681995354303204
-            },
             "spaces": [
                 {
                     "name": "main",
@@ -93,9 +18,6 @@
                         "sum": 21,
                         "average": 21.0
                     },
-                    "COGNITIVE": 56,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

@@ -1,83 +1,8 @@
 {
-    "SLOC": 186,
-    "PLOC": 148,
     "LLOC": 110,
-    "CLOC": 20,
-    "BLANK": 18,
-    "CC_SUM": 24,
-    "CC_AVG": 4.8,
-    "COGNITIVE_SUM": 40,
-    "COGNITIVE_AVG": 10.0,
-    "NARGS_SUM": 3,
-    "NARGS_AVG": 0.75,
-    "NEXITS": 2,
-    "NOM": {
-        "functions": 4,
-        "closures": 0,
-        "total": 4
-    },
-    "HALSTEAD": {
-        "n1": 29,
-        "n2": 69,
-        "N1": 439,
-        "N2": 290,
-        "Vocabulary": 98,
-        "Length": 729,
-        "Volume": 4822.123476359987,
-        "Difficulty": 60.94202898550725,
-        "Level": 0.016409036860879904,
-        "Effort": 293869.9886680253,
-        "Programming time": 16326.110481556962,
-        "Bugs": 1.4733827109553517,
-        "Estimated program length": 562.3696363763933,
-        "Purity ratio": 0.7714261129991677
-    },
-    "MI": {
-        "Original": 36.72186162633774,
-        "Sei": 4.042833620573553,
-        "Visual Studio": 21.474772880899263
-    },
     "files": [
         {
-            "filename": "Assets/JavaScript/revcomp.js",
-            "SLOC": 186,
-            "PLOC": 148,
             "LLOC": 110,
-            "CLOC": 20,
-            "BLANK": 18,
-            "CC_SUM": 24,
-            "CC_AVG": 4.8,
-            "COGNITIVE_SUM": 40,
-            "COGNITIVE_AVG": 10.0,
-            "NARGS_SUM": 3,
-            "NARGS_AVG": 0.75,
-            "NEXITS": 2,
-            "NOM": {
-                "functions": 4,
-                "closures": 0,
-                "total": 4
-            },
-            "Halstead": {
-                "n1": 29,
-                "n2": 69,
-                "N1": 439,
-                "N2": 290,
-                "Vocabulary": 98,
-                "Length": 729,
-                "Volume": 4822.123476359987,
-                "Difficulty": 60.94202898550725,
-                "Level": 0.016409036860879904,
-                "Effort": 293869.9886680253,
-                "Programming time": 16326.110481556962,
-                "Bugs": 1.4733827109553517,
-                "Estimated program length": 562.3696363763933,
-                "Purity ratio": 0.7714261129991677
-            },
-            "Mi": {
-                "Original": 36.72186162633774,
-                "Sei": 4.042833620573553,
-                "Visual Studio": 21.474772880899263
-            },
             "spaces": [
                 {
                     "name": "LinkedArray",
@@ -93,9 +18,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 8,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 6,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 12,
                         "average": 12.0
                     },
-                    "COGNITIVE": 26,
-                    "NARGS": 0,
-                    "NEXITS": 2,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

@@ -1,83 +1,8 @@
 {
-    "SLOC": 344,
-    "PLOC": 255,
     "LLOC": 90,
-    "CLOC": 49,
-    "BLANK": 40,
-    "CC_SUM": 35,
-    "CC_AVG": 3.5,
-    "COGNITIVE_SUM": 42,
-    "COGNITIVE_AVG": 5.25,
-    "NARGS_SUM": 15,
-    "NARGS_AVG": 1.875,
-    "NEXITS": 4,
-    "NOM": {
-        "functions": 8,
-        "closures": 0,
-        "total": 8
-    },
-    "HALSTEAD": {
-        "n1": 31,
-        "n2": 115,
-        "N1": 570,
-        "N2": 415,
-        "Vocabulary": 146,
-        "Length": 985,
-        "Volume": 7081.9771904968175,
-        "Difficulty": 55.93478260869565,
-        "Level": 0.017877963466770307,
-        "Effort": 396128.8545901807,
-        "Programming time": 22007.158588343373,
-        "Bugs": 1.7979173803681505,
-        "Estimated program length": 940.8114414805963,
-        "Purity ratio": 0.9551385192696409
-    },
-    "MI": {
-        "Original": 22.23200140869568,
-        "Sei": -12.466182327989948,
-        "Visual Studio": 13.001170414441917
-    },
     "files": [
         {
-            "filename": "Assets/C/fasta.c",
-            "SLOC": 344,
-            "PLOC": 255,
             "LLOC": 90,
-            "CLOC": 49,
-            "BLANK": 40,
-            "CC_SUM": 35,
-            "CC_AVG": 3.5,
-            "COGNITIVE_SUM": 42,
-            "COGNITIVE_AVG": 5.25,
-            "NARGS_SUM": 15,
-            "NARGS_AVG": 1.875,
-            "NEXITS": 4,
-            "NOM": {
-                "functions": 8,
-                "closures": 0,
-                "total": 8
-            },
-            "Halstead": {
-                "n1": 31,
-                "n2": 115,
-                "N1": 570,
-                "N2": 415,
-                "Vocabulary": 146,
-                "Length": 985,
-                "Volume": 7081.9771904968175,
-                "Difficulty": 55.93478260869565,
-                "Level": 0.017877963466770307,
-                "Effort": 396128.8545901807,
-                "Programming time": 22007.158588343373,
-                "Bugs": 1.7979173803681505,
-                "Estimated program length": 940.8114414805963,
-                "Purity ratio": 0.9551385192696409
-            },
-            "Mi": {
-                "Original": 22.23200140869568,
-                "Sei": -12.466182327989948,
-                "Visual Studio": 13.001170414441917
-            },
             "spaces": [
                 {
                     "name": null,
@@ -93,9 +18,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 0,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 0,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +182,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 5,
-                    "NARGS": 3,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -313,9 +223,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -357,9 +264,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 3,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -401,9 +305,6 @@
                         "sum": 13,
                         "average": 13.0
                     },
-                    "COGNITIVE": 25,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -445,9 +346,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

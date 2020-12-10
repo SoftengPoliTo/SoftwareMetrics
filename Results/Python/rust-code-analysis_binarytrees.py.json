@@ -1,83 +1,8 @@
 {
-    "SLOC": 76,
-    "PLOC": 48,
     "LLOC": 39,
-    "CLOC": 6,
-    "BLANK": 22,
-    "CC_SUM": 16,
-    "CC_AVG": 2.6666666666666665,
-    "COGNITIVE_SUM": 13,
-    "COGNITIVE_AVG": 2.6,
-    "NARGS_SUM": 10,
-    "NARGS_AVG": 2.0,
-    "NEXITS": 5,
-    "NOM": {
-        "functions": 5,
-        "closures": 0,
-        "total": 5
-    },
-    "HALSTEAD": {
-        "n1": 22,
-        "n2": 52,
-        "N1": 94,
-        "N2": 142,
-        "Vocabulary": 74,
-        "Length": 236,
-        "Volume": 1465.4309942884322,
-        "Difficulty": 30.03846153846154,
-        "Level": 0.03329065300896287,
-        "Effort": 44019.29255920252,
-        "Programming time": 2445.516253289029,
-        "Bugs": 0.4155667428621877,
-        "Estimated program length": 394.5303609533573,
-        "Purity ratio": 1.6717388175989716
-    },
-    "MI": {
-        "Original": 59.254615591723194,
-        "Sei": 32.498081939061336,
-        "Visual Studio": 34.651821983463854
-    },
     "files": [
         {
-            "filename": "Assets/Python/binarytrees.py",
-            "SLOC": 76,
-            "PLOC": 48,
             "LLOC": 39,
-            "CLOC": 6,
-            "BLANK": 22,
-            "CC_SUM": 16,
-            "CC_AVG": 2.6666666666666665,
-            "COGNITIVE_SUM": 13,
-            "COGNITIVE_AVG": 2.6,
-            "NARGS_SUM": 10,
-            "NARGS_AVG": 2.0,
-            "NEXITS": 5,
-            "NOM": {
-                "functions": 5,
-                "closures": 0,
-                "total": 5
-            },
-            "Halstead": {
-                "n1": 22,
-                "n2": 52,
-                "N1": 94,
-                "N2": 142,
-                "Vocabulary": 74,
-                "Length": 236,
-                "Volume": 1465.4309942884322,
-                "Difficulty": 30.03846153846154,
-                "Level": 0.03329065300896287,
-                "Effort": 44019.29255920252,
-                "Programming time": 2445.516253289029,
-                "Bugs": 0.4155667428621877,
-                "Estimated program length": 394.5303609533573,
-                "Purity ratio": 1.6717388175989716
-            },
-            "Mi": {
-                "Original": 59.254615591723194,
-                "Sei": 32.498081939061336,
-                "Visual Studio": 34.651821983463854
-            },
             "spaces": [
                 {
                     "name": "make_tree",
@@ -93,9 +18,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 1,
-                    "NEXITS": 2,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 1,
-                    "NEXITS": 2,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 3,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 5,
                         "average": 5.0
                     },
-                    "COGNITIVE": 4,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +182,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 5,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

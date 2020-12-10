@@ -1,83 +1,8 @@
 {
-    "SLOC": 106,
-    "PLOC": 85,
     "LLOC": 77,
-    "CLOC": 5,
-    "BLANK": 16,
-    "CC_SUM": 33,
-    "CC_AVG": 6.6,
-    "COGNITIVE_SUM": 52,
-    "COGNITIVE_AVG": 10.4,
-    "NARGS_SUM": 10,
-    "NARGS_AVG": 2.0,
-    "NEXITS": 1,
-    "NOM": {
-        "functions": 4,
-        "closures": 1,
-        "total": 5
-    },
-    "HALSTEAD": {
-        "n1": 30,
-        "n2": 72,
-        "N1": 182,
-        "N2": 281,
-        "Vocabulary": 102,
-        "Length": 463,
-        "Volume": 3089.3329333328024,
-        "Difficulty": 58.541666666666664,
-        "Level": 0.01708185053380783,
-        "Effort": 180854.69880552447,
-        "Programming time": 10047.483266973582,
-        "Bugs": 1.066019812671971,
-        "Estimated program length": 591.4413179721021,
-        "Purity ratio": 1.2774110539354255
-    },
-    "MI": {
-        "Original": 46.07659224487226,
-        "Sei": 10.6412127949326,
-        "Visual Studio": 26.945375581796647
-    },
     "files": [
         {
-            "filename": "Assets/Python/fannkuchredux.py",
-            "SLOC": 106,
-            "PLOC": 85,
             "LLOC": 77,
-            "CLOC": 5,
-            "BLANK": 16,
-            "CC_SUM": 33,
-            "CC_AVG": 6.6,
-            "COGNITIVE_SUM": 52,
-            "COGNITIVE_AVG": 10.4,
-            "NARGS_SUM": 10,
-            "NARGS_AVG": 2.0,
-            "NEXITS": 1,
-            "NOM": {
-                "functions": 4,
-                "closures": 1,
-                "total": 5
-            },
-            "Halstead": {
-                "n1": 30,
-                "n2": 72,
-                "N1": 182,
-                "N2": 281,
-                "Vocabulary": 102,
-                "Length": 463,
-                "Volume": 3089.3329333328024,
-                "Difficulty": 58.541666666666664,
-                "Level": 0.01708185053380783,
-                "Effort": 180854.69880552447,
-                "Programming time": 10047.483266973582,
-                "Bugs": 1.066019812671971,
-                "Estimated program length": 591.4413179721021,
-                "Purity ratio": 1.2774110539354255
-            },
-            "Mi": {
-                "Original": 46.07659224487226,
-                "Sei": 10.6412127949326,
-                "Visual Studio": 26.945375581796647
-            },
             "spaces": [
                 {
                     "name": "permutations",
@@ -93,9 +18,6 @@
                         "sum": 15,
                         "average": 15.0
                     },
-                    "COGNITIVE": 28,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 14,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 3,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 9,
                         "average": 9.0
                     },
-                    "COGNITIVE": 9,
-                    "NARGS": 1,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 1,

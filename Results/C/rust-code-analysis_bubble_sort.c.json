@@ -1,83 +1,8 @@
 {
-    "SLOC": 43,
-    "PLOC": 37,
     "LLOC": 20,
-    "CLOC": 1,
-    "BLANK": 5,
-    "CC_SUM": 8,
-    "CC_AVG": 2.6666666666666665,
-    "COGNITIVE_SUM": 8,
-    "COGNITIVE_AVG": 4.0,
-    "NARGS_SUM": 2,
-    "NARGS_AVG": 1.0,
-    "NEXITS": 0,
-    "NOM": {
-        "functions": 2,
-        "closures": 0,
-        "total": 2
-    },
-    "HALSTEAD": {
-        "n1": 14,
-        "n2": 22,
-        "N1": 105,
-        "N2": 77,
-        "Vocabulary": 36,
-        "Length": 182,
-        "Volume": 940.9263502625008,
-        "Difficulty": 24.5,
-        "Level": 0.04081632653061224,
-        "Effort": 23052.69558143127,
-        "Programming time": 1280.7053100795151,
-        "Bugs": 0.2699975907201127,
-        "Estimated program length": 151.41046451882698,
-        "Purity ratio": 0.8319256292243241
-    },
-    "MI": {
-        "Original": 72.62486080695876,
-        "Sei": 41.592144510173725,
-        "Visual Studio": 42.47067883447881
-    },
     "files": [
         {
-            "filename": "Assets/C/bubble_sort.c",
-            "SLOC": 43,
-            "PLOC": 37,
             "LLOC": 20,
-            "CLOC": 1,
-            "BLANK": 5,
-            "CC_SUM": 8,
-            "CC_AVG": 2.6666666666666665,
-            "COGNITIVE_SUM": 8,
-            "COGNITIVE_AVG": 4.0,
-            "NARGS_SUM": 2,
-            "NARGS_AVG": 1.0,
-            "NEXITS": 0,
-            "NOM": {
-                "functions": 2,
-                "closures": 0,
-                "total": 2
-            },
-            "Halstead": {
-                "n1": 14,
-                "n2": 22,
-                "N1": 105,
-                "N2": 77,
-                "Vocabulary": 36,
-                "Length": 182,
-                "Volume": 940.9263502625008,
-                "Difficulty": 24.5,
-                "Level": 0.04081632653061224,
-                "Effort": 23052.69558143127,
-                "Programming time": 1280.7053100795151,
-                "Bugs": 0.2699975907201127,
-                "Estimated program length": 151.41046451882698,
-                "Purity ratio": 0.8319256292243241
-            },
-            "Mi": {
-                "Original": 72.62486080695876,
-                "Sei": 41.592144510173725,
-                "Visual Studio": 42.47067883447881
-            },
             "spaces": [
                 {
                     "name": "bubble_sort",
@@ -93,9 +18,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 6,
-                    "NARGS": 2,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 2,
-                    "NARGS": 0,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

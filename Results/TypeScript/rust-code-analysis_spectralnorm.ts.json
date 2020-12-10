@@ -1,83 +1,8 @@
 {
-    "SLOC": 55,
-    "PLOC": 41,
     "LLOC": 40,
-    "CLOC": 5,
-    "BLANK": 9,
-    "CC_SUM": 13,
-    "CC_AVG": 2.1666666666666665,
-    "COGNITIVE_SUM": 9,
-    "COGNITIVE_AVG": 1.8,
-    "NARGS_SUM": 12,
-    "NARGS_AVG": 2.4,
-    "NEXITS": 2,
-    "NOM": {
-        "functions": 5,
-        "closures": 0,
-        "total": 5
-    },
-    "HALSTEAD": {
-        "n1": 18,
-        "n2": 26,
-        "N1": 166,
-        "N2": 135,
-        "Vocabulary": 44,
-        "Length": 301,
-        "Volume": 1643.2889172098264,
-        "Difficulty": 46.73076923076923,
-        "Level": 0.02139917695473251,
-        "Effort": 76792.15516961305,
-        "Programming time": 4266.23084275628,
-        "Bugs": 0.6022220451854204,
-        "Estimated program length": 197.27008269763002,
-        "Purity ratio": 0.6553823345436213
-    },
-    "MI": {
-        "Original": 64.58803665956509,
-        "Sei": 41.31855991679847,
-        "Visual Studio": 37.77078167226029
-    },
     "files": [
         {
-            "filename": "Assets/TypeScript/spectralnorm.ts",
-            "SLOC": 55,
-            "PLOC": 41,
             "LLOC": 40,
-            "CLOC": 5,
-            "BLANK": 9,
-            "CC_SUM": 13,
-            "CC_AVG": 2.1666666666666665,
-            "COGNITIVE_SUM": 9,
-            "COGNITIVE_AVG": 1.8,
-            "NARGS_SUM": 12,
-            "NARGS_AVG": 2.4,
-            "NEXITS": 2,
-            "NOM": {
-                "functions": 5,
-                "closures": 0,
-                "total": 5
-            },
-            "Halstead": {
-                "n1": 18,
-                "n2": 26,
-                "N1": 166,
-                "N2": 135,
-                "Vocabulary": 44,
-                "Length": 301,
-                "Volume": 1643.2889172098264,
-                "Difficulty": 46.73076923076923,
-                "Level": 0.02139917695473251,
-                "Effort": 76792.15516961305,
-                "Programming time": 4266.23084275628,
-                "Bugs": 0.6022220451854204,
-                "Estimated program length": 197.27008269763002,
-                "Purity ratio": 0.6553823345436213
-            },
-            "Mi": {
-                "Original": 64.58803665956509,
-                "Sei": 41.31855991679847,
-                "Visual Studio": 37.77078167226029
-            },
             "spaces": [
                 {
                     "name": "approximate",
@@ -93,9 +18,6 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 1,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +59,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 2,
-                    "NEXITS": 1,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +100,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +141,6 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +182,6 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 3,
-                    "NEXITS": 0,
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

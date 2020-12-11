@@ -170,7 +170,7 @@
                     "__new": 6
                 },
                 "COGNITIVE_AVG": {
-                    "__old": 4,
+                    "__old": 0,
                     "__new": 1.5
                 },
                 "NARGS_SUM": {

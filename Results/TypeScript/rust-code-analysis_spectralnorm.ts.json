@@ -11,6 +11,7 @@
     "NARGS_SUM": 12,
     "NARGS_AVG": 2.4,
     "NEXITS": 2,
+    "NEXITS_AVG": 0.4,
     "NOM": {
         "functions": 5,
         "closures": 0,
@@ -52,6 +53,7 @@
             "NARGS_SUM": 12,
             "NARGS_AVG": 2.4,
             "NEXITS": 2,
+            "NEXITS_AVG": 0.4,
             "NOM": {
                 "functions": 5,
                 "closures": 0,
@@ -93,9 +95,18 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 1,
-                    "NEXITS": 1,
+                    "COGNITIVE": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
+                    "NARGS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
+                    "NEXITS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -137,9 +148,18 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 2,
-                    "NEXITS": 1,
+                    "COGNITIVE": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NARGS": {
+                        "sum": 2,
+                        "average": 2.0
+                    },
+                    "NEXITS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +201,18 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 3,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
+                    "NARGS": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -225,9 +254,18 @@
                         "sum": 3,
                         "average": 3.0
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 3,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
+                    "NARGS": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -269,9 +307,18 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 3,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NARGS": {
+                        "sum": 3,
+                        "average": 3.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

@@ -11,6 +11,7 @@
     "NARGS_SUM": 1,
     "NARGS_AVG": 1.0,
     "NEXITS": 2,
+    "NEXITS_AVG": 2.0,
     "NOM": {
         "functions": 1,
         "closures": 0,
@@ -52,6 +53,7 @@
             "NARGS_SUM": 1,
             "NARGS_AVG": 1.0,
             "NEXITS": 2,
+            "NEXITS_AVG": 2.0,
             "NOM": {
                 "functions": 1,
                 "closures": 0,
@@ -93,9 +95,18 @@
                         "sum": 13,
                         "average": 13.0
                     },
-                    "COGNITIVE": 28,
-                    "NARGS": 1,
-                    "NEXITS": 2,
+                    "COGNITIVE": {
+                        "sum": 28,
+                        "average": 28.0
+                    },
+                    "NARGS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
+                    "NEXITS": {
+                        "sum": 2,
+                        "average": 2.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

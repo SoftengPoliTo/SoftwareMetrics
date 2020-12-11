@@ -47,6 +47,10 @@
         "__old": 2,
         "__new": 1
     },
+    "NEXITS_AVG": {
+        "__old": 0.5,
+        "__new": 0.25
+    },
     "HALSTEAD": {
         "n1": {
             "__old": 19,
@@ -170,6 +174,10 @@
                 "NEXITS": {
                     "__old": 2,
                     "__new": 1
+                },
+                "NEXITS_AVG": {
+                    "__old": 0.5,
+                    "__new": 0.25
                 },
                 "Halstead": {
                     "n1": {

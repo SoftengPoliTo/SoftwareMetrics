@@ -11,6 +11,7 @@
     "NARGS_SUM": 0,
     "NARGS_AVG": 0.0,
     "NEXITS": 0,
+    "NEXITS_AVG": 0.0,
     "NOM": {
         "functions": 0,
         "closures": 0,
@@ -48,10 +49,11 @@
             "CC_SUM": 4,
             "CC_AVG": 4.0,
             "COGNITIVE_SUM": 4,
-            "COGNITIVE_AVG": 4.0,
+            "COGNITIVE_AVG": 0.0,
             "NARGS_SUM": 0,
             "NARGS_AVG": 0.0,
             "NEXITS": 0,
+            "NEXITS_AVG": 0.0,
             "NOM": {
                 "functions": 0,
                 "closures": 0,

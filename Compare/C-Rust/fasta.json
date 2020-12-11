@@ -9,7 +9,7 @@
     },
     "LLOC": {
         "__old": 90,
-        "__new": 241
+        "__new": 84
     },
     "CLOC": {
         "__old": 49,
@@ -46,6 +46,10 @@
     "NEXITS": {
         "__old": 4,
         "__new": 10
+    },
+    "NEXITS_AVG": {
+        "__old": 0.5,
+        "__new": 0.625
     },
     "NOM": {
         "functions": {
@@ -147,7 +151,7 @@
                 },
                 "LLOC": {
                     "__old": 90,
-                    "__new": 241
+                    "__new": 84
                 },
                 "CLOC": {
                     "__old": 49,
@@ -184,6 +188,10 @@
                 "NEXITS": {
                     "__old": 4,
                     "__new": 10
+                },
+                "NEXITS_AVG": {
+                    "__old": 0.5,
+                    "__new": 0.625
                 },
                 "NOM": {
                     "functions": {

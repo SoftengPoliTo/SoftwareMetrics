@@ -1,7 +1,7 @@
 {
     "SLOC": 75,
     "PLOC": 56,
-    "LLOC": 74,
+    "LLOC": 31,
     "CLOC": 7,
     "BLANK": 12,
     "CC_SUM": 12,
@@ -11,6 +11,7 @@
     "NARGS_SUM": 14,
     "NARGS_AVG": 2.0,
     "NEXITS": 3,
+    "NEXITS_AVG": 0.42857142857142855,
     "NOM": {
         "functions": 4,
         "closures": 3,
@@ -42,7 +43,7 @@
             "filename": "Assets/Rust/binarytrees.rs",
             "SLOC": 75,
             "PLOC": 56,
-            "LLOC": 74,
+            "LLOC": 31,
             "CLOC": 7,
             "BLANK": 12,
             "CC_SUM": 12,
@@ -52,6 +53,7 @@
             "NARGS_SUM": 14,
             "NARGS_AVG": 2.0,
             "NEXITS": 3,
+            "NEXITS_AVG": 0.42857142857142855,
             "NOM": {
                 "functions": 4,
                 "closures": 3,
@@ -86,16 +88,25 @@
                     "end_line": 25,
                     "SLOC": 7,
                     "PLOC": 7,
-                    "LLOC": 4,
+                    "LLOC": 3,
                     "CLOC": 0,
                     "BLANK": 0,
                     "CC": {
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 1,
-                    "NEXITS": 1,
+                    "COGNITIVE": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
+                    "NARGS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
+                    "NEXITS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -130,16 +141,25 @@
                     "end_line": 36,
                     "SLOC": 10,
                     "PLOC": 10,
-                    "LLOC": 12,
+                    "LLOC": 6,
                     "CLOC": 0,
                     "BLANK": 0,
                     "CC": {
                         "sum": 2,
                         "average": 2.0
                     },
-                    "COGNITIVE": 1,
-                    "NARGS": 2,
-                    "NEXITS": 1,
+                    "COGNITIVE": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
+                    "NARGS": {
+                        "sum": 2,
+                        "average": 2.0
+                    },
+                    "NEXITS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -174,16 +194,25 @@
                     "end_line": 45,
                     "SLOC": 8,
                     "PLOC": 8,
-                    "LLOC": 15,
+                    "LLOC": 5,
                     "CLOC": 0,
                     "BLANK": 0,
                     "CC": {
                         "sum": 2,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 2,
-                    "NEXITS": 1,
+                    "COGNITIVE": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NARGS": {
+                        "sum": 5,
+                        "average": 2.5
+                    },
+                    "NEXITS": {
+                        "sum": 1,
+                        "average": 0.5
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 1,
@@ -218,16 +247,25 @@
                             "end_line": 43,
                             "SLOC": 5,
                             "PLOC": 5,
-                            "LLOC": 6,
+                            "LLOC": 3,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 3,
-                            "NEXITS": 0,
+                            "COGNITIVE": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
+                            "NARGS": {
+                                "sum": 3,
+                                "average": 3.0
+                            },
+                            "NEXITS": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,
@@ -264,16 +302,25 @@
                     "end_line": 75,
                     "SLOC": 29,
                     "PLOC": 24,
-                    "LLOC": 43,
+                    "LLOC": 17,
                     "CLOC": 0,
                     "BLANK": 5,
                     "CC": {
                         "sum": 5,
                         "average": 1.6666666666666667
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 0,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 3,
+                        "average": 1.0
+                    },
+                    "NARGS": {
+                        "sum": 6,
+                        "average": 2.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 2,
@@ -308,16 +355,25 @@
                             "end_line": 49,
                             "SLOC": 1,
                             "PLOC": 1,
-                            "LLOC": 5,
+                            "LLOC": 0,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 3,
-                            "NEXITS": 0,
+                            "COGNITIVE": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
+                            "NARGS": {
+                                "sum": 3,
+                                "average": 3.0
+                            },
+                            "NEXITS": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,
@@ -352,16 +408,25 @@
                             "end_line": 68,
                             "SLOC": 5,
                             "PLOC": 5,
-                            "LLOC": 6,
+                            "LLOC": 3,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 3,
-                            "NEXITS": 0,
+                            "COGNITIVE": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
+                            "NARGS": {
+                                "sum": 3,
+                                "average": 3.0
+                            },
+                            "NEXITS": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,

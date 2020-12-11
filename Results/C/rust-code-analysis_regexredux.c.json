@@ -11,6 +11,7 @@
     "NARGS_SUM": 6,
     "NARGS_AVG": 3.0,
     "NEXITS": 1,
+    "NEXITS_AVG": 0.5,
     "NOM": {
         "functions": 2,
         "closures": 0,
@@ -52,6 +53,7 @@
             "NARGS_SUM": 6,
             "NARGS_AVG": 3.0,
             "NEXITS": 1,
+            "NEXITS_AVG": 0.5,
             "NOM": {
                 "functions": 2,
                 "closures": 0,
@@ -93,9 +95,18 @@
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NARGS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 0,
                         "closures": 0,
@@ -137,9 +148,18 @@
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 4,
-                    "NARGS": 5,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 4,
+                        "average": 4.0
+                    },
+                    "NARGS": {
+                        "sum": 5,
+                        "average": 5.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -181,9 +201,18 @@
                         "sum": 6,
                         "average": 6.0
                     },
-                    "COGNITIVE": 7,
-                    "NARGS": 1,
-                    "NEXITS": 1,
+                    "COGNITIVE": {
+                        "sum": 7,
+                        "average": 7.0
+                    },
+                    "NARGS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
+                    "NEXITS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

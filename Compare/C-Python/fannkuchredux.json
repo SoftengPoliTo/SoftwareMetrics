@@ -39,6 +39,10 @@
         "__old": 2,
         "__new": 10
     },
+    "NEXITS_AVG": {
+        "__old": 1,
+        "__new": 0.2
+    },
     "NOM": {
         "functions": {
             "__old": 1,
@@ -168,6 +172,10 @@
                 "NARGS_SUM": {
                     "__old": 2,
                     "__new": 10
+                },
+                "NEXITS_AVG": {
+                    "__old": 1,
+                    "__new": 0.2
                 },
                 "NOM": {
                     "functions": {

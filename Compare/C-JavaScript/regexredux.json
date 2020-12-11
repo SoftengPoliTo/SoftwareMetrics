@@ -47,6 +47,10 @@
         "__old": 1,
         "__new": 0
     },
+    "NEXITS_AVG": {
+        "__old": 0.5,
+        "__new": 0
+    },
     "NOM": {
         "functions": {
             "__old": 2,
@@ -171,7 +175,7 @@
                 },
                 "COGNITIVE_AVG": {
                     "__old": 5.5,
-                    "__new": 4
+                    "__new": 0
                 },
                 "NARGS_SUM": {
                     "__old": 6,
@@ -183,6 +187,10 @@
                 },
                 "NEXITS": {
                     "__old": 1,
+                    "__new": 0
+                },
+                "NEXITS_AVG": {
+                    "__old": 0.5,
                     "__new": 0
                 },
                 "NOM": {

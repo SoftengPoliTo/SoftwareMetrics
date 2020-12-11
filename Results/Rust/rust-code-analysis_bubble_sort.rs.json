@@ -1,7 +1,7 @@
 {
     "SLOC": 25,
     "PLOC": 20,
-    "LLOC": 19,
+    "LLOC": 13,
     "CLOC": 0,
     "BLANK": 5,
     "CC_SUM": 6,
@@ -11,6 +11,7 @@
     "NARGS_SUM": 1,
     "NARGS_AVG": 0.5,
     "NEXITS": 0,
+    "NEXITS_AVG": 0.0,
     "NOM": {
         "functions": 2,
         "closures": 0,
@@ -42,7 +43,7 @@
             "filename": "Assets/Rust/bubble_sort.rs",
             "SLOC": 25,
             "PLOC": 20,
-            "LLOC": 19,
+            "LLOC": 13,
             "CLOC": 0,
             "BLANK": 5,
             "CC_SUM": 6,
@@ -52,6 +53,7 @@
             "NARGS_SUM": 1,
             "NARGS_AVG": 0.5,
             "NEXITS": 0,
+            "NEXITS_AVG": 0.0,
             "NOM": {
                 "functions": 2,
                 "closures": 0,
@@ -86,16 +88,25 @@
                     "end_line": 17,
                     "SLOC": 17,
                     "PLOC": 14,
-                    "LLOC": 14,
+                    "LLOC": 9,
                     "CLOC": 0,
                     "BLANK": 3,
                     "CC": {
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 6,
-                    "NARGS": 1,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 6,
+                        "average": 6.0
+                    },
+                    "NARGS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -130,16 +141,25 @@
                     "end_line": 25,
                     "SLOC": 7,
                     "PLOC": 6,
-                    "LLOC": 5,
+                    "LLOC": 4,
                     "CLOC": 0,
                     "BLANK": 1,
                     "CC": {
                         "sum": 1,
                         "average": 1.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NARGS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,

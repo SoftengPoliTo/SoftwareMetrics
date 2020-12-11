@@ -47,6 +47,10 @@
         "__old": 2,
         "__new": 1
     },
+    "NEXITS_AVG": {
+        "__old": 0.4,
+        "__new": 0.2
+    },
     "NOM": {
         "functions": {
             "__old": 5,
@@ -184,6 +188,10 @@
                 "NEXITS": {
                     "__old": 2,
                     "__new": 1
+                },
+                "NEXITS_AVG": {
+                    "__old": 0.4,
+                    "__new": 0.2
                 },
                 "NOM": {
                     "functions": {

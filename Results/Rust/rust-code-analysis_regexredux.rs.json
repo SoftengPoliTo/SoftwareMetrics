@@ -1,7 +1,7 @@
 {
     "SLOC": 86,
     "PLOC": 54,
-    "LLOC": 67,
+    "LLOC": 26,
     "CLOC": 19,
     "BLANK": 13,
     "CC_SUM": 10,
@@ -11,6 +11,7 @@
     "NARGS_SUM": 2,
     "NARGS_AVG": 0.6666666666666666,
     "NEXITS": 1,
+    "NEXITS_AVG": 0.3333333333333333,
     "NOM": {
         "functions": 2,
         "closures": 1,
@@ -42,7 +43,7 @@
             "filename": "Assets/Rust/regexredux.rs",
             "SLOC": 86,
             "PLOC": 54,
-            "LLOC": 67,
+            "LLOC": 26,
             "CLOC": 19,
             "BLANK": 13,
             "CC_SUM": 10,
@@ -52,6 +53,7 @@
             "NARGS_SUM": 2,
             "NARGS_AVG": 0.6666666666666666,
             "NEXITS": 1,
+            "NEXITS_AVG": 0.3333333333333333,
             "NOM": {
                 "functions": 2,
                 "closures": 1,
@@ -86,16 +88,25 @@
                     "end_line": 29,
                     "SLOC": 9,
                     "PLOC": 7,
-                    "LLOC": 12,
+                    "LLOC": 5,
                     "CLOC": 1,
                     "BLANK": 1,
                     "CC": {
                         "sum": 4,
                         "average": 4.0
                     },
-                    "COGNITIVE": 0,
-                    "NARGS": 0,
-                    "NEXITS": 1,
+                    "COGNITIVE": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NARGS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
+                    "NEXITS": {
+                        "sum": 1,
+                        "average": 1.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 0,
@@ -130,16 +141,25 @@
                     "end_line": 86,
                     "SLOC": 56,
                     "PLOC": 40,
-                    "LLOC": 55,
+                    "LLOC": 21,
                     "CLOC": 9,
                     "BLANK": 7,
                     "CC": {
                         "sum": 5,
                         "average": 2.5
                     },
-                    "COGNITIVE": 3,
-                    "NARGS": 0,
-                    "NEXITS": 0,
+                    "COGNITIVE": {
+                        "sum": 3,
+                        "average": 1.5
+                    },
+                    "NARGS": {
+                        "sum": 2,
+                        "average": 1.0
+                    },
+                    "NEXITS": {
+                        "sum": 0,
+                        "average": 0.0
+                    },
                     "NOM": {
                         "functions": 1,
                         "closures": 1,
@@ -174,16 +194,25 @@
                             "end_line": 59,
                             "SLOC": 1,
                             "PLOC": 1,
-                            "LLOC": 5,
+                            "LLOC": 0,
                             "CLOC": 0,
                             "BLANK": 0,
                             "CC": {
                                 "sum": 1,
                                 "average": 1.0
                             },
-                            "COGNITIVE": 0,
-                            "NARGS": 2,
-                            "NEXITS": 0,
+                            "COGNITIVE": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
+                            "NARGS": {
+                                "sum": 2,
+                                "average": 2.0
+                            },
+                            "NEXITS": {
+                                "sum": 0,
+                                "average": 0.0
+                            },
                             "NOM": {
                                 "functions": 0,
                                 "closures": 1,

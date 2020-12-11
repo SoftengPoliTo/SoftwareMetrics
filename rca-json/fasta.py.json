@@ -11,9 +11,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 1.0,
-        "nexits": 1.0,
-        "cognitive": 1.0,
+        "nargs": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 1.0,
+          "average": 1.0
+        },
         "cyclomatic": {
           "sum": 2.0,
           "average": 2.0
@@ -60,9 +69,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 2.0,
-        "nexits": 0.0,
-        "cognitive": 3.0,
+        "nargs": {
+          "sum": 2.0,
+          "average": 2.0
+        },
+        "nexits": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "cognitive": {
+          "sum": 3.0,
+          "average": 3.0
+        },
         "cyclomatic": {
           "sum": 4.0,
           "average": 4.0
@@ -109,9 +127,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 3.0,
-        "nexits": 1.0,
-        "cognitive": 7.0,
+        "nargs": {
+          "sum": 3.0,
+          "average": 3.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 7.0,
+          "average": 7.0
+        },
         "cyclomatic": {
           "sum": 6.0,
           "average": 6.0
@@ -158,9 +185,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 0.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "nexits": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 1.0,
           "average": 1.0
@@ -202,9 +238,18 @@
     }
   ],
   "metrics": {
-    "nargs": 0.0,
-    "nexits": 2.0,
-    "cognitive": 12.0,
+    "nargs": {
+      "sum": 6.0,
+      "average": 1.5
+    },
+    "nexits": {
+      "sum": 2.0,
+      "average": 0.5
+    },
+    "cognitive": {
+      "sum": 12.0,
+      "average": 3.0
+    },
     "cyclomatic": {
       "sum": 15.0,
       "average": 3.0

@@ -5,9 +5,18 @@
   "kind": "unit",
   "spaces": [],
   "metrics": {
-    "nargs": 0.0,
-    "nexits": 0.0,
-    "cognitive": 14.0,
+    "nargs": {
+      "sum": 0.0,
+      "average": null
+    },
+    "nexits": {
+      "sum": 0.0,
+      "average": null
+    },
+    "cognitive": {
+      "sum": 14.0,
+      "average": null
+    },
     "cyclomatic": {
       "sum": 8.0,
       "average": 8.0

@@ -17,9 +17,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 3.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 3.0,
+              "average": 3.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -43,7 +52,7 @@
             "loc": {
               "sloc": 1.0,
               "ploc": 1.0,
-              "lloc": 5.0,
+              "lloc": 0.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -66,9 +75,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 3.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 3.0,
+              "average": 3.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -92,7 +110,7 @@
             "loc": {
               "sloc": 1.0,
               "ploc": 1.0,
-              "lloc": 5.0,
+              "lloc": 0.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -110,9 +128,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 0.0,
-        "cognitive": 6.0,
+        "nargs": {
+          "sum": 6.0,
+          "average": 2.0
+        },
+        "nexits": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "cognitive": {
+          "sum": 6.0,
+          "average": 2.0
+        },
         "cyclomatic": {
           "sum": 7.0,
           "average": 2.3333333333333335
@@ -136,7 +163,7 @@
         "loc": {
           "sloc": 14.0,
           "ploc": 14.0,
-          "lloc": 34.0,
+          "lloc": 9.0,
           "cloc": 0.0,
           "blank": 0.0
         },
@@ -165,9 +192,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -214,9 +250,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 2.0,
-            "nexits": 2.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "nexits": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -240,7 +285,7 @@
             "loc": {
               "sloc": 6.0,
               "ploc": 6.0,
-              "lloc": 18.0,
+              "lloc": 4.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -263,9 +308,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 2.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -289,7 +343,7 @@
             "loc": {
               "sloc": 5.0,
               "ploc": 5.0,
-              "lloc": 10.0,
+              "lloc": 3.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -312,9 +366,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -338,7 +401,7 @@
             "loc": {
               "sloc": 8.0,
               "ploc": 8.0,
-              "lloc": 18.0,
+              "lloc": 6.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -356,9 +419,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 3.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 5.0,
+          "average": 1.25
+        },
+        "nexits": {
+          "sum": 3.0,
+          "average": 0.75
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 5.0,
           "average": 1.0
@@ -382,7 +454,7 @@
         "loc": {
           "sloc": 31.0,
           "ploc": 31.0,
-          "lloc": 51.0,
+          "lloc": 18.0,
           "cloc": 0.0,
           "blank": 0.0
         },
@@ -411,9 +483,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 2.0,
-            "cognitive": 2.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "cognitive": {
+              "sum": 2.0,
+              "average": 2.0
+            },
             "cyclomatic": {
               "sum": 4.0,
               "average": 4.0
@@ -437,7 +518,7 @@
             "loc": {
               "sloc": 11.0,
               "ploc": 10.0,
-              "lloc": 18.0,
+              "lloc": 9.0,
               "cloc": 0.0,
               "blank": 1.0
             },
@@ -455,9 +536,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 2.0,
-        "cognitive": 2.0,
+        "nargs": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "nexits": {
+          "sum": 2.0,
+          "average": 2.0
+        },
+        "cognitive": {
+          "sum": 2.0,
+          "average": 2.0
+        },
         "cyclomatic": {
           "sum": 6.0,
           "average": 3.0
@@ -481,7 +571,7 @@
         "loc": {
           "sloc": 14.0,
           "ploc": 13.0,
-          "lloc": 18.0,
+          "lloc": 9.0,
           "cloc": 0.0,
           "blank": 1.0
         },
@@ -510,9 +600,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -536,7 +635,7 @@
             "loc": {
               "sloc": 1.0,
               "ploc": 1.0,
-              "lloc": 2.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -554,9 +653,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 0.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "nexits": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 3.0,
           "average": 1.5
@@ -580,7 +688,7 @@
         "loc": {
           "sloc": 3.0,
           "ploc": 3.0,
-          "lloc": 2.0,
+          "lloc": 1.0,
           "cloc": 0.0,
           "blank": 0.0
         },
@@ -609,9 +717,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -635,7 +752,7 @@
             "loc": {
               "sloc": 7.0,
               "ploc": 7.0,
-              "lloc": 3.0,
+              "lloc": 2.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -658,9 +775,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 3.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 3.0,
+              "average": 3.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -684,7 +810,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 3.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -707,9 +833,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 2.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -733,7 +868,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 3.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -756,9 +891,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 3.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 3.0,
+              "average": 3.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -782,7 +926,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 3.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -805,9 +949,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 3.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 3.0,
+              "average": 3.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -831,7 +984,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 4.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -854,9 +1007,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 3.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 3.0,
+              "average": 3.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -880,7 +1042,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 3.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -903,9 +1065,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 3.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 3.0,
+              "average": 3.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -929,7 +1100,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 4.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -952,9 +1123,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -978,7 +1158,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 2.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -996,9 +1176,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 2.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 19.0,
+          "average": 2.375
+        },
+        "nexits": {
+          "sum": 2.0,
+          "average": 0.25
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 9.0,
           "average": 1.0
@@ -1022,7 +1211,7 @@
         "loc": {
           "sloc": 36.0,
           "ploc": 30.0,
-          "lloc": 25.0,
+          "lloc": 9.0,
           "cloc": 6.0,
           "blank": 0.0
         },
@@ -1045,9 +1234,18 @@
       "kind": "impl",
       "spaces": [],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 0.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 0.0,
+          "average": null
+        },
+        "nexits": {
+          "sum": 0.0,
+          "average": null
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": null
+        },
         "cyclomatic": {
           "sum": 2.0,
           "average": 2.0
@@ -1100,9 +1298,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 2.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -1126,7 +1333,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 3.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -1144,9 +1351,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 1.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 2.0,
+          "average": 2.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 3.0,
           "average": 1.5
@@ -1170,7 +1386,7 @@
         "loc": {
           "sloc": 5.0,
           "ploc": 5.0,
-          "lloc": 3.0,
+          "lloc": 1.0,
           "cloc": 0.0,
           "blank": 0.0
         },
@@ -1199,9 +1415,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 2.0,
-            "nexits": 1.0,
-            "cognitive": 3.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 3.0,
+              "average": 3.0
+            },
             "cyclomatic": {
               "sum": 3.0,
               "average": 3.0
@@ -1225,7 +1450,7 @@
             "loc": {
               "sloc": 10.0,
               "ploc": 10.0,
-              "lloc": 6.0,
+              "lloc": 4.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -1243,9 +1468,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 1.0,
-        "cognitive": 3.0,
+        "nargs": {
+          "sum": 2.0,
+          "average": 2.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 3.0,
+          "average": 3.0
+        },
         "cyclomatic": {
           "sum": 5.0,
           "average": 2.5
@@ -1269,7 +1503,7 @@
         "loc": {
           "sloc": 12.0,
           "ploc": 12.0,
-          "lloc": 6.0,
+          "lloc": 4.0,
           "cloc": 0.0,
           "blank": 0.0
         },
@@ -1298,9 +1532,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 2.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -1324,7 +1567,7 @@
             "loc": {
               "sloc": 3.0,
               "ploc": 3.0,
-              "lloc": 3.0,
+              "lloc": 1.0,
               "cloc": 0.0,
               "blank": 0.0
             },
@@ -1342,9 +1585,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 1.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 2.0,
+          "average": 2.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 3.0,
           "average": 1.5
@@ -1368,7 +1620,7 @@
         "loc": {
           "sloc": 5.0,
           "ploc": 5.0,
-          "lloc": 3.0,
+          "lloc": 1.0,
           "cloc": 0.0,
           "blank": 0.0
         },
@@ -1386,9 +1638,18 @@
     }
   ],
   "metrics": {
-    "nargs": 0.0,
-    "nexits": 10.0,
-    "cognitive": 11.0,
+    "nargs": {
+      "sum": 38.0,
+      "average": 1.9
+    },
+    "nexits": {
+      "sum": 10.0,
+      "average": 0.5
+    },
+    "cognitive": {
+      "sum": 11.0,
+      "average": 0.55
+    },
     "cyclomatic": {
       "sum": 44.0,
       "average": 1.5172413793103448
@@ -1412,7 +1673,7 @@
     "loc": {
       "sloc": 172.0,
       "ploc": 149.0,
-      "lloc": 142.0,
+      "lloc": 52.0,
       "cloc": 14.0,
       "blank": 9.0
     },

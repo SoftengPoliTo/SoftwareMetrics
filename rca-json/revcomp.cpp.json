@@ -17,9 +17,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 1.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 1.0,
+              "average": 1.0
+            },
             "cyclomatic": {
               "sum": 3.0,
               "average": 3.0
@@ -61,9 +70,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 0.0,
-        "cognitive": 1.0,
+        "nargs": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "nexits": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "cognitive": {
+          "sum": 1.0,
+          "average": 1.0
+        },
         "cyclomatic": {
           "sum": 4.0,
           "average": 2.0
@@ -116,9 +134,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 2.0,
-            "nexits": 0.0,
-            "cognitive": 6.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 6.0,
+              "average": 6.0
+            },
             "cyclomatic": {
               "sum": 6.0,
               "average": 6.0
@@ -165,9 +192,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -214,9 +250,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -258,9 +303,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 2.0,
-        "cognitive": 6.0,
+        "nargs": {
+          "sum": 4.0,
+          "average": 1.3333333333333333
+        },
+        "nexits": {
+          "sum": 2.0,
+          "average": 0.6666666666666666
+        },
+        "cognitive": {
+          "sum": 6.0,
+          "average": 2.0
+        },
         "cyclomatic": {
           "sum": 9.0,
           "average": 2.25
@@ -313,9 +367,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -357,9 +420,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 1.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 2.0,
           "average": 1.0
@@ -412,9 +484,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -467,9 +548,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 0.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -516,9 +606,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 2.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 2.0,
+                  "average": 2.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -560,9 +659,18 @@
             }
           ],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 2.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 3.0,
               "average": 1.0
@@ -609,9 +717,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -664,9 +781,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 0.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -713,9 +839,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 0.0,
-                "nexits": 0.0,
-                "cognitive": 1.0,
+                "nargs": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 1.0,
+                  "average": 1.0
+                },
                 "cyclomatic": {
                   "sum": 2.0,
                   "average": 2.0
@@ -762,9 +897,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 2.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 2.0,
+                  "average": 2.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -811,9 +955,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 1.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 1.0,
+                  "average": 1.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -860,9 +1013,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 0.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -909,9 +1071,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 2.0,
-                "nexits": 0.0,
-                "cognitive": 5.0,
+                "nargs": {
+                  "sum": 2.0,
+                  "average": 2.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 5.0,
+                  "average": 5.0
+                },
                 "cyclomatic": {
                   "sum": 5.0,
                   "average": 5.0
@@ -958,9 +1129,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 0.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -1007,9 +1187,18 @@
               "kind": "function",
               "spaces": [],
               "metrics": {
-                "nargs": 0.0,
-                "nexits": 0.0,
-                "cognitive": 0.0,
+                "nargs": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "nexits": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
+                "cognitive": {
+                  "sum": 0.0,
+                  "average": 0.0
+                },
                 "cyclomatic": {
                   "sum": 1.0,
                   "average": 1.0
@@ -1051,9 +1240,18 @@
             }
           ],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 6.0,
+            "nargs": {
+              "sum": 5.0,
+              "average": 0.625
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 6.0,
+              "average": 0.75
+            },
             "cyclomatic": {
               "sum": 14.0,
               "average": 1.5555555555555556
@@ -1100,9 +1298,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 2.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 2.0,
+              "average": 2.0
+            },
             "cyclomatic": {
               "sum": 3.0,
               "average": 3.0
@@ -1149,9 +1356,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 1.0,
-            "cognitive": 3.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 3.0,
+              "average": 3.0
+            },
             "cyclomatic": {
               "sum": 3.0,
               "average": 3.0
@@ -1198,9 +1414,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 1.0,
-            "nexits": 2.0,
-            "cognitive": 7.0,
+            "nargs": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "nexits": {
+              "sum": 2.0,
+              "average": 2.0
+            },
+            "cognitive": {
+              "sum": 7.0,
+              "average": 7.0
+            },
             "cyclomatic": {
               "sum": 7.0,
               "average": 7.0
@@ -1247,9 +1472,18 @@
           "kind": "struct",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": null
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": null
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": null
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -1296,9 +1530,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 1.0,
-            "cognitive": 5.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 5.0,
+              "average": 5.0
+            },
             "cyclomatic": {
               "sum": 4.0,
               "average": 4.0
@@ -1345,9 +1588,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 1.0,
-            "cognitive": 3.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 3.0,
+              "average": 3.0
+            },
             "cyclomatic": {
               "sum": 5.0,
               "average": 5.0
@@ -1394,9 +1646,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -1438,9 +1699,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 6.0,
-        "cognitive": 26.0,
+        "nargs": {
+          "sum": 9.0,
+          "average": 0.5
+        },
+        "nexits": {
+          "sum": 6.0,
+          "average": 0.3333333333333333
+        },
+        "cognitive": {
+          "sum": 26.0,
+          "average": 1.4444444444444444
+        },
         "cyclomatic": {
           "sum": 44.0,
           "average": 2.0
@@ -1493,9 +1763,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -1542,9 +1821,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -1591,9 +1879,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 1.0,
-            "cognitive": 0.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 1.0,
+              "average": 1.0
+            },
+            "cognitive": {
+              "sum": 0.0,
+              "average": 0.0
+            },
             "cyclomatic": {
               "sum": 1.0,
               "average": 1.0
@@ -1640,9 +1937,18 @@
           "kind": "function",
           "spaces": [],
           "metrics": {
-            "nargs": 0.0,
-            "nexits": 0.0,
-            "cognitive": 5.0,
+            "nargs": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "nexits": {
+              "sum": 0.0,
+              "average": 0.0
+            },
+            "cognitive": {
+              "sum": 5.0,
+              "average": 5.0
+            },
             "cyclomatic": {
               "sum": 5.0,
               "average": 5.0
@@ -1684,9 +1990,18 @@
         }
       ],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 1.0,
-        "cognitive": 5.0,
+        "nargs": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 0.25
+        },
+        "cognitive": {
+          "sum": 5.0,
+          "average": 1.25
+        },
         "cyclomatic": {
           "sum": 9.0,
           "average": 1.8
@@ -1733,9 +2048,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 2.0,
-        "nexits": 1.0,
-        "cognitive": 0.0,
+        "nargs": {
+          "sum": 2.0,
+          "average": 2.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 0.0,
+          "average": 0.0
+        },
         "cyclomatic": {
           "sum": 1.0,
           "average": 1.0
@@ -1777,9 +2101,18 @@
     }
   ],
   "metrics": {
-    "nargs": 0.0,
-    "nexits": 11.0,
-    "cognitive": 38.0,
+    "nargs": {
+      "sum": 15.0,
+      "average": 0.5357142857142857
+    },
+    "nexits": {
+      "sum": 11.0,
+      "average": 0.39285714285714285
+    },
+    "cognitive": {
+      "sum": 38.0,
+      "average": 1.3571428571428572
+    },
     "cyclomatic": {
       "sum": 70.0,
       "average": 1.8918918918918919

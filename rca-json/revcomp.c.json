@@ -11,9 +11,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 3.0,
-        "nexits": 0.0,
-        "cognitive": 11.0,
+        "nargs": {
+          "sum": 3.0,
+          "average": 3.0
+        },
+        "nexits": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "cognitive": {
+          "sum": 11.0,
+          "average": 11.0
+        },
         "cyclomatic": {
           "sum": 10.0,
           "average": 10.0
@@ -60,9 +69,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 0.0,
-        "nexits": 1.0,
-        "cognitive": 10.0,
+        "nargs": {
+          "sum": 0.0,
+          "average": 0.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 10.0,
+          "average": 10.0
+        },
         "cyclomatic": {
           "sum": 6.0,
           "average": 6.0
@@ -104,9 +122,18 @@
     }
   ],
   "metrics": {
-    "nargs": 0.0,
-    "nexits": 1.0,
-    "cognitive": 21.0,
+    "nargs": {
+      "sum": 3.0,
+      "average": 1.5
+    },
+    "nexits": {
+      "sum": 1.0,
+      "average": 0.5
+    },
+    "cognitive": {
+      "sum": 21.0,
+      "average": 10.5
+    },
     "cyclomatic": {
       "sum": 17.0,
       "average": 5.666666666666667

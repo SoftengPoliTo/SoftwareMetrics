@@ -11,9 +11,18 @@
       "kind": "function",
       "spaces": [],
       "metrics": {
-        "nargs": 2.0,
-        "nexits": 1.0,
-        "cognitive": 56.0,
+        "nargs": {
+          "sum": 2.0,
+          "average": 2.0
+        },
+        "nexits": {
+          "sum": 1.0,
+          "average": 1.0
+        },
+        "cognitive": {
+          "sum": 56.0,
+          "average": 56.0
+        },
         "cyclomatic": {
           "sum": 21.0,
           "average": 21.0
@@ -55,9 +64,18 @@
     }
   ],
   "metrics": {
-    "nargs": 0.0,
-    "nexits": 1.0,
-    "cognitive": 56.0,
+    "nargs": {
+      "sum": 2.0,
+      "average": 2.0
+    },
+    "nexits": {
+      "sum": 1.0,
+      "average": 1.0
+    },
+    "cognitive": {
+      "sum": 56.0,
+      "average": 56.0
+    },
     "cyclomatic": {
       "sum": 22.0,
       "average": 11.0

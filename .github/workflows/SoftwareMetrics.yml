@@ -13,17 +13,10 @@ jobs:
       with:
         fetch: 1
 
-    - name: Install Rust stable
-      uses: actions-rs/toolchain@v1
-      with:
-        profile: minimal
-        toolchain: stable
-        override: true
-
-    - name: Install Python 3.7 version
+    - name: Install Python 3.8 version
       uses: actions/setup-python@v1
       with:
-        python-version: '3.7'
+        python-version: '3.8'
         architecture: 'x64'
 
     - name: Use Node.js 12.x
@@ -37,13 +30,13 @@ jobs:
 
     - name: Install rust-code-analysis
       env:
-        LINK: https://github.com/mozilla/rust-code-analysis/releases/download
-        RCA_VERSION: 0.0.18
+        LINK: https://github.com/SoftengPoliTo/SoftwareMetrics/releases/download
+        RCA_VERSION: 0.0.1
         DEST_DIR: ./tools/rust-code-analysis
       run: |
         mkdir -p $DEST_DIR
-        curl -L "$LINK/v$RCA_VERSION/rust-code-analysis-linux-x86_64.tar.gz" |
-        tar xz -C $DEST_DIR --strip-components 1
+        curl -L "$LINK/v$RCA_VERSION/rust-code-analysis-cli.tar.gz" |
+        tar xz -C $DEST_DIR
 
     - name: Run compare
       run: |
@@ -66,11 +59,15 @@ jobs:
         toolchain: stable
         override: true
 
-    - name: Install Python 3.7 version
+    - name: Install Python 3.8 version
       uses: actions/setup-python@v1
       with:
-        python-version: '3.7'
+        python-version: '3.8'
         architecture: 'x64'
+
+    - name: Upgrade pip
+      run: |
+        python -m pip install --upgrade pip
 
     - name: Install pytest
       run: |
@@ -88,13 +85,13 @@ jobs:
 
     - name: Install rust-code-analysis
       env:
-        LINK: https://github.com/mozilla/rust-code-analysis/releases/download
-        RCA_VERSION: 0.0.18
+        LINK: https://github.com/SoftengPoliTo/SoftwareMetrics/releases/download
+        RCA_VERSION: 0.0.1
         DEST_DIR: ./tools/rust-code-analysis
       run: |
         mkdir -p $DEST_DIR
-        curl -L "$LINK/v$RCA_VERSION/rust-code-analysis-linux-x86_64.tar.gz" |
-        tar xz -C $DEST_DIR --strip-components 1
+        curl -L "$LINK/v$RCA_VERSION/rust-code-analysis-cli.tar.gz" |
+        tar xz -C $DEST_DIR
 
     - name: Run tests
       run: |

@@ -1,0 +1,50 @@
+name: deploy
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Rust stable
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Build rust-code-analysis-cli
+        env:
+          REPO_LINK: https://github.com/SoftengPoliTo/rust-code-analysis
+        run: |
+          git clone --depth 1 --recurse-submodules -b fix-indexes $REPO_LINK
+          cd rust-code-analysis
+          cargo build --release --package rust-code-analysis-cli
+
+      - name: Create tar.gz
+        run: |
+          cd rust-code-analysis/target/release
+          strip rust-code-analysis-cli
+          tar -zvcf "rust-code-analysis-cli.tar.gz" rust-code-analysis-cli
+
+      - name: Get version
+        id: tagName
+        run: |
+          echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+
+      - name: Create a release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.tagName.outputs.tag }}
+          files: |
+            ./rust-code-analysis/target/release/rust-code-analysis-cli.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

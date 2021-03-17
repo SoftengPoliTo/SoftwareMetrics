@@ -4,47 +4,39 @@
    *reset* 
 */
 
-function TreeNode(left,right,item){
-   this.left = left;
-   this.right = right;
-}
-
-TreeNode.prototype.itemCheck = function(){
-   if (this.left==null) return 1;
-   else return 1 + this.left.itemCheck() + this.right.itemCheck();
-}
-
-function bottomUpTree(depth){
-   if (depth>0){
-      return new TreeNode(
-          bottomUpTree(depth-1)
-         ,bottomUpTree(depth-1)
-      );
+class TreeNode {
+   constructor(left, right) {
+      this.left = left;
+      this.right = right;
    }
-   else {
-      return new TreeNode(null,null);
+
+   itemCheck() {
+      const {left, right} = this;
+      return 1 + (left === null ? 0 : (left.itemCheck() + right.itemCheck()));
    }
 }
 
+const bottomUpTree = depth => {
+   const lr = depth > 0 ? bottomUpTree(depth - 1) : null;
+   return new TreeNode(lr, lr);
+};
 
-var minDepth = 4;
-var n = +process.argv[2];
-var maxDepth = Math.max(minDepth + 2, n);
-var stretchDepth = maxDepth + 1;
+const minDepth = 4;
+const n = +process.argv[2];
+const maxDepth = Math.max(minDepth + 2, n);
+const stretchDepth = maxDepth + 1;
 
-var check = bottomUpTree(stretchDepth).itemCheck();
-console.log("stretch tree of depth " + stretchDepth + "\t check: " + check);
+let check = bottomUpTree(stretchDepth).itemCheck();
+console.log(`stretch tree of depth ${stretchDepth}\t check: ${check}`);
 
-var longLivedTree = bottomUpTree(maxDepth);
-for (var depth=minDepth; depth<=maxDepth; depth+=2){
-   var iterations = 1 << (maxDepth - depth + minDepth);
-
+const longLivedTree = bottomUpTree(maxDepth);
+for (let depth = minDepth; depth <= maxDepth; depth += 2) {
+   const iterations = 1 << (maxDepth - depth + minDepth);
    check = 0;
-   for (var i=1; i<=iterations; i++){
+   for (let i = 1; i <= iterations; i++)
       check += bottomUpTree(depth).itemCheck();
-   }
-   console.log(iterations + "\t trees of depth " + depth + "\t check: " + check);
+   console.log(`${iterations}\t trees of depth ${depth}\t check: ${check}`);
 }
 
-console.log("long lived tree of depth " + maxDepth + "\t check: " 
-   + longLivedTree.itemCheck());
+check = longLivedTree.itemCheck();
+console.log(`long lived tree of depth ${maxDepth}\t check: ${check}`);
